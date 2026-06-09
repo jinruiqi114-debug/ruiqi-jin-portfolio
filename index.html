@@ -655,9 +655,21 @@ section{ padding: var(--section) 0; }
 .mb-lg{ margin-bottom: 24px; }
 .mb-xl{ margin-bottom: 32px; }
 .mt-xl{ margin-top: 32px; }
+
+/* ---------- BILINGUAL SWITCHING ---------- */
+[data-lang="en"] .l-zh { display: none !important; }
+[data-lang="zh"] .l-en { display: none !important; }
+.lang-toggle{
+  font-family:"JetBrains Mono", ui-monospace, monospace;
+  font-size:11px; letter-spacing:0.16em; font-weight:500;
+  background:var(--canvas); color:var(--ink); border:1px solid var(--ink);
+  border-radius:var(--r-pill); padding:6px 14px; cursor:pointer;
+  transition:background .14s, color .14s;
+}
+.lang-toggle:hover{ background:var(--ink); color:#fff; }
 </style>
 </head>
-<body>
+<body data-lang="en">
 
 <!-- vertical marquee rail (fixed left edge) -->
 <aside class="marquee-side" aria-hidden="true">
@@ -699,6 +711,7 @@ section{ padding: var(--section) 0; }
       <a class="nav-link" href="#contact">Contact</a>
     </div>
     <div class="nav-cta">
+      <button class="lang-toggle" id="lang-btn" aria-label="Switch language">EN / 中</button>
       <a class="btn btn-secondary" href="#contact">Contact</a>
     </div>
   </div>
@@ -738,15 +751,12 @@ section{ padding: var(--section) 0; }
 Between Paris
 &amp; Shanghai.</h1>
     <p class="lede">
-      I am Ruiqi Jin (靳睿琦). I study how images carry power — how high
-      fashion organises looking, how brands build cultural authority, and how
-      tradition gets remade in the present. I work as a researcher, curator
-      and brand strategist, and I model on the side to keep one hand on the
-      object of study.
+      <span class="l-en">I am Ruiqi Jin (靳睿琦). I study how images carry power — how high fashion organises looking, how brands build cultural authority, and how tradition gets remade in the present. I work as a researcher, curator and brand strategist, and I model on the side to keep one hand on the object of study.</span>
+      <span class="l-zh">我是靳睿琦。我研究图像如何承载权力——高级时装如何组织观看，品牌如何建构文化权威，传统如何在当代获得新生。我的身份横跨研究者、策展人与品牌策略师，同时也以模特身份保持对研究对象的直接感知。</span>
     </p>
     <div class="ctas">
-      <a class="btn btn-primary" href="#projects">See selected work</a>
-      <a class="btn btn-secondary" href="#research">Read the research</a>
+      <a class="btn btn-primary" href="#projects"><span class="l-en">See selected work</span><span class="l-zh">查看项目</span></a>
+      <a class="btn btn-secondary" href="#research"><span class="l-en">Read the research</span><span class="l-zh">阅读研究</span></a>
     </div>
     <div class="row">
       <div>
@@ -784,24 +794,20 @@ Between Paris
         </div>
         <div>
           <p class="lede">
-            From the Central Academy of Fine Arts to Paris-Kedge Business
-            School, I trained simultaneously in art-historical method and in
-            management. As a model I lived the discipline of <em>being looked
-            at</em>; as a curator I learned to organise <em>the looking</em>;
-            as a strategist I use both views to help brands build cultural
-            authority.
+            <span class="l-en">From the Central Academy of Fine Arts to Paris-Kedge Business School, I trained simultaneously in art-historical method and in management. As a model I lived the discipline of <em>being looked at</em>; as a curator I learned to organise <em>the looking</em>; as a strategist I use both views to help brands build cultural authority.</span>
+            <span class="l-zh">从中央美术学院到法国 Paris-Kedge 商学院，我同时接受艺术史方法论与管理学训练。作为模特，我经历了"被看"的规训；作为策展人，我学会了组织"观看"；作为策略师，我将两种视角结合，帮助品牌建构文化权威。</span>
           </p>
           <p class="lede">
-            The questions I keep returning to: how does the visual transmit
-            power? How do brands construct cultural belonging through space
-            and the body? How do traditional symbols survive — and become new
-            — in the present?
+            <span class="l-en">The questions I keep returning to: how does the visual transmit power? How do brands construct cultural belonging through space and the body? How do traditional symbols survive — and become new — in the present?</span>
+            <span class="l-zh">我反复思考的问题：视觉如何传递权力？品牌如何通过空间与身体建构文化归属感？传统符号如何在当代存活，并生成新的意义？</span>
           </p>
-          <div class="pull">看与被看，并非对立关系。<br/>它们是同一种权力关系的两面。<br/>由制度决定，而非个人选择。</div>
+          <div class="pull">
+            <span class="l-zh">看与被看，并非对立关系。<br/>它们是同一种权力关系的两面。<br/>由制度决定，而非个人选择。</span>
+            <span class="l-en">To see and to be seen are not opposites.<br/>They are two faces of the same power relation.<br/>Determined by institution, not personal choice.</span>
+          </div>
           <p class="lede">
-            My current research focuses on scopic regimes in haute couture
-            and the construction of cultural authority. I am preparing
-            doctoral applications in Germany for 2026.
+            <span class="l-en">My current research focuses on scopic regimes in haute couture and the construction of cultural authority. I am preparing doctoral applications in Germany for 2026.</span>
+            <span class="l-zh">我目前的研究聚焦于高级时装中的视觉机制与文化权威构建，正在申请 2026 年德国博士项目。</span>
           </p>
         </div>
       </div>
@@ -854,37 +860,37 @@ Between Paris
       <div class="skill-grid">
         <div class="skill-cell">
           <div class="n">01</div>
-          <h4>研究</h4>
+          <h4><span class="l-en">Research</span><span class="l-zh">研究</span></h4>
           <ul>
-            <li>视觉文化理论研究</li>
-            <li>品牌符号学分析</li>
-            <li>质性研究方法</li>
+            <li><span class="l-en">Visual culture theory</span><span class="l-zh">视觉文化理论研究</span></li>
+            <li><span class="l-en">Brand semiotics</span><span class="l-zh">品牌符号学分析</span></li>
+            <li><span class="l-en">Qualitative method</span><span class="l-zh">质性研究方法</span></li>
           </ul>
         </div>
         <div class="skill-cell">
           <div class="n">02</div>
-          <h4>跨学科整合</h4>
+          <h4><span class="l-en">Interdisciplinary</span><span class="l-zh">跨学科整合</span></h4>
           <ul>
-            <li>艺术史 × 管理学 × 传播学</li>
-            <li>理论 × 实践</li>
+            <li><span class="l-en">Art history × Management × Comms</span><span class="l-zh">艺术史 × 管理学 × 传播学</span></li>
+            <li><span class="l-en">Theory × Practice</span><span class="l-zh">理论 × 实践</span></li>
           </ul>
         </div>
         <div class="skill-cell">
           <div class="n">03</div>
-          <h4>策展与空间</h4>
+          <h4><span class="l-en">Curation &amp; Space</span><span class="l-zh">策展与空间</span></h4>
           <ul>
-            <li>展览策划与执行</li>
-            <li>空间叙事设计</li>
-            <li>观众体验优化</li>
+            <li><span class="l-en">Exhibition planning &amp; production</span><span class="l-zh">展览策划与执行</span></li>
+            <li><span class="l-en">Spatial narrative design</span><span class="l-zh">空间叙事设计</span></li>
+            <li><span class="l-en">Audience experience</span><span class="l-zh">观众体验优化</span></li>
           </ul>
         </div>
         <div class="skill-cell">
           <div class="n">04</div>
-          <h4>学术写作</h4>
+          <h4><span class="l-en">Academic Writing</span><span class="l-zh">学术写作</span></h4>
           <ul>
-            <li>中英文学术论文</li>
-            <li>品牌文化评论</li>
-            <li>研究报告撰写</li>
+            <li><span class="l-en">Papers in EN &amp; CN</span><span class="l-zh">中英文学术论文</span></li>
+            <li><span class="l-en">Brand cultural criticism</span><span class="l-zh">品牌文化评论</span></li>
+            <li><span class="l-en">Research reports</span><span class="l-zh">研究报告撰写</span></li>
           </ul>
         </div>
       </div>
@@ -990,9 +996,8 @@ Between Paris
             <span class="tag">Events</span>
             <span class="tag">Comms</span>
           </div>
-          <h3>展览活动策划与品牌传播</h3>
-          <p class="sub">深度理解媒体与品牌的传播逻辑，策划高端活动与文化项目。
-Exhibition &amp; Event Planning and Brand Communication In-depth understanding of media and brand communication logic; planning high-end events and cultural projects. 2024 — Present</p>
+          <h3><span class="l-zh">展览活动策划与品牌传播</span><span class="l-en">Event Planning &amp; Brand Communication</span></h3>
+          <p class="sub"><span class="l-zh">深度理解媒体与品牌的传播逻辑，策划高端活动与文化项目。</span><span class="l-en">In-depth understanding of media and brand communication logic; planning high-end events and cultural projects.</span></p>
           <p class="meta">2024 — 至今</p>
         </div>
       </article>
@@ -1004,9 +1009,8 @@ Exhibition &amp; Event Planning and Brand Communication In-depth understanding o
             <span class="tag">Heritage</span>
             <span class="tag">Curation</span>
           </div>
-          <h3>缂丝非遗传承与当代转化</h3>
-          <p class="sub">《雕经镂纬 · 典籍里的缂丝》展览 · 研究 · 文创转化的完整链路。
-Intangible Cultural Heritage Preservation and Contemporary Transformation of Kesi Silk The complete pipeline of exhibition, research, and cultural-creative transformation for Carved Warp, Etched Weft: Jiang Silk in Classical Texts. 2020 — 2024</p>
+          <h3><span class="l-zh">缂丝非遗传承与当代转化</span><span class="l-en">Kesi Heritage &amp; Contemporary Transformation</span></h3>
+          <p class="sub"><span class="l-zh">《雕经镂纬 · 典籍里的缂丝》展览 · 研究 · 文创转化的完整链路。</span><span class="l-en">The complete pipeline of exhibition, research, and cultural-creative transformation for <em>Carved Warp, Etched Weft: Kesi in Classical Texts</em>.</span></p>
           <p class="meta">2020 — 2024</p>
         </div>
       </article>
@@ -1018,9 +1022,8 @@ Intangible Cultural Heritage Preservation and Contemporary Transformation of Kes
             <span class="tag">Hospitality</span>
             <span class="tag">PR</span>
           </div>
-          <h3>媒体之夜 · Pathless Woods</h3>
-          <p class="sub">龙湖山居体验馆媒体之夜：从动线、场景到传播的完整统筹。
-Media Night · Pathless Woods Media night at Longhu Mountain Retreat Experience Center: full coordination from guest flow and scene design to communications. 2025</p>
+          <h3><span class="l-zh">媒体之夜 · Pathless Woods</span><span class="l-en">Media Night · Pathless Woods</span></h3>
+          <p class="sub"><span class="l-zh">龙湖山居体验馆媒体之夜：从动线、场景到传播的完整统筹。</span><span class="l-en">Media night at Longhu Mountain Retreat: full coordination from guest flow and scene design to communications.</span></p>
           <p class="meta">2025</p>
         </div>
       </article>
@@ -1065,9 +1068,8 @@ Media Night · Pathless Woods Media night at Longhu Mountain Retreat Experience 
             <span class="tag">AI Marketing</span>
             <span class="tag">Research</span>
           </div>
-          <h3>AI 时代的品牌叙事实验</h3>
-          <p class="sub">作为设计师参与创作北京卫视报导的蚂蚁链 NFT 画廊沉浸展，在生成式工具与文化批评之间重新拟稿"创意"的边界。
-Brand Narrative Experiments in the AI Era As a designer, co-created the Ant Chain NFT gallery immersive exhibition covered by Beijing Satellite TV; redefining the boundaries of "creativity" between generative tools and cultural criticism. 2025</p>
+          <h3><span class="l-zh">AI 时代的品牌叙事实验</span><span class="l-en">Brand Narrative in the AI Era</span></h3>
+          <p class="sub"><span class="l-zh">作为设计师参与创作北京卫视报导的蚂蚁链 NFT 画廊沉浸展，在生成式工具与文化批评之间重新拟稿"创意"的边界。</span><span class="l-en">Co-created the Ant Chain NFT gallery immersive exhibition covered by Beijing Satellite TV; redefining "creativity" at the intersection of generative tools and cultural criticism.</span></p>
           <p class="meta">2025</p>
         </div>
       </article>
@@ -1082,7 +1084,7 @@ Brand Narrative Experiments in the AI Era As a designer, co-created the Ant Chai
       <div class="cs-head">
         <div>
           <div class="eyebrow">Case · 02 · Heritage</div>
-          <h3>雕经镂纬<br/>典籍里的缂丝</h3>
+          <h3><span class="l-zh">雕经镂纬<br/>典籍里的缂丝</span><span class="l-en">Carved Warp<br/>Etched Weft · Kesi</span></h3>
         </div>
         <p class="lede">
           A two-track project on the silk-tapestry craft of <em>kèsī</em>:
@@ -1094,15 +1096,15 @@ Brand Narrative Experiments in the AI Era As a designer, co-created the Ant Chai
       <div class="cs-meta">
         <div>
           <div class="caption k">Role</div>
-          <div class="v">策展 · 研究 · 文字撰述</div>
+          <div class="v"><span class="l-zh">策展 · 研究 · 文字撰述</span><span class="l-en">Curation · Research · Writing</span></div>
         </div>
         <div>
           <div class="caption k">Venue</div>
-          <div class="v">苏州 · 丝绸博物馆临展</div>
+          <div class="v"><span class="l-zh">苏州 · 丝绸博物馆临展</span><span class="l-en">Suzhou · Silk Museum temporary exhibition</span></div>
         </div>
         <div>
           <div class="caption k">Output</div>
-          <div class="v">展览 + 中法双语画册 + 文创原型</div>
+          <div class="v"><span class="l-zh">展览 + 中法双语画册 + 文创原型</span><span class="l-en">Exhibition + bilingual catalogue + cultural-creative prototype</span></div>
         </div>
         <div>
           <div class="caption k">Period</div>
@@ -1209,7 +1211,8 @@ Brand Narrative Experiments in the AI Era As a designer, co-created the Ant Chai
         <div>
           <div class="eyebrow sub-h">Brief</div>
           <p style="font-size: 18px; font-weight: 480; letter-spacing:-0.18px;">
-            把"媒体参访"重新书写成"山里的夜晚"。让媒体老师主动为品牌写东西。
+            <span class="l-zh">把"媒体参访"重新书写成"山里的夜晚"。让媒体老师主动为品牌写东西。</span>
+            <span class="l-en">Re-write the press visit as a night in the mountains. Make journalists choose to write about the brand.</span>
           </p>
           <div class="mt-xl">
             <div class="caption mb-md">Results</div>
@@ -1222,18 +1225,16 @@ Brand Narrative Experiments in the AI Era As a designer, co-created the Ant Chai
         </div>
         <div>
           <p>
-            下午以《悠然·见山前》主题旗帜入场，天幕与老树划出重点区；
-            黄昏是天幕下酒会与二十分钟的思考题；入夜后是山谷里的串灯、
-            独坐、与那些不干补的对谈。
+            <span class="l-zh">下午以《悠然·见山前》主题旗帜入场，天幕与老树划出重点区；黄昏是天幕下酒会与二十分钟的思考题；入夜后是山谷里的串灯、独坐、与那些不干补的对谈。</span>
+            <span class="l-en">The afternoon began with 《悠然·见山前》 banners marking the camp; dusk brought a tent-side aperitif and a twenty-minute open prompt; after dark, valley lights, solitude, and conversations no one planned.</span>
           </p>
           <p>
-            现场被拆成<strong>四个可拍摄场景</strong>，每个场景都有一份
-            "写什么都可以"的提示词，也有一份"不要写"的黑名单。这是把
-            论文里的"观看距离"思路带到现场——不安排"被看"，反而让品牌被"看见"。
+            <span class="l-zh">现场被拆成<strong>四个可拍摄场景</strong>，每个场景都有一份"写什么都可以"的提示词，也有一份"不要写"的黑名单。这是把论文里的"观看距离"思路带到现场——不安排"被看"，反而让品牌被"看见"。</span>
+            <span class="l-en">The event was structured as <strong>four photographable scenes</strong>, each with an open prompt and a blacklist. A direct application of the thesis concept of "viewing distance" — instead of staging the brand to be looked at, we let it be seen.</span>
           </p>
           <p>
-            输出不仅是 5.2M+ 的传播与 42 篇发稿，更是一本《山前 · 星天外》
-            现场眼本——它后来变成了该项目后续萤门拉客的官方语言。
+            <span class="l-zh">输出不仅是 5.2M+ 的传播与 42 篇发稿，更是一本《山前 · 星天外》现场眼本——它后来变成了该项目后续萤门拉客的官方语言。</span>
+            <span class="l-en">The output wasn't only 5.2M+ reach and 42 articles — it was a field journal, 《山前 · 星天外》, that later became the official language for the venue's ongoing guest programme.</span>
           </p>
           <p class="mt-xl">
             <a class="btn btn-primary" href="#">Read full case study</a>
@@ -1425,8 +1426,8 @@ Brands organize "the gaze" through spatial design, choreography, and lighting co
             and photograph.
           </p>
           <div class="quote">
-            "你不是快速走过然后离开，而是持续暴露在凝视之下。
-            在那个空间里，我不是一个人，而是品牌的一个视觉元素。"
+            <span class="l-zh">"你不是快速走过然后离开，而是持续暴露在凝视之下。在那个空间里，我不是一个人，而是品牌的一个视觉元素。"</span>
+            <span class="l-en">"You don't walk past and leave. You remain continuously exposed to the gaze. In that space, I wasn't a person — I was a visual element of the brand."</span>
           </div>
           <div class="stats">
             <div><div class="caption">Duration</div><div style="font-size:22px;font-weight:480;margin-top:6px;">3.5 hrs</div></div>
@@ -1489,7 +1490,7 @@ Brands organize "the gaze" through spatial design, choreography, and lighting co
           <div class="eyebrow">§ 05 — Contact</div>
           <h2 class="display-lg">Let's<br/>talk.</h2>
         </div>
-        <p>欢迎与我交流学术研究、品牌策略、策展合作，或任何关于视觉文化的问题。中文 / English </p>
+        <p><span class="l-zh">欢迎与我交流学术研究、品牌策略、策展合作，或任何关于视觉文化的问题。中文 / English</span><span class="l-en">Open to conversations about academic research, brand strategy, curatorial collaboration, or anything related to visual culture. Mandarin / English</span></p>
       </div>
 
       <div class="contact-grid">
@@ -1523,7 +1524,10 @@ Brands organize "the gaze" through spatial design, choreography, and lighting co
   <div class="container">
     <div>
       <div class="wordmark">JIN.</div>
-      <p class="tagline">视觉文化研究 · 品牌策略 · 策展实践。<br/>Currently between Paris &amp; Beijing.</p>
+      <p class="tagline">
+        <span class="l-zh">视觉文化研究 · 品牌策略 · 策展实践。<br/>Currently between Paris &amp; Shanghai.</span>
+        <span class="l-en">Visual culture research · Brand strategy · Curatorial practice.<br/>Currently between Paris &amp; Shanghai.</span>
+      </p>
     </div>
     <div>
       <h5 class="caption">Index</h5>
@@ -1569,6 +1573,22 @@ Brands organize "the gaze" through spatial design, choreography, and lighting co
     </div>
   </div>
 </footer>
+
+<!-- ============================== LANGUAGE TOGGLE ============================== -->
+<script>
+(function(){
+  const btn = document.getElementById('lang-btn');
+  const saved = localStorage.getItem('portfolio-lang') || 'en';
+  document.body.dataset.lang = saved;
+  btn.textContent = saved === 'en' ? 'EN / 中' : '中 / EN';
+  btn.addEventListener('click', () => {
+    const next = document.body.dataset.lang === 'en' ? 'zh' : 'en';
+    document.body.dataset.lang = next;
+    localStorage.setItem('portfolio-lang', next);
+    btn.textContent = next === 'en' ? 'EN / 中' : '中 / EN';
+  });
+})();
+</script>
 
 <!-- ============================== SLIDESHOW DRIVER ============================== -->
 <script>
