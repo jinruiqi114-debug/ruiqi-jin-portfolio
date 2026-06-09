@@ -856,6 +856,187 @@ section:last-of-type { border-bottom: none; }
 /* ── BILINGUAL ───────────────────────────────────────── */
 [data-lang="en"] .l-zh { display: none !important; }
 [data-lang="zh"] .l-en { display: none !important; }
+
+/* ════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE  — phones < 768px
+   ════════════════════════════════════════════════════════ */
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile menu overlay */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--canvas);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 32px;
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.mobile-menu.open {
+  transform: translateY(0);
+  pointer-events: all;
+}
+.mobile-nav-link {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 42px; font-weight: 400; line-height: 1.15;
+  color: var(--ink); text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+  letter-spacing: -0.5px;
+}
+.mobile-nav-link:last-child { border-bottom: none; }
+.mobile-nav-link:hover { opacity: 0.5; }
+
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-contact-link { display: none; }
+}
+
+/* ── Core mobile breakpoint ─────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 20px;
+    --section: 56px;
+  }
+
+  /* Typography scale-down */
+  .display-xl { font-size: 38px; letter-spacing: -0.8px; line-height: 1.08; }
+  .display-lg { font-size: 30px; letter-spacing: -0.4px; }
+  .display-md { font-size: 24px; }
+  .headline   { font-size: 20px; }
+  .body-lg    { font-size: 17px; }
+  .body-md    { font-size: 16px; }
+  .cs-head h3 { font-size: 32px; }
+  .proj-feature h3 { font-size: 28px; }
+  .runway-feature h3 { font-size: 26px; }
+  .thesis h3  { font-size: 20px; }
+  .findings-grid .finding-card p { font-size: 15px; }
+
+  /* Nav */
+  .topnav { height: 56px; }
+
+  /* Hero */
+  .hero { padding: 64px 0 48px; }
+  .hero h1 { margin: 8px 0 20px; }
+  .hero .lede { font-size: 17px; }
+  .hero .ctas { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 24px; }
+  .hero .ctas .btn { width: 100%; justify-content: center; }
+  .hero .row {
+    margin-top: 40px; padding-top: 24px;
+    grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .hero-ref { display: none; }
+  .hero .side-ref { display: none; }
+
+  /* Section heads */
+  .sec-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; }
+  .sec-head p { font-size: 17px; }
+
+  /* About */
+  .about-block-inner { grid-template-columns: 1fr; gap: 32px; }
+  .portrait-plate { max-width: 280px; }
+
+  /* Education */
+  .edu-row { grid-template-columns: 80px 1fr; gap: 16px; }
+  .edu-row .achievements { display: none; }
+  .edu-row h4 { font-size: 18px; }
+  .edu-row h4 .edu-logo-lg { height: 56px; }
+
+  /* Skills */
+  .skill-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Projects feature */
+  .proj-feature { grid-template-columns: 1fr; gap: 28px; }
+  .proj-feature .stats { gap: 24px; }
+  .proj-feature .stats .v { font-size: 24px; }
+
+  /* Project grid */
+  .proj-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .proj-card h3 { font-size: 16px; }
+  .proj-card .sub { display: none; }
+
+  /* Case study head */
+  .cs-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 28px; }
+  .cs-head .lede { font-size: 17px; }
+  .cs-meta { gap: 24px; flex-wrap: wrap; }
+  .cs-body { grid-template-columns: 1fr; gap: 24px; }
+  .cs-body p { font-size: 16px; }
+
+  /* Media night marquee */
+  .mn-frame { width: 280px; }
+  .mn-track { animation-duration: 24s; }
+
+  /* Kesi mosaic */
+  .kesi-mosaic { grid-template-columns: 1fr; grid-template-rows: auto; aspect-ratio: auto; }
+  .kesi-mosaic .a { aspect-ratio: 4/3; }
+  .kesi-mosaic > figure:not(.a) { aspect-ratio: 4/3; }
+
+  /* Research thesis */
+  .thesis { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
+  .thesis .cover { aspect-ratio: 16/9; }
+  .thesis .meta-row { grid-template-columns: 1fr 1fr; }
+
+  /* Findings */
+  .findings-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .finding-card { padding: 20px 16px; }
+
+  /* Case grid */
+  .case-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+
+  /* Runway feature */
+  .runway-feature { grid-template-columns: 1fr; }
+  .runway-feature .body { padding: 28px 24px; }
+  .rw-track { padding: 20px 40px; }
+  .rw-frame { width: 180px; }
+
+  /* Contact */
+  .contact-inner { grid-template-columns: 1fr; gap: 20px; }
+  .contact-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .contact-card { padding: 18px 16px; }
+  .contact-cta { flex-direction: column; }
+  .contact-cta .btn { width: 100%; justify-content: center; }
+
+  /* Footer */
+  .foot { padding: 56px 0 24px; }
+  .foot .container { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .foot .wordmark { font-size: 36px; }
+  .foot-bottom { flex-direction: column; gap: 8px; }
+
+  /* Buttons full-width on small screens where needed */
+  .btn { min-height: 46px; }
+}
+
+@media (max-width: 480px) {
+  .display-xl { font-size: 32px; }
+  .display-lg { font-size: 26px; }
+  .hero .row { grid-template-columns: 1fr 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .skill-grid { grid-template-columns: 1fr; }
+  .findings-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .foot .container { grid-template-columns: 1fr; }
+  .thesis .meta-row { grid-template-columns: 1fr; }
+  .rw-frame { width: 155px; }
+  .mn-frame { width: 240px; }
+}
+
 </style>
 </head>
 <body data-lang="en">
@@ -902,10 +1083,24 @@ section:last-of-type { border-bottom: none; }
     <div class="nav-cta">
       <div class="nav-status"><span class="dot"></span><span id="nav-time"></span></div>
       <button class="lang-toggle" id="lang-btn" aria-label="Switch language">EN / 中</button>
-      <a class="nav-link" href="#contact"><span class="l-en">Contact</span><span class="l-zh">联系我</span></a>
+      <a class="nav-link nav-contact-link" href="#contact"><span class="l-en">Contact</span><span class="l-zh">联系我</span></a>
+      <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <a class="mobile-nav-link" href="#about"   onclick="closeMobileMenu()"><span class="l-en">About</span><span class="l-zh">关于</span></a>
+    <a class="mobile-nav-link" href="#projects" onclick="closeMobileMenu()"><span class="l-en">Projects</span><span class="l-zh">项目</span></a>
+    <a class="mobile-nav-link" href="#research" onclick="closeMobileMenu()"><span class="l-en">Research</span><span class="l-zh">研究</span></a>
+    <a class="mobile-nav-link" href="#runway"   onclick="closeMobileMenu()"><span class="l-en">Runway</span><span class="l-zh">秀场</span></a>
+    <a class="mobile-nav-link" href="#contact"  onclick="closeMobileMenu()"><span class="l-en">Contact</span><span class="l-zh">联系</span></a>
+  </div>
+</div>
 
 <!-- black marquee strip -->
 <div class="marquee" aria-hidden="true">
@@ -1851,6 +2046,37 @@ document.querySelectorAll('.rw-carousel').forEach(root => {
     <circle cx="980" cy="300" r="120" fill="#e23e8a"/>
   </svg>
 </template>
+
+
+<!-- ══ MOBILE MENU ══ -->
+<script>
+(function(){
+  const btn  = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+  function openMobileMenu(){
+    btn.classList.add('open');
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden','false');
+    btn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+  window.closeMobileMenu = function(){
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden','true');
+    btn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  };
+  btn.addEventListener('click', function(){
+    if(menu.classList.contains('open')) closeMobileMenu();
+    else openMobileMenu();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMobileMenu();
+  });
+})();
+</script>
 
 </body>
 </html>
