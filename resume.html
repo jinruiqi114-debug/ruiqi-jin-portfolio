@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ruiqi Jin · Resume (Editable)</title>
+<title>靳睿琦 · 简历 / Ruiqi Jin · Resume（可编辑）</title>
 <style>
   :root{
     --page-bg:#f4f5f6;
@@ -64,14 +64,7 @@
   }
   .toolbar button:hover{ opacity:.8; }
   .toolbar .hint{ font-size:11px; }
-  .toolbar .lang-switch{ margin-left:auto; white-space:nowrap; }
-  .toolbar .lang-switch a{
-    color:var(--ink);
-    text-decoration:none;
-    border-bottom:1px dotted #b7bbc0;
-    font-weight:600;
-  }
-  .toolbar .save-state{ font-size:11px; color:var(--ink-soft); min-width:64px; }
+  .toolbar .save-state{ margin-left:auto; font-size:11px; color:var(--ink-soft); white-space:nowrap; }
 
   /* ---------- Editable affordance ---------- */
   [contenteditable="true"]{ border-radius:2px; transition:background .12s ease, outline .12s ease; }
@@ -97,6 +90,23 @@
     overflow:hidden;
     border:1px solid var(--chip-border);
     box-shadow:0 4px 20px rgba(15,30,40,0.08);
+  }
+
+  .page-badge{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#e6e9ec;
+    color:#5a5e65;
+    font-weight:700;
+    font-size:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
   }
 
   /* ---------- Header ---------- */
@@ -229,6 +239,15 @@
     text-transform:uppercase;
     padding-top:1px;
   }
+  .row-label-sub{
+    display:block;
+    font-size:10.5px;
+    font-weight:500;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--ink-soft);
+    margin-top:3px;
+  }
   .row-content{ display:flex; flex-direction:column; gap:22px; }
 
   /* Education */
@@ -255,10 +274,13 @@
   .skill-line b{ color:var(--ink); font-weight:700; }
   .skill-line + .skill-line{ margin-top:2px; }
 
+  .bullet-edit{ outline-offset:3px; }
+
   @media print{
     body{ background:var(--card-bg); }
     .toolbar{ display:none !important; }
-    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; border-radius:0; border:none; }
+    .page-badge{ display:none !important; }
+    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; border-radius:0; }
     .page + .page{ page-break-before:always; }
     .photo-wrap .photo-hint, .photo-controls, .photo-wrap input[type=file]{ display:none !important; }
     [contenteditable="true"]:hover, [contenteditable="true"]:focus{ background:none; outline:none; }
@@ -269,28 +291,176 @@
 <body>
 
 <div class="toolbar">
-  <button type="button" id="btnPrint">🖨 Print / Export PDF</button>
-  <button type="button" id="btnReset" class="secondary">↺ Reset to default</button>
-  <span class="hint">Click any text on the page to edit it directly — changes are auto-saved in this browser</span>
+  <button type="button" id="btnPrint">🖨 打印 / 导出 PDF · Print / Export PDF</button>
+  <button type="button" id="btnReset" class="secondary">↺ 恢复默认内容 · Reset</button>
+  <span class="hint">点击任意文字直接编辑，自动保存在本浏览器中 · Click any text to edit — auto-saved locally</span>
   <span class="save-state" id="saveState"></span>
-  <span class="lang-switch">中文版本: <a href="resume-zh.html">resume-zh.html</a></span>
 </div>
 
-<div class="page" id="resumePage">
+<!-- ============ PAGE 1 — 中文版 ============ -->
+<div class="page" id="resumePageZh">
+  <div class="page-badge">1/2</div>
 
   <div class="resume-header">
     <div>
-      <div class="photo-wrap" id="photoWrap">
-        <div class="photo-placeholder" id="photoPlaceholder">Click to upload<br>photo</div>
-        <img alt="Ruiqi Jin" id="photoImg" style="display:none;">
-        <input type="file" accept="image/*" id="photoInput" title="Click to change photo">
+      <div class="photo-wrap" id="photoWrapZh">
+        <div class="photo-placeholder" id="photoPlaceholderZh">点击上传<br>头像照片</div>
+        <img alt="靳睿琦" id="photoImgZh" style="display:none;">
+        <input type="file" accept="image/*" id="photoInputZh" title="点击更换照片">
+        <div class="photo-hint">点击更换照片</div>
+      </div>
+      <div class="photo-controls">
+        <button type="button" id="posUpZh">↑</button>
+        <button type="button" id="posDownZh">↓</button>
+        <button type="button" id="zoomInZh">＋</button>
+        <button type="button" id="zoomOutZh">－</button>
+      </div>
+    </div>
+    <div class="header-text">
+      <div class="role-title" contenteditable="true">新媒体运营 · AIGC创意策划 · 海外营销</div>
+      <div class="name-sub" contenteditable="true">靳睿琦<span class="sep">｜</span>随时到岗</div>
+      <div class="contact-row" contenteditable="true">
+        <span>📞 16628502768</span>
+        <span>✉️ jrq13504591125@163.com</span>
+        <span>💬 WeChat 16628502768</span>
+        <span>📕 小红书 @靳观观观</span>
+      </div>
+      <div class="contact-row" style="margin-bottom:10px;">
+        <span>🔗 <a href="https://jinruiqi114-debug.github.io/ruiqi-jin-portfolio/" target="_blank">jinruiqi114-debug.github.io/ruiqi-jin-portfolio</a></span>
+      </div>
+      <div class="stat-pills">
+        <span contenteditable="true">粉丝量 2.5k</span>
+        <span contenteditable="true">获赞量 2.4w</span>
+        <span contenteditable="true">涨粉数超过 96% 同类型创作者</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-body">
+
+    <!-- 教育经历 -->
+    <div class="row">
+      <div class="row-label">教育经历<span class="row-label-sub">EDUCATION</span></div>
+      <div class="row-content">
+        <div class="edu-item">
+          <div class="job-head">
+            <span class="org" contenteditable="true">Kedge Business School</span>
+            <span class="date" contenteditable="true">2024年09月 – 2026年04月</span>
+          </div>
+          <div class="row-sub" contenteditable="true">创意产业管理与营销　硕士</div>
+        </div>
+        <div class="edu-item">
+          <div class="job-head">
+            <span class="org" contenteditable="true">中央美术学院</span>
+            <span class="date" contenteditable="true">2020年09月 – 2024年06月</span>
+          </div>
+          <div class="row-sub" contenteditable="true">艺术设计与管理 &amp; 营销学　双学位　本科</div>
+          <div class="row-detail" contenteditable="true">
+            <span class="dot">•</span>GPA 3.8 / 4.0<br>
+            <span class="dot">•</span>荣誉：校二等奖学金、优秀毕业生（排名前 10%）、优秀毕业作品
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 工作经历 -->
+    <div class="row">
+      <div class="row-label">工作经历<span class="row-label-sub">EXPERIENCE</span></div>
+      <div class="row-content">
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">上海蔚来汽车有限公司<span class="loc">品牌传播实习生</span></span>
+            <span class="date" contenteditable="true">2025年12月 – 2026年04月</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>活动全流程统筹：</b>负责韩国议员、上海侨联等国内外政要及机构参访活动，统筹策划、动线设计、现场宣讲及落地执行，精准传递品牌价值，保障品牌专业形象。</li>
+            <li contenteditable="true"><b>数字化传播推广运营：</b>结合公司战略制定区域多渠道传播策略，用 Claude Code、剪映等生成式 AI 工具进行品牌营销活动策划、视觉内容制作，把控文案、视觉等物料质量，监测传播数据并优化策略，提升传播触达与转化效果。</li>
+            <li contenteditable="true"><b>商务与资源对接：</b>协助开展商务洽谈、BD 渠道拓展，联动内外部资源推进合作落地；对接总部同步品牌传播等相关事项，保障策略高效传达。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">阿迪达斯 Adidas Global<span class="loc">品牌营销实习生</span></span>
+            <span class="date" contenteditable="true">2025年07月 – 2025年10月 &nbsp;· &nbsp;纽伦堡</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>品牌策略与视觉体系搭建：</b>根据品牌调性、用户分层去确定品牌运营策略，构建符合全球传播标准的高质量视觉素材体系，提炼核心视觉传播主题，确保素材内容与品牌核心价值、全球形象高度一致，助力提升品牌全球影响力与用户喜爱度。</li>
+            <li contenteditable="true"><b>跨部门 campaign 执行协动：</b>深度参与品牌创意内容 campaign 落地，利用 Gemini、Midjourney 等 AI 工具测试品牌概念海报生成推动创意内容的标准化、高效产出，产出 30 条高质量创意视觉素材。</li>
+            <li contenteditable="true"><b>项目全流程管控与效果保障：</b>主导素材产出全流程推进，涵盖内容策划、样衣协调、现场执行及素材归档，全程监控项目进度与创意一致性，通过流程优化提升项目效率，间接为营销活动 KPI 达成提供支撑。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">Little little<span class="loc">海外新媒体运营实习生</span></span>
+            <span class="date" contenteditable="true">2024年09月 – 2025年07月 &nbsp;· &nbsp;巴黎</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>品牌出海 campaign 操盘：</b>精准洞察海外年轻女性用户审美与消费需求，策划并执行品牌巴黎时装周快闪活动（品牌级出海战役），利用 canva ai、Claude Code 等 AI 工具制作爆款笔记，同步负责视觉概念设计、KOL 邀约、品牌赞助对接及模特与摄影团队协同，统一活动调性，吸引 500+ 访客到场，高效传递品牌非遗核心价值与文化符号。</li>
+            <li contenteditable="true"><b>圈层营销活动全案执行：</b>牵头策划 HEC 商学院 &amp; Little little 毕业典礼围炉活动，主导从视觉策划、资源协调到现场落地的全流程，成功触达高潜力年轻用户圈层，实现品牌校园渗透与影响力提升。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 项目经历 -->
+    <div class="row">
+      <div class="row-label">项目经历<span class="row-label-sub">PROJECTS</span></div>
+      <div class="row-content">
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">阿迪达斯 Adidas Global<span class="loc">区域性快闪店　项目助理</span></span>
+            <span class="date" contenteditable="true">2025年05月 – 2025年10月</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>策略落地与资源统筹：</b>主导视觉物料标准化落地、现场动线规划及跨部门协同，联动摄影、造型、社媒及线下运营团队，优化沟通流程，确保活动调性与品牌核心价值一致。</li>
+            <li contenteditable="true"><b>全链路执行管控：</b>参与活动从前期策划、样衣协调、物料筹备，到现场执行及后期素材归档的全流程推进，全程监控项目进度与创意一致性，通过流程优化提升执行效率，保障活动顺利落地。</li>
+            <li contenteditable="true"><b>数据转化与效果复盘：</b>联动社媒团队打造话题传播矩阵，强化活动曝光与用户引流；活动期间带动线下到店客流同比提升 22%，线上话题曝光量超 80万次，活动周边产品核销率达 35%，同步运用数据分析工具梳理核心 KPI 表现，输出优化报告，为后续同类快闪项目提供可复用经验。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">自媒体账号 @靳观观观<span class="loc">负责人</span></span>
+            <span class="date" contenteditable="true">2026年06月 – 至今</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>自媒体全流程运营：</b>独立创建并运营小红书个人 IP 账号，聚焦女性成长与个人 vlog 内容方向，账号选题、拍摄、剪辑、发布全流程一人完成。</li>
+            <li contenteditable="true"><b>商业内容转化：</b>独立策划内容选题与账号增长策略，精准把握女性成长赛道用户需求，稳定输出个人 IP 人设内容；独立对接商业合作，成功与上海图书馆「KOL 之夜」、咔朵啦艺术家联名共创达成合作，发布商业笔记。</li>
+            <li contenteditable="true"><b>项目成果：</b>运营 3 个月粉丝增长 2000+，目前粉丝量 2.3k，累计获赞收藏 2.4w+；粉丝增速超越平台 95% 同类创作者，内容发布量超越 96% 同类型创作者；平均每两周产出一条爆款内容，单篇最高观看量达 16w 次。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技能证书及其他 -->
+    <div class="row">
+      <div class="row-label">技能证书<span class="row-label-sub">SKILLS &amp; MORE</span></div>
+      <div class="row-content">
+        <div class="skill-line" contenteditable="true"><b>语言：</b>英语（流利）　普通话（母语）　法语（初级）</div>
+        <div class="skill-line" contenteditable="true"><b>AI 技能：</b>Microsoft Office（精通 PPT / Excel / Word）、剪映、ChatGPT、Claude Code、Gemini；AIGC 设计技能：Adobe Creative、Procreate、即梦、Stable Diffusion、Sketch Up、Midjourney</div>
+        <div class="skill-line" contenteditable="true"><b>活动：</b>拉夫劳伦巴黎时装周官方模特、阿迪达斯品牌模特，具备展览等活动策划与执行经验；个人社交媒体 IP 全流程运营经验</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ PAGE 2 — English version ============ -->
+<div class="page" id="resumePageEn">
+  <div class="page-badge">2/2</div>
+
+  <div class="resume-header">
+    <div>
+      <div class="photo-wrap" id="photoWrapEn">
+        <div class="photo-placeholder" id="photoPlaceholderEn">Click to upload<br>photo</div>
+        <img alt="Ruiqi Jin" id="photoImgEn" style="display:none;">
+        <input type="file" accept="image/*" id="photoInputEn" title="Click to change photo">
         <div class="photo-hint">Click to change photo</div>
       </div>
       <div class="photo-controls">
-        <button type="button" id="posUp">↑</button>
-        <button type="button" id="posDown">↓</button>
-        <button type="button" id="zoomIn">＋</button>
-        <button type="button" id="zoomOut">－</button>
+        <button type="button" id="posUpEn">↑</button>
+        <button type="button" id="posDownEn">↓</button>
+        <button type="button" id="zoomInEn">＋</button>
+        <button type="button" id="zoomOutEn">－</button>
       </div>
     </div>
     <div class="header-text">
@@ -317,7 +487,7 @@
 
     <!-- Education -->
     <div class="row">
-      <div class="row-label">Education</div>
+      <div class="row-label">EDUCATION</div>
       <div class="row-content">
         <div class="edu-item">
           <div class="job-head">
@@ -342,7 +512,7 @@
 
     <!-- Work Experience -->
     <div class="row">
-      <div class="row-label">Experience</div>
+      <div class="row-label">EXPERIENCE</div>
       <div class="row-content">
         <div>
           <div class="job-head">
@@ -381,7 +551,7 @@
 
     <!-- Project Experience -->
     <div class="row">
-      <div class="row-label">Projects</div>
+      <div class="row-label">PROJECTS</div>
       <div class="row-content">
         <div>
           <div class="job-head">
@@ -410,7 +580,7 @@
 
     <!-- Skills, Certifications & More -->
     <div class="row">
-      <div class="row-label">Skills &amp; More</div>
+      <div class="row-label">SKILLS &amp; MORE</div>
       <div class="row-content">
         <div class="skill-line" contenteditable="true"><b>Languages:</b> English (Fluent)　Mandarin (Native)　French (Basic)</div>
         <div class="skill-line" contenteditable="true"><b>AI Skills:</b> Microsoft Office (Advanced: PPT / Excel / Word), Jianying, ChatGPT, Claude Code, Gemini; AIGC design tools: Adobe Creative Suite, Procreate, Jimeng, Stable Diffusion, SketchUp, Midjourney</div>
@@ -423,89 +593,98 @@
 
 <script>
 (function(){
-  var STORAGE_KEY = 'resume_en_v2';
-  var page = document.getElementById('resumePage');
   var saveState = document.getElementById('saveState');
-  var saveTimer;
+  var pageConfigs = [
+    { suffix: 'Zh', key: 'resume_zh_v2', locale: 'zh-CN', savedLabel: '已保存' },
+    { suffix: 'En', key: 'resume_en_v2', locale: 'en-US', savedLabel: 'Saved' }
+  ];
+  var saveTimers = {};
 
-  function markSaved(){
-    saveState.textContent = 'Saved ' + new Date().toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
+  function markSaved(cfg){
+    saveState.textContent = cfg.savedLabel + ' ' + new Date().toLocaleTimeString(cfg.locale, {hour:'2-digit', minute:'2-digit'});
   }
 
-  function loadContent(){
-    var saved = localStorage.getItem(STORAGE_KEY);
-    if(saved){
-      page.innerHTML = saved;
-      markSaved();
-    }
-  }
+  function initPage(cfg){
+    var page = document.getElementById('resumePage' + cfg.suffix);
 
-  function saveContent(){
-    localStorage.setItem(STORAGE_KEY, page.innerHTML);
-    markSaved();
-  }
-
-  function setupPhoto(){
-    var img = document.getElementById('photoImg');
-    var placeholder = document.getElementById('photoPlaceholder');
-    var input = document.getElementById('photoInput');
-    var posY = 20;
-    var zoom = 100;
-
-    if(img.getAttribute('src')){
-      placeholder.style.display = 'none';
-      img.style.display = 'block';
+    function loadContent(){
+      var saved = localStorage.getItem(cfg.key);
+      if(saved){
+        page.innerHTML = saved;
+      }
     }
 
-    function applyTransform(){
-      img.style.objectPosition = 'center ' + posY + '%';
-      img.style.transform = 'scale(' + (zoom/100) + ')';
+    function saveContent(){
+      localStorage.setItem(cfg.key, page.innerHTML);
+      markSaved(cfg);
     }
 
-    input.addEventListener('change', function(e){
-      var file = e.target.files && e.target.files[0];
-      if(!file) return;
-      var reader = new FileReader();
-      reader.onload = function(evt){
-        img.src = evt.target.result;
-        img.style.display = 'block';
+    function setupPhoto(){
+      var img = document.getElementById('photoImg' + cfg.suffix);
+      var placeholder = document.getElementById('photoPlaceholder' + cfg.suffix);
+      var input = document.getElementById('photoInput' + cfg.suffix);
+      var posY = 20;
+      var zoom = 100;
+
+      if(img.getAttribute('src')){
         placeholder.style.display = 'none';
-        posY = 20; zoom = 100;
-        applyTransform();
-        saveContent();
-      };
-      reader.readAsDataURL(file);
+        img.style.display = 'block';
+      }
+
+      function applyTransform(){
+        img.style.objectPosition = 'center ' + posY + '%';
+        img.style.transform = 'scale(' + (zoom/100) + ')';
+      }
+
+      input.addEventListener('change', function(e){
+        var file = e.target.files && e.target.files[0];
+        if(!file) return;
+        var reader = new FileReader();
+        reader.onload = function(evt){
+          img.src = evt.target.result;
+          img.style.display = 'block';
+          placeholder.style.display = 'none';
+          posY = 20; zoom = 100;
+          applyTransform();
+          saveContent();
+        };
+        reader.readAsDataURL(file);
+      });
+
+      document.getElementById('posUp' + cfg.suffix).addEventListener('click', function(){
+        posY = Math.max(0, posY - 10); applyTransform(); saveContent();
+      });
+      document.getElementById('posDown' + cfg.suffix).addEventListener('click', function(){
+        posY = Math.min(100, posY + 10); applyTransform(); saveContent();
+      });
+      document.getElementById('zoomIn' + cfg.suffix).addEventListener('click', function(){
+        zoom = Math.min(200, zoom + 10); applyTransform(); saveContent();
+      });
+      document.getElementById('zoomOut' + cfg.suffix).addEventListener('click', function(){
+        zoom = Math.max(100, zoom - 10); applyTransform(); saveContent();
+      });
+    }
+
+    loadContent();
+    setupPhoto();
+
+    page.addEventListener('input', function(){
+      clearTimeout(saveTimers[cfg.suffix]);
+      saveTimers[cfg.suffix] = setTimeout(saveContent, 500);
     });
 
-    document.getElementById('posUp').addEventListener('click', function(){
-      posY = Math.max(0, posY - 10); applyTransform(); saveContent();
-    });
-    document.getElementById('posDown').addEventListener('click', function(){
-      posY = Math.min(100, posY + 10); applyTransform(); saveContent();
-    });
-    document.getElementById('zoomIn').addEventListener('click', function(){
-      zoom = Math.min(200, zoom + 10); applyTransform(); saveContent();
-    });
-    document.getElementById('zoomOut').addEventListener('click', function(){
-      zoom = Math.max(100, zoom - 10); applyTransform(); saveContent();
-    });
+    return { key: cfg.key };
   }
 
-  loadContent();
-  setupPhoto();
-
-  page.addEventListener('input', function(){
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(saveContent, 500);
-  });
+  var keys = pageConfigs.map(initPage).map(function(r){ return r.key; });
 
   document.getElementById('btnPrint').addEventListener('click', function(){
     window.print();
   });
 
   document.getElementById('btnReset').addEventListener('click', function(){
-    if(confirm('Reset to the default content? This will discard all your edits.')){
-      localStorage.removeItem(STORAGE_KEY);
+    if(confirm('确定要恢复默认内容吗？此操作会清除中英文两页所做的所有修改。\nReset both pages to default content? This discards all your edits.')){
+      keys.forEach(function(k){ localStorage.removeItem(k); });
       location.reload();
     }
   });

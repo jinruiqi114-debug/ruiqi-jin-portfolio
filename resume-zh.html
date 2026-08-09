@@ -6,14 +6,15 @@
 <title>靳睿琦 · 简历（可编辑）</title>
 <style>
   :root{
-    --ink:#1c1e26;
-    --ink-soft:#5b6270;
-    --paper:#ffffff;
-    --line:#e2e6ec;
-    --wine:#1d5fd6;
-    --wine-soft:#5b8ff0;
-    --gold:#0f3fa8;
-    --tag-bg:#eaf1fd;
+    --page-bg:#f4f5f6;
+    --card-bg:#ffffff;
+    --header-bg:#eef0f2;
+    --ink:#16181c;
+    --ink-soft:#6c7079;
+    --body-text:#42454b;
+    --line:#e7e9ec;
+    --chip-bg:#eef0f2;
+    --chip-border:#dde1e5;
   }
 
   *{ box-sizing:border-box; }
@@ -21,7 +22,7 @@
   html,body{
     margin:0;
     padding:0;
-    background:#f2f4f7;
+    background:var(--page-bg);
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei","Noto Sans SC","Hiragino Sans GB",sans-serif;
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
@@ -37,7 +38,7 @@
     gap:10px;
     padding:10px 14px;
     background:#fff;
-    border:1px solid var(--line);
+    border:1px solid var(--chip-border);
     border-radius:6px;
     font-size:12px;
     color:var(--ink-soft);
@@ -50,8 +51,8 @@
     font-family:inherit;
     font-size:12px;
     font-weight:600;
-    border:1px solid var(--wine);
-    background:var(--wine);
+    border:1px solid var(--ink);
+    background:var(--ink);
     color:#fff;
     padding:6px 12px;
     border-radius:4px;
@@ -59,95 +60,63 @@
   }
   .toolbar button.secondary{
     background:#fff;
-    color:var(--wine);
+    color:var(--ink);
   }
-  .toolbar button:hover{ opacity:.85; }
+  .toolbar button:hover{ opacity:.8; }
   .toolbar .hint{ font-size:11px; }
   .toolbar .lang-switch{ margin-left:auto; white-space:nowrap; }
   .toolbar .lang-switch a{
-    color:var(--wine);
+    color:var(--ink);
     text-decoration:none;
-    border-bottom:1px dotted var(--wine-soft);
+    border-bottom:1px dotted #b7bbc0;
     font-weight:600;
   }
-  .toolbar .save-state{ font-size:11px; color:var(--wine); min-width:64px; }
+  .toolbar .save-state{ font-size:11px; color:var(--ink-soft); min-width:64px; }
 
   /* ---------- Editable affordance ---------- */
   [contenteditable="true"]{ border-radius:2px; transition:background .12s ease, outline .12s ease; }
   [contenteditable="true"]:hover{
-    background:rgba(29,95,214,0.06);
-    outline:1px dashed var(--wine-soft);
+    background:rgba(22,24,28,0.05);
+    outline:1px dashed #a7abb2;
     outline-offset:2px;
     cursor:text;
   }
   [contenteditable="true"]:focus{
-    background:rgba(29,95,214,0.09);
-    outline:1.5px solid var(--wine);
+    background:rgba(22,24,28,0.07);
+    outline:1.5px solid var(--ink);
     outline-offset:2px;
   }
 
   .page{
     width:210mm;
     min-height:297mm;
-    margin:14px auto;
-    background:var(--paper);
+    margin:20px auto;
+    background:var(--card-bg);
     position:relative;
-    padding:15mm 16mm 12mm 16mm;
-    box-shadow:0 6px 30px rgba(0,0,0,0.18);
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--chip-border);
+    box-shadow:0 4px 20px rgba(15,30,40,0.08);
   }
 
   /* ---------- Header ---------- */
-  .masthead{
+  .resume-header{
+    background:var(--header-bg);
+    padding:34px 40px 28px;
     display:flex;
-    justify-content:space-between;
     align-items:flex-start;
-    border-bottom:2.5px solid var(--ink);
-    padding-bottom:10px;
-    margin-bottom:14px;
-  }
-  .masthead-left{ flex:1; padding-right:20px; }
-  .name{
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-    font-size:34px;
-    font-weight:700;
-    letter-spacing:4px;
-    margin:0 0 3px 0;
-    color:var(--ink);
-  }
-  .role-line{
-    font-size:12.5px;
-    color:var(--wine);
-    letter-spacing:1px;
-    font-weight:600;
-    margin-bottom:8px;
-  }
-  .contact-line{
-    font-size:11px;
-    color:var(--ink-soft);
-    line-height:1.9;
-  }
-  .contact-line span{ margin-right:14px; white-space:nowrap; }
-  .contact-line a{ color:var(--ink-soft); text-decoration:none; }
-  .stat-pills{ margin-top:6px; }
-  .stat-pills span{
-    display:inline-block;
-    background:var(--tag-bg);
-    color:var(--wine);
-    font-size:10.5px;
-    padding:2px 8px;
-    border-radius:2px;
-    margin-right:6px;
-    margin-top:4px;
-    font-weight:600;
+    gap:26px;
+    border-bottom:1px solid var(--line);
   }
   .photo-wrap{
-    width:88px;
-    height:110px;
+    width:120px;
+    height:150px;
     flex-shrink:0;
     overflow:hidden;
-    border:1px solid var(--line);
+    border-radius:12px;
     position:relative;
     cursor:pointer;
+    background:#e2e5e8;
   }
   .photo-wrap img{
     width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block;
@@ -160,21 +129,21 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    font-size:10px;
+    font-size:11px;
     line-height:1.6;
     color:var(--ink-soft);
-    background:var(--tag-bg);
+    background:#e2e5e8;
     padding:6px;
   }
   .photo-wrap .photo-hint{
     position:absolute;
     inset:auto 0 0 0;
-    background:rgba(33,29,26,0.72);
-    color:#faf7f2;
-    font-size:8.5px;
+    background:rgba(20,20,20,0.72);
+    color:#fafafa;
+    font-size:9px;
     text-align:center;
     line-height:1.4;
-    padding:2px 0;
+    padding:3px 0;
     opacity:0;
     transition:opacity .15s ease;
     pointer-events:none;
@@ -189,114 +158,116 @@
   .photo-controls{
     display:flex;
     gap:4px;
-    margin-top:5px;
-    justify-content:center;
+    margin-top:6px;
   }
   .photo-controls button{
     font-size:9px;
-    border:1px solid var(--line);
-    background:var(--tag-bg);
-    color:var(--wine);
+    border:1px solid var(--chip-border);
+    background:#fff;
+    color:var(--ink-soft);
     padding:2px 6px;
-    border-radius:2px;
+    border-radius:4px;
     cursor:pointer;
     font-family:inherit;
   }
-  .photo-controls button:hover{ background:var(--wine); color:#fff; }
+  .photo-controls button:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
 
-  /* ---------- Section ---------- */
-  .section{ margin-bottom:14px; }
-  .section-title{
-    display:flex;
-    align-items:center;
-    gap:8px;
+  .header-text{ flex:1; padding-top:2px; }
+  .role-title{
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:0.5px;
+    line-height:1.18;
+    color:var(--ink);
+    text-transform:uppercase;
+    margin:0 0 8px 0;
+  }
+  .name-sub{
     font-size:14px;
-    font-weight:700;
-    letter-spacing:3px;
-    color:var(--wine);
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .name-sub .sep{ margin:0 8px; color:#c3c7cc; }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    font-size:12px;
+    color:var(--ink-soft);
     margin-bottom:8px;
   }
-  .section-title::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:linear-gradient(to right, var(--wine) 0%, var(--line) 100%);
-    opacity:.6;
-  }
-  .section-title .num{
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;
-    font-style:italic;
-    color:var(--gold);
-    font-size:12px;
-    font-weight:400;
-  }
-
-  /* ---------- Education ---------- */
-  .edu-item{ margin-bottom:8px; }
-  .row-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    font-size:12.5px;
-  }
-  .row-head .org{ font-weight:700; color:var(--ink); }
-  .row-head .date{ color:var(--ink-soft); font-size:11px; white-space:nowrap; }
-  .row-sub{ font-size:11.5px; color:var(--ink-soft); margin-top:1px; }
-  .row-detail{ font-size:11.5px; color:var(--ink-soft); margin-top:2px; line-height:1.7; }
-  .row-detail .dot{ color:var(--wine); margin-right:5px; }
-
-  /* ---------- Experience ---------- */
-  .exp-item{ margin-bottom:11px; }
-  .exp-item .row-head{ margin-bottom:2px; }
-  .exp-item .loc{ font-size:11px; color:var(--gold); font-weight:600; margin-left:6px; }
-  .bullet{
-    font-size:11.5px;
-    line-height:1.75;
-    color:#3a352f;
-    margin:3px 0 0 0;
-    padding-left:14px;
-    position:relative;
-  }
-  .bullet::before{
-    content:"—";
-    position:absolute;
-    left:0;
-    color:var(--wine-soft);
-    font-weight:700;
-  }
-  .bullet b{
-    color:var(--ink);
-    font-weight:700;
-    border-bottom:1px solid var(--gold);
-  }
-
-  /* ---------- Skills ---------- */
-  .skill-grid{
-    display:grid;
-    grid-template-columns:56px 1fr;
-    row-gap:6px;
-    column-gap:10px;
-    font-size:11.5px;
-  }
-  .skill-grid .label{
-    color:var(--wine);
-    font-weight:700;
-    letter-spacing:1px;
-  }
-  .skill-grid .val{ color:#3a352f; line-height:1.7; }
-  .skill-grid .val b{ color:var(--ink); font-weight:700; }
-
-  .site-line{
-    font-size:11px;
+  .contact-row span{ white-space:nowrap; }
+  .contact-row a{ color:var(--ink-soft); text-decoration:none; border-bottom:1px dotted #b7bbc0; }
+  .stat-pills{ display:flex; flex-wrap:wrap; gap:6px; }
+  .stat-pills span{
+    display:inline-block;
+    background:#fff;
+    border:1px solid var(--chip-border);
     color:var(--ink-soft);
-    margin-top:2px;
+    font-size:10.5px;
+    padding:3px 9px;
+    border-radius:20px;
+    font-weight:600;
   }
-  .site-line a{ color:var(--wine); text-decoration:none; border-bottom:1px dotted var(--wine-soft); }
+
+  /* ---------- Body ---------- */
+  .resume-body{ padding:8px 40px 36px; }
+  .row{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:24px;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .row:last-child{ border-bottom:none; }
+  .row-label{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    color:var(--ink);
+    text-transform:uppercase;
+    padding-top:1px;
+  }
+  .row-label-sub{
+    display:block;
+    font-size:10.5px;
+    font-weight:500;
+    letter-spacing:0;
+    text-transform:none;
+    color:var(--ink-soft);
+    margin-top:3px;
+  }
+  .row-content{ display:flex; flex-direction:column; gap:22px; }
+
+  /* Education */
+  .edu-item .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .edu-item .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .edu-item .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+  .edu-item .row-sub{ font-size:12.5px; color:var(--body-text); margin-top:3px; }
+  .edu-item .row-detail{ font-size:12px; color:var(--ink-soft); margin-top:6px; line-height:1.7; }
+  .edu-item .row-detail .dot{ color:#b7bbc0; margin-right:5px; }
+  .edu-item + .edu-item{ margin-top:4px; }
+
+  /* Experience / Projects */
+  .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .job-head .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .job-head .loc{ font-size:11.5px; color:var(--ink-soft); font-weight:500; margin-left:6px; }
+  .job-head .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+  .job-bullets{ margin:8px 0 0 0; padding-left:16px; display:flex; flex-direction:column; gap:7px; }
+  .job-bullets li{ font-size:12.5px; line-height:1.7; color:var(--body-text); }
+  .job-bullets li::marker{ color:#b7bbc0; }
+  .job-bullets b{ color:var(--ink); font-weight:700; }
+
+  /* Skills */
+  .skill-line{ font-size:12.5px; line-height:1.75; color:var(--body-text); }
+  .skill-line b{ color:var(--ink); font-weight:700; }
+  .skill-line + .skill-line{ margin-top:2px; }
 
   @media print{
-    body{ background:var(--paper); }
+    body{ background:var(--card-bg); }
     .toolbar{ display:none !important; }
-    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; }
+    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; border-radius:0; border:none; }
     .page + .page{ page-break-before:always; }
     .photo-wrap .photo-hint, .photo-controls, .photo-wrap input[type=file]{ display:none !important; }
     [contenteditable="true"]:hover, [contenteditable="true"]:focus{ background:none; outline:none; }
@@ -316,26 +287,7 @@
 
 <div class="page" id="resumePage">
 
-  <!-- Header -->
-  <div class="masthead">
-    <div class="masthead-left">
-      <div class="name" contenteditable="true">靳睿琦</div>
-      <div class="role-line" contenteditable="true">新媒体运营 · AIGC创意策划 · 海外营销　|　随时到岗</div>
-      <div class="contact-line" contenteditable="true">
-        <span>📞 16628502768</span>
-        <span>✉️ jrq13504591125@163.com</span>
-        <span>WeChat 16628502768</span>
-      </div>
-      <div class="contact-line" contenteditable="true">
-        <span>小红书 @靳观观观</span>
-      </div>
-      <div class="stat-pills">
-        <span contenteditable="true">粉丝量 2.5k</span>
-        <span contenteditable="true">获赞量 2.4w</span>
-        <span contenteditable="true">涨粉数超过 96% 同类型创作者</span>
-      </div>
-      <div class="site-line">个人作品集网站：<a href="https://jinruiqi114-debug.github.io/ruiqi-jin-portfolio/" target="_blank">jinruiqi114-debug.github.io/ruiqi-jin-portfolio</a></div>
-    </div>
+  <div class="resume-header">
     <div>
       <div class="photo-wrap" id="photoWrap">
         <div class="photo-placeholder" id="photoPlaceholder">点击上传<br>头像照片</div>
@@ -350,112 +302,137 @@
         <button type="button" id="zoomOut">－</button>
       </div>
     </div>
-  </div>
-
-  <!-- 教育经历 -->
-  <div class="section">
-    <div class="section-title"><span class="num">01</span><span contenteditable="true">教育经历</span></div>
-
-    <div class="edu-item">
-      <div class="row-head">
-        <span class="org" contenteditable="true">Kedge Business School</span>
-        <span class="date" contenteditable="true">2024年09月 – 2026年04月</span>
+    <div class="header-text">
+      <div class="role-title" contenteditable="true">新媒体运营 · AIGC创意策划 · 海外营销</div>
+      <div class="name-sub" contenteditable="true">靳睿琦<span class="sep">｜</span>随时到岗</div>
+      <div class="contact-row" contenteditable="true">
+        <span>📞 16628502768</span>
+        <span>✉️ jrq13504591125@163.com</span>
+        <span>💬 WeChat 16628502768</span>
+        <span>📕 小红书 @靳观观观</span>
       </div>
-      <div class="row-sub" contenteditable="true">创意产业管理与营销　硕士</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="row-head">
-        <span class="org" contenteditable="true">中央美术学院</span>
-        <span class="date" contenteditable="true">2020年09月 – 2024年06月</span>
+      <div class="contact-row" style="margin-bottom:10px;">
+        <span>🔗 <a href="https://jinruiqi114-debug.github.io/ruiqi-jin-portfolio/" target="_blank">jinruiqi114-debug.github.io/ruiqi-jin-portfolio</a></span>
       </div>
-      <div class="row-sub" contenteditable="true">艺术设计与管理 &amp; 营销学　双学位　本科</div>
-      <div class="row-detail" contenteditable="true">
-        <span class="dot">•</span>GPA 3.8 / 4.0<br>
-        <span class="dot">•</span>荣誉：校二等奖学金、优秀毕业生（排名前 10%）、优秀毕业作品
+      <div class="stat-pills">
+        <span contenteditable="true">粉丝量 2.5k</span>
+        <span contenteditable="true">获赞量 2.4w</span>
+        <span contenteditable="true">涨粉数超过 96% 同类型创作者</span>
       </div>
     </div>
   </div>
 
-  <!-- 工作经历 -->
-  <div class="section">
-    <div class="section-title"><span class="num">02</span><span contenteditable="true">工作经历</span></div>
+  <div class="resume-body">
 
-    <div class="exp-item">
-      <div class="row-head">
-        <span class="org" contenteditable="true">上海蔚来汽车有限公司　<span class="loc">品牌传播实习生</span></span>
-        <span class="date" contenteditable="true">2025年12月 – 2026年04月</span>
+    <!-- 教育经历 -->
+    <div class="row">
+      <div class="row-label">教育经历<span class="row-label-sub">EDUCATION</span></div>
+      <div class="row-content">
+        <div class="edu-item">
+          <div class="job-head">
+            <span class="org" contenteditable="true">Kedge Business School</span>
+            <span class="date" contenteditable="true">2024年09月 – 2026年04月</span>
+          </div>
+          <div class="row-sub" contenteditable="true">创意产业管理与营销　硕士</div>
+        </div>
+        <div class="edu-item">
+          <div class="job-head">
+            <span class="org" contenteditable="true">中央美术学院</span>
+            <span class="date" contenteditable="true">2020年09月 – 2024年06月</span>
+          </div>
+          <div class="row-sub" contenteditable="true">艺术设计与管理 &amp; 营销学　双学位　本科</div>
+          <div class="row-detail" contenteditable="true">
+            <span class="dot">•</span>GPA 3.8 / 4.0<br>
+            <span class="dot">•</span>荣誉：校二等奖学金、优秀毕业生（排名前 10%）、优秀毕业作品
+          </div>
+        </div>
       </div>
-      <div class="bullet" contenteditable="true"><b>活动全流程统筹：</b>负责韩国议员、上海侨联等国内外政要及机构参访活动，统筹策划、动线设计、现场宣讲及落地执行，精准传递品牌价值，保障品牌专业形象。</div>
-      <div class="bullet" contenteditable="true"><b>数字化传播推广运营：</b>结合公司战略制定区域多渠道传播策略，用 Claude Code、剪映等生成式 AI 工具进行品牌营销活动策划、视觉内容制作，把控文案、视觉等物料质量，监测传播数据并优化策略，提升传播触达与转化效果。</div>
-      <div class="bullet" contenteditable="true"><b>商务与资源对接：</b>协助开展商务洽谈、BD 渠道拓展，联动内外部资源推进合作落地；对接总部同步品牌传播等相关事项，保障策略高效传达。</div>
     </div>
 
-    <div class="exp-item">
-      <div class="row-head">
-        <span class="org" contenteditable="true">阿迪达斯 Adidas Global　<span class="loc">品牌营销实习生</span></span>
-        <span class="date" contenteditable="true">2025年07月 – 2025年10月 &nbsp;· &nbsp;纽伦堡</span>
+    <!-- 工作经历 -->
+    <div class="row">
+      <div class="row-label">工作经历<span class="row-label-sub">EXPERIENCE</span></div>
+      <div class="row-content">
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">上海蔚来汽车有限公司<span class="loc">品牌传播实习生</span></span>
+            <span class="date" contenteditable="true">2025年12月 – 2026年04月</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>活动全流程统筹：</b>负责韩国议员、上海侨联等国内外政要及机构参访活动，统筹策划、动线设计、现场宣讲及落地执行，精准传递品牌价值，保障品牌专业形象。</li>
+            <li contenteditable="true"><b>数字化传播推广运营：</b>结合公司战略制定区域多渠道传播策略，用 Claude Code、剪映等生成式 AI 工具进行品牌营销活动策划、视觉内容制作，把控文案、视觉等物料质量，监测传播数据并优化策略，提升传播触达与转化效果。</li>
+            <li contenteditable="true"><b>商务与资源对接：</b>协助开展商务洽谈、BD 渠道拓展，联动内外部资源推进合作落地；对接总部同步品牌传播等相关事项，保障策略高效传达。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">阿迪达斯 Adidas Global<span class="loc">品牌营销实习生</span></span>
+            <span class="date" contenteditable="true">2025年07月 – 2025年10月 &nbsp;· &nbsp;纽伦堡</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>品牌策略与视觉体系搭建：</b>根据品牌调性、用户分层去确定品牌运营策略，构建符合全球传播标准的高质量视觉素材体系，提炼核心视觉传播主题，确保素材内容与品牌核心价值、全球形象高度一致，助力提升品牌全球影响力与用户喜爱度。</li>
+            <li contenteditable="true"><b>跨部门 campaign 执行协动：</b>深度参与品牌创意内容 campaign 落地，利用 Gemini、Midjourney 等 AI 工具测试品牌概念海报生成推动创意内容的标准化、高效产出，产出 30 条高质量创意视觉素材。</li>
+            <li contenteditable="true"><b>项目全流程管控与效果保障：</b>主导素材产出全流程推进，涵盖内容策划、样衣协调、现场执行及素材归档，全程监控项目进度与创意一致性，通过流程优化提升项目效率，间接为营销活动 KPI 达成提供支撑。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">Little little<span class="loc">海外新媒体运营实习生</span></span>
+            <span class="date" contenteditable="true">2024年09月 – 2025年07月 &nbsp;· &nbsp;巴黎</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>品牌出海 campaign 操盘：</b>精准洞察海外年轻女性用户审美与消费需求，策划并执行品牌巴黎时装周快闪活动（品牌级出海战役），利用 canva ai、Claude Code 等 AI 工具制作爆款笔记，同步负责视觉概念设计、KOL 邀约、品牌赞助对接及模特与摄影团队协同，统一活动调性，吸引 500+ 访客到场，高效传递品牌非遗核心价值与文化符号。</li>
+            <li contenteditable="true"><b>圈层营销活动全案执行：</b>牵头策划 HEC 商学院 &amp; Little little 毕业典礼围炉活动，主导从视觉策划、资源协调到现场落地的全流程，成功触达高潜力年轻用户圈层，实现品牌校园渗透与影响力提升。</li>
+          </ul>
+        </div>
       </div>
-      <div class="bullet" contenteditable="true"><b>品牌策略与视觉体系搭建：</b>根据品牌调性、用户分层去确定品牌运营策略，构建符合全球传播标准的高质量视觉素材体系，提炼核心视觉传播主题，确保素材内容与品牌核心价值、全球形象高度一致，助力提升品牌全球影响力与用户喜爱度。</div>
-      <div class="bullet" contenteditable="true"><b>跨部门 campaign 执行协动：</b>深度参与品牌创意内容 campaign 落地，利用 Gemini、Midjourney 等 AI 工具测试品牌概念海报生成推动创意内容的标准化、高效产出，产出 30 条高质量创意视觉素材。</div>
-      <div class="bullet" contenteditable="true"><b>项目全流程管控与效果保障：</b>主导素材产出全流程推进，涵盖内容策划、样衣协调、现场执行及素材归档，全程监控项目进度与创意一致性，通过流程优化提升项目效率，间接为营销活动 KPI 达成提供支撑。</div>
     </div>
 
-    <div class="exp-item">
-      <div class="row-head">
-        <span class="org" contenteditable="true">Little little　<span class="loc">海外新媒体运营实习生</span></span>
-        <span class="date" contenteditable="true">2024年09月 – 2025年07月 &nbsp;· &nbsp;巴黎</span>
+    <!-- 项目经历 -->
+    <div class="row">
+      <div class="row-label">项目经历<span class="row-label-sub">PROJECTS</span></div>
+      <div class="row-content">
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">阿迪达斯 Adidas Global<span class="loc">区域性快闪店　项目助理</span></span>
+            <span class="date" contenteditable="true">2025年05月 – 2025年10月</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>策略落地与资源统筹：</b>主导视觉物料标准化落地、现场动线规划及跨部门协同，联动摄影、造型、社媒及线下运营团队，优化沟通流程，确保活动调性与品牌核心价值一致。</li>
+            <li contenteditable="true"><b>全链路执行管控：</b>参与活动从前期策划、样衣协调、物料筹备，到现场执行及后期素材归档的全流程推进，全程监控项目进度与创意一致性，通过流程优化提升执行效率，保障活动顺利落地。</li>
+            <li contenteditable="true"><b>数据转化与效果复盘：</b>联动社媒团队打造话题传播矩阵，强化活动曝光与用户引流；活动期间带动线下到店客流同比提升 22%，线上话题曝光量超 80万次，活动周边产品核销率达 35%，同步运用数据分析工具梳理核心 KPI 表现，输出优化报告，为后续同类快闪项目提供可复用经验。</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">自媒体账号 @靳观观观<span class="loc">负责人</span></span>
+            <span class="date" contenteditable="true">2026年06月 – 至今</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true"><b>自媒体全流程运营：</b>独立创建并运营小红书个人 IP 账号，聚焦女性成长与个人 vlog 内容方向，账号选题、拍摄、剪辑、发布全流程一人完成。</li>
+            <li contenteditable="true"><b>商业内容转化：</b>独立策划内容选题与账号增长策略，精准把握女性成长赛道用户需求，稳定输出个人 IP 人设内容；独立对接商业合作，成功与上海图书馆「KOL 之夜」、咔朵啦艺术家联名共创达成合作，发布商业笔记。</li>
+            <li contenteditable="true"><b>项目成果：</b>运营 3 个月粉丝增长 2000+，目前粉丝量 2.3k，累计获赞收藏 2.4w+；粉丝增速超越平台 95% 同类创作者，内容发布量超越 96% 同类型创作者；平均每两周产出一条爆款内容，单篇最高观看量达 16w 次。</li>
+          </ul>
+        </div>
       </div>
-      <div class="bullet" contenteditable="true"><b>品牌出海 campaign 操盘：</b>精准洞察海外年轻女性用户审美与消费需求，策划并执行品牌巴黎时装周快闪活动（品牌级出海战役），利用 canva ai、Claude Code 等 AI 工具制作爆款笔记，同步负责视觉概念设计、KOL 邀约、品牌赞助对接及模特与摄影团队协同，统一活动调性，吸引 500+ 访客到场，高效传递品牌非遗核心价值与文化符号。</div>
-      <div class="bullet" contenteditable="true"><b>圈层营销活动全案执行：</b>牵头策划 HEC 商学院 &amp; Little little 毕业典礼围炉活动，主导从视觉策划、资源协调到现场落地的全流程，成功触达高潜力年轻用户圈层，实现品牌校园渗透与影响力提升。</div>
     </div>
+
+    <!-- 技能证书及其他 -->
+    <div class="row">
+      <div class="row-label">技能证书<span class="row-label-sub">SKILLS &amp; MORE</span></div>
+      <div class="row-content">
+        <div class="skill-line" contenteditable="true"><b>语言：</b>英语（流利）　普通话（母语）　法语（初级）</div>
+        <div class="skill-line" contenteditable="true"><b>AI 技能：</b>Microsoft Office（精通 PPT / Excel / Word）、剪映、ChatGPT、Claude Code、Gemini；AIGC 设计技能：Adobe Creative、Procreate、即梦、Stable Diffusion、Sketch Up、Midjourney</div>
+        <div class="skill-line" contenteditable="true"><b>活动：</b>拉夫劳伦巴黎时装周官方模特、阿迪达斯品牌模特，具备展览等活动策划与执行经验；个人社交媒体 IP 全流程运营经验</div>
+      </div>
+    </div>
+
   </div>
-
-  <!-- 项目经历 -->
-  <div class="section">
-    <div class="section-title"><span class="num">03</span><span contenteditable="true">项目经历</span></div>
-
-    <div class="exp-item">
-      <div class="row-head">
-        <span class="org" contenteditable="true">阿迪达斯 Adidas Global　<span class="loc">区域性快闪店　项目助理</span></span>
-        <span class="date" contenteditable="true">2025年05月 – 2025年10月</span>
-      </div>
-      <div class="bullet" contenteditable="true"><b>策略落地与资源统筹：</b>主导视觉物料标准化落地、现场动线规划及跨部门协同，联动摄影、造型、社媒及线下运营团队，优化沟通流程，确保活动调性与品牌核心价值一致。</div>
-      <div class="bullet" contenteditable="true"><b>全链路执行管控：</b>参与活动从前期策划、样衣协调、物料筹备，到现场执行及后期素材归档的全流程推进，全程监控项目进度与创意一致性，通过流程优化提升执行效率，保障活动顺利落地。</div>
-      <div class="bullet" contenteditable="true"><b>数据转化与效果复盘：</b>联动社媒团队打造话题传播矩阵，强化活动曝光与用户引流；活动期间带动线下到店客流同比提升 22%，线上话题曝光量超 80万次，活动周边产品核销率达 35%，同步运用数据分析工具梳理核心 KPI 表现，输出优化报告，为后续同类快闪项目提供可复用经验。</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="row-head">
-        <span class="org" contenteditable="true">自媒体账号 @靳观观观　<span class="loc">负责人</span></span>
-        <span class="date" contenteditable="true">2026年06月 – 至今</span>
-      </div>
-      <div class="bullet" contenteditable="true"><b>自媒体全流程运营：</b>独立创建并运营小红书个人 IP 账号，聚焦女性成长与个人 vlog 内容方向，账号选题、拍摄、剪辑、发布全流程一人完成。</div>
-      <div class="bullet" contenteditable="true"><b>商业内容转化：</b>独立策划内容选题与账号增长策略，精准把握女性成长赛道用户需求，稳定输出个人 IP 人设内容；独立对接商业合作，成功与上海图书馆「KOL 之夜」、咔朵啦艺术家联名共创达成合作，发布商业笔记。</div>
-      <div class="bullet" contenteditable="true"><b>项目成果：</b>运营 3 个月粉丝增长 2000+，目前粉丝量 2.3k，累计获赞收藏 2.4w+；粉丝增速超越平台 95% 同类创作者，内容发布量超越 96% 同类型创作者；平均每两周产出一条爆款内容，单篇最高观看量达 16w 次。</div>
-    </div>
-  </div>
-
-  <!-- 技能证书及其他 -->
-  <div class="section">
-    <div class="section-title"><span class="num">04</span><span contenteditable="true">技能证书及其他</span></div>
-    <div class="skill-grid">
-      <div class="label" contenteditable="true">语言</div>
-      <div class="val" contenteditable="true"><b>英语</b>（流利）　<b>普通话</b>（母语）　<b>法语</b>（初级）</div>
-
-      <div class="label" contenteditable="true">AI 技能</div>
-      <div class="val" contenteditable="true">Microsoft Office（精通 PPT / Excel / Word）、剪映、ChatGPT、Claude Code、Gemini；AIGC 设计技能：<b>Adobe Creative</b>、<b>Procreate</b>、<b>即梦</b>、<b>Stable Diffusion</b>、<b>Sketch Up</b>、<b>Midjourney</b></div>
-
-      <div class="label" contenteditable="true">活动</div>
-      <div class="val" contenteditable="true">拉夫劳伦巴黎时装周官方模特、阿迪达斯品牌模特，具备展览等活动策划与执行经验；个人社交媒体 IP 全流程运营经验</div>
-    </div>
-  </div>
-
 </div>
 
 <script>
 (function(){
-  var STORAGE_KEY = 'resume_zh_v1';
+  var STORAGE_KEY = 'resume_zh_v2';
   var page = document.getElementById('resumePage');
   var saveState = document.getElementById('saveState');
   var saveTimer;
