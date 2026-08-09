@@ -102,15 +102,15 @@
   /* ---------- Header ---------- */
   .resume-header{
     background:var(--header-bg);
-    padding:9px 40px 7px;
+    padding:24px 40px 20px;
     display:flex;
     align-items:flex-start;
-    gap:20px;
+    gap:22px;
     border-bottom:1px solid var(--line);
   }
   .photo-wrap{
-    width:105px;
-    height:128px;
+    width:110px;
+    height:135px;
     flex-shrink:0;
     overflow:hidden;
     border-radius:12px;
@@ -174,28 +174,28 @@
 
   .header-text{ flex:1; padding-top:2px; }
   .role-title{
-    font-size:24px;
+    font-size:25px;
     font-weight:800;
     letter-spacing:0.5px;
-    line-height:1.15;
+    line-height:1.16;
     color:var(--ink);
     text-transform:uppercase;
-    margin:0 0 3px 0;
+    margin:0 0 6px 0;
   }
   .name-sub{
-    font-size:13.5px;
+    font-size:14px;
     color:var(--ink-soft);
     font-weight:600;
-    margin-bottom:3px;
+    margin-bottom:10px;
   }
   .name-sub .sep{ margin:0 8px; color:#c3c7cc; }
   .contact-row{
     display:flex;
     flex-wrap:wrap;
-    gap:3px 18px;
+    gap:5px 18px;
     font-size:12px;
     color:var(--ink-soft);
-    margin-bottom:2px;
+    margin-bottom:6px;
   }
   .contact-row span{ white-space:nowrap; }
   .contact-row a{ color:var(--ink-soft); text-decoration:none; border-bottom:1px dotted #b7bbc0; }
@@ -212,12 +212,12 @@
   }
 
   /* ---------- Body ---------- */
-  .resume-body{ padding:0px 30px 0px; }
+  .resume-body{ padding:6px 40px 24px; }
   .row{
     display:grid;
-    grid-template-columns:120px 1fr;
-    gap:16px;
-    padding:2px 0;
+    grid-template-columns:140px 1fr;
+    gap:22px;
+    padding:15px 0;
     border-bottom:1px solid var(--line);
   }
   .row:last-child{ border-bottom:none; }
@@ -229,31 +229,30 @@
     text-transform:uppercase;
     padding-top:1px;
   }
-  .row-content{ display:flex; flex-direction:column; gap:3px; }
+  .row-content{ display:flex; flex-direction:column; gap:13px; }
 
   /* Education */
   .edu-item .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
-  .edu-item .org{ font-weight:700; font-size:12.5px; color:var(--ink); }
-  .edu-item .date{ font-size:10.5px; color:var(--ink-soft); white-space:nowrap; }
-  .edu-item .row-sub{ font-size:11.5px; color:var(--body-text); margin-top:2px; }
-  .edu-item .row-detail{ font-size:11px; color:var(--ink-soft); margin-top:3px; line-height:1.32; }
-  .edu-item .row-detail .dot{ color:#b7bbc0; margin-right:5px; }
+  .edu-item .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .edu-item .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+  .edu-item .row-sub{ font-size:12.5px; color:var(--body-text); margin-top:2px; }
+  .edu-item .row-detail{ font-size:11.5px; color:var(--ink-soft); margin-top:3px; line-height:1.5; }
   .edu-item + .edu-item{ margin-top:2px; }
 
   /* Experience / Projects */
   .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
-  .job-head .org{ font-weight:700; font-size:12.5px; color:var(--ink); }
-  .job-head .loc{ font-size:10.5px; color:var(--ink-soft); font-weight:500; margin-left:6px; }
-  .job-head .date{ font-size:10.5px; color:var(--ink-soft); white-space:nowrap; }
-  .job-bullets{ margin:1px 0 0 0; padding-left:14px; display:flex; flex-direction:column; gap:1px; }
-  .job-bullets li{ font-size:11px; line-height:1.32; color:var(--body-text); }
+  .job-head .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .job-head .loc{ font-size:11.5px; color:var(--ink-soft); font-weight:500; margin-left:6px; }
+  .job-head .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+  .job-bullets{ margin:5px 0 0 0; padding-left:16px; display:flex; flex-direction:column; gap:5px; }
+  .job-bullets li{ font-size:12.5px; line-height:1.55; color:var(--body-text); }
   .job-bullets li::marker{ color:#b7bbc0; }
   .job-bullets b{ color:var(--ink); font-weight:700; }
 
   /* Skills */
-  .skill-line{ font-size:11px; line-height:1.32; color:var(--body-text); }
+  .skill-line{ font-size:12.5px; line-height:1.55; color:var(--body-text); }
   .skill-line b{ color:var(--ink); font-weight:700; }
-  .skill-line + .skill-line{ margin-top:2px; }
+  .skill-line + .skill-line{ margin-top:4px; }
 
   @media print{
     body{ background:var(--card-bg); }
@@ -294,21 +293,17 @@
       </div>
     </div>
     <div class="header-text">
-      <div class="role-title" contenteditable="true">New Media Operations · AIGC Creative Strategy · Overseas Marketing</div>
+      <div class="role-title" contenteditable="true">New Media Operations · AIGC Creative Strategy</div>
       <div class="name-sub" contenteditable="true">Ruiqi Jin<span class="sep">|</span>Available Immediately</div>
       <div class="contact-row" contenteditable="true">
         <span>📞 16628502768</span>
         <span>✉️ jrq13504591125@163.com</span>
-        <span>💬 WeChat 16628502768</span>
-        <span>📕 Xiaohongshu (RED) @靳观观观</span>
-      </div>
-      <div class="contact-row" style="margin-bottom:3px;">
-        <span>🔗 <a href="https://jinruiqi114-debug.github.io/ruiqi-jin-portfolio/" target="_blank">jinruiqi114-debug.github.io/ruiqi-jin-portfolio</a></span>
+        <span>🔗 <a href="https://jinruiqi114-debug.github.io/ruiqi-jin-portfolio/" target="_blank">Portfolio</a></span>
       </div>
       <div class="stat-pills">
-        <span contenteditable="true">2.5k Followers</span>
-        <span contenteditable="true">24k Likes &amp; Saves</span>
-        <span contenteditable="true">Follower growth outpaces 96% of peer creators</span>
+        <span contenteditable="true">2.5K Followers</span>
+        <span contenteditable="true">24K Likes &amp; Saves</span>
+        <span contenteditable="true">Top 4% Growth Rate</span>
       </div>
     </div>
   </div>
@@ -324,18 +319,15 @@
             <span class="org" contenteditable="true">Kedge Business School</span>
             <span class="date" contenteditable="true">Sep 2024 – Apr 2026</span>
           </div>
-          <div class="row-sub" contenteditable="true">MSc in Creative Industries Management &amp; Marketing</div>
+          <div class="row-sub" contenteditable="true">MSc, Creative Industries Management &amp; Marketing</div>
         </div>
         <div class="edu-item">
           <div class="job-head">
             <span class="org" contenteditable="true">Central Academy of Fine Arts (CAFA)</span>
             <span class="date" contenteditable="true">Sep 2020 – Jun 2024</span>
           </div>
-          <div class="row-sub" contenteditable="true">Dual Degree in Art Design &amp; Management and Marketing　·　Bachelor's Degree</div>
-          <div class="row-detail" contenteditable="true">
-            <span class="dot">•</span>GPA 3.8 / 4.0<br>
-            <span class="dot">•</span>Honors: University Second-Class Scholarship, Outstanding Graduate (Top 10%), Outstanding Graduation Project
-          </div>
+          <div class="row-sub" contenteditable="true">BA, Art Design &amp; Management / Marketing (Dual Degree)</div>
+          <div class="row-detail" contenteditable="true">GPA 3.8/4.0 · Top 10% Graduate</div>
         </div>
       </div>
     </div>
@@ -350,20 +342,18 @@
             <span class="date" contenteditable="true">Dec 2025 – Apr 2026</span>
           </div>
           <ul class="job-bullets">
-            <li contenteditable="true"><b>Full-cycle event management:</b> Led delegation visits from Korean congress members, the Shanghai Federation of Overseas Chinese and other government/institutional guests — handled end-to-end planning, program design, on-site delivery and execution, ensuring accurate and professional brand representation.</li>
-            <li contenteditable="true"><b>Digital communications &amp; promotion:</b> Built a multi-channel regional communication strategy aligned with company goals; used generative AI tools (Claude Code, Jianying, etc.) for campaign planning and visual content production; oversaw copy and visual quality, tracked performance data and optimized strategy to improve reach and conversion.</li>
-            <li contenteditable="true"><b>Business &amp; resource liaison:</b> Supported business negotiations and BD channel expansion, coordinated internal and external resources to close partnerships; liaised with headquarters on brand communication matters to ensure efficient strategy execution.</li>
+            <li contenteditable="true">Led end-to-end delegation events for government and institutional visitors, ensuring polished, on-brand execution.</li>
+            <li contenteditable="true">Built a multi-channel content strategy using AI tools (Claude Code, Jianying); tracked performance to improve reach and conversion.</li>
           </ul>
         </div>
         <div>
           <div class="job-head">
             <span class="org" contenteditable="true">Adidas Global<span class="loc">Brand Marketing Intern</span></span>
-            <span class="date" contenteditable="true">Jul 2025 – Oct 2025 &nbsp;· &nbsp;Nuremberg</span>
+            <span class="date" contenteditable="true">Jul – Oct 2025 &nbsp;· &nbsp;Nuremberg</span>
           </div>
           <ul class="job-bullets">
-            <li contenteditable="true"><b>Brand strategy &amp; visual system:</b> Defined brand operating strategy based on brand tone and audience segmentation; built a high-quality visual asset system aligned with global communication standards, refining core visual themes consistent with brand values and global image to strengthen brand influence and audience affinity.</li>
-            <li contenteditable="true"><b>Cross-functional campaign execution:</b> Deeply involved in creative campaign delivery; used AI tools (Gemini, Midjourney) to test brand concept posters, driving standardized and efficient content production — delivered 30 high-quality creative visual assets.</li>
-            <li contenteditable="true"><b>End-to-end project management:</b> Led the full asset production cycle covering content planning, outfit coordination, on-site execution and asset archiving; monitored project progress and creative consistency, improved efficiency through process optimization, indirectly supporting campaign KPI delivery.</li>
+            <li contenteditable="true">Built a global-standard visual asset system aligned with brand strategy and audience segmentation.</li>
+            <li contenteditable="true">Used AI tools (Gemini, Midjourney) to standardize creative production, delivering 30+ campaign assets.</li>
           </ul>
         </div>
         <div>
@@ -372,8 +362,8 @@
             <span class="date" contenteditable="true">Sep 2024 – Jul 2025 &nbsp;· &nbsp;Paris</span>
           </div>
           <ul class="job-bullets">
-            <li contenteditable="true"><b>Overseas campaign ownership:</b> Identified the aesthetic and consumption needs of young overseas female audiences; planned and executed a Paris Fashion Week pop-up event (a flagship overseas campaign), used AI tools (Canva AI, Claude Code) to produce viral content, and oversaw visual concept design, KOL outreach, brand sponsorship coordination, and model/photography team collaboration; unified event tone, drew 500+ attendees, and effectively conveyed the brand's heritage values and cultural identity.</li>
-            <li contenteditable="true"><b>Community marketing execution:</b> Led planning for the HEC Business School &amp; Little little graduation bonfire event, overseeing the full process from visual planning and resource coordination to on-site execution; successfully reached a high-potential young audience segment, boosting campus penetration and brand influence.</li>
+            <li contenteditable="true">Planned and executed a Paris Fashion Week pop-up campaign using AI content tools, drawing 500+ attendees.</li>
+            <li contenteditable="true">Coordinated KOLs, sponsors, and photography for two flagship brand/campus events.</li>
           </ul>
         </div>
       </div>
@@ -385,13 +375,12 @@
       <div class="row-content">
         <div>
           <div class="job-head">
-            <span class="org" contenteditable="true">Adidas Global<span class="loc">Regional Pop-up Store　Project Assistant</span></span>
-            <span class="date" contenteditable="true">May 2025 – Oct 2025</span>
+            <span class="org" contenteditable="true">Adidas Global<span class="loc">Regional Pop-up, Project Assistant</span></span>
+            <span class="date" contenteditable="true">May – Oct 2025</span>
           </div>
           <ul class="job-bullets">
-            <li contenteditable="true"><b>Strategy execution &amp; resource coordination:</b> Led standardization of visual materials, on-site flow planning and cross-department coordination across photography, styling, social media and offline operations teams; optimized communication processes to ensure event tone stayed consistent with brand core values.</li>
-            <li contenteditable="true"><b>End-to-end execution management:</b> Involved in the full project cycle — pre-event planning, outfit coordination, material preparation, on-site execution and post-event asset archiving; monitored progress and creative consistency throughout, improving execution efficiency through process optimization and ensuring smooth event delivery.</li>
-            <li contenteditable="true"><b>Data conversion &amp; performance review:</b> Built a topic-driven social media matrix with the social team to boost exposure and traffic; drove a 22% YoY increase in offline foot traffic during the event, generated 800K+ online topic impressions, and achieved a 35% redemption rate on event merchandise; used analytics tools to track core KPIs and produced optimization reports as a reusable playbook for future pop-up campaigns.</li>
+            <li contenteditable="true">Directed cross-functional execution (photography, styling, social, ops); drove 22% YoY foot-traffic growth and 35% merchandise redemption.</li>
+            <li contenteditable="true">Built a social content matrix generating 800K+ impressions; delivered KPI reports as a reusable playbook.</li>
           </ul>
         </div>
         <div>
@@ -400,9 +389,8 @@
             <span class="date" contenteditable="true">Jun 2026 – Present</span>
           </div>
           <ul class="job-bullets">
-            <li contenteditable="true"><b>End-to-end content operations:</b> Independently founded and operated a personal IP account on Xiaohongshu (RED) focused on female growth and personal vlogs; solely responsible for topic selection, filming, editing and publishing.</li>
-            <li contenteditable="true"><b>Commercial content conversion:</b> Independently developed content topics and growth strategy tailored to the female-growth content niche, consistently delivering on-brand personal IP content; independently secured brand collaborations including Shanghai Library's "KOL Night" and a co-branded content series with artist Kaduola, publishing sponsored content.</li>
-            <li contenteditable="true"><b>Results:</b> Grew followers by 2,000+ in 3 months, now at 2.3k followers with 24K+ cumulative likes and saves; follower growth rate outpaced 95% of peer creators, content output outpaced 96% of peer creators; averaged one viral post every two weeks, with a peak single-post view count of 160K.</li>
+            <li contenteditable="true">Grew a personal IP account on Xiaohongshu (RED) to 2.3K followers and 24K+ likes/saves in 3 months, outpacing 95% of peer creators.</li>
+            <li contenteditable="true">Secured brand partnerships (Shanghai Library, artist collaborations) through independent content strategy and pitching.</li>
           </ul>
         </div>
       </div>
@@ -410,11 +398,11 @@
 
     <!-- Skills, Certifications & More -->
     <div class="row">
-      <div class="row-label">Skills &amp; More</div>
+      <div class="row-label">Skills</div>
       <div class="row-content">
-        <div class="skill-line" contenteditable="true"><b>Languages:</b> English (Fluent)　Mandarin (Native)　French (Basic)</div>
-        <div class="skill-line" contenteditable="true"><b>AI Skills:</b> Microsoft Office (Advanced: PPT / Excel / Word), Jianying, ChatGPT, Claude Code, Gemini; AIGC design tools: Adobe Creative Suite, Procreate, Jimeng, Stable Diffusion, SketchUp, Midjourney</div>
-        <div class="skill-line" contenteditable="true"><b>Activities:</b> Official runway model for Ralph Lauren Paris Fashion Week and Adidas brand campaigns; experienced in exhibition and event planning &amp; execution; full-cycle personal social media IP operations experience</div>
+        <div class="skill-line" contenteditable="true"><b>Languages:</b> English (Fluent) · Mandarin (Native) · French (Basic)</div>
+        <div class="skill-line" contenteditable="true"><b>Tools:</b> Claude Code · ChatGPT · Gemini · Midjourney · Adobe Creative Suite · Stable Diffusion</div>
+        <div class="skill-line" contenteditable="true"><b>Other:</b> Runway model (Ralph Lauren, Adidas) · Event planning &amp; execution</div>
       </div>
     </div>
 
@@ -423,7 +411,7 @@
 
 <script>
 (function(){
-  var STORAGE_KEY = 'resume_en_v2';
+  var STORAGE_KEY = 'resume_en_v3';
   var page = document.getElementById('resumePage');
   var saveState = document.getElementById('saveState');
   var saveTimer;
