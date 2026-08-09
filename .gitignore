@@ -1,1 +1,10 @@
 portfolio-site.zip
+
+# JobHuntBot personal materials and live job-search data (never commit real identity/search data)
+jobhuntbot/my-materials/
+jobhuntbot/dashboard/*.csv
+jobhuntbot/candidate_profile.json
+jobhuntbot/application_rules.md
+jobhuntbot/resume_routing.md
+jobhuntbot/answer_bank.md
+jobhuntbot/experience_bank.md
