@@ -112,15 +112,15 @@
   /* ---------- Header ---------- */
   .resume-header{
     background:var(--header-bg);
-    padding:34px 40px 28px;
+    padding:9px 40px 7px;
     display:flex;
     align-items:flex-start;
-    gap:26px;
+    gap:20px;
     border-bottom:1px solid var(--line);
   }
   .photo-wrap{
-    width:120px;
-    height:150px;
+    width:105px;
+    height:128px;
     flex-shrink:0;
     overflow:hidden;
     border-radius:12px;
@@ -184,28 +184,28 @@
 
   .header-text{ flex:1; padding-top:2px; }
   .role-title{
-    font-size:27px;
+    font-size:24px;
     font-weight:800;
     letter-spacing:0.5px;
-    line-height:1.18;
+    line-height:1.15;
     color:var(--ink);
     text-transform:uppercase;
-    margin:0 0 8px 0;
+    margin:0 0 3px 0;
   }
   .name-sub{
-    font-size:14px;
+    font-size:13.5px;
     color:var(--ink-soft);
     font-weight:600;
-    margin-bottom:14px;
+    margin-bottom:3px;
   }
   .name-sub .sep{ margin:0 8px; color:#c3c7cc; }
   .contact-row{
     display:flex;
     flex-wrap:wrap;
-    gap:6px 18px;
+    gap:3px 18px;
     font-size:12px;
     color:var(--ink-soft);
-    margin-bottom:8px;
+    margin-bottom:2px;
   }
   .contact-row span{ white-space:nowrap; }
   .contact-row a{ color:var(--ink-soft); text-decoration:none; border-bottom:1px dotted #b7bbc0; }
@@ -222,12 +222,12 @@
   }
 
   /* ---------- Body ---------- */
-  .resume-body{ padding:8px 40px 36px; }
+  .resume-body{ padding:0px 40px 0px; }
   .row{
     display:grid;
     grid-template-columns:150px 1fr;
     gap:24px;
-    padding:24px 0;
+    padding:2px 0;
     border-bottom:1px solid var(--line);
   }
   .row:last-child{ border-bottom:none; }
@@ -248,31 +248,43 @@
     color:var(--ink-soft);
     margin-top:3px;
   }
-  .row-content{ display:flex; flex-direction:column; gap:22px; }
+  .row-content{ display:flex; flex-direction:column; gap:3px; }
 
   /* Education */
   .edu-item .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
-  .edu-item .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
-  .edu-item .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
-  .edu-item .row-sub{ font-size:12.5px; color:var(--body-text); margin-top:3px; }
-  .edu-item .row-detail{ font-size:12px; color:var(--ink-soft); margin-top:6px; line-height:1.7; }
+  .edu-item .org{ font-weight:700; font-size:13px; color:var(--ink); }
+  .edu-item .date{ font-size:11px; color:var(--ink-soft); white-space:nowrap; }
+  .edu-item .row-sub{ font-size:12px; color:var(--body-text); margin-top:2px; }
+  .edu-item .row-detail{ font-size:11.5px; color:var(--ink-soft); margin-top:3px; line-height:1.4; }
   .edu-item .row-detail .dot{ color:#b7bbc0; margin-right:5px; }
-  .edu-item + .edu-item{ margin-top:4px; }
+  .edu-item + .edu-item{ margin-top:2px; }
 
   /* Experience / Projects */
   .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
-  .job-head .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
-  .job-head .loc{ font-size:11.5px; color:var(--ink-soft); font-weight:500; margin-left:6px; }
-  .job-head .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
-  .job-bullets{ margin:8px 0 0 0; padding-left:16px; display:flex; flex-direction:column; gap:7px; }
-  .job-bullets li{ font-size:12.5px; line-height:1.7; color:var(--body-text); }
+  .job-head .org{ font-weight:700; font-size:13px; color:var(--ink); }
+  .job-head .loc{ font-size:11px; color:var(--ink-soft); font-weight:500; margin-left:6px; }
+  .job-head .date{ font-size:11px; color:var(--ink-soft); white-space:nowrap; }
+  .job-bullets{ margin:1px 0 0 0; padding-left:16px; display:flex; flex-direction:column; gap:1px; }
+  .job-bullets li{ font-size:11.5px; line-height:1.4; color:var(--body-text); }
   .job-bullets li::marker{ color:#b7bbc0; }
   .job-bullets b{ color:var(--ink); font-weight:700; }
 
   /* Skills */
-  .skill-line{ font-size:12.5px; line-height:1.75; color:var(--body-text); }
+  .skill-line{ font-size:11.5px; line-height:1.4; color:var(--body-text); }
   .skill-line b{ color:var(--ink); font-weight:700; }
   .skill-line + .skill-line{ margin-top:2px; }
+
+  /* ---------- English page: extra compression to fit one A4 page ---------- */
+  #resumePageEn .resume-body{ padding-left:28px; padding-right:28px; }
+  #resumePageEn .row{ grid-template-columns:115px 1fr; gap:14px; padding:1px 0; }
+  #resumePageEn .row-content{ gap:2px; }
+  #resumePageEn .edu-item .org, #resumePageEn .job-head .org{ font-size:12.5px; }
+  #resumePageEn .edu-item .date, #resumePageEn .job-head .date, #resumePageEn .job-head .loc{ font-size:10.5px; }
+  #resumePageEn .edu-item .row-sub{ font-size:11.5px; }
+  #resumePageEn .edu-item .row-detail{ font-size:11px; line-height:1.32; }
+  #resumePageEn .job-bullets{ padding-left:14px; }
+  #resumePageEn .job-bullets li{ font-size:11px; line-height:1.32; }
+  #resumePageEn .skill-line{ font-size:11px; line-height:1.32; }
 
   .bullet-edit{ outline-offset:3px; }
 
@@ -280,7 +292,7 @@
     body{ background:var(--card-bg); }
     .toolbar{ display:none !important; }
     .page-badge{ display:none !important; }
-    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; border-radius:0; }
+    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; border-radius:0; border:none; }
     .page + .page{ page-break-before:always; }
     .photo-wrap .photo-hint, .photo-controls, .photo-wrap input[type=file]{ display:none !important; }
     [contenteditable="true"]:hover, [contenteditable="true"]:focus{ background:none; outline:none; }
