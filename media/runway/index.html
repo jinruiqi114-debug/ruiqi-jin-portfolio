@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>靳睿琦 · Ruiqi Jin — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --canvas: #f2f0ec;
+  --ink: #0c0c0c;
+  --ink-soft: #4a4a47;
+  --ink-muted: #8a8a86;
+  --surface: #e8e6e1;
+  --hairline: #d4d2cd;
+  --green: #22c55e;
+  --max: 1280px;
+  --gutter: 48px;
+  --section: 100px;
+}
+* { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grain texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
+
+img { display: block; max-width: 100%; height: auto; } 
+a { color: inherit; text-decoration: none; }
+.container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Typography */
+.display-xl { font-size: clamp(40px, 8vw, 80px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; }
+.display-lg { font-size: clamp(28px, 5vw, 52px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
+.body-lg { font-size: clamp(15px, 2vw, 18px); font-weight: 300; line-height: 1.7; }
+.body-md { font-size: clamp(14px, 1.8vw, 16px); font-weight: 300; line-height: 1.65; }
+.eyebrow { font-family: "JetBrains Mono", monospace; font-size: clamp(9px, 1.2vw, 11px); font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); }
+.caption { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-muted); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 28px; font-size: 12px; font-weight: 700; 
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 2px solid #000; border-radius: 0; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  max-width: 280px;
+}
+.btn::before {
+  content: ""; position: absolute; inset: 0;
+  background: #000; transform: translateY(101%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover::before { transform: translateY(0); }
+.btn span { position: relative; z-index: 1; }
+.btn-primary { background: #000; color: #fff; }
+.btn-primary::before { background: #fff; }
+.btn-primary:hover { color: #000; }
+
+/* Topnav */
+.topnav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100; 
+  background: rgba(242, 240, 236, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--hairline);
+  height: 56px;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.topnav.visible { transform: translateY(0); }
+.topnav .container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+.brand { font-size: 20px; font-weight: 900; letter-spacing: -0.04em; }
+.nav-menu { display: flex; gap: 24px; }
+.nav-link { 
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em; 
+  text-transform: uppercase; padding: 6px 0; 
+  position: relative;
+}
+.nav-link::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: #000;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* Mobile menu button */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  transition: all 0.3s;
+}
+.menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.menu-btn.active span:nth-child(2) { opacity: 0; }
+.menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.lang-toggle { 
+  font-size: 11px; font-weight: 600; text-transform: uppercase; 
+  background: transparent; border: 2px solid #000; 
+  padding: 6px 14px; cursor: pointer; 
+  transition: all 0.3s;
+}
+.lang-toggle:hover { background: #000; color: #fff; }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--canvas);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a {
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Sections */
+section { 
+  padding: var(--section) 0; 
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* About */
+.about-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.about-block .portrait-wrap { 
+  aspect-ratio: 3/4; 
+  background: var(--surface); 
+  overflow: hidden; 
+  border-radius: 4px;
+}
+.about-block .portrait-wrap img { 
+  width: 100%; height: 100%; object-fit: cover;
+}
+.about-block .portrait-tag { 
+  position: absolute; bottom: 12px; left: 12px; 
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  color: #fff; font-size: 9px; padding: 6px 12px; 
+  text-transform: uppercase; letter-spacing: 0.1em;
+  border-radius: 2px;
+}
+.about-block .content { display: flex; flex-direction: column; gap: 16px; }
+.about-block .content h2 { max-width: 16ch; }
+.about-block .content .lede { max-width: 50ch; color: var(--ink-soft); }
+
+/* Skills */
+.skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+.skill-cell { 
+  padding: 24px; 
+  border: 1px solid var(--hairline); 
+  margin-left: -1px; margin-top: -1px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.skill-cell::before {
+  content: ""; position: absolute; inset: 0;
+  background: var(--ink);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.skill-cell:hover::before { transform: scaleY(1); }
+.skill-cell .n { 
+  font-family: "JetBrains Mono", monospace; 
+  font-size: 10px; color: var(--ink-muted); margin-bottom: 12px;
+  position: relative; z-index: 1; transition: color 0.3s;
+}
+.skill-cell:hover .n { color: rgba(255,255,255,0.6); }
+.skill-cell h4 { 
+  font-size: 15px; font-weight: 700; margin-bottom: 10px;
+  position: relative; z-index: 1; transition: color 0.3s;
+}
+.skill-cell:hover h4 { color: #fff; }
+.skill-cell ul { list-style: none; position: relative; z-index: 1; }
+.skill-cell li { 
+  font-size: 12px; color: var(--ink-soft); 
+  padding: 4px 0; border-top: 1px solid var(--hairline);
+  transition: all 0.3s;
+}
+.skill-cell:hover li { color: rgba(255,255,255,0.7); border-top-color: rgba(255,255,255,0.1); }
+
+/* Project cards */
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 40px; }
+.proj-card { 
+  border: 1px solid var(--hairline); 
+  overflow: hidden; 
+  cursor: pointer;
+}
+.proj-card .img-wrap { 
+  aspect-ratio: 4/3; 
+  background: var(--surface); 
+  overflow: hidden; 
+}
+.proj-card .img-wrap img { 
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.proj-card:hover .img-wrap img { transform: scale(1.06); }
+.proj-card .info { padding: 16px; }
+.proj-card .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.proj-card .tag { 
+  font-size: 9px; font-weight: 500; letter-spacing: 0.1em; 
+  text-transform: uppercase; padding: 4px 8px; 
+  border: 1px solid var(--hairline);
+}
+.proj-card h3 { 
+  font-size: 16px; font-weight: 700; margin-bottom: 8px;
+  transition: transform 0.3s;
+}
+.proj-card:hover h3 { transform: translateX(4px); }
+.proj-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+/* Le Pom */
+.le-pom-hero { 
+  background: var(--ink); 
+  color: #fff; 
+  padding: 80px 0 100px;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.le-pom-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(34, 197, 94, 0.12) 0%, transparent 60%);
+}
+.le-pom-hero h2 { color: #fff; margin-bottom: 20px; position: relative; }
+.le-pom-hero p { color: rgba(255,255,255,0.7); max-width: 50ch; position: relative; }
+
+.le-pom-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.le-pom-feature { 
+  border: 1px solid var(--hairline); 
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.le-pom-feature:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.le-pom-feature img { 
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  transition: transform 0.6s;
+}
+.le-pom-feature:hover img { transform: scale(1.04); }
+.le-pom-feature .info { padding: 16px; }
+.le-pom-feature h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.le-pom-feature p { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+
+/* AIGC Film */
+.aigc-film { 
+  background: var(--ink); 
+  color: #fff; 
+  padding: 80px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+.aigc-film::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+}
+.aigc-film .container { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 48px; 
+  align-items: center; 
+  position: relative;
+}
+.aigc-film h2 { color: #fff; margin-bottom: 16px; }
+.aigc-film p { color: rgba(255,255,255,0.7); }
+.aigc-film .video-wrap {
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+}
+.aigc-film video { width: 100%; display: block; }
+.aigc-film .tags { display: flex; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
+.aigc-film .tag { 
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; padding: 6px 12px; 
+  border: 1px solid rgba(255,255,255,0.3); color: #fff;
+  transition: all 0.3s;
+}
+.aigc-film .tag:hover { background: #fff; color: #000; }
+
+/* Contact */
+.contact-inner { 
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+}
+.contact-inner h2 { margin-bottom: 16px; }
+.contact-inner p { color: var(--ink-soft); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.contact-card { 
+  padding: 24px; border: 1px solid var(--hairline); 
+  margin-left: -1px; margin-top: -1px;
+  transition: all 0.3s;
+}
+.contact-card:hover { background: var(--ink); color: #fff; }
+.contact-card:hover .caption { color: rgba(255,255,255,0.6); }
+.contact-card .k { margin-bottom: 8px; }
+.contact-card .v { font-size: 14px; word-break: break-all; }
+.contact-card .v a { border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+.contact-card .v a:hover { border-bottom-color: currentColor; }
+.contact-cta { margin-top: 32px; }
+
+/* Footer */
+.foot { 
+  padding: 60px 0 32px; 
+  border-top: 2px solid #000;
+  background: var(--canvas);
+}
+.foot .container { 
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; 
+}
+.foot .wordmark { 
+  font-size: 40px; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.04em;
+}
+.foot h5 { 
+  font-size: 11px; font-weight: 700; margin-bottom: 12px; 
+  text-transform: uppercase; letter-spacing: 0.1em; 
+}
+.foot ul { list-style: none; }
+.foot li { font-size: 13px; color: var(--ink-soft); padding: 4px 0; }
+.foot li a { transition: color 0.3s; }
+.foot li a:hover { color: #000; }
+
+/* Marquee */
+.marquee { 
+  background: var(--ink); color: #fff; 
+  overflow: hidden; height: 40px; display: flex; align-items: center; 
+}
+.marquee-track { 
+  display: flex; gap: 40px; padding-left: 40px; 
+  animation: marquee 30s linear infinite; 
+  width: max-content; 
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+.marquee-track span::after { content: " ● "; opacity: 0.4; font-size: 8px; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* Scroll progress */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: var(--ink); z-index: 101;
+  transform-origin: left; transform: scaleX(0);
+}
+
+/* Loader */
+.loader {
+  position: fixed; inset: 0; background: var(--canvas);
+  z-index: 10000; display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.8s, visibility 0.8s;
+}
+.loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader-text { font-size: 72px; font-weight: 900; letter-spacing: -0.04em; overflow: hidden; }
+.loader-text span {
+  display: inline-block; transform: translateY(120%);
+  animation: loaderReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes loaderReveal { to { transform: translateY(0); } }
+
+/* Reveal animations - DRAMATIC */
+.reveal { 
+  opacity: 0; transform: translateY(60px); filter: blur(6px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+.reveal-left {
+  opacity: 0; transform: translateX(-60px); filter: blur(6px);
+  transition: opacity 0.8s, transform 0.8s, filter 0.8s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); filter: blur(0); }
+
+.reveal-scale {
+  opacity: 0; transform: scale(0.9); filter: blur(6px);
+  transition: opacity 0.8s, transform 0.8s, filter 0.8s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); filter: blur(0); }
+
+/* Stagger delays */
+.delay-1 { transition-delay: 0.1s !important; }
+.delay-2 { transition-delay: 0.2s !important; }
+.delay-3 { transition-delay: 0.3s !important; }
+.delay-4 { transition-delay: 0.4s !important; }
+.delay-5 { transition-delay: 0.5s !important; }
+
+/* ===== MOBILE ===== */
+@media(max-width: 1024px) {
+  :root { --gutter: 32px; --section: 80px; }
+  .about-block { grid-template-columns: 1fr; gap: 32px; }
+  .about-block .portrait-wrap { max-width: 400px; }
+  .skill-grid { grid-template-columns: 1fr 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .le-pom-features { grid-template-columns: 1fr 1fr; }
+  .aigc-film .container { grid-template-columns: 1fr; gap: 32px; }
+  .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+  .foot .container { grid-template-columns: 1fr 1fr; }
+}
+
+@media(max-width: 768px) {
+  :root { --gutter: 20px; --section: 60px; }
+  .nav-menu { display: none; }
+  .menu-btn { display: flex; }
+  .mobile-menu { display: flex; }
+  .display-xl { font-size: clamp(32px, 10vw, 48px); }
+  .display-lg { font-size: clamp(24px, 6vw, 36px); }
+  .about-block .portrait-wrap { max-width: 100%; }
+  .skill-grid { grid-template-columns: 1fr; }
+  .le-pom-features { grid-template-columns: 1fr; }
+  .le-pom-hero, .aigc-film { padding: 60px 0 80px; }
+  .le-pom-hero { margin-bottom: 32px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .foot .container { grid-template-columns: 1fr; gap: 24px; }
+  .foot .wordmark { font-size: 32px; }
+  .marquee-track { font-size: 9px; gap: 24px; padding-left: 24px; }
+  .loader-text { font-size: 48px; }
+}
+
+@media(max-width: 480px) {
+  :root { --gutter: 16px; --section: 48px; }
+  .display-xl { font-size: 28px; }
+  .display-lg { font-size: 22px; }
+  .btn { padding: 12px 20px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader">
+  <div class="loader-text">
+    <span style="animation-delay:0s">J</span><span style="animation-delay:0.08s">I</span><span style="animation-delay:0.16s">N</span><span style="animation-delay:0.24s">.</span>
+  </div>
+</div>
+
+<!-- Scroll progress -->
+<div class="scroll-progress"></div>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Central Academy of Fine Arts</span><span>Paris-Kedge Business School</span>
+    <span>Polo Ralph Lauren · Paris</span><span>NIO · Brand Communications</span>
+    <span>Adidas Global</span><span>Little little · PFW Pop-up</span>
+    <span>Kesi Heritage Studies</span><span>AIGC Creative</span>
+    <span>Central Academy of Fine Arts</span><span>Paris-Kedge Business School</span>
+    <span>Polo Ralph Lauren · Paris</span><span>NIO · Brand Communications</span>
+    <span>Adidas Global</span><span>Little little · PFW Pop-up</span>
+    <span>Kesi Heritage Studies</span><span>AIGC Creative</span>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="topnav">
+  <div class="container">
+    <a class="brand" href="#about">JIN.</a>
+    <div class="nav-menu">
+      <a class="nav-link" href="#about"><span class="l-en">About</span><span class="l-zh">关于</span></a>
+      <a class="nav-link" href="#le-pom"><span class="l-en">Le Pom</span><span class="l-zh">产品</span></a>
+      <a class="nav-link" href="#projects"><span class="l-en">Projects</span><span class="l-zh">项目</span></a>
+      <a class="nav-link" href="#aigc-film"><span class="l-en">Film</span><span class="l-zh">短片</span></a>
+      <a class="nav-link" href="#contact"><span class="l-en">Contact</span><span class="l-zh">联系</span></a>
+    </div>
+    <button class="lang-toggle" id="lang-btn">EN / 中</button>
+    <button class="menu-btn" id="menu-btn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMenu()"><span class="l-en">About</span><span class="l-zh">关于</span></a>
+  <a href="#le-pom" onclick="closeMenu()"><span class="l-en">Le Pom</span><span class="l-zh">产品</span></a>
+  <a href="#projects" onclick="closeMenu()"><span class="l-en">Projects</span><span class="l-zh">项目</span></a>
+  <a href="#aigc-film" onclick="closeMenu()"><span class="l-en">Film</span><span class="l-zh">短片</span></a>
+  <a href="#contact" onclick="closeMenu()"><span class="l-en">Contact</span><span class="l-zh">联系</span></a>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="eyebrow reveal"><span class="l-en">§ 01 — About</span><span class="l-zh">§ 01 — 关于我</span></div>
+    <div class="about-block" style="margin-top:36px">
+      <div class="portrait-wrap reveal-left delay-1" style="position:relative;">
+        <img src="苹果型香味扩散器.png" alt="Ruiqi Jin" loading="lazy"/>
+      </div>
+      <div class="content">
+        <h2 class="display-lg reveal delay-1"><span class="l-en">In the gap<br/>between art<br/>and commerce.</span><span class="l-zh">连接艺术与商业。</span></h2>
+        <p class="lede reveal delay-2">
+          <span class="l-en">I am Ruiqi Jin (靳睿琦). I study how images carry power — how high fashion organises looking, how brands build cultural authority, and how tradition gets remade in the present.</span>
+          <span class="l-zh">我是靳睿琦。我研究图像如何承载权力——高级时装如何组织观看，品牌如何建构文化权威，传统如何在当代获得新生。</span>
+        </p>
+        <p class="lede reveal delay-3">
+          <span class="l-en">From the Central Academy of Fine Arts to Paris-Kedge Business School, I trained simultaneously in art-historical method and in management. Skilled at combining visual aesthetics with business strategy, I leverage AIGC tools (Midjourney, Claude Code, Stable Diffusion) for efficient content creation.</span>
+          <span class="l-zh">从中央美术学院到法国 Paris-Kedge 商学院，我同时接受艺术史方法论与管理学训练。擅长将视觉审美与商业策略结合，运用 AIGC 工具实现高效内容创作。</span>
+        </p>
+        <p class="lede reveal delay-4">
+          <span class="l-en">I built a personal Xiaohongshu IP from 0 to 2.5k followers in 3 months, accumulating 24k+ likes with growth rate surpassing 95% of peers.</span>
+          <span class="l-zh">独立运营小红书个人IP，3个月从0做到2.5k粉丝，累计获赞2.4w+，增速超越95%同类型创作者。</span>
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top:60px">
+      <div class="eyebrow reveal"><span class="l-en">Education & Skills</span><span class="l-zh">教育与技能</span></div>
+      <div class="skill-grid" style="margin-top:20px">
+        <div class="skill-cell reveal delay-1">
+          <div class="n">2024 — 2026</div>
+          <h4>Kedge Business School</h4>
+          <ul><li>创意产业管理与营销 · 硕士</li><li>M.A. Creative Industries Management</li></ul>
+        </div>
+        <div class="skill-cell reveal delay-2">
+          <div class="n">2020 — 2024</div>
+          <h4>Central Academy of Fine Arts</h4>
+          <ul><li>艺术设计与管理 & 营销学 · 双学位</li><li>GPA 3.8 / 4.0</li></ul>
+        </div>
+        <div class="skill-cell reveal delay-3">
+          <div class="n">Achievements</div>
+          <h4>Recognition</h4>
+          <ul><li>Outstanding Graduate (top 10%)</li><li>University Scholarship</li><li>Thesis: haute couture visuality</li></ul>
+        </div>
+        <div class="skill-cell reveal delay-4">
+          <div class="n">Languages</div>
+          <h4>Communication</h4>
+          <ul><li>英语（流利）</li><li>普通话（母语）</li><li>法语（初级）</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Le Pom -->
+<section id="le-pom" style="padding:0;border:none;">
+  <div class="le-pom-hero">
+    <div class="container">
+      <div class="eyebrow reveal" style="color:rgba(255,255,255,0.5);"><span class="l-en">§ 02 — Product Design</span><span class="l-zh">§ 02 — 产品设计</span></div>
+      <h2 class="display-xl reveal delay-1" style="margin-top:24px">Le Pom</h2>
+      <p class="body-lg reveal delay-2" style="margin-top:20px;">
+        <span class="l-en">An AI-powered scent diffuser that transforms spaces with personalized fragrances, combining smart technology with elegant design.</span>
+        <span class="l-zh">一款AI智能香氛扩散器，通过个性化香氛改变空间氛围，将智能技术与优雅设计完美结合。</span>
+      </p>
+    </div>
+  </div>
+  <div class="container" style="padding-bottom:80px;">
+    <div class="le-pom-features">
+      <div class="le-pom-feature reveal delay-1">
+        <img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom" loading="lazy"/>
+        <div class="info">
+          <h4><span class="l-en">Smart Scent</span><span class="l-zh">智能香氛</span></h4>
+          <p><span class="l-en">AI learns your preferences and adapts fragrance intensity automatically.</span><span class="l-zh">AI学习您的偏好，自动调节香氛浓度。</span></p>
+        </div>
+      </div>
+      <div class="le-pom-feature reveal delay-2">
+        <img src="苹果型香味扩散器.png" alt="Le Pom" loading="lazy"/>
+        <div class="info">
+          <h4><span class="l-en">Modular Design</span><span class="l-zh">模块化设计</span></h4>
+          <p><span class="l-en">Swappable scent capsules with 20+ curated fragrances.</span><span class="l-zh">可更换香氛胶囊，20+精选香氛。</span></p>
+        </div>
+      </div>
+      <div class="le-pom-feature reveal delay-3">
+        <img src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" loading="lazy"/>
+        <div class="info">
+          <h4><span class="l-en">Visual Identity</span><span class="l-zh">视觉识别</span></h4>
+          <p><span class="l-en">Complete brand system from packaging to e-commerce presence.</span><span class="l-zh">从包装到电商的完整品牌视觉体系。</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="container">
+    <div class="eyebrow reveal"><span class="l-en">§ 03 — Selected Projects</span><span class="l-zh">§ 03 — 精选项目</span></div>
+    <h2 class="display-lg reveal delay-1" style="margin-top:20px;max-width:20ch;">
+      <span class="l-en">Where research<br/>meets practice.</span><span class="l-zh">研究与实践的交汇。</span>
+    </h2>
+    <div class="proj-grid">
+      <div class="proj-card reveal delay-1">
+        <div class="img-wrap"><img src="产品视觉识别系统.png" alt="Brand System" loading="lazy"/></div>
+        <div class="info">
+          <div class="tags"><span class="tag">Brand Strategy</span><span class="tag">Visual Identity</span></div>
+          <h3><span class="l-en">Brand Visual System</span><span class="l-zh">品牌视觉系统</span></h3>
+          <p><span class="l-en">Complete visual identity system for Le Pom brand, from logo to packaging design.</span><span class="l-zh">Le Pom品牌完整视觉识别系统，从Logo到包装设计。</span></p>
+        </div>
+      </div>
+      <div class="proj-card reveal delay-2">
+        <div class="img-wrap"><img src="ins 营销效果图.png" alt="Social Media" loading="lazy"/></div>
+        <div class="info">
+          <div class="tags"><span class="tag">Social Media</span><span class="tag">Content</span></div>
+          <h3><span class="l-en">Social Media Marketing</span><span class="l-zh">社媒营销</span></h3>
+          <p><span class="l-en">Xiaohongshu content strategy and visual design for brand presence.</span><span class="l-zh">小红书内容策略与视觉设计，打造品牌形象。</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AIGC Film -->
+<section id="aigc-film" class="aigc-film">
+  <div class="container">
+    <div>
+      <div class="eyebrow reveal" style="color:rgba(255,255,255,0.5);"><span class="l-en">§ 04 — AIGC Film</span><span class="l-zh">§ 04 — AIGC 短片</span></div>
+      <h2 class="display-lg reveal delay-1" style="margin-top:16px;">Tapnow × Midjourney</h2>
+      <p class="body-lg reveal delay-2" style="margin-top:16px;">
+        <span class="l-en">An AI-generated short film exploring the intersection of human creativity and AI-powered visual storytelling.</span>
+        <span class="l-zh">一部AI短片，探索人类创意与AI视觉叙事的交汇。</span>
+      </p>
+      <div class="tags reveal delay-3">
+        <span class="tag">Tapnow</span><span class="tag">Midjourney</span><span class="tag">AIGC</span>
+      </div>
+    </div>
+    <div class="video-wrap reveal-scale delay-2">
+      <video controls preload="metadata" poster="images/苹果型香味扩散器.png">
+        <source src="创意视频.MOV" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="eyebrow reveal"><span class="l-en">§ 05 — Contact</span><span class="l-zh">§ 05 — 联系我</span></div>
+        <h2 class="display-lg reveal delay-1" style="margin-top:16px;"><span class="l-en">Let's<br/>talk.</span><span class="l-zh">欢迎交流。</span></h2>
+        <p class="body-lg reveal delay-2" style="margin-top:16px;">
+          <span class="l-en">Open to conversations about brand strategy, visual design, and creative collaboration.</span>
+          <span class="l-zh">欢迎交流品牌策略、视觉设计与创意合作。</span>
+        </p>
+      </div>
+      <div>
+        <div class="contact-grid">
+          <div class="contact-card reveal delay-1">
+            <div class="caption k"><span class="l-en">Email</span><span class="l-zh">邮箱</span></div>
+            <div class="v"><a href="mailto:jrq13504591125@163.com">jrq13504591125@163.com</a></div>
+          </div>
+          <div class="contact-card reveal delay-2">
+            <div class="caption k"><span class="l-en">Phone</span><span class="l-zh">电话</span></div>
+            <div class="v"><a href="tel:16628502768">16628502768</a></div>
+          </div>
+          <div class="contact-card reveal delay-3">
+            <div class="caption k"><span class="l-en">RED</span><span class="l-zh">小红书</span></div>
+            <div class="v"><a href="https://www.xiaohongshu.com/user/profile/your-id" target="_blank" rel="noopener">靳观</a></div>
+          </div>
+          <div class="contact-card reveal delay-4">
+            <div class="caption k">LinkedIn</div>
+            <div class="v"><a href="https://www.linkedin.com/in/ruiqi-jin/" target="_blank" rel="noopener">Ruiqi Jin</a></div>
+          </div>
+        </div>
+        <div class="contact-cta reveal delay-5">
+          <a class="btn btn-primary" href="mailto:jrq13504591125@163.com"><span><span class="l-en">Send Email</span><span class="l-zh">发送邮件</span></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="container">
+    <div>
+      <div class="wordmark">JIN.</div>
+      <p class="body-md" style="color:var(--ink-soft);max-width:20ch;">
+        <span class="l-en">Visual culture · Brand strategy · AIGC</span>
+        <span class="l-zh">视觉文化 · 品牌策略 · AIGC</span>
+      </p>
+    </div>
+    <div>
+      <h5><span class="l-en">Navigate</span><span class="l-zh">导航</span></h5>
+      <ul>
+        <li><a href="#about"><span class="l-en">About</span><span class="l-zh">关于</span></a></li>
+        <li><a href="#le-pom"><span class="l-en">Le Pom</span><span class="l-zh">产品</span></a></li>
+        <li><a href="#projects"><span class="l-en">Projects</span><span class="l-zh">项目</span></a></li>
+        <li><a href="#aigc-film"><span class="l-en">Film</span><span class="l-zh">短片</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h5><span class="l-en">Connect</span><span class="l-zh">联系</span></h5>
+      <ul>
+        <li><a href="mailto:jrq13504591125@163.com">Email</a></li>
+        <li><a href="tel:16628502768">Phone</a></li>
+        <li><a href="https://www.linkedin.com/in/ruiqi-jin/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelector('.loader').classList.add('hidden');
+  }, 1200);
+});
+
+// GSAP
+gsap.registerPlugin(ScrollTrigger);
+
+// Scroll progress
+ScrollTrigger.create({
+  trigger: document.body,
+  start: 'top top',
+  end: 'bottom bottom',
+  onUpdate: (self) => {
+    gsap.set('.scroll-progress', { scaleX: self.progress });
+  }
+});
+
+// Nav show/hide
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.topnav');
+  const current = window.scrollY;
+  if (current > 80) {
+    nav.classList.add('visible');
+  } else {
+    nav.classList.remove('visible');
+  }
+  lastScroll = current;
+});
+
+// Reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => {
+  observer.observe(el);
+});
+
+// Mobile menu
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuBtn.addEventListener('click', () => {
+  menuBtn.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+
+function closeMenu() {
+  menuBtn.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Language
+let currentLang = 'zh';
+document.getElementById('lang-btn').addEventListener('click', () => {
+  currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll('.l-zh').forEach(el => el.style.display = currentLang === 'zh' ? '' : 'none');
+  document.querySelectorAll('.l-en').forEach(el => el.style.display = currentLang === 'en' ? '' : 'none');
+});
+
+// Init language
+document.querySelectorAll('.l-zh').forEach(el => el.style.display = '');
+document.querySelectorAll('.l-en').forEach(el => el.style.display = 'none');
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
