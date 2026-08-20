@@ -6,816 +6,1272 @@
 <title>靳睿琦 · Ruiqi Jin — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+
 <style>
 /* ============================================================
-   TOKENS — original system, structurally inspired by editorial
-   corporate-automotive layout language (light canvas + dark hero,
-   weight contrast 700/300, 0px radius, no shadows).
+   EDITORIAL REDESIGN — Playfair Display + Inter 300 + JetBrains Mono
+   Palette: pure white / off-white / #0c0c0c ink
+   No pastel blocks — whitespace + hairlines as dividers
+   No pills — rectangular 0-radius buttons or text links
    ============================================================ */
-:root{
-  /* surfaces */
-  --canvas:        #ffffff;
-  --surface-soft:  #f6f5f3;   /* warm soft grey — slight cream */
-  --surface-card:  #faf9f7;
-  --surface-strong:#ebe9e5;
-  --surface-dark:  #1a1a1a;   /* warm near-black (not pure) */
-  --surface-dark-2:#262421;
+:root {
+  --canvas:        #fafaf9;
+  --ink:           #0c0c0c;
+  --ink-soft:      #4a4a47;
+  --ink-muted:     #8a8a86;
+  --surface:       #f5f4f0;
+  --hairline:      #ddddd8;
+  --hairline-soft: #eeeee9;
+  --green:         #22c55e;   /* status dot */
+  --inverse:       #0c0c0c;
+  --on-inverse:    #fafaf9;
 
-  /* hairlines */
-  --hairline:        #e6e3de;
-  --hairline-strong: #ccc7be;
-
-  /* text */
-  --ink:         #1f1d1a;
-  --body:        #3c3a36;
-  --body-strong: #1a1a1a;
-  --muted:       #75716a;
-  --muted-soft:  #a09c93;
-  --on-dark:     #ffffff;
-  --on-dark-soft:#bdb6a9;
-
-  /* single accent (oxblood) — sole action color */
-  --accent:       #8b1a2e;
-  --accent-press: #6e0f23;
-
-  --max:    1440px;
-  --gutter: 32px;
-
-  /* spacing */
-  --xxs:4px; --xs:8px; --sm:12px; --md:16px; --lg:24px;
-  --xl:32px; --xxl:48px; --section:80px;
-
-  --fs-display-xl:72px;
-  --fs-display-lg:48px;
-  --fs-display-md:32px;
-  --fs-display-sm:24px;
-  --fs-title-lg:20px;
-  --fs-title-md:18px;
-  --fs-title-sm:16px;
-  --fs-body:16px;
-  --fs-body-sm:14px;
-  --fs-caption:12px;
-  --fs-label:13px;
+  --max:     1280px;
+  --gutter:  52px;
+  --section: 112px;
 }
 
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; background:var(--canvas); color:var(--ink);
-  font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  font-weight:300; font-size:var(--fs-body); line-height:1.55;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+*  { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-img{ display:block; max-width:100%; }
-a{ color:inherit; text-decoration:none; }
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
 
-.container{ max-width:var(--max); margin:0 auto; padding:0 var(--gutter); }
+.container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 
-/* ---------- TYPE ---------- */
-.display-xl{ font-size:var(--fs-display-xl); font-weight:700; line-height:1.04; letter-spacing:-0.01em; }
-.display-lg{ font-size:var(--fs-display-lg); font-weight:700; line-height:1.1; }
-.display-md{ font-size:var(--fs-display-md); font-weight:700; line-height:1.15; }
-.display-sm{ font-size:var(--fs-display-sm); font-weight:700; line-height:1.25; }
-.title-lg{ font-size:var(--fs-title-lg); font-weight:700; line-height:1.3; }
-.title-md{ font-size:var(--fs-title-md); font-weight:700; line-height:1.4; }
-.title-sm{ font-size:var(--fs-title-sm); font-weight:700; line-height:1.4; }
-.body-md{ font-size:var(--fs-body); font-weight:300; line-height:1.65; color:var(--body); }
-.body-sm{ font-size:var(--fs-body-sm); font-weight:300; line-height:1.6; color:var(--body); }
-.caption{ font-size:var(--fs-caption); font-weight:400; letter-spacing:0.06em; color:var(--muted); }
-.label-up{ font-size:var(--fs-label); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; line-height:1.3; }
-
-.serif{ font-family:"Noto Serif SC", "Songti SC", serif; }
-
-/* ---------- BUTTONS (rectangular, 0 radius) ---------- */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  height:48px; padding:0 32px; gap:10px;
-  font-family:inherit; font-size:14px; font-weight:700; letter-spacing:0.05em;
-  text-transform:uppercase; border:1px solid transparent; cursor:pointer;
-  transition:background .15s ease, color .15s ease, border-color .15s ease;
-  border-radius:0;
+/* ── TYPOGRAPHY ─────────────────────────────────────── */
+/* Display / Headline — Playfair Display serif */
+.display-xl {
+  font-family: "Playfair Display", "Noto Serif SC", Georgia, serif;
+  font-size: 88px; font-weight: 400; line-height: 1.0;
+  letter-spacing: -0.02em;
 }
-.btn-primary{ background:var(--accent); color:#fff; }
-.btn-primary:hover{ background:var(--accent-press); }
-.btn-secondary{ background:var(--canvas); color:var(--ink); border-color:var(--hairline-strong); }
-.btn-secondary:hover{ border-color:var(--ink); }
-.btn-on-dark{ background:transparent; color:var(--on-dark); border-color:rgba(255,255,255,.7); }
-.btn-on-dark:hover{ background:#fff; color:var(--ink); border-color:#fff; }
-
-/* Inline UPPERCASE link with chevron — editorial CTA */
-.tlink{
-  display:inline-flex; align-items:center; gap:8px;
-  font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--ink); padding:6px 0; border-bottom:1px solid var(--ink);
-  transition:color .15s, border-color .15s;
+.display-lg {
+  font-family: "Playfair Display", "Noto Serif SC", Georgia, serif;
+  font-size: 60px; font-weight: 400; line-height: 1.08;
+  letter-spacing: -0.015em;
 }
-.tlink::after{ content:"›"; font-weight:400; letter-spacing:0; }
-.tlink:hover{ color:var(--accent); border-color:var(--accent); }
-.tlink-on-dark{ color:#fff; border-bottom-color:#fff; }
-.tlink-on-dark:hover{ color:var(--on-dark-soft); border-bottom-color:var(--on-dark-soft); }
-
-/* ---------- TOP NAV ---------- */
-.topnav{
-  position:fixed; top:0; left:0; right:0; height:64px; z-index:100;
-  background:var(--canvas); border-bottom:1px solid var(--hairline);
+.display-md {
+  font-family: "Playfair Display", "Noto Serif SC", Georgia, serif;
+  font-size: 42px; font-weight: 400; line-height: 1.12;
+  letter-spacing: -0.01em;
 }
-.topnav .container{ height:100%; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-.brand{ display:flex; align-items:center; gap:12px; }
-.brand-mark{
-  width:36px; height:36px; border:1.5px solid var(--ink);
-  display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-size:13px; letter-spacing:0.04em;
+.headline {
+  font-family: "Playfair Display", serif;
+  font-size: 28px; font-weight: 700; line-height: 1.25;
+  letter-spacing: 0;
 }
-.brand-name{ font-weight:700; font-size:15px; letter-spacing:0.02em; }
-.brand-sub{ font-size:12px; color:var(--muted); margin-left:8px; padding-left:10px; border-left:1px solid var(--hairline); }
-.nav-menu{ display:flex; gap:32px; }
-.nav-link{ font-size:14px; font-weight:400; color:var(--ink); letter-spacing:0.02em; }
-.nav-link[aria-current]{ font-weight:700; }
-.nav-link:hover{ color:var(--accent); }
-.nav-right{ display:flex; align-items:center; gap:20px; font-size:13px; color:var(--muted); }
-.nav-right .pill{ padding:4px 10px; border:1px solid var(--hairline); }
-
-@media (max-width: 900px){
-  .nav-menu{ display:none; }
-  .brand-sub{ display:none; }
+.subhead {
+  font-size: 22px; font-weight: 300; line-height: 1.45;
+}
+.card-title {
+  font-family: "Playfair Display", serif;
+  font-size: 22px; font-weight: 400; line-height: 1.3;
+}
+.body-lg {
+  font-size: 19px; font-weight: 300; line-height: 1.65;
+}
+.body-md {
+  font-size: 17px; font-weight: 300; line-height: 1.65;
+}
+.body-sm {
+  font-size: 15px; font-weight: 300; line-height: 1.6;
+}
+.link-em {
+  font-size: 17px; font-weight: 400;
 }
 
-/* ---------- HERO (dark band) ---------- */
-.hero{
-  background:var(--surface-dark); color:var(--on-dark);
-  padding-top:calc(var(--section) + 64px); padding-bottom:var(--section);
-  position:relative; overflow:hidden;
+/* Mono — all labels, captions, eyebrows, code-ref */
+.eyebrow {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px; font-weight: 500; line-height: 1.3;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-soft);
 }
-.hero .container{ display:grid; grid-template-columns: 1.1fr 1fr; gap:64px; align-items:end; }
-.hero-eyebrow{
-  display:inline-flex; align-items:center; gap:10px; color:var(--on-dark-soft);
-  font-size:12px; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:32px;
+.caption {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px; font-weight: 400; line-height: 1.4;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-muted);
 }
-.hero-eyebrow::before{ content:""; width:32px; height:1px; background:var(--on-dark-soft); }
-.hero-title{ margin:0 0 8px; }
-.hero-sub{
-  font-family:"Noto Serif SC", "Songti SC", serif;
-  font-size:28px; font-weight:400; color:var(--on-dark-soft); margin:0 0 32px;
-  letter-spacing:0.02em;
-}
-.hero-lede{
-  font-size:18px; font-weight:300; line-height:1.7; color:#e6e1d6;
-  max-width:520px; margin:0 0 40px;
-}
-.hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
-.hero-meta{
-  border-left:1px solid rgba(255,255,255,.18);
-  padding-left:32px; display:grid; gap:28px; align-self:end;
-}
-.hero-meta-row .k{ font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--on-dark-soft); margin-bottom:6px; }
-.hero-meta-row .v{ font-size:16px; font-weight:400; color:#fff; line-height:1.5; }
-.hero-portrait{
-  margin-top:64px; aspect-ratio: 16/9; width:100%;
-  background:var(--surface-dark-2);
+.serif {
+  font-family: "Playfair Display", "Noto Serif SC", Georgia, serif;
 }
 
-/* breadcrumb strip under hero */
-.subnav{
-  background:var(--canvas); border-bottom:1px solid var(--hairline);
-}
-.subnav .container{ display:flex; align-items:stretch; gap:0; }
-.subnav a{
-  padding:18px 24px; font-size:12px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
-  color:var(--muted); border-bottom:2px solid transparent; margin-bottom:-1px;
-}
-.subnav a:hover{ color:var(--ink); }
-.subnav a[aria-current="true"]{ color:var(--ink); border-bottom-color:var(--ink); }
-
-/* ---------- SECTION SCAFFOLD ---------- */
-section{ padding:var(--section) 0; }
-.section-head{ display:grid; grid-template-columns: 1fr 2fr; gap:64px; margin-bottom:64px; align-items:end; }
-.section-head .label{ color:var(--accent); margin-bottom:12px; }
-.section-head h2{ margin:0; max-width:18ch; }
-.section-head p{ color:var(--body); font-size:18px; font-weight:300; line-height:1.65; max-width:60ch; margin:0; }
-
-/* alternating band colors via class */
-.band-soft{ background:var(--surface-soft); }
-.band-dark{ background:var(--surface-dark); color:var(--on-dark); }
-.band-dark h2, .band-dark h3, .band-dark h4{ color:#fff; }
-.band-dark p{ color:#d8d3c8; }
-
-/* ---------- PROJECT GRID ---------- */
-.proj-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:32px; }
-.proj-card{ background:var(--canvas); }
-.proj-photo{
-  background:var(--surface-card); aspect-ratio: 4/3; width:100%;
-  position:relative; overflow:hidden;
-}
-.proj-card .body{ padding:24px 0 0; }
-.proj-card .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
-.proj-card .tag{
-  font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--muted); padding:4px 10px; border:1px solid var(--hairline);
-}
-.proj-card h3{ margin:0 0 8px; }
-.proj-card .sub{ font-size:15px; font-weight:300; color:var(--body); margin:0 0 12px; line-height:1.55; }
-.proj-card .meta{ font-size:12px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; font-weight:700; }
-
-/* feature project (large) */
-.proj-feature{
-  grid-column:1/-1; display:grid; grid-template-columns: 1.4fr 1fr; gap:48px; align-items:center;
-  background:var(--canvas); padding:0;
-}
-.proj-feature .proj-photo{ aspect-ratio: 16/10; }
-.proj-feature .body{ padding:0 24px; }
-.proj-feature h3{ font-size:36px; line-height:1.1; }
-
-/* Fading slideshow (used inside proj-feature for Little little) */
-.ss{ position:relative; width:100%; height:100%; background:var(--surface-card); overflow:hidden; }
-.ss-stage{ position:absolute; inset:0; }
-.ss-slide{
-  position:absolute; inset:0; opacity:0; transition:opacity .45s ease;
-}
-.ss-slide.active{ opacity:1; z-index:1; }
-.ss-slide > img{ width:100%; height:100%; object-fit:cover; display:block; }
-.ss-slide .cap{
-  position:absolute; left:16px; bottom:16px;
-  background:rgba(255,255,255,.94); padding:8px 12px;
-  font-size:12px; color:var(--ink); font-weight:400; letter-spacing:0.02em; max-width:60%;
-}
-.ss-slide .num{
-  position:absolute; top:16px; left:16px;
-  background:#fff; padding:4px 8px;
-  font-size:10px; letter-spacing:0.2em; font-weight:700; color:var(--ink);
-}
-.ss-nav{
-  position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-  width:40px; height:40px; padding:0;
-  background:rgba(255,255,255,.92); border:1px solid var(--hairline-strong);
-  display:flex; align-items:center; justify-content:center; cursor:pointer;
-  font-size:18px; line-height:1; color:var(--ink);
-  transition:background .15s, color .15s, border-color .15s;
-}
-.ss-nav:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
-.ss-nav.prev{ left:12px; } .ss-nav.next{ right:12px; }
-.ss-dots{
-  position:absolute; bottom:16px; right:16px; z-index:3;
-  display:flex; gap:6px; background:rgba(255,255,255,.85); padding:6px 8px;
-}
-.ss-dot{
-  width:8px; height:8px; border-radius:0; background:var(--hairline-strong); cursor:pointer; padding:0; border:0;
-  transition:background .15s;
-}
-.ss-dot.active{ background:var(--ink); }
-@media (max-width: 680px){
-  .ss-nav{ width:32px; height:32px; font-size:15px; }
-  .ss-slide .cap{ font-size:11px; max-width:75%; }
+@media (max-width: 680px) {
+  :root { --gutter: 20px; --section: 72px; }
+  .display-xl { font-size: 46px; }
+  .display-lg { font-size: 34px; }
+  .display-md { font-size: 28px; }
 }
 
-/* ---------- ABOUT ---------- */
-.about-grid{ display:grid; grid-template-columns: 5fr 7fr; gap:64px; align-items:start; }
-.portrait-plate{
-  background:var(--surface-card); aspect-ratio: 3/4; width:100%;
+/* ── BUTTONS — rectangular, 0 radius ────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 44px; padding: 0 22px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid transparent; border-radius: 0;
+  cursor: pointer; user-select: none;
+  transition: background 0.16s, color 0.16s, border-color 0.16s;
 }
-.about-body p{ font-size:17px; font-weight:300; line-height:1.85; color:var(--body); margin:0 0 24px; }
-.about-body p:first-of-type::first-letter{
-  font-weight:700; font-size:1.05em;
+.btn:active { opacity: 0.8; }
+.btn-primary {
+  background: var(--ink); color: var(--canvas);
+  border-color: var(--ink);
 }
-.pull-quote{
-  border-left:3px solid var(--accent); padding:6px 0 6px 24px; margin:32px 0;
-  font-family:"Noto Serif SC", "Songti SC", serif;
-  font-size:20px; line-height:1.6; color:var(--ink); font-weight:400;
+.btn-primary:hover { background: #333; border-color: #333; }
+.btn-secondary {
+  background: transparent; color: var(--ink); border-color: var(--ink);
+}
+.btn-secondary:hover { background: var(--ink); color: var(--canvas); }
+.btn-on-inverse {
+  background: var(--canvas); color: var(--ink); border-color: var(--canvas);
+}
+.btn-on-inverse:hover { background: #e5e5e0; }
+.btn-on-inverse-secondary {
+  background: transparent; color: var(--canvas); border-color: rgba(255,255,255,.5);
+}
+.btn-on-inverse-secondary:hover {
+  background: var(--canvas); color: var(--ink); border-color: var(--canvas);
+}
+.btn-magenta {
+  background: #c5236e; color: #fff; border-color: #c5236e;
+}
+.btn-magenta:hover { background: #a01e5a; }
+.btn-ico {
+  width: 40px; height: 40px; border: 1px solid var(--hairline); border-radius: 0;
+  background: transparent; color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; padding: 0; font-size: 17px; line-height: 1;
+  transition: background 0.14s, color 0.14s;
+}
+.btn-ico:hover { background: var(--ink); color: var(--canvas); }
+
+/* ── TOP NAV ─────────────────────────────────────────── */
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--canvas); border-bottom: 1px solid var(--hairline);
+  height: 60px;
+}
+.topnav .container {
+  height: 100%; display: flex; align-items: center;
+  justify-content: space-between; gap: 24px;
+}
+.brand { display: flex; align-items: baseline; gap: 12px; }
+.brand .wordmark {
+  font-family: "Playfair Display", serif;
+  font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1;
+}
+.brand .sub {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-muted);
+  padding-left: 14px; margin-left: 4px;
+  border-left: 1px solid var(--hairline);
+}
+.nav-menu { display: flex; gap: 32px; }
+.nav-link {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink); padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.14s, color 0.14s;
+}
+.nav-link:hover { border-bottom-color: var(--ink); }
+.nav-cta { display: flex; align-items: center; gap: 14px; }
+/* Green status dot with current time */
+.nav-status {
+  display: flex; align-items: center; gap: 7px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.nav-status .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+/* Language toggle — mono, rectangular */
+.lang-toggle {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.18em; font-weight: 500; text-transform: uppercase;
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--hairline); border-radius: 0;
+  padding: 6px 14px; cursor: pointer;
+  transition: background 0.14s, color 0.14s, border-color 0.14s;
+}
+.lang-toggle:hover { background: var(--ink); color: var(--canvas); border-color: var(--ink); }
+
+@media (max-width: 900px) {
+  .nav-menu { display: none; }
+  .brand .sub { display: none; }
+  .nav-status { display: none; }
 }
 
-/* education */
-.edu-list{ display:grid; gap:0; border-top:1px solid var(--hairline); }
-.edu-row{
-  display:grid; grid-template-columns: 140px 1fr 240px; gap:32px;
-  padding:32px 0; border-bottom:1px solid var(--hairline); align-items:start;
+/* ── MARQUEE STRIP ───────────────────────────────────── */
+.marquee {
+  background: var(--inverse); color: var(--on-inverse);
+  overflow: hidden; height: 38px; display: flex; align-items: center;
 }
-.edu-row .year{ font-size:13px; font-weight:700; letter-spacing:0.1em; color:var(--muted); }
-.edu-row h4{ margin:0 0 6px; font-size:20px; font-weight:700; }
-.edu-row .deg{ font-size:15px; color:var(--body); font-weight:400; margin:0 0 6px; }
-.edu-row .deg-en{ font-size:13px; color:var(--muted); font-style:italic; margin:0; }
-.edu-row .achievements{
-  display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--body);
+.marquee-track {
+  display: flex; gap: 56px; padding-left: 56px;
+  animation: marquee 38s linear infinite; width: max-content;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,.65);
 }
-.edu-row .achievements span::before{ content:"— "; color:var(--muted); }
-
-/* skills 4-up */
-.skill-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:0;
-  border-top:1px solid var(--hairline); border-left:1px solid var(--hairline);
-}
-.skill-cell{
-  padding:32px 28px; border-right:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
-  background:var(--canvas);
-}
-.skill-cell .n{ font-size:36px; font-weight:700; color:var(--accent); margin-bottom:16px; letter-spacing:-0.02em; }
-.skill-cell h4{ margin:0 0 12px; font-size:17px; font-weight:700; }
-.skill-cell ul{ list-style:none; padding:0; margin:0; }
-.skill-cell li{ font-size:13px; color:var(--body); font-weight:300; padding:6px 0; border-top:1px dashed var(--hairline); }
-.skill-cell li:first-child{ border-top:0; }
-
-/* ---------- RESEARCH ---------- */
-.thesis-card{
-  display:grid; grid-template-columns: 5fr 7fr; gap:64px;
-  background:var(--canvas); border:1px solid var(--hairline); padding:48px;
-}
-.thesis-card .cover{
-  aspect-ratio: 3/4; background:var(--surface-dark); color:#fff;
-  padding:32px; display:flex; flex-direction:column; justify-content:space-between;
-}
-.thesis-card .cover .stamp{
-  font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:var(--on-dark-soft);
-}
-.thesis-card .cover .t{ font-weight:700; font-size:22px; line-height:1.3; }
-.thesis-card .cover .meta{ font-size:12px; color:var(--on-dark-soft); letter-spacing:0.1em; text-transform:uppercase; }
-.thesis-card .body h3{ margin:0 0 12px; }
-.thesis-card .body .zh{
-  font-family:"Noto Serif SC", "Songti SC", serif; font-size:20px; color:var(--body-strong);
-  margin:0 0 24px; font-weight:400;
-}
-.thesis-card .meta-row{
-  display:grid; grid-template-columns: repeat(3, 1fr); gap:24px;
-  border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
-  padding:20px 0; margin:24px 0;
-}
-.thesis-card .meta-row .k{ font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
-.thesis-card .meta-row .v{ font-size:14px; color:var(--ink); font-weight:400; }
-.thesis-card .tag-row{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-.thesis-card .tag{
-  font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--muted); padding:6px 12px; border:1px solid var(--hairline);
-}
-
-/* core findings (numbered) */
-.findings{ margin-top:64px; }
-.findings-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:0;
-  border-top:1px solid var(--hairline); border-left:1px solid var(--hairline);
-}
-.finding{
-  padding:36px 32px; border-right:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
-  display:grid; grid-template-columns: 56px 1fr; gap:20px; align-items:start;
-}
-.finding .n{ font-size:28px; font-weight:700; letter-spacing:-0.02em; color:var(--accent); line-height:1; }
-.finding p{ margin:0; font-size:16px; line-height:1.65; color:var(--body); font-weight:300; }
-.finding strong{ font-weight:700; color:var(--ink); }
-
-/* case grid (3-up) */
-.case-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:32px; margin-top:64px; }
-.case-card .ph{ aspect-ratio: 4/5; background:var(--surface-card); margin-bottom:16px; }
-.case-card .brand{ font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:6px; }
-.case-card h4{ margin:0 0 8px; font-size:20px; font-weight:700; }
-.case-card p{ margin:0; font-size:14px; color:var(--body); font-weight:300; line-height:1.6; }
-
-/* ---------- RUNWAY ---------- */
-.runway-feature{
-  display:grid; grid-template-columns: 7fr 5fr; gap:0;
-  background:var(--canvas); border:1px solid var(--hairline);
-}
-.runway-feature .ph-big{
-  aspect-ratio: 4/5; background:var(--surface-card); position:relative;
-}
-.runway-feature .body{ padding:48px; display:flex; flex-direction:column; justify-content:center; }
-.runway-feature .stamp{
-  display:inline-block; padding:6px 12px; border:1px solid var(--ink);
-  font-size:11px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700;
-  margin-bottom:24px;
-}
-.runway-feature h3{ font-size:40px; line-height:1.1; margin:0 0 24px; }
-.runway-feature .quote{
-  margin:24px 0; padding:0 0 0 24px; border-left:3px solid var(--accent);
-  font-family:"Noto Serif SC", "Songti SC", serif; font-size:18px; line-height:1.7; color:var(--body-strong);
-  font-weight:400;
-}
-.thumbs{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:24px; }
-.thumb{ aspect-ratio: 3/4; background:var(--surface-card); }
-
-.work-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:32px; margin-top:48px; }
-.work-card .ph{ aspect-ratio: 3/4; background:var(--surface-card); margin-bottom:16px; }
-.work-card .brand{ font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:6px; }
-
-/* Runway carousel — click-to-step, smaller frames */
-.rw-carousel{
-  position:relative;
-  margin: 56px calc(var(--gutter) * -1) 0;
-  border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
-  background:var(--surface-card);
-}
-.rw-viewport{
-  overflow-x:auto; overflow-y:hidden;
-  scroll-behavior:smooth;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-}
-.rw-viewport::-webkit-scrollbar{ display:none; }
-.rw-track{
-  display:flex; gap:16px; padding:28px 56px;
-  width:max-content;
-}
-.rw-frame{
-  width:220px; aspect-ratio: 3/4; flex-shrink:0;
-  position:relative; background:var(--canvas);
-  scroll-snap-align:start;
-}
-.rw-frame > img{ width:100%; height:100%; object-fit:cover; display:block; }
-.rw-frame .badge{
-  position:absolute; top:10px; left:10px;
-  background:#fff; color:var(--ink);
-  font-size:10px; padding:4px 7px;
-  letter-spacing:0.18em; text-transform:uppercase; font-weight:700;
-}
-.rw-frame .info{
-  position:absolute; left:10px; right:10px; bottom:10px;
-  background:rgba(255,255,255,.94); padding:8px 10px;
-}
-.rw-frame .info .brand{ font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:700; }
-.rw-frame .info .desc{ font-size:11.5px; color:var(--ink); font-weight:400; margin-top:2px; line-height:1.35; }
-
-/* arrow buttons */
-.rw-nav{
-  position:absolute; top:50%; transform:translateY(-50%);
-  width:44px; height:44px; border-radius:0;
-  background:var(--canvas); border:1px solid var(--hairline-strong);
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; z-index:5; padding:0;
-  font-size:20px; line-height:1; color:var(--ink);
-  transition: background .15s, border-color .15s, color .15s;
-}
-.rw-nav:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
-.rw-nav:disabled{ opacity:0.35; cursor:not-allowed; }
-.rw-nav:disabled:hover{ background:var(--canvas); color:var(--ink); border-color:var(--hairline-strong); }
-.rw-nav.prev{ left:12px; }
-.rw-nav.next{ right:12px; }
-.rw-progress{
-  position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
-  font-family:"JetBrains Mono", ui-monospace, monospace;
-  font-size:10px; letter-spacing:0.16em; color:var(--muted);
-  background:var(--canvas); padding:3px 10px; border:1px solid var(--hairline);
-}
-@media (max-width: 680px){
-  .rw-frame{ width:170px; }
-  .rw-track{ padding:20px 44px; gap:12px; }
-  .rw-nav{ width:36px; height:36px; font-size:16px; }
-}
-.work-card h4{ margin:0; font-size:18px; font-weight:700; }
-.work-card .y{ font-size:13px; color:var(--muted); margin-top:6px; font-weight:400; }
-
-/* ---------- CONTACT ---------- */
-.contact-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:0;
-  border-top:1px solid rgba(255,255,255,.15); border-left:1px solid rgba(255,255,255,.15);
-}
-.contact-cell{
-  padding:36px 28px; border-right:1px solid rgba(255,255,255,.15); border-bottom:1px solid rgba(255,255,255,.15);
-}
-.contact-cell .k{ font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--on-dark-soft); margin-bottom:16px; }
-.contact-cell .v{ font-size:18px; font-weight:400; color:#fff; word-break:break-all; }
-
-/* ---------- FOOTER ---------- */
-footer.foot{
-  background:var(--surface-soft); padding:64px 0 32px; color:var(--body);
-}
-.foot-grid{ display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; }
-.foot-col h5{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; color:var(--ink); margin:0 0 16px; }
-.foot-col ul{ list-style:none; padding:0; margin:0; }
-.foot-col li{ font-size:14px; font-weight:300; color:var(--body); padding:6px 0; }
-.foot-col li a:hover{ color:var(--accent); }
-.foot-bottom{
-  border-top:1px solid var(--hairline); padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;
-  font-size:12px; color:var(--muted); letter-spacing:0.04em;
-}
-
-/* photo helper — when a proj-photo wraps an <img> */
-.proj-photo > img,
-.ph > img,
-.ph-big > img,
-.thumb > img,
-.portrait-plate > img,
-.runway-feature .ph-big > img,
-.cs-photo > img{
-  width:100%; height:100%; object-fit:cover; display:block;
-}
-.proj-photo, .ph, .ph-big, .thumb, .cs-photo{ overflow:hidden; }
-
-/* ============================================================
-   CASE STUDY — long-form editorial blocks below project grid
-   ============================================================ */
-.case-study{ margin-top:96px; padding-top:64px; border-top:1px solid var(--hairline); }
-.cs-head{ display:grid; grid-template-columns: 1fr 1fr; gap:48px; margin-bottom:40px; align-items:end; }
-.cs-eyebrow{ font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:12px; }
-.cs-head h3{ margin:0; font-size:44px; font-weight:700; line-height:1.05; letter-spacing:-0.01em; }
-.cs-head .lede{ font-size:17px; font-weight:300; line-height:1.7; color:var(--body); margin:0; max-width:54ch; }
-.cs-head .meta-row{
-  display:flex; gap:48px; flex-wrap:wrap; padding:16px 0;
-  border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
-  margin-bottom:32px;
-}
-.cs-head .meta-row .k{ font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
-.cs-head .meta-row .v{ font-size:15px; color:var(--ink); font-weight:400; }
-
-/* Kesi photo mosaic: 1 big hero + 3 supporting */
-.kesi-mosaic{
-  display:grid; grid-template-columns: 7fr 5fr; grid-template-rows: 1fr 1fr; gap:16px;
-  aspect-ratio: 16/9;
-}
-.kesi-mosaic .a{ grid-row: 1 / 3; }
-.cs-photo{ background:var(--surface-card); position:relative; }
-.cs-photo figcaption{
-  position:absolute; left:16px; bottom:16px;
-  background:rgba(255,255,255,.92); padding:6px 10px;
-  font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; color:var(--ink);
-}
-@media (max-width: 900px){
-  .kesi-mosaic{ aspect-ratio:auto; grid-template-columns: 1fr; grid-template-rows: auto; }
-  .kesi-mosaic .a{ grid-row:auto; aspect-ratio:16/10; }
-  .kesi-mosaic .cs-photo:not(.a){ aspect-ratio:4/3; }
-  .cs-head{ grid-template-columns:1fr; }
-  .cs-head h3{ font-size:32px; }
-}
-
-/* Body text after mosaic */
-.cs-body{ display:grid; grid-template-columns: 1fr 2fr; gap:64px; margin-top:48px; align-items:start; }
-.cs-body h4{ margin:0 0 8px; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); font-weight:700; }
-.cs-body .role{ font-size:16px; color:var(--ink); font-weight:400; line-height:1.55; margin:0 0 8px; }
-.cs-body .col-text p{ font-size:16px; font-weight:300; line-height:1.8; color:var(--body); margin:0 0 18px; }
-.cs-body .col-text p strong{ font-weight:700; color:var(--ink); }
-@media (max-width: 900px){ .cs-body{ grid-template-columns:1fr; gap:24px; } }
-
-/* ============================================================
-   MEDIA NIGHT — auto-scrolling marquee
-   ============================================================ */
-.mn-marquee{
-  position:relative; overflow:hidden;
-  border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
-  background:var(--surface-card);
-  margin: 0 calc(var(--gutter) * -1); /* full-bleed within container */
-}
-.mn-track{
-  display:flex; gap:16px; padding:24px; width:max-content;
-  animation: mnScroll 36s linear infinite;
-}
-.mn-marquee:hover .mn-track{ animation-play-state:paused; }
-.mn-frame{
-  width:560px; aspect-ratio: 3/2; flex-shrink:0;
-  background:var(--canvas); position:relative;
-}
-.mn-frame > img{ width:100%; height:100%; object-fit:cover; display:block; }
-.mn-frame .num{
-  position:absolute; top:12px; left:12px;
-  background:rgba(0,0,0,.7); color:#fff; font-size:10px;
-  padding:4px 8px; letter-spacing:0.18em; font-weight:700;
-}
-.mn-frame .cap{
-  position:absolute; bottom:12px; left:12px; right:12px;
-  background:rgba(255,255,255,.92); padding:8px 12px;
-  font-size:12px; color:var(--ink); font-weight:400; letter-spacing:0.02em;
-}
-@keyframes mnScroll{
+.marquee-track span { display: inline-flex; align-items: center; gap: 56px; }
+.marquee-track span::after { content: "·"; font-size: 14px; opacity: .4; }
+@keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-@media (max-width: 680px){
-  .mn-frame{ width:340px; }
-  .mn-track{ animation-duration: 26s; }
+
+/* Vertical marquee side rail */
+.marquee-side {
+  position: fixed; top: 0; bottom: 0; left: 0;
+  width: 38px; background: var(--inverse); color: var(--on-inverse);
+  overflow: hidden; z-index: 90;
+  display: flex; justify-content: center;
+  pointer-events: none;
+}
+.marquee-track-v {
+  display: flex; flex-direction: column; gap: 52px;
+  padding-top: 52px; height: max-content;
+  animation: marqueeV 38s linear infinite;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  writing-mode: vertical-rl;
+}
+.marquee-track-v span { display: inline-flex; align-items: center; gap: 52px; }
+.marquee-track-v span::after { content: "·"; font-size: 14px; opacity: .35; }
+@keyframes marqueeV {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+@media (max-width: 1100px) { .marquee-side { display: none; } }
+
+/* ── HERO ────────────────────────────────────────────── */
+.hero {
+  background: var(--canvas);
+  padding: 120px 0 96px;
+  border-bottom: 1px solid var(--hairline);
+}
+.hero-ref {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 48px;
+  display: flex; align-items: center; gap: 24px;
+}
+.hero-ref::before {
+  content: ""; display: block; width: 36px; height: 1px;
+  background: var(--hairline);
+}
+.hero h1 { margin: 0 0 32px; max-width: 18ch; }
+.hero .lede {
+  font-size: 19px; max-width: 58ch; font-weight: 300;
+  line-height: 1.7; color: var(--ink); margin-bottom: 36px;
+}
+.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero .row {
+  margin-top: 72px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+.hero .row > div {
+  padding: 28px 0; border-right: 1px solid var(--hairline);
+  padding-right: 24px;
+}
+.hero .row > div:first-child { padding-left: 0; }
+.hero .row > div:last-child { border-right: none; }
+.hero .row .k { color: var(--ink-muted); margin-bottom: 10px; }
+.hero .row .v { font-size: 15px; font-weight: 300; line-height: 1.6; }
+@media (max-width: 900px) {
+  .hero { padding: 72px 0 56px; }
+  .hero .row { grid-template-columns: 1fr 1fr; }
 }
 
-/* striped placeholder helper */
-.ph-striped{
+/* ── SECTION RHYTHM ──────────────────────────────────── */
+section { padding: var(--section) 0; border-bottom: 1px solid var(--hairline); }
+section:last-of-type { border-bottom: none; }
+
+.sec-head {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 64px;
+  margin-bottom: 64px; align-items: end;
+}
+.sec-head .label { margin-bottom: 22px; }
+.sec-head h2 { margin: 0; max-width: 14ch; }
+.sec-head p {
+  font-size: 20px; font-weight: 300; line-height: 1.6;
+  max-width: 56ch; margin: 0; color: var(--ink);
+}
+@media (max-width: 900px) { .sec-head { grid-template-columns: 1fr; gap: 28px; } }
+
+/* ── SECTION PANELS (replace color blocks) ───────────── */
+/* Each former color block is now a white/off-white panel
+   with a hairline top border and generous padding */
+.panel {
+  padding: 80px 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  margin-top: 64px;
+}
+.panel:first-child { margin-top: 0; }
+
+/* ── ABOUT ───────────────────────────────────────────── */
+.about-block-inner {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 72px;
+  align-items: start;
+}
+.about-block-inner .eyebrow { margin-bottom: 20px; }
+.about-block-inner h2 { max-width: 14ch; margin: 0 0 36px; }
+.about-block-inner .lede {
+  font-size: 19px; font-weight: 300; line-height: 1.7;
+}
+.about-block-inner .lede + .lede { margin-top: 18px; }
+.about-block-inner .pull {
+  font-family: "Playfair Display", "Noto Serif SC", serif;
+  font-weight: 400; font-size: 21px; line-height: 1.55; font-style: italic;
+  border-left: 1px solid var(--ink); padding: 8px 0 8px 24px;
+  margin: 36px 0;
+}
+@media (max-width: 900px) {
+  .about-block-inner { grid-template-columns: 1fr; gap: 36px; }
+}
+
+.portrait-plate {
+  background: var(--surface); aspect-ratio: 3/4; width: 100%;
+  overflow: hidden; position: relative;
+  border: 1px solid var(--hairline);
+}
+.portrait-plate > img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  object-position: 78% 70%;
+  transform: scale(1.18);
+  transform-origin: 75% 55%;
+}
+.portrait-plate .portrait-tag {
+  position: absolute; left: 12px; bottom: 12px;
+  background: var(--canvas); color: var(--ink);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; padding: 5px 10px; border-radius: 0;
+  letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+  border: 1px solid var(--hairline);
+}
+
+/* ── EDUCATION ───────────────────────────────────────── */
+.edu-list { display: grid; gap: 0; border-top: 1px solid var(--hairline); }
+.edu-row {
+  display: grid; grid-template-columns: 140px 1fr 240px; gap: 40px;
+  padding: 36px 0; border-bottom: 1px solid var(--hairline); align-items: start;
+}
+.edu-row .year { color: var(--ink-muted); }
+.edu-row h4 {
+  margin: 0 0 10px;
+  font-family: "Playfair Display", serif;
+  font-size: 20px; font-weight: 400; letter-spacing: 0;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.edu-row h4 .edu-logo     { height: 56px; width: auto; opacity: .9; }
+.edu-row h4 .edu-logo-lg  { height: 224px; }
+.edu-row .deg     { font-size: 15px; color: var(--ink); margin: 0 0 6px; font-weight: 300; }
+.edu-row .deg-en  {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-muted); margin: 0;
+}
+.edu-row .achievements { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink); font-weight: 300; }
+@media (max-width: 680px) { .edu-row { grid-template-columns: 1fr; gap: 8px; } }
+
+.skill-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+.skill-cell {
+  padding: 32px 28px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.skill-cell .n {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  color: var(--ink-muted); margin-bottom: 20px;
+}
+.skill-cell h4 { margin: 0 0 14px; font-size: 16px; font-weight: 400; letter-spacing: 0; }
+.skill-cell ul { list-style: none; padding: 0; margin: 0; }
+.skill-cell li {
+  font-size: 14px; color: var(--ink); padding: 7px 0;
+  border-top: 1px solid var(--hairline-soft); font-weight: 300;
+}
+.skill-cell li:first-child { border-top: 0; }
+@media (max-width: 900px) { .skill-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .skill-grid { grid-template-columns: 1fr; } }
+
+/* ── PROJECTS ────────────────────────────────────────── */
+.proj-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.proj-card { background: var(--canvas); }
+.proj-photo {
+  background: var(--surface); aspect-ratio: 4/3; width: 100%;
+  overflow: hidden; border: 1px solid var(--hairline);
+}
+.proj-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.proj-card .body { padding: 18px 0 0; }
+.proj-card .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.proj-card .tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink); padding: 4px 8px; border: 1px solid var(--hairline);
+  border-radius: 0;
+}
+.proj-card h3 {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 8px; font-size: 19px; font-weight: 400; line-height: 1.3;
+}
+.proj-card .sub { font-size: 14px; font-weight: 300; color: var(--ink-soft); margin: 0 0 12px; line-height: 1.55; }
+.proj-card .meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; color: var(--ink-muted); letter-spacing: 0.14em; text-transform: uppercase;
+}
+@media (max-width: 900px) { .proj-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .proj-grid { grid-template-columns: 1fr; } }
+
+/* Feature project */
+.proj-feature {
+  display: grid; grid-template-columns: 7fr 5fr; gap: 56px; align-items: center;
+}
+.proj-feature .photo-wrap {
+  aspect-ratio: 16/10; overflow: hidden; border: 1px solid var(--hairline);
+}
+.proj-feature h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 40px; font-weight: 400; letter-spacing: -0.01em; line-height: 1.1;
+  margin: 8px 0 20px;
+}
+.proj-feature .stats {
+  display: flex; gap: 48px; flex-wrap: wrap; padding: 20px 0;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  margin: 28px 0;
+}
+.proj-feature .stats .v {
+  font-family: "Playfair Display", serif;
+  font-size: 30px; font-weight: 400; letter-spacing: -0.01em; line-height: 1;
+}
+.proj-feature .stats .k { margin-top: 6px; }
+@media (max-width: 900px) { .proj-feature { grid-template-columns: 1fr; } }
+
+/* ── SLIDESHOW ───────────────────────────────────────── */
+.ss {
+  position: relative; width: 100%; height: 100%;
+  background: var(--surface); overflow: hidden;
+}
+.ss-stage { position: absolute; inset: 0; }
+.ss-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .4s ease; }
+.ss-slide.active { opacity: 1; z-index: 1; }
+.ss-slide > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ss-slide .cap {
+  position: absolute; left: 12px; bottom: 12px;
+  background: rgba(250,250,249,.95); padding: 6px 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink); border: 1px solid var(--hairline);
+}
+.ss-slide .num {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(250,250,249,.95); padding: 4px 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.16em; font-weight: 500; color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+.ss-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+  width: 36px; height: 36px; padding: 0; border: 1px solid var(--hairline);
+  border-radius: 0;
+  background: rgba(250,250,249,.9); color: var(--ink); cursor: pointer;
+  font-size: 16px; line-height: 1;
+  transition: background 0.14s, color 0.14s;
+}
+.ss-nav:hover { background: var(--ink); color: var(--canvas); }
+.ss-nav.prev { left: 10px; } .ss-nav.next { right: 10px; }
+.ss-dots {
+  position: absolute; bottom: 12px; right: 12px; z-index: 3;
+  display: flex; gap: 5px;
+  background: rgba(250,250,249,.9); padding: 6px 8px;
+  border: 1px solid var(--hairline);
+}
+.ss-dot {
+  width: 6px; height: 6px; border-radius: 0; border: 0;
+  background: var(--hairline); cursor: pointer; padding: 0;
+  transition: background 0.14s;
+}
+.ss-dot.active { background: var(--ink); }
+
+.ss-sm .ss-nav { width: 28px; height: 28px; font-size: 13px; }
+.ss-sm .ss-nav.prev { left: 8px; } .ss-sm .ss-nav.next { right: 8px; }
+.ss-sm .ss-dots { bottom: 8px; right: 8px; padding: 4px 6px; gap: 4px; }
+.ss-sm .ss-dot { width: 5px; height: 5px; }
+.ss-sm .ss-slide .num { top: 8px; left: 8px; font-size: 9px; padding: 3px 6px; }
+.ss-sm .ss-slide .cap { left: 8px; bottom: 8px; font-size: 9px; padding: 4px 8px; }
+
+/* ── CASE STUDY ──────────────────────────────────────── */
+.cs-head {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: end; margin-bottom: 40px;
+}
+.cs-head .eyebrow { margin-bottom: 16px; }
+.cs-head h3 {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 52px; font-weight: 400; letter-spacing: -0.015em; line-height: 1.05;
+}
+.cs-head .lede {
+  font-size: 18px; font-weight: 300; line-height: 1.65; max-width: 52ch; margin: 0;
+}
+.cs-meta {
+  display: flex; gap: 48px; flex-wrap: wrap; padding: 20px 0;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  margin-bottom: 36px;
+}
+.cs-meta .k { margin-bottom: 5px; }
+.cs-meta .v { font-size: 14px; font-weight: 400; line-height: 1.4; }
+
+.kesi-mosaic {
+  display: grid; grid-template-columns: 7fr 5fr; grid-template-rows: 1fr 1fr; gap: 16px;
+  aspect-ratio: 16/9;
+}
+.kesi-mosaic .a { grid-row: 1 / 3; }
+.kesi-mosaic > figure {
+  position: relative; overflow: hidden;
+  background: var(--surface); margin: 0;
+  border: 1px solid var(--hairline);
+}
+.kesi-mosaic > figure > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kesi-mosaic figcaption {
+  position: absolute; left: 10px; bottom: 10px;
+  background: rgba(250,250,249,.95); padding: 5px 9px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; font-weight: 500; color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+@media (max-width: 900px) {
+  .kesi-mosaic { aspect-ratio: auto; grid-template-columns: 1fr; grid-template-rows: auto; }
+  .kesi-mosaic .a { aspect-ratio: 16/10; grid-row: auto; }
+  .kesi-mosaic > figure:not(.a) { aspect-ratio: 4/3; }
+  .cs-head { grid-template-columns: 1fr; gap: 16px; }
+  .cs-head h3 { font-size: 36px; }
+}
+
+.cs-body {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 72px;
+  margin-top: 52px; align-items: start;
+}
+.cs-body p { font-size: 17px; font-weight: 300; line-height: 1.75; margin: 0 0 18px; }
+.cs-body strong { font-weight: 600; }
+.cs-body .sub-h { margin-bottom: 10px; }
+.cs-body .extra-photo {
+  aspect-ratio: 4/3; overflow: hidden;
+  background: var(--surface); margin-top: 16px;
+  border: 1px solid var(--hairline);
+}
+.cs-body .extra-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 900px) { .cs-body { grid-template-columns: 1fr; gap: 28px; } }
+
+/* Media night marquee */
+.mn-marquee { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--hairline); }
+.mn-track {
+  display: flex; gap: 16px; padding: 16px; width: max-content;
+  animation: mnScroll 36s linear infinite;
+}
+.mn-marquee:hover .mn-track { animation-play-state: paused; }
+.mn-frame {
+  width: 520px; aspect-ratio: 3/2; flex-shrink: 0;
+  background: var(--canvas); position: relative; overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+.mn-frame > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mn-frame .num {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(12,12,12,.8); color: var(--canvas);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; padding: 4px 8px; letter-spacing: 0.16em;
+}
+.mn-frame .cap {
+  position: absolute; bottom: 12px; left: 12px; right: 12px;
+  background: rgba(250,250,249,.95); padding: 7px 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; line-height: 1.4; color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+@keyframes mnScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 680px) { .mn-frame { width: 320px; } .mn-track { animation-duration: 26s; } }
+
+/* ── RESEARCH ────────────────────────────────────────── */
+.thesis {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 48px; align-items: stretch;
+  background: var(--canvas); border: 1px solid var(--hairline); padding: 40px;
+}
+.thesis .cover {
+  background: var(--ink); color: var(--canvas); padding: 36px;
+  display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 3/4;
+}
+.thesis .cover .stamp { color: rgba(250,250,249,.55); }
+.thesis .cover .t {
+  font-family: "Playfair Display", serif;
+  font-size: 30px; font-weight: 400; line-height: 1.1; font-style: italic;
+}
+.thesis .cover .meta { color: rgba(250,250,249,.55); }
+.thesis h3 {
+  margin: 0 0 14px;
+  font-family: "Playfair Display", serif;
+  font-size: 26px; font-weight: 400; line-height: 1.2;
+}
+.thesis .zh {
+  font-family: "Playfair Display", "Noto Serif SC", serif;
+  font-size: 18px; color: var(--ink); margin: 0 0 20px; font-weight: 400;
+}
+.thesis .meta-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  padding: 16px 0; margin: 18px 0;
+}
+.thesis .meta-row .k { margin-bottom: 5px; }
+.thesis .meta-row .v { font-size: 14px; font-weight: 400; }
+.thesis .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 24px; }
+.thesis .tag {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--hairline); padding: 4px 8px; border-radius: 0; color: var(--ink);
+}
+@media (max-width: 900px) {
+  .thesis { grid-template-columns: 1fr; padding: 28px; }
+  .thesis .cover { aspect-ratio: 4/3; }
+}
+
+/* Findings 4-up */
+.findings-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-left: 1px solid var(--hairline); }
+.finding-card {
+  padding: 32px 28px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.finding-card .n {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted);
+}
+.finding-card p { margin: 0; font-size: 16px; line-height: 1.65; font-weight: 300; }
+.finding-card strong { font-weight: 600; }
+@media (max-width: 900px) { .findings-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .findings-grid { grid-template-columns: 1fr; } }
+
+/* Case grid 3-up */
+.case-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 52px; }
+.case-card .ph {
+  aspect-ratio: 4/5; background: var(--surface); overflow: hidden;
+  margin-bottom: 18px; border: 1px solid var(--hairline);
+}
+.case-card .ph > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.case-card .brand {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 8px;
+}
+.case-card h4 {
+  margin: 0 0 8px;
+  font-family: "Playfair Display", serif;
+  font-size: 19px; font-weight: 400; line-height: 1.3;
+}
+.case-card p { margin: 0; font-size: 14px; line-height: 1.6; font-weight: 300; }
+@media (max-width: 900px) { .case-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .case-grid { grid-template-columns: 1fr; } }
+
+/* ── RUNWAY ──────────────────────────────────────────── */
+.runway-feature {
+  display: grid; grid-template-columns: 7fr 5fr; gap: 0;
+  background: var(--canvas); overflow: hidden;
+  border: 1px solid var(--hairline);
+}
+.runway-feature .ph-big { background: var(--surface); aspect-ratio: 4/5; }
+.runway-feature .ph-big > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.runway-feature .body { padding: 52px; display: flex; flex-direction: column; justify-content: center; }
+.runway-feature .stamp {
+  display: inline-flex; align-items: center; padding: 5px 10px;
+  background: var(--ink); color: var(--canvas);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.18em; font-weight: 500; text-transform: uppercase;
+  margin-bottom: 28px; align-self: flex-start; border-radius: 0;
+}
+.runway-feature h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 40px; font-weight: 400; line-height: 1.1; letter-spacing: -0.01em;
+  margin: 0 0 22px;
+}
+.runway-feature .quote {
+  margin: 18px 0; padding: 0 0 0 20px;
+  border-left: 1px solid var(--ink);
+  font-family: "Playfair Display", "Noto Serif SC", serif;
+  font-style: italic; font-size: 17px; line-height: 1.7; color: var(--ink); font-weight: 400;
+}
+.runway-feature .stats { display: flex; gap: 36px; flex-wrap: wrap; margin-top: 18px; }
+@media (max-width: 900px) {
+  .runway-feature { grid-template-columns: 1fr; }
+  .runway-feature .body { padding: 32px; }
+  .runway-feature h3 { font-size: 30px; }
+}
+
+/* Runway carousel */
+.rw-carousel {
+  position: relative; margin-top: 52px;
+  background: var(--surface); border: 1px solid var(--hairline);
+}
+.rw-viewport {
+  overflow-x: auto; overflow-y: hidden; scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.rw-viewport::-webkit-scrollbar { display: none; }
+.rw-track { display: flex; gap: 16px; padding: 28px 60px; width: max-content; }
+.rw-frame {
+  width: 220px; aspect-ratio: 3/4; flex-shrink: 0; position: relative;
+  background: var(--canvas); overflow: hidden; scroll-snap-align: start;
+  border: 1px solid var(--hairline);
+}
+.rw-frame > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rw-frame .badge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(250,250,249,.95); color: var(--ink);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; padding: 4px 7px;
+  letter-spacing: 0.16em; font-weight: 500; border-radius: 0;
+  border: 1px solid var(--hairline);
+}
+.rw-frame .info {
+  position: absolute; left: 10px; right: 10px; bottom: 10px;
+  background: rgba(250,250,249,.95); padding: 8px 10px;
+  border: 1px solid var(--hairline);
+}
+.rw-frame .info .brand {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink); font-weight: 500;
+}
+.rw-frame .info .desc { font-size: 12px; color: var(--ink); margin-top: 3px; font-weight: 300; line-height: 1.4; }
+.rw-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+  width: 40px; height: 40px; padding: 0; border: 1px solid var(--hairline); border-radius: 0;
+  background: var(--canvas); color: var(--ink); cursor: pointer;
+  font-size: 18px; line-height: 1;
+  transition: background 0.14s, color 0.14s;
+}
+.rw-nav:hover { background: var(--ink); color: var(--canvas); }
+.rw-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+.rw-nav.prev { left: 12px; } .rw-nav.next { right: 12px; }
+.rw-progress {
+  position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.16em; color: var(--ink-muted);
+  background: var(--canvas); padding: 4px 10px; border: 1px solid var(--hairline);
+}
+@media (max-width: 680px) {
+  .rw-frame { width: 170px; } .rw-track { padding: 20px 44px; }
+  .rw-nav { width: 32px; height: 32px; font-size: 14px; }
+}
+
+/* ── CONTACT ─────────────────────────────────────────── */
+.contact-inner {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 64px;
+  align-items: end; margin-bottom: 48px;
+}
+.contact-inner h2 { margin: 0; max-width: 14ch; }
+.contact-inner p {
+  font-size: 19px; font-weight: 300; line-height: 1.65; margin: 0; max-width: 56ch;
+}
+.contact-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+.contact-card {
+  padding: 28px; border: 1px solid var(--hairline); margin-left: -1px; margin-bottom: -1px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.contact-card .k { }
+.contact-card .v { font-size: 16px; font-weight: 400; word-break: break-all; }
+.contact-cta { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .contact-inner { grid-template-columns: 1fr; gap: 28px; }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.foot { background: var(--canvas); padding: 80px 0 32px; border-top: 1px solid var(--hairline); }
+.foot .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; }
+.foot .wordmark {
+  font-family: "Playfair Display", serif;
+  font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 16px;
+}
+.foot .tagline { font-size: 14px; color: var(--ink-soft); max-width: 32ch; font-weight: 300; }
+.foot h5 { margin: 0 0 16px; }
+.foot ul { list-style: none; padding: 0; margin: 0; }
+.foot li { font-size: 14px; padding: 5px 0; font-weight: 300; }
+.foot li a:hover { opacity: 0.55; }
+.foot-bottom {
+  border-top: 1px solid var(--hairline); padding-top: 24px; margin-top: 64px;
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+}
+@media (max-width: 900px) {
+  .foot .container { grid-template-columns: 1fr 1fr; }
+  .foot .wordmark { font-size: 36px; }
+}
+@media (max-width: 560px) { .foot .container { grid-template-columns: 1fr; } }
+
+/* ── HELPERS ─────────────────────────────────────────── */
+.ph-striped {
   background:
-    repeating-linear-gradient(135deg, transparent 0 14px, rgba(0,0,0,.025) 14px 15px),
-    var(--surface-card);
-  display:flex; align-items:center; justify-content:center;
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(0,0,0,.03) 14px 15px),
+    var(--surface);
 }
-.ph-striped::after{
-  content: attr(data-label);
-  font-family:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  font-size:11px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;
-  background:var(--canvas); padding:6px 10px; border:1px solid var(--hairline);
+.mb-md { margin-bottom: 16px; }
+.mb-lg { margin-bottom: 24px; }
+.mb-xl { margin-bottom: 32px; }
+.mt-xl { margin-top: 32px; }
+
+/* ── BILINGUAL ───────────────────────────────────────── */
+[data-lang="en"] .l-zh { display: none !important; }
+[data-lang="zh"] .l-en { display: none !important; }
+
+/* ════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE  — phones < 768px
+   ════════════════════════════════════════════════════════ */
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer; padding: 4px;
 }
-.band-dark .ph-striped{
-  background:
-    repeating-linear-gradient(135deg, transparent 0 14px, rgba(255,255,255,.04) 14px 15px),
-    var(--surface-dark-2);
+.hamburger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
 }
-.band-dark .ph-striped::after{
-  background:var(--surface-dark); color:var(--on-dark-soft); border-color:rgba(255,255,255,.2);
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile menu overlay */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--canvas);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 32px;
+  transform: translateY(-100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+.mobile-menu.open {
+  transform: translateY(0);
+  pointer-events: all;
+}
+.mobile-nav-link {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 42px; font-weight: 400; line-height: 1.15;
+  color: var(--ink); text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+  letter-spacing: -0.5px;
+}
+.mobile-nav-link:last-child { border-bottom: none; }
+.mobile-nav-link:hover { opacity: 0.5; }
+
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-contact-link { display: none; }
 }
 
-/* small decorative serial number */
-.sec-num{
-  font-family:"JetBrains Mono", ui-monospace, monospace;
-  font-size:11px; letter-spacing:0.18em; color:var(--muted);
+/* ── Core mobile breakpoint ─────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 20px;
+    --section: 56px;
+  }
+
+  /* Typography scale-down */
+  .display-xl { font-size: 38px; letter-spacing: -0.8px; line-height: 1.08; }
+  .display-lg { font-size: 30px; letter-spacing: -0.4px; }
+  .display-md { font-size: 24px; }
+  .headline   { font-size: 20px; }
+  .body-lg    { font-size: 17px; }
+  .body-md    { font-size: 16px; }
+  .cs-head h3 { font-size: 32px; }
+  .proj-feature h3 { font-size: 28px; }
+  .runway-feature h3 { font-size: 26px; }
+  .thesis h3  { font-size: 20px; }
+  .findings-grid .finding-card p { font-size: 15px; }
+
+  /* Nav */
+  .topnav { height: 56px; }
+
+  /* Hero */
+  .hero { padding: 64px 0 48px; }
+  .hero h1 { margin: 8px 0 20px; }
+  .hero .lede { font-size: 17px; }
+  .hero .ctas { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 24px; }
+  .hero .ctas .btn { width: 100%; justify-content: center; }
+  .hero .row {
+    margin-top: 40px; padding-top: 24px;
+    grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .hero-ref { display: none; }
+  .hero .side-ref { display: none; }
+
+  /* Section heads */
+  .sec-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; }
+  .sec-head p { font-size: 17px; }
+
+  /* About */
+  .about-block-inner { grid-template-columns: 1fr; gap: 32px; }
+  .portrait-plate { max-width: 280px; }
+
+  /* Education */
+  .edu-row { grid-template-columns: 80px 1fr; gap: 16px; }
+  .edu-row .achievements { display: none; }
+  .edu-row h4 { font-size: 18px; }
+  .edu-row h4 .edu-logo-lg { height: 56px; }
+
+  /* Skills */
+  .skill-grid { grid-template-columns: 1fr 1fr; }
+
+  /* Projects feature */
+  .proj-feature { grid-template-columns: 1fr; gap: 28px; }
+  .proj-feature .stats { gap: 24px; }
+  .proj-feature .stats .v { font-size: 24px; }
+
+  /* Project grid */
+  .proj-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .proj-card h3 { font-size: 16px; }
+  .proj-card .sub { display: none; }
+
+  /* Case study head */
+  .cs-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 28px; }
+  .cs-head .lede { font-size: 17px; }
+  .cs-meta { gap: 24px; flex-wrap: wrap; }
+  .cs-body { grid-template-columns: 1fr; gap: 24px; }
+  .cs-body p { font-size: 16px; }
+
+  /* Media night marquee */
+  .mn-frame { width: 280px; }
+  .mn-track { animation-duration: 24s; }
+
+  /* Kesi mosaic */
+  .kesi-mosaic { grid-template-columns: 1fr; grid-template-rows: auto; aspect-ratio: auto; }
+  .kesi-mosaic .a { aspect-ratio: 4/3; }
+  .kesi-mosaic > figure:not(.a) { aspect-ratio: 4/3; }
+
+  /* Research thesis */
+  .thesis { grid-template-columns: 1fr; padding: 24px 20px; gap: 24px; }
+  .thesis .cover { aspect-ratio: 16/9; }
+  .thesis .meta-row { grid-template-columns: 1fr 1fr; }
+
+  /* Findings */
+  .findings-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .finding-card { padding: 20px 16px; }
+
+  /* Case grid */
+  .case-grid { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+
+  /* Runway feature */
+  .runway-feature { grid-template-columns: 1fr; }
+  .runway-feature .body { padding: 28px 24px; }
+  .rw-track { padding: 20px 40px; }
+  .rw-frame { width: 180px; }
+
+  /* Contact */
+  .contact-inner { grid-template-columns: 1fr; gap: 20px; }
+  .contact-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .contact-card { padding: 18px 16px; }
+  .contact-cta { flex-direction: column; }
+  .contact-cta .btn { width: 100%; justify-content: center; }
+
+  /* Footer */
+  .foot { padding: 56px 0 24px; }
+  .foot .container { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .foot .wordmark { font-size: 36px; }
+  .foot-bottom { flex-direction: column; gap: 8px; }
+
+  /* Buttons full-width on small screens where needed */
+  .btn { min-height: 46px; }
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width: 1100px){
-  .proj-grid{ grid-template-columns: repeat(2, 1fr); }
-  .hero .container{ grid-template-columns: 1fr; gap:32px; }
-  .hero-meta{ border-left:0; padding-left:0; border-top:1px solid rgba(255,255,255,.18); padding-top:32px; }
-  .about-grid{ grid-template-columns: 1fr; }
-  .thesis-card{ grid-template-columns: 1fr; padding:32px; }
-  .skill-grid, .findings-grid, .contact-grid{ grid-template-columns: repeat(2, 1fr); }
-  .section-head{ grid-template-columns: 1fr; gap:16px; }
-  .runway-feature{ grid-template-columns: 1fr; }
-  .case-grid, .work-grid{ grid-template-columns: repeat(2, 1fr); }
-  .proj-feature{ grid-template-columns: 1fr; }
-  .proj-feature .body{ padding:0; }
-  .foot-grid{ grid-template-columns: 1fr 1fr; }
-  :root{ --fs-display-xl:56px; --fs-display-lg:36px; --section:64px; }
+@media (max-width: 480px) {
+  .display-xl { font-size: 32px; }
+  .display-lg { font-size: 26px; }
+  .hero .row { grid-template-columns: 1fr 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .skill-grid { grid-template-columns: 1fr; }
+  .findings-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .foot .container { grid-template-columns: 1fr; }
+  .thesis .meta-row { grid-template-columns: 1fr; }
+  .rw-frame { width: 155px; }
+  .mn-frame { width: 240px; }
 }
-@media (max-width: 680px){
-  :root{ --fs-display-xl:40px; --fs-display-lg:28px; --fs-display-md:24px; --section:48px; --gutter:20px; }
-  .proj-grid, .skill-grid, .findings-grid, .contact-grid, .case-grid, .work-grid{ grid-template-columns: 1fr; }
-  .edu-row{ grid-template-columns: 1fr; gap:8px; }
-  .foot-grid{ grid-template-columns: 1fr; gap:32px; }
-  .subnav .container{ overflow-x:auto; }
-}
+
 </style>
 </head>
-<body>
+<body data-lang="en">
+
+<!-- vertical marquee rail (fixed left edge) -->
+<aside class="marquee-side" aria-hidden="true">
+  <div class="marquee-track-v">
+    <span>Central Academy of Fine Arts</span>
+    <span>Paris-Kedge Business School</span>
+    <span>Polo Ralph Lauren · Paris</span>
+    <span>Longfor · Pathless Woods</span>
+    <span>Little little · PFW Pop-up</span>
+    <span>Kesi Heritage Studies</span>
+    <span>Visual Culture Research</span>
+    <span>Brand Strategy</span>
+    <span>Curatorial Practice</span>
+    <!-- duplicate for seamless loop -->
+    <span>Central Academy of Fine Arts</span>
+    <span>Paris-Kedge Business School</span>
+    <span>Polo Ralph Lauren · Paris</span>
+    <span>Longfor · Pathless Woods</span>
+    <span>Little little · PFW Pop-up</span>
+    <span>Kesi Heritage Studies</span>
+    <span>Visual Culture Research</span>
+    <span>Brand Strategy</span>
+    <span>Curatorial Practice</span>
+  </div>
+</aside>
 
 <!-- ============================== TOP NAV ============================== -->
 <nav class="topnav" aria-label="primary">
   <div class="container">
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true">RJ</div>
-      <div>
-        <span class="brand-name">靳睿琦</span>
-        <span class="brand-sub">Ruiqi Jin · Portfolio</span>
-      </div>
-    </div>
+    <a class="brand" href="#home">
+      <span class="wordmark">JIN.</span>
+      <span class="sub">Ruiqi Jin · Portfolio</span>
+    </a>
     <div class="nav-menu" data-screen-label="nav">
-      <a class="nav-link" href="#home" aria-current>Home</a>
-      <a class="nav-link" href="#about">About</a>
-      <a class="nav-link" href="#projects">Projects</a>
-      <a class="nav-link" href="#research">Research</a>
-      <a class="nav-link" href="#runway">Runway</a>
-      <a class="nav-link" href="#contact">Contact</a>
+      <a class="nav-link" href="#about"><span class="l-en">About</span><span class="l-zh">关于</span></a>
+      <a class="nav-link" href="#projects"><span class="l-en">Projects</span><span class="l-zh">项目</span></a>
+      <a class="nav-link" href="#research"><span class="l-en">Research</span><span class="l-zh">研究</span></a>
+      <a class="nav-link" href="#runway"><span class="l-en">Runway</span><span class="l-zh">秀场</span></a>
+      <a class="nav-link" href="#contact"><span class="l-en">Contact</span><span class="l-zh">联系</span></a>
     </div>
-    <div class="nav-right">
-      <span class="pill">ZH · EN</span>
-      <span>2026</span>
+    <div class="nav-cta">
+      <div class="nav-status"><span class="dot"></span><span id="nav-time"></span></div>
+      <button class="lang-toggle" id="lang-btn" aria-label="Switch language">EN / 中</button>
+      <a class="nav-link nav-contact-link" href="#contact"><span class="l-en">Contact</span><span class="l-zh">联系我</span></a>
+      <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
 
-<!-- ============================== HERO ============================== -->
-<header id="home" class="hero" data-screen-label="01 Hero">
-  <div class="container">
-    <div>
-      <div class="hero-eyebrow">No. 01 · Portfolio &amp; Research Index 2026</div>
-      <h1 class="display-xl hero-title">Ruiqi Jin</h1>
-      <p class="hero-sub">靳睿琦 — 视觉文化研究 · 品牌策略</p>
-      <p class="hero-lede">从中央美术学院到 Kedge，在艺术与商业之间寻找平衡。 以"看与被看"的双重视角，研究高级时尚的视觉权力机制， 并将其转译为品牌、策展与文化项目的实践语言。</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#projects">查看精选项目</a>
-        <a class="btn btn-on-dark" href="#research">阅读研究</a>
-      </div>
-    </div>
-    <aside class="hero-meta" aria-label="profile">
-      <div class="hero-meta-row">
-        <div class="k">Based in</div>
-        <div class="v">Paris · Shanghai</div>
-      </div>
-      <div class="hero-meta-row">
-        <div class="k">Reading</div>
-        <div class="v">M.A. Creative Industries<br/>Paris-Kedge Business School, 2024–2026</div>
-      </div>
-      <div class="hero-meta-row">
-        <div class="k">Focus</div>
-        <div class="v">Scopic Regimes · Brand Semiotics · Curatorial Practice</div>
-      </div>
-      <div class="hero-meta-row">
-        <div class="k">Next</div>
-        <div class="v">Ph.D. Application — Germany, 2026</div>
-      </div>
-    </aside>
-  </div>
-</header>
-
-<!-- subnav strip -->
-<div class="subnav" aria-label="section index">
-  <div class="container">
-    <a href="#about">01 — About</a>
-    <a href="#projects">02 — Projects</a>
-    <a href="#research">03 — Research</a>
-    <a href="#runway">04 — Runway</a>
-    <a href="#contact">05 — Contact</a>
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <a class="mobile-nav-link" href="#about"   onclick="closeMobileMenu()"><span class="l-en">About</span><span class="l-zh">关于</span></a>
+    <a class="mobile-nav-link" href="#projects" onclick="closeMobileMenu()"><span class="l-en">Projects</span><span class="l-zh">项目</span></a>
+    <a class="mobile-nav-link" href="#research" onclick="closeMobileMenu()"><span class="l-en">Research</span><span class="l-zh">研究</span></a>
+    <a class="mobile-nav-link" href="#runway"   onclick="closeMobileMenu()"><span class="l-en">Runway</span><span class="l-zh">秀场</span></a>
+    <a class="mobile-nav-link" href="#contact"  onclick="closeMobileMenu()"><span class="l-en">Contact</span><span class="l-zh">联系</span></a>
   </div>
 </div>
 
-<!-- ============================== ABOUT ============================== -->
-<section id="about" class="band-soft" data-screen-label="02 About">
+<!-- black marquee strip -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Central Academy of Fine Arts</span>
+    <span>Paris-Kedge Business School</span>
+    <span>Polo Ralph Lauren · Paris</span>
+    <span>Longfor · Pathless Woods</span>
+    <span>Little little · PFW Pop-up</span>
+    <span>Kesi Heritage Studies</span>
+    <span>Visual Culture Research</span>
+    <span>Brand Strategy</span>
+    <span>Curatorial Practice</span>
+    <!-- duplicate for seamless loop -->
+    <span>Central Academy of Fine Arts</span>
+    <span>Paris-Kedge Business School</span>
+    <span>Polo Ralph Lauren · Paris</span>
+    <span>Longfor · Pathless Woods</span>
+    <span>Little little · PFW Pop-up</span>
+    <span>Kesi Heritage Studies</span>
+    <span>Visual Culture Research</span>
+    <span>Brand Strategy</span>
+    <span>Curatorial Practice</span>
+  </div>
+</div>
+
+<!-- ============================== HERO ============================== -->
+<header id="home" class="hero" data-screen-label="01 Hero">
   <div class="container">
-    <div class="section-head">
+    <div class="hero-ref"><span class="l-en">RJQ_2026 · Portfolio · Index No. 01</span><span class="l-zh">RJQ_2026 · 作品集 · 序号 01</span></div>
+    <h1 class="display-xl">Visual culture
+and brand strategy.
+Between Paris
+and Shanghai.</h1>
+    <p class="lede">
+      <span class="l-en">I am Ruiqi Jin (靳睿琦). I study how images carry power — how high fashion organises looking, how brands build cultural authority, and how tradition gets remade in the present. I work as a researcher, curator and brand strategist, and I model on the side to keep one hand on the object of study.</span>
+      <span class="l-zh">我是靳睿琦。我研究图像如何承载权力——高级时装如何组织观看，品牌如何建构文化权威，传统如何在当代获得新生。我的身份横跨研究者、策展人与品牌策略师，同时也以模特身份保持对研究对象的直接感知。</span>
+    </p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="#projects"><span class="l-en">See selected work</span><span class="l-zh">查看项目</span></a>
+      <a class="btn btn-secondary" href="#research"><span class="l-en">Read the research</span><span class="l-zh">阅读研究</span></a>
+    </div>
+    <div class="row">
       <div>
-        <div class="sec-num">§ 01 — ABOUT</div>
-        <h2 class="display-lg">关于<br/>靳睿琦</h2>
+        <div class="caption k"><span class="l-en">Based</span><span class="l-zh">所在地</span></div>
+        <div class="v">Paris · Shanghai</div>
       </div>
-      <p>
-        视觉文化研究者与品牌传播策略师。在艺术、学术与商业之间往返工作，
-        关心视觉如何传递权力，品牌如何通过空间与身体构建文化认同，
-        以及传统符号如何在当代语境中重新生长。
-      </p>
-    </div>
-
-    <div class="about-grid">
-      <div class="portrait-plate ph-striped" data-label="个人肖像 · portrait"></div>
-      <div class="about-body">
-        <p>
-          我是靳睿琦。从中央美术学院到 Paris-Kedge Business School，
-          我同时在艺术史的脉络与管理学的方法论中训练。作为模特，
-          我直接体验了"被看"的视觉规训与权力机制；作为策展人，
-          我学会组织"观看"的空间叙事；作为品牌策略师，
-          我用这双重视角为品牌构建文化权威。
-        </p>
-        <p>
-          我关心的核心问题是：视觉如何传递权力？品牌如何通过空间设计
-          和身体呈现构建文化认同？传统文化符号如何在当代语境中复活？
-        </p>
-        <div class="pull-quote">
-          看与被看，并不是两个动作。它们是同一种权力关系的两面。
-        </div>
-        <p>
-          我的研究聚焦于高级时装中的视觉权力机制（scopic regimes）、
-          品牌符号系统的构建，以及展示空间如何塑造观看体验。
-          目前正在准备申请德国的博士项目，继续深化这些问题。
-        </p>
-        <p style="margin-top:32px;">
-          <a class="tlink" href="#contact">Download CV</a>
-        </p>
+      <div>
+        <div class="caption k"><span class="l-en">Education</span><span class="l-zh">教育背景</span></div>
+        <div class="v">M.A. Creative Industries<br/>Paris-Kedge, 2024–2026<br/>Central Academy of Fine Arts<br/>2020-2024</div>
+      </div>
+      <div>
+        <div class="caption k"><span class="l-en">Focus</span><span class="l-zh">研究方向</span></div>
+        <div class="v"><span class="l-en">Scopic regimes · Brand semiotics · Curation</span><span class="l-zh">视觉体制 · 品牌符号学 · 策展实践</span></div>
       </div>
     </div>
+  </div>
+</header>
 
-    <!-- education -->
-    <div style="margin-top:96px;">
-      <div class="sec-num" style="margin-bottom:12px;">§ 01.2 — EDUCATION</div>
-      <h3 class="display-md" style="margin:0 0 32px;">教育背景</h3>
-      <div class="edu-list">
-        <div class="edu-row">
-          <div class="year">2024 — 2026</div>
-          <div>
-            <h4>Paris-Kedge Business School</h4>
-            <p class="deg">创意产业管理与营销 · 硕士</p>
-            <p class="deg-en">M.A. Creative Industries Management &amp; Marketing</p>
-          </div>
-          <div class="achievements">
-            <span>Master Candidate</span>
-            <span>Thesis on Haute Couture Visuality</span>
+<!-- ============================== ABOUT (lime block) ============================== -->
+<section id="about" data-screen-label="02 About">
+  <div class="container">
+    
+      <div class="about-block-inner">
+        <div>
+          <div class="eyebrow"><span class="l-en">§ 01 — About</span><span class="l-zh">§ 01 — 关于我</span></div>
+          <h2 class="display-lg"><span class="l-en">In the gap<br/>between art<br/>and commerce.</span><span class="l-zh">连接艺术与商业的学术背景。</span></h2>
+          <div class="portrait-plate" aria-label="Ruiqi Jin portrait · Paris">
+            <img src="media/about/portrait.jpg" alt="Ruiqi Jin portrait, sitting under trees in Paris" loading="lazy"/>
+            <span class="portrait-tag">Paris · 2026</span>
           </div>
         </div>
-        <div class="edu-row">
-          <div class="year">2020 — 2024</div>
-          <div>
-            <h4>中央美术学院 &amp; 法国高等商学院</h4>
-            <p class="deg">艺术设计与管理 &amp; 营销学 · 双学位本科</p>
-            <p class="deg-en">B.A. in Art &amp; Design Management and Marketing (Double Degree)</p>
+        <div>
+          <p class="lede">
+            <span class="l-en">From the Central Academy of Fine Arts to Paris-Kedge Business School, I trained simultaneously in art-historical method and in management. As a model I lived the discipline of <em>being looked at</em>; as a curator I learned to organise <em>the looking</em>; as a strategist I use both views to help brands build cultural authority.</span>
+            <span class="l-zh">从中央美术学院到法国 Paris-Kedge 商学院，我同时接受艺术史方法论与管理学训练。作为模特，我经历了"被看"的规训；作为策展人，我学会了组织"观看"；作为策略师，我将两种视角结合，帮助品牌建构文化权威。</span>
+          </p>
+          <p class="lede">
+            <span class="l-en">The questions I keep returning to: how does the visual transmit power? How do brands construct cultural belonging through space and the body? How do traditional symbols survive — and become new — in the present?</span>
+            <span class="l-zh">我反复思考的问题：视觉如何传递权力？品牌如何通过空间与身体建构文化归属感？传统符号如何在当代存活，并生成新的意义？</span>
+          </p>
+          <div class="pull">
+            <span class="l-zh">看与被看，并非对立关系。<br/>它们是同一种权力关系的两面。<br/>由制度决定，而非个人选择。</span>
+            <span class="l-en">To see and to be seen are not opposites.<br/>They are two faces of the same power relation.<br/>Determined by institution, not personal choice.</span>
           </div>
-          <div class="achievements">
-            <span>GPA 3.8 / 4.0</span>
-            <span>校二等奖学金</span>
-            <span>优秀毕业生（前 10%）</span>
-            <span>优秀毕业作品</span>
-          </div>
+          <p class="lede">
+            <span class="l-en">My practice and research focus on the construction of visual mechanisms and cultural authority.</span>
+            <span class="l-zh">目前的实践和研究聚焦于视觉机制和文化权威的构建。</span>
+          </p>
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+<!-- ============================== EDUCATION + SKILLS (white canvas between blocks) ============================== -->
+<section data-screen-label="02b Education">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow label"><span class="l-en">§ 01.2 — Education and capability</span><span class="l-zh">§ 01.2 — 教育背景与能力</span></div>
+        <h2 class="display-lg"><span class="l-en">Trained at the<br/>intersection.</span><span class="l-zh">艺术与营销<br/>交叉学科背景。</span></h2>
+      </div>
+      <p><span class="l-en">Two degrees in parallel, one running concurrently. Art-history method on one side, management and marketing on the other; both feed the same research.</span><span class="l-zh">两个学位并行推进：艺术史研究方法与管理营销学科相互补充，共同服务于同一研究。</span></p>
+    </div>
+
+    <div class="edu-list">
+      <div class="edu-row">
+        <div class="year caption">2024 — 2026</div>
+        <div>
+          <h4>Kedge Business School<img class="edu-logo" src="media/logos/kedge.png" alt="Kedge" style="width: 1px; height: 1px"/></h4>
+          <p class="deg l-zh">创意产业管理与营销 · 硕士</p>
+          <p class="deg-en">M.A. Creative Industries Management and Marketing</p>
+        </div>
+        <div class="achievements">
+          <span><span class="l-en">Master candidate</span><span class="l-zh">硕士候选人</span></span>
+          <span><span class="l-en">Thesis: haute couture visuality</span><span class="l-zh">论文：高级时装的视觉性</span></span>
+        </div>
+      </div>
+      <div class="edu-row" style="font-family: Inter">
+        <div class="year caption">2020 — 2024</div>
+        <div>
+          <h4>Central Academy of Fine Arts <img class="edu-logo edu-logo-lg" src="media/logos/cafa.png" alt="Central Academy of Fine Arts" style="width: 2px; height: 2px"/></h4>
+          <p class="deg l-zh">艺术设计与管理 and 营销学 · 双学位本科</p>
+          <p class="deg-en">B.A. Art and Design Management and Marketing (Double Degree)</p>
+        </div>
+        <div class="achievements">
+          <span>GPA 3.8 / 4.0</span>
+          <span><span class="l-en">University Second-class Scholarship</span><span class="l-zh">校二等奖学金</span></span>
+          <span><span class="l-en">Outstanding Graduate (top 10%)</span><span class="l-zh">优秀毕业生（前 10%）</span></span>
+          <span><span class="l-en">Outstanding Graduation Project</span><span class="l-zh">优秀毕业作品</span></span>
         </div>
       </div>
     </div>
 
-    <!-- skills -->
-    <div style="margin-top:96px;">
-      <div class="sec-num" style="margin-bottom:12px;">§ 01.3 — CAPABILITIES</div>
-      <h3 class="display-md" style="margin:0 0 32px;">核心能力</h3>
+    <div class="mt-xl">
+      <div class="eyebrow mb-md"><span class="l-en">Capabilities</span><span class="l-zh">核心能力</span></div>
       <div class="skill-grid">
         <div class="skill-cell">
           <div class="n">01</div>
-          <h4>研究能力</h4>
+          <h4><span class="l-en">Research</span><span class="l-zh">研究</span></h4>
           <ul>
-            <li>视觉文化理论研究</li>
-            <li>品牌符号学分析</li>
-            <li>质性研究方法</li>
+            <li><span class="l-en">Visual culture theory</span><span class="l-zh">视觉文化理论研究</span></li>
+            <li><span class="l-en">Brand semiotics</span><span class="l-zh">品牌符号学分析</span></li>
+            <li><span class="l-en">Qualitative method</span><span class="l-zh">质性研究方法</span></li>
           </ul>
         </div>
         <div class="skill-cell">
           <div class="n">02</div>
-          <h4>跨学科整合</h4>
+          <h4><span class="l-en">Interdisciplinary</span><span class="l-zh">跨学科整合</span></h4>
           <ul>
-            <li>艺术史 × 管理学 × 传播学</li>
-            <li>理论研究 × 实践应用</li>
+            <li><span class="l-en">Art history × Management × Comms</span><span class="l-zh">艺术史 × 管理学 × 传播学</span></li>
+            <li><span class="l-en">Theory × Practice</span><span class="l-zh">理论 × 实践</span></li>
           </ul>
         </div>
         <div class="skill-cell">
           <div class="n">03</div>
-          <h4>策展与空间设计</h4>
+          <h4><span class="l-en">Curation and Space</span><span class="l-zh">策展与空间</span></h4>
           <ul>
-            <li>展览策划与执行</li>
-            <li>空间叙事设计</li>
-            <li>观众体验优化</li>
+            <li><span class="l-en">Exhibition planning and production</span><span class="l-zh">展览策划与执行</span></li>
+            <li><span class="l-en">Spatial narrative design</span><span class="l-zh">空间叙事设计</span></li>
+            <li><span class="l-en">Audience experience</span><span class="l-zh">观众体验优化</span></li>
           </ul>
         </div>
         <div class="skill-cell">
           <div class="n">04</div>
-          <h4>学术写作</h4>
+          <h4><span class="l-en">Academic Writing</span><span class="l-zh">学术写作</span></h4>
           <ul>
-            <li>中英文学术论文</li>
-            <li>品牌文化评论</li>
-            <li>研究报告撰写</li>
+            <li><span class="l-en">Papers in EN and CN</span><span class="l-zh">中英文学术论文</span></li>
+            <li><span class="l-en">Brand cultural criticism</span><span class="l-zh">品牌文化评论</span></li>
+            <li><span class="l-en">Research reports</span><span class="l-zh">研究报告撰写</span></li>
           </ul>
         </div>
       </div>
@@ -823,47 +1279,42 @@ footer.foot{
   </div>
 </section>
 
-<!-- ============================== PROJECTS ============================== -->
+<!-- ============================== PROJECTS — intro (white) + featured cream block ============================== -->
 <section id="projects" data-screen-label="03 Projects">
   <div class="container">
-    <div class="section-head">
+    <div class="sec-head">
       <div>
-        <div class="sec-num">§ 02 — PROJECTS</div>
-        <h2 class="display-lg">精选项目</h2>
+        <div class="eyebrow label"><span class="l-en">§ 02 — Selected projects</span><span class="l-zh">§ 02 — 精选项目</span></div>
+        <h2 class="display-lg"><span class="l-en">From research<br/>to runway.</span><span class="l-zh">从研究<br/>到秀场。</span></h2>
       </div>
-      <p>
-        从品牌出海的快闪活动，到非遗传统工艺的当代转化，
-        再到国内外政要参访的全流程统筹——
-        每一个项目都是同一套方法论的不同切面：
-        以研究的方式做实践，以实践反哺研究。
-      </p>
+      <p><span class="l-en">From brand pop-ups to intangible-heritage exhibitions to high-profile media events — different surfaces, the same method. Research as practice, practice as research.</span><span class="l-zh">从品牌快闪到非遗展览再到高端媒体活动——形式各异，方法一贯。研究即实践，实践即研究。</span></p>
     </div>
 
-    <!-- featured project -->
-    <div class="proj-grid" style="grid-template-columns: 1fr;">
-      <article class="proj-feature">
-        <div class="proj-photo">
+    <!-- featured (Little little) on cream block -->
+    
+      <div class="proj-feature">
+        <div class="photo-wrap">
           <div class="ss" data-ss>
             <div class="ss-stage">
               <div class="ss-slide active">
                 <img src="media/littlelittle/01-tree-popup.jpg" alt="树下快闪展位 · Paris"/>
                 <span class="num">01 / 04</span>
-                <div class="cap">树下快闪 · Eat My Love · Pop-up</div>
+                <div class="cap">Pop-up · Eat My Love · Paris</div>
               </div>
               <div class="ss-slide">
-                <img src="media/littlelittle/02-dessert-table.jpg" alt="甘点酒会 · 抹茶与青瓷"/>
+                <img src="media/littlelittle/02-dessert-table.jpg" alt="甜点桌 · 抹茶与青瓷"/>
                 <span class="num">02 / 04</span>
-                <div class="cap">酒会·抹茶杯·青瓷花瓶</div>
+                <div class="cap">Dessert table · matcha and celadon</div>
               </div>
               <div class="ss-slide">
-                <img src="media/littlelittle/03-model-portrait.jpg" alt="模特股像 · 黑色亮片西装"/>
+                <img src="media/littlelittle/03-model-portrait.jpg" alt="模特肖像 · 黑色亮片西装"/>
                 <span class="num">03 / 04</span>
-                <div class="cap">Look 04 · 黑色亮片西装 · 玫瑰戒指</div>
+                <div class="cap">Look 04 · sequin tux + rose ring</div>
               </div>
               <div class="ss-slide">
-                <img src="media/littlelittle/04-jewelry-moss.jpg" alt="麟贪·花麟麞饰陈列"/>
+                <img src="media/littlelittle/04-jewelry-moss.jpg" alt="苔藓首饰陈列"/>
                 <span class="num">04 / 04</span>
-                <div class="cap">陕列·苔藓与麟麞·Little list 联名牌</div>
+                <div class="cap">Display · moss + Little list cards</div>
               </div>
             </div>
             <button class="ss-nav prev" type="button" aria-label="Previous">‹</button>
@@ -876,697 +1327,661 @@ footer.foot{
             </div>
           </div>
         </div>
-        <div class="body">
-          <div class="tags">
-            <span class="tag">Brand Out-of-China</span>
-            <span class="tag">Pop-up</span>
-            <span class="tag">Cultural Comms</span>
-          </div>
-          <h3>Little little<br/>巴黎时装周快闪</h3>
-          <p class="sub" style="font-size:17px; max-width:48ch;">
-            为中国独立设计师品牌策划巴黎时装周快闪活动，
-            构建从空间叙事到媒体传播的完整文化语言。
-            500+ 访客，3 万+ 社交曝光。
+        <div>
+          <div class="eyebrow mb-md"><span class="l-en">Case · 01 · Brand out-of-China</span><span class="l-zh">案例 · 01 · 中国品牌出海</span></div>
+          <h3><span class="l-en">Little little<br/>Paris Fashion Week Pop-up</span><span class="l-zh">Little little<br/>巴黎时装周快闪</span></h3>
+          <p class="body-lg" style="max-width: 48ch;">
+            <span class="l-en">For an independent Chinese designer brand, a Paris Fashion Week pop-up rebuilt from spatial narrative through media. A whole cultural language compressed into one afternoon under a tree.</span>
+            <span class="l-zh">为一个独立中国设计师品牌，在巴黎时装周策划一场快闪——从空间叙事到媒体传播全面重构。一下午，一棵树，一整套文化语言。</span>
           </p>
-          <div style="display:flex; gap:48px; margin:24px 0 32px; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); padding:20px 0;">
-            <div>
-              <div class="caption">访客</div>
-              <div class="display-sm" style="margin-top:4px;">500+</div>
+          <div class="stats">
+            <div><div class="v">500+</div><div class="k caption"><span class="l-en">VISITORS</span><span class="l-zh">访 客</span></div></div>
+            <div><div class="v">30K+</div><div class="k caption"><span class="l-en">Social reach</span><span class="l-zh">社交曝光</span></div></div>
+            <div><div class="v">12</div><div class="k caption"><span class="l-en">Media partners</span><span class="l-zh">合作媒体</span></div></div>
+          </div>
+          <div>
+            
+          </div>
+        </div>
+      </div>
+    
+
+    <!-- 4-up grid on white -->
+    <div class="proj-grid mt-xl" style="margin-top: 64px;">
+      <article class="proj-card">
+        <div class="proj-photo">
+          <div class="ss ss-sm" data-ss>
+            <div class="ss-stage">
+              <div class="ss-slide active">
+                <img src="media/comms/01-nio-visit.jpg" alt="嘉定新联会参访蔚来交付中心"/>
+                <span class="num">01 / 02</span>
+                <div class="cap"><span class="l-en">NIO · Jiading New Federation visit</span><span class="l-zh">NIO · 嘉定新联会参访</span></div>
+              </div>
+              <div class="ss-slide">
+                <img src="media/comms/02-nio-group.jpg" alt="浙江大学上海校友会·校友十人行"/>
+                <span class="num">02 / 02</span>
+                <div class="cap"><span class="l-en">ZJU · Alumni Ten</span><span class="l-zh">浙大 · 校友十人行</span></div>
+              </div>
             </div>
-            <div>
-              <div class="caption">社交曝光</div>
-              <div class="display-sm" style="margin-top:4px;">30K+</div>
-            </div>
-            <div>
-              <div class="caption">合作媒体</div>
-              <div class="display-sm" style="margin-top:4px;">12</div>
+            <button class="ss-nav prev" type="button" aria-label="Previous">‹</button>
+            <button class="ss-nav next" type="button" aria-label="Next">›</button>
+            <div class="ss-dots">
+              <button class="ss-dot active" aria-label="Slide 1"></button>
+              <button class="ss-dot" aria-label="Slide 2"></button>
             </div>
           </div>
-          <a class="tlink" href="#">Read case study</a>
         </div>
-      </article>
-    </div>
-
-    <!-- 4-up grid -->
-    <div class="proj-grid" style="margin-top:64px;">
-      <article class="proj-card">
-        <div class="proj-photo ph-striped" data-label="展览活动封面"></div>
         <div class="body">
           <div class="tags">
-            <span class="tag">活动策划</span>
-            <span class="tag">品牌传播</span>
+            <span class="tag"><span class="l-en">Events</span><span class="l-zh">活动策划</span></span>
+            <span class="tag"><span class="l-en">Comms</span><span class="l-zh">品牌传播</span></span>
           </div>
-          <h3 class="title-md">展览活动策划与品牌传播</h3>
-          <p class="sub">深度理解媒体与品牌的传播逻辑，策划高端活动与文化项目。</p>
-          <p class="meta">2024 — 至今</p>
+          <h3><span class="l-zh">展览活动策划与品牌传播</span><span class="l-en">Event Planning and Brand Communication</span></h3>
+          <p class="sub"><span class="l-zh">深度理解媒体与品牌的传播逻辑，策划高端活动与文化项目。</span><span class="l-en">In-depth understanding of media and brand communication logic; planning high-end events and cultural projects.</span></p>
+          <p class="meta"><span class="l-en">2024 — Present</span><span class="l-zh">2024 — 至今</span></p>
         </div>
       </article>
 
       <article class="proj-card">
-        <div class="proj-photo"><img src="media/kesi/01-title-wall.jpg" alt="雕经镂纬 · 典籍里的缂丝 展览主视觉墙"/></div>
+        <div class="proj-photo"><img src="media/kesi/01-title-wall.jpg" alt="缂丝展览主视觉墙"/></div>
         <div class="body">
           <div class="tags">
-            <span class="tag">文化研究</span>
-            <span class="tag">非遗保护</span>
+            <span class="tag"><span class="l-en">Heritage</span><span class="l-zh">非遗传承</span></span>
+            <span class="tag"><span class="l-en">Curation</span><span class="l-zh">策展</span></span>
           </div>
-          <h3 class="title-md">缂丝非遗传承与当代转化</h3>
-          <p class="sub">《雕经镂纬 · 典籍里的缂丝》展览·研究·文创转化的完整链路。</p>
+          <h3><span class="l-zh">缂丝非遗传承与当代转化</span><span class="l-en">Kesi Heritage and Contemporary Transformation</span></h3>
+          <p class="sub"><span class="l-zh">《雕经镂纬 · 典籍里的缂丝》展览 · 研究 · 文创转化的完整链路。</span><span class="l-en">The complete pipeline of exhibition, research, and cultural-creative transformation for <em>Carved Warp, Etched Weft: Kesi in Classical Texts</em>.</span></p>
           <p class="meta">2020 — 2024</p>
         </div>
       </article>
 
       <article class="proj-card">
-        <div class="proj-photo"><img src="media/medianight/01-sunset-camp.jpg" alt="媒体之夜 · 山前星天外现场"/></div>
+        <div class="proj-photo"><img src="media/medianight/01-sunset-camp.jpg" alt="媒体之夜 · 山前星天外"/></div>
         <div class="body">
           <div class="tags">
-            <span class="tag">活动统筹</span>
-            <span class="tag">品牌客邀</span>
+            <span class="tag"><span class="l-en">Hospitality</span><span class="l-zh">品牌体验</span></span>
+            <span class="tag"><span class="l-en">PR</span><span class="l-zh">公关传播</span></span>
           </div>
-          <h3 class="title-md">媒体之夜 · Pathless Woods</h3>
-          <p class="sub">龙湖山居体验馆媒体之夜：从动线、场景到传播的全流程统筹。</p>
+          <h3><span class="l-zh">媒体之夜 · Pathless Woods</span><span class="l-en">Media Night · Pathless Woods</span></h3>
+          <p class="sub"><span class="l-zh">龙湖山居体验馆媒体之夜：从动线、场景到传播的完整统筹。</span><span class="l-en">Media night at Longhu Mountain Retreat: full coordination from guest flow and scene design to communications.</span></p>
           <p class="meta">2025</p>
         </div>
       </article>
 
       <article class="proj-card">
-        <div class="proj-photo ph-striped" data-label="AI 营销项目"></div>
+        <div class="proj-photo">
+          <div class="ss ss-sm" data-ss>
+            <div class="ss-stage">
+              <div class="ss-slide active">
+                <img src="media/ai/01-brtv-news.jpg" alt="BRTV “元宇宙科技消费实验室”启动报道"/>
+                <span class="num">01 / 04</span>
+                <div class="cap"><span class="l-en">BRTV · Metaverse Lab launch</span><span class="l-zh">BRTV · 元宇宙实验室启动</span></div>
+              </div>
+              <div class="ss-slide">
+                <img src="media/ai/02-gallery-wall.jpg" alt="应近堆·蚂蚁链 NFT 画廊墙"/>
+                <span class="num">02 / 04</span>
+                <div class="cap">Community Own-BO · NFT Wall</div>
+              </div>
+              <div class="ss-slide">
+                <img src="media/ai/03-speaker-stage.jpg" alt="元宇宙科技与元宇宙消费·讲者现场"/>
+                <span class="num">03 / 04</span>
+                <div class="cap"><span class="l-en">Metaverse Tech and Consumer · Talk</span><span class="l-zh">元宇宙科技与消费 · Talk</span></div>
+              </div>
+              <div class="ss-slide">
+                <img src="media/ai/04-crowd-floor.jpg" alt="《坜机之地》互动·观众现场"/>
+                <span class="num">04 / 04</span>
+                <div class="cap"><span class="l-en">《Crash Land》 · Live interaction</span><span class="l-zh">《坜机之地》 · 现场互动</span></div>
+              </div>
+            </div>
+            <button class="ss-nav prev" type="button" aria-label="Previous">‹</button>
+            <button class="ss-nav next" type="button" aria-label="Next">›</button>
+            <div class="ss-dots">
+              <button class="ss-dot active" aria-label="Slide 1"></button>
+              <button class="ss-dot" aria-label="Slide 2"></button>
+              <button class="ss-dot" aria-label="Slide 3"></button>
+              <button class="ss-dot" aria-label="Slide 4"></button>
+            </div>
+          </div>
+        </div>
         <div class="body">
           <div class="tags">
-            <span class="tag">AI Marketing</span>
-            <span class="tag">研究</span>
+            <span class="tag"><span class="l-en">AI Marketing</span><span class="l-zh">AI 品牌营销</span></span>
+            <span class="tag"><span class="l-en">Research</span><span class="l-zh">研究</span></span>
           </div>
-          <h3 class="title-md">AI 时代的品牌叙事实验</h3>
-          <p class="sub">在生成式工具与文化批评之间，重新拟稿"创意"的边界。</p>
+          <h3><span class="l-zh">AI 时代的品牌叙事实验</span><span class="l-en">Brand Narrative in the AI Era</span></h3>
+          <p class="sub"><span class="l-zh">作为设计师参与创作北京卫视报导的蚂蚁链 NFT 画廊沉浸展，在生成式工具与文化批评之间重新拟稿"创意"的边界。</span><span class="l-en">Co-created the Ant Chain NFT gallery immersive exhibition covered by Beijing Satellite TV; redefining "creativity" at the intersection of generative tools and cultural criticism.</span></p>
           <p class="meta">2025</p>
         </div>
       </article>
     </div>
+  </div>
+</section>
 
-    <!-- ============ CASE STUDY · KESI ============ -->
-    <div class="case-study" data-screen-label="缂丝 Case Study">
+<!-- ============================== CASE: KESI (mint block) ============================== -->
+<section data-screen-label="缂丝 Case Study">
+  <div class="container">
+    
       <div class="cs-head">
         <div>
-          <div class="cs-eyebrow">Case Study · 01 · Heritage</div>
-          <h3>雕经镂纬<br/>典籍里的缂丝</h3>
+          <div class="eyebrow"><span class="l-en">Case · 02 · Heritage</span><span class="l-zh">案例 · 02 · 非遗传承</span></div>
+          <h3><span class="l-zh">雕经镂纬<br/>典籍里的缂丝</span><span class="l-en">Carved Warp<br/>Etched Weft · Kesi</span></h3>
         </div>
         <p class="lede">
-          以缂丝（Kèsī）为中心的传统工艺双轨研究与展览项目：
-          在典籍中追踪"镂织"的词汇、技艺与作品，
-          同时在展厅里重建织机、手势与观看的完整现场。
+          <span class="l-en">A two-track project on the silk-tapestry craft of <em>kèsī</em>: tracing its vocabulary, techniques and surviving works through historical texts, while rebuilding the loom, the gesture and the looking inside an exhibition hall.</span>
+          <span class="l-zh">一个关于缂丝工艺的双线项目：在历史文献中追溯其语汇、技法与存世作品，同时在展厅内重建织机、动作与观看体验。</span>
         </p>
       </div>
-
-      <div class="meta-row" style="display:flex; gap:48px; flex-wrap:wrap; padding:16px 0; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); margin-bottom:32px;">
+      <div class="cs-meta">
         <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Role</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">策展 · 研究 · 文字撰述</div>
+          <div class="caption k"><span class="l-en">Role</span><span class="l-zh">角色</span></div>
+          <div class="v"><span class="l-zh">策展 · 研究 · 文字撰述</span><span class="l-en">Curation · Research · Writing</span></div>
         </div>
         <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Venue</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">苏州 · 丝绸博物馆临展</div>
+          <div class="caption k"><span class="l-en">Venue</span><span class="l-zh">地点</span></div>
+          <div class="v"><span class="l-zh">苏州 · 丝绸博物馆临展</span><span class="l-en">Suzhou · Silk Museum temporary exhibition</span></div>
         </div>
         <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Output</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">展览 + 中法双语画册 + 文创原型</div>
+          <div class="caption k"><span class="l-en">Output</span><span class="l-zh">输出物</span></div>
+          <div class="v"><span class="l-zh">展览 + 中法双语画册 + 文创原型</span><span class="l-en">Exhibition + bilingual catalogue + cultural-creative prototype</span></div>
         </div>
         <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Period</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">2020 — 2024</div>
+          <div class="caption k"><span class="l-en">Period</span><span class="l-zh">时间</span></div>
+          <div class="v">2020 — 2024</div>
         </div>
       </div>
 
-      <!-- mosaic -->
       <div class="kesi-mosaic">
-        <figure class="cs-photo a">
-          <img src="media/kesi/01-title-wall.jpg" alt="展览主视觉墙 · 雕经镂纬"/>
-          <figcaption>01 · Title Wall</figcaption>
+        <figure class="a">
+          <img src="media/kesi/01-title-wall.jpg" alt="主视觉墙 · 雕经镂纬"/>
+          <figcaption><span class="l-en">01 · Title Wall</span><span class="l-zh">01 · 主视觉墙</span></figcaption>
         </figure>
-        <figure class="cs-photo">
-          <img src="media/kesi/02-gallery-view.jpg" alt="展厅全景·席地与古画墙"/>
-          <figcaption>02 · Gallery</figcaption>
+        <figure>
+          <img src="media/kesi/02-gallery-view.jpg" alt="展厅全景 · 蒲团与古画"/>
+          <figcaption><span class="l-en">02 · Gallery</span><span class="l-zh">02 · 展厅</span></figcaption>
         </figure>
-        <figure class="cs-photo">
-          <img src="media/kesi/04-archive-cases.jpg" alt="典籍展柜·中法译本"/>
-          <figcaption>03 · Archive</figcaption>
+        <figure>
+          <img src="media/kesi/04-archive-cases.jpg" alt="典籍展柜 · 中法译本"/>
+          <figcaption><span class="l-en">03 · Archive</span><span class="l-zh">03 · 文献档案</span></figcaption>
         </figure>
       </div>
 
       <div class="cs-body">
         <div>
-          <h4>Curatorial Note</h4>
-          <p class="role">缂丝不是"丝绸"。<br/>它是一种以"通经断纬"为言说方式的画。</p>
-          <div style="margin-top:24px; border-top:1px solid var(--hairline); padding-top:24px;">
-            <div class="caption">Companion Image</div>
-            <figure class="cs-photo" style="aspect-ratio:4/3; margin-top:12px;">
-              <img src="media/kesi/03-loom-demo.jpg" alt="织机现场演示"/>
-              <figcaption>04 · Loom Demo</figcaption>
+          <div class="eyebrow sub-h"><span class="l-en">Curatorial note</span><span class="l-zh">策展手记</span></div>
+          <p style="font-weight: 540; font-size: 20px; letter-spacing:-0.2px;">
+            <span class="l-zh">缂丝不是"丝绸"。<br/>它是一种以"通经断纬"为言说方式的画。</span>
+            <span class="l-en">Kèsī is not "silk." It is a painting spoken through the grammar of continuous warp and discontinuous weft.</span>
+          </p>
+          <div class="extra-photo">
+            <img src="media/kesi/03-loom-demo.jpg" alt="织机现场演示"/>
+          </div>
+        </div>
+        <div>
+          <p>
+            If <strong>kèsī</strong> was the most prestigious of Chinese silk
+            crafts, why does it now survive in the hands of a few aging
+            masters in remote towns? We decided to re-introduce them
+            <strong>through the books</strong> — from <em>Catalogue of
+            Imperial Kesi Calligraphy and Painting</em> to the
+            Chinese-French <em>Chinese Silk Literati Painting</em> — so that
+            text and machine could meet in the same room.
+          </p>
+          <p>
+            The title wall lifted four characters: <strong>《雕经镂纬》</strong>
+            — shuttles falling from a black overhead bay, threads pulled
+            into a rising blue diagonal. Our abstract translation of the
+            two gestures of the craft, and the visitor's first sentence
+            after entering.
+          </p>
+          <p>
+            A working loom sat in the centre of the gallery for live
+            demonstrations; on the other side, a wall of antique paintings
+            with woven cushions invited visitors to <em>sit and look at the
+            centuries</em>. The bilingual catalogue, commissioned for the
+            opening, became the show's second output.
+          </p>
+          <p class="mt-xl">
+            <a class="btn btn-primary" href="#"><span class="l-en">Read full case study</span><span class="l-zh">阅读完整案例</span></a>
+          </p>
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+<!-- ============================== CASE: MEDIA NIGHT (coral block) ============================== -->
+<section data-screen-label="媒体之夜 Case Study">
+  <div class="container">
+    
+      <div class="cs-head">
+        <div>
+          <div class="eyebrow"><span class="l-en">Case · 03 · Brand hospitality</span><span class="l-zh">案例 · 03 · 品牌体验</span></div>
+          <h3><span class="l-zh">媒体之夜<br/>Pathless Woods</span><span class="l-en">Media Night<br/>Pathless Woods</span></h3>
+        </div>
+        <p class="lede">
+          A media night at Longfor's <em>Pathless Woods</em> hill-house. We
+          re-wrote a press visit as a night in the mountains — three
+          photographable scenes, no scripted line, an official line that
+          came out of the writers' own pens.
+        </p>
+      </div>
+      <div class="cs-meta">
+        <div><div class="caption k"><span class="l-en">Client</span><span class="l-zh">客户</span></div><div class="v"><span class="l-en">Longhu · Tianfu Group</span><span class="l-zh">龙湖 · 天府集团</span></div></div>
+        <div><div class="caption k"><span class="l-en">Role</span><span class="l-zh">角色</span></div><div class="v"><span class="l-zh">活动统筹 · 现场总控</span><span class="l-en">Event coordination · On-site direction</span></div></div>
+        <div><div class="caption k"><span class="l-en">Format</span><span class="l-zh">形式</span></div><div class="v"><span class="l-zh">露营聚会 + 天幕酒会 + 串灯夜会</span><span class="l-en">Camp arrival + tent aperitif + light installation night</span></div></div>
+        <div><div class="caption k"><span class="l-en">Year</span><span class="l-zh">年份</span></div><div class="v">2025</div></div>
+      </div>
+
+      <div class="mn-marquee">
+        <div class="mn-track">
+          <figure class="mn-frame"><span class="num">01</span><img src="media/medianight/01-sunset-camp.jpg" alt="日落营地"/><div class="cap">17:42 · Sunset · 营地与主题旗</div></figure>
+          <figure class="mn-frame"><span class="num">02</span><img src="media/medianight/02-dinner-tent.jpg" alt="天幕酒会"/><div class="cap">18:30 · 天幕下酒会 · 温光与山色</div></figure>
+          <figure class="mn-frame"><span class="num">03</span><img src="media/medianight/03-night-bokeh.jpg" alt="夜间串灯"/><div class="cap">21:08 · 夜会 · 串灯与独坐的文字</div></figure>
+          <figure class="mn-frame"><span class="num">04</span><img src="media/medianight/04-portrait-signs.jpg" alt="媒体合照"/><div class="cap">19:14 · 媒体合照 · "拒绝上班·去撒欢"</div></figure>
+          <!-- duplicate for seamless loop -->
+          <figure class="mn-frame" aria-hidden="true"><span class="num">01</span><img src="media/medianight/01-sunset-camp.jpg" alt=""/><div class="cap">17:42 · Sunset · 营地与主题旗</div></figure>
+          <figure class="mn-frame" aria-hidden="true"><span class="num">02</span><img src="media/medianight/02-dinner-tent.jpg" alt=""/><div class="cap">18:30 · 天幕下酒会 · 温光与山色</div></figure>
+          <figure class="mn-frame" aria-hidden="true"><span class="num">03</span><img src="media/medianight/03-night-bokeh.jpg" alt=""/><div class="cap">21:08 · 夜会 · 串灯与独坐的文字</div></figure>
+          <figure class="mn-frame" aria-hidden="true"><span class="num">04</span><img src="media/medianight/04-portrait-signs.jpg" alt=""/><div class="cap">19:14 · 媒体合照 · "拒绝上班·去撒欢"</div></figure>
+        </div>
+      </div>
+
+      <div class="cs-body">
+        <div>
+          <div class="eyebrow sub-h"><span class="l-en">Brief</span><span class="l-zh">概述</span></div>
+          <p style="font-size: 18px; font-weight: 480; letter-spacing:-0.18px;">
+            <span class="l-zh">把"媒体参访"重新书写成"山里的夜晚"。让媒体老师主动为品牌写东西。</span>
+            <span class="l-en">Re-write the press visit as a night in the mountains. Make journalists choose to write about the brand.</span>
+          </p>
+          <div class="mt-xl">
+            <div class="caption mb-md"><span class="l-en">Results</span><span class="l-zh">成果</span></div>
+            <div style="display:flex; gap: 24px; flex-wrap: wrap;">
+              <div><div style="font-size:32px;font-weight:340;letter-spacing:-0.48px;line-height:1;">28</div><div class="caption" style="margin-top:6px;"><span class="l-en">Media attended</span><span class="l-zh">媒体到场</span></div></div>
+              <div><div style="font-size:32px;font-weight:340;letter-spacing:-0.48px;line-height:1;">42</div><div class="caption" style="margin-top:6px;"><span class="l-en">Articles published</span><span class="l-zh">发稿量</span></div></div>
+              <div><div style="font-size:32px;font-weight:340;letter-spacing:-0.48px;line-height:1;">5.2M</div><div class="caption" style="margin-top:6px;"><span class="l-en">Total reach</span><span class="l-zh">传播曝光</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>
+            <span class="l-zh">下午以《悠然·见山前》主题旗帜入场，天幕与老树划出重点区；黄昏是天幕下酒会与二十分钟的思考题；入夜后是山谷里的串灯、独坐、与那些不干补的对谈。</span>
+            <span class="l-en">The afternoon began with 《悠然·见山前》 banners marking the camp; dusk brought a tent-side aperitif and a twenty-minute open prompt; after dark, valley lights, solitude, and conversations no one planned.</span>
+          </p>
+          <p>
+            <span class="l-zh">现场被拆成<strong>四个可拍摄场景</strong>，每个场景都有一份"写什么都可以"的提示词，也有一份"不要写"的黑名单。这是把论文里的"观看距离"思路带到现场——不安排"被看"，反而让品牌被"看见"。</span>
+            <span class="l-en">The event was structured as <strong>four photographable scenes</strong>, each with an open prompt and a blacklist. A direct application of the thesis concept of "viewing distance" — instead of staging the brand to be looked at, we let it be seen.</span>
+          </p>
+          <p>
+            <span class="l-zh">输出不仅是 5.2M+ 的传播与 42 篇发稿，更是一本《山前 · 星天外》现场眼本——它后来变成了该项目后续萤门拉客的官方语言。</span>
+            <span class="l-en">The output wasn't only 5.2M+ reach and 42 articles — it was a field journal, 《山前 · 星天外》, that later became the official language for the venue's ongoing guest programme.</span>
+          </p>
+          <p class="mt-xl">
+            <a class="btn btn-primary" href="#"><span class="l-en">Read full case study</span><span class="l-zh">阅读完整案例</span></a>
+          </p>
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+<!-- ============================== RESEARCH (lilac block) ============================== -->
+<section id="research" data-screen-label="04 Research">
+  <div class="container">
+    
+      <div class="cs-head">
+        <div>
+          <div class="eyebrow"><span class="l-en">§ 03 — Research</span><span class="l-zh">§ 03 — 研究</span></div>
+          <h3><span class="l-en">To See and<br/>to Be Seen.</span><span class="l-zh">看<br/>与被看。</span></h3>
+        </div>
+        <p class="lede">
+          <span class="l-en">A study of how contemporary haute couture houses build cultural authority through the visual and spatial organisation of the runway. Three maison case studies: Valentino, Avavav, Miu Miu.</span>
+          <span class="l-zh">研究当代高级时装屋如何通过秀场的视觉与空间组织建构文化权威。三个品牌案例研究：Valentino、Avavav、Miu Miu。</span>
+        </p>
+      </div>
+
+      <article class="thesis">
+        <div class="cover">
+          <div class="caption stamp"><span class="l-en">M.A. Thesis · 2026</span><span class="l-zh">硕士论文 · 2026</span></div>
+          <div class="t">
+            To See<br/>and to Be<br/>Seen
+            <div style="margin-top: 12px; width: 36px; height: 1px; background: rgba(255,255,255,.4);"></div>
+          </div>
+          <div class="caption meta">Paris-Kedge · CIM</div>
+        </div>
+        <div>
+          <div class="caption mb-md"><span class="l-en">M.A. Thesis</span><span class="l-zh">硕士论文</span></div>
+          <h3><span class="l-en">Visual mechanisms and the construction of cultural authority in haute couture</span><span class="l-zh">高级时装中的视觉机制与文化权威构建</span></h3>
+          <p class="zh l-zh">看与被看 — 高级时装中的视觉机制与文化权威构建</p>
+          <p class="body-md" style="margin: 0;"><span class="l-en">How do brands use bodies, space and light to define the legitimate taste? Three maison case studies compare strategies for managing distance between brand and viewer.</span><span class="l-zh">品牌如何借助身体、空间与光线来定义"合法的品味"？三个品牌案例对比了不同的观看距离管理策略。</span></p>
+          <div class="meta-row">
+            <div><div class="caption k"><span class="l-en">Method</span><span class="l-zh">研究方法</span></div><div class="v"><span class="l-en">Qualitative · visual analysis</span><span class="l-zh">质性研究 · 视觉分析</span></div></div>
+            <div><div class="caption k"><span class="l-en">Cases</span><span class="l-zh">案例数</span></div><div class="v"><span class="l-en">3 key studies</span><span class="l-zh">3 个品牌案例</span></div></div>
+            <div><div class="caption k">
+</div><div class="v"></div></div>
+          </div>
+          <div class="tag-row">
+            <span class="tag"><span class="l-en">Scopic Regimes</span><span class="l-zh">视觉体制</span></span>
+            <span class="tag"><span class="l-en">Cultural Authority</span><span class="l-zh">文化权威</span></span>
+            <span class="tag"><span class="l-en">Brand Semiotics</span><span class="l-zh">品牌符号学</span></span>
+            <span class="tag"><span class="l-en">Fashion Studies</span><span class="l-zh">时装研究</span></span>
+          </div>
+          <div style="display:flex; gap: 12px; flex-wrap: wrap;">
+            <a class="btn btn-primary" href="#"><span class="l-en">Read abstract</span><span class="l-zh">阅读摘要</span></a>
+            <a class="btn btn-secondary" href="#" style="background-color: rgb(255, 255, 255); font-family: &quot;SF Pro Display&quot;">
+</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- case studies, 3-up -->
+      <div class="case-grid">
+        <div class="case-card">
+          <div class="ph">
+            <div class="ss ss-sm" data-ss>
+              <div class="ss-stage">
+                <div class="ss-slide active"><img src="media/research/valentino-01.jpg" alt="Valentino look 01"/><span class="num">01 / 03</span></div>
+                <div class="ss-slide"><img src="media/research/valentino-02.jpg" alt="Valentino look 02"/><span class="num">02 / 03</span></div>
+                <div class="ss-slide"><img src="media/research/valentino-03.jpg" alt="Valentino look 03"/><span class="num">03 / 03</span></div>
+              </div>
+              <button class="ss-nav prev" type="button" aria-label="Previous">‹</button>
+              <button class="ss-nav next" type="button" aria-label="Next">›</button>
+              <div class="ss-dots">
+                <button class="ss-dot active" aria-label="1"></button>
+                <button class="ss-dot" aria-label="2"></button>
+                <button class="ss-dot" aria-label="3"></button>
+              </div>
+            </div>
+          </div>
+          <div class="brand"><span class="l-en">Case 01</span><span class="l-zh">案例 01</span></div>
+          <h4><span class="l-zh">Valentino — 距离的权威</span><span class="l-en">Valentino — The Authority of Distance</span></h4>
+          <p><span class="l-zh">以仪式化的对称、远距凝视与冷光，构建"不可亲近"的文化权威。</span><span class="l-en">Constructing an "unapproachable" cultural authority through ritualistic symmetry, long-range gazing, and cold lighting.</span></p>
+        </div>
+        <div class="case-card">
+          <div class="ph">
+            <div class="ss ss-sm" data-ss>
+              <div class="ss-stage">
+                <div class="ss-slide active"><img src="media/research/avavav-01.jpg" alt="Avavav look 01"/><span class="num">01 / 03</span></div>
+                <div class="ss-slide"><img src="media/research/avavav-02.jpg" alt="Avavav look 02"/><span class="num">02 / 03</span></div>
+                <div class="ss-slide"><img src="media/research/avavav-03.jpg" alt="Avavav look 03"/><span class="num">03 / 03</span></div>
+              </div>
+              <button class="ss-nav prev" type="button" aria-label="Previous">‹</button>
+              <button class="ss-nav next" type="button" aria-label="Next">›</button>
+              <div class="ss-dots">
+                <button class="ss-dot active" aria-label="1"></button>
+                <button class="ss-dot" aria-label="2"></button>
+                <button class="ss-dot" aria-label="3"></button>
+              </div>
+            </div>
+          </div>
+          <div class="brand"><span class="l-en">Case 02</span><span class="l-zh">案例 02</span></div>
+          <h4><span class="l-zh">Avavav — 距离的崩塌</span><span class="l-en">Avavav — The Collapse of Distance</span></h4>
+          <p><span class="l-zh">通过"摔倒"等失序事件解构观看的庄严性，把权力关系翻面给观众。</span><span class="l-en">Dismantling the solemnity of the gaze through disruptive incidents such as models falling, flipping the power dynamic on the audience.</span></p>
+        </div>
+        <div class="case-card">
+          <div class="ph">
+            <div class="ss ss-sm" data-ss>
+              <div class="ss-stage">
+                <div class="ss-slide active"><img src="media/research/miumiu-01.jpg" alt="Miu Miu look 01"/><span class="num">01 / 03</span></div>
+                <div class="ss-slide"><img src="media/research/miumiu-02.jpg" alt="Miu Miu look 02"/><span class="num">02 / 03</span></div>
+                <div class="ss-slide"><img src="media/research/miumiu-03.jpg" alt="Miu Miu look 03"/><span class="num">03 / 03</span></div>
+              </div>
+              <button class="ss-nav prev" type="button" aria-label="Previous">‹</button>
+              <button class="ss-nav next" type="button" aria-label="Next">›</button>
+              <div class="ss-dots">
+                <button class="ss-dot active" aria-label="1"></button>
+                <button class="ss-dot" aria-label="2"></button>
+                <button class="ss-dot" aria-label="3"></button>
+              </div>
+            </div>
+          </div>
+          <div class="brand"><span class="l-en">Case 03</span><span class="l-zh">案例 03</span></div>
+          <h4><span class="l-zh">Miu Miu — 亲密的距离</span><span class="l-en">Miu Miu — Proximity as Power</span></h4>
+          <p><span class="l-zh">用青年文化与身体语言的"日常感"，重塑高级时装的可接近性。</span><span class="l-en">Redefining haute couture accessibility through the "everyday" of youth culture and bodily language.</span></p>
+        </div>
+      </div>
+    
+  </div>
+</section>
+
+<!-- findings (white canvas, 4-up) -->
+<section data-screen-label="04.2 Findings">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow label"><span class="l-en">§ 03.2 — Core findings</span><span class="l-zh">§ 03.2 — 核心发现</span></div>
+        <h2 class="display-lg"><span class="l-en">Looking, as<br/>a system of<br/>power.</span><span class="l-zh">观看，<br/>作为一种<br/>权力系统。</span></h2>
+      </div>
+      <p><span class="l-en">The four propositions the thesis returns to. Each is testable; each has practical implications for how brands organise their image.</span><span class="l-zh">论文反复回归的四个命题，每一条都可验证，每一条都对品牌形象的建构有直接的实践启示。</span></p>
+    </div>
+
+    <div class="findings-grid">
+      <div class="finding-card">
+        <div class="n">1</div>
+        <p><span class="l-zh">时装秀是视觉权力的装置，而非单纯的服装展示</span><span class="l-en">Fashion shows are an apparatus of visual power, not merely a display of clothing.</span></p>
+      </div>
+      <div class="finding-card">
+        <div class="n">2</div>
+        <p><span class="l-zh">品牌通过空间设计、身体编排、灯光控制来组织"观看"，从而定义"合法的品味"。</span><span class="l-en">Brands organise the gaze through spatial design, choreography, and lighting control, thereby defining "legitimate taste."</span></p>
+      </div>
+      <div class="finding-card">
+        <div class="n">3</div>
+        <p><span class="l-zh">模特的身体经历"去主体化"过程，成为品牌的视觉媒介。</span><span class="l-en">Models undergo a process of "de-subjectification," their bodies becoming the brand's visual medium.</span></p>
+      </div>
+      <div class="finding-card">
+        <div class="n">4</div>
+        <p><span class="l-zh">不同品牌使用不同的视觉策略来构建文化权威，这些策略反映了对"距离"的不同管理方式。</span><span class="l-en">Different brands employ different visual strategies to construct cultural authority, each reflecting a distinct approach to managing "distance."</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== RUNWAY (pink block — "field notes from being looked at") ============================== -->
+<section id="runway" data-screen-label="05 Runway">
+  <div class="container">
+    
+      <div class="cs-head">
+        <div>
+          <div class="eyebrow"><span class="l-en">§ 04 — Runway</span><span class="l-zh">§ 04 — 秀场</span></div>
+          <h3><span class="l-en">Seen and to be seen.</span><span class="l-zh">看，与被看。</span></h3>
+        </div>
+        <p class="lede">
+          <span class="l-en">Modelling is where I learned what I now study. Standing in the looked-at position, you feel exactly how the body is disciplined, how the gaze is organised, how the brand turns presence into meaning. This section is half portfolio, half ethnography.</span>
+          <span class="l-zh">模特经历是我理解所研究课题的起点。站在被看的位置，你切身感受到身体如何被规训、凝视如何被组织、品牌如何将在场转化为意义。这一部分，一半是作品集，一半是田野笔记。</span>
+        </p>
+      </div>
+
+      <article class="runway-feature">
+        <div class="ph-big"><img src="media/runway/01-ralph-lauren-ig.jpg" alt="Polo Ralph Lauren · Paris static exhibition"/></div>
+        <div class="body">
+          <div class="stamp">Polo Ralph Lauren · Paris · 2026</div>
+          <h3><span class="l-en">The static show<br/>as visual discipline.</span><span class="l-zh">静态展示<br/>作为视觉规训。</span></h3>
+          <p class="body-md">
+            <span class="l-en">Not a runway. A static exhibition, where models hold position for 3–4 hours while VIPs come close to look, touch the fabric, and photograph.</span>
+            <span class="l-zh">这不是走秀，而是静态展览。模特保持姿态长达 3–4 小时，VIP 宾客近距离观察、触摸面料、拍摄留影。</span>
+          </p>
+          <div class="quote">
+            <span class="l-zh">"你不是快速走过然后离开，而是持续暴露在凝视之下。在那个空间里，我不是一个人，而是品牌的一个视觉元素。"</span>
+            <span class="l-en">"You don't walk past and leave. You remain continuously exposed to the gaze. In that space, I wasn't a person — I was a visual element of the brand."</span>
+          </div>
+          <div class="stats">
+            <div><div class="caption"><span class="l-en">Duration</span><span class="l-zh">持续时间</span></div><div style="font-size:22px;font-weight:480;margin-top:6px;">3.5 hrs</div></div>
+            <div><div class="caption"><span class="l-en">Position</span><span class="l-zh">形式</span></div><div style="font-size:22px;font-weight:480;margin-top:6px;">Salon · Static</div></div>
+            <div><div class="caption"><span class="l-en">Audience</span><span class="l-zh">观众</span></div><div style="font-size:22px;font-weight:480;margin-top:6px;">VIP · Press</div></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- click-arrow carousel -->
+      <div class="rw-carousel" aria-label="模特作品画廊">
+        <button class="rw-nav prev" type="button" aria-label="Previous">‹</button>
+        <button class="rw-nav next" type="button" aria-label="Next">›</button>
+        <div class="rw-viewport">
+          <div class="rw-track">
+            <figure class="rw-frame">
+              <span class="badge">01</span>
+              <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Polo Ralph Lauren"/>
+              <div class="info"><div class="brand">Polo Ralph Lauren</div><div class="desc">Paris · Static Show · 2026</div></div>
+            </figure>
+            <figure class="rw-frame">
+              <span class="badge">02</span>
+              <img src="media/runway/02-editorial-waterfall.jpg" alt="Editorial · waterfall"/>
+              <div class="info"><div class="brand">Editorial</div><div class="desc">Waterfall · pearls + denim</div></div>
+            </figure>
+            <figure class="rw-frame">
+              <span class="badge">03</span>
+              <img src="media/runway/03-runway-black-dress.jpg" alt="Runway · minimalist"/>
+              <div class="info"><div class="brand">PFW · Minimalist</div><div class="desc">Black sleeveless · SS</div></div>
+            </figure>
+            <figure class="rw-frame">
+              <span class="badge">04</span>
+              <img src="media/runway/04-backstage-bun.jpg" alt="Backstage · sleek bun"/>
+              <div class="info"><div class="brand">Backstage</div><div class="desc">Sleek bun · organza</div></div>
+            </figure>
+            <figure class="rw-frame">
+              <span class="badge">05</span>
+              <img src="media/runway/05-runway-tiered.jpg" alt="Runway · tiered gown"/>
+              <div class="info"><div class="brand">PFW · Couture</div><div class="desc">Tiered tulle · staircase</div></div>
+            </figure>
+            <figure class="rw-frame">
+              <span class="badge">06</span>
+              <img src="media/runway/06-runway-red-feathers.jpg" alt="Runway · red feathers"/>
+              <div class="info"><div class="brand">PFW · Evening</div><div class="desc">Crimson · feather bouquet</div></div>
             </figure>
           </div>
         </div>
-        <div class="col-text">
-          <p>
-            项目从一个问题出发：如果缂丝是中国丝绸史里地位最高、技艰难最大的工艺之一，
-            为什么今天它只能靠几位深隐小镇的老匠人维持？
-            我们决定从<strong>典籍</strong>里重新推荐他们——
-            从《清内府藏缂丝书画录》到《中国丝绸文人画》中法双语版，
-            让"文本"与"机械"同时出现在同一个展厅里。
-          </p>
-          <p>
-            展览的主视觉墙挑了<strong>《雕经镂纬》</strong>四字，
-            头顶悬挂的梭子从黑色顶棚垂下、左侧蓝色经纱拉成一个上升的斜面——
-            这是我们对"镂纬"两个动作的抽象化翻译，也是观众进展后读到的第一句话。
-          </p>
-          <p>
-            展厅中央设了一架可被看、可被问的<strong>现役织机</strong>，老师傅现场演示；
-            另一侧，古画墙与草编蒲团组成的低坐区，让观众从"站着看展品"转到"坐着看年代"。
-            <strong>画册</strong>受邀进入中法互译，随展同步发布，是项目的另一个输出。
-          </p>
-          <p style="margin-top:24px;">
-            <a class="tlink" href="#">Read full case study</a>
-          </p>
-        </div>
+        <div class="rw-progress" aria-hidden="true"><span class="rw-cur">01</span> / 06</div>
       </div>
-    </div>
-
-    <!-- ============ CASE STUDY · MEDIA NIGHT (auto-scroll) ============ -->
-    <div class="case-study" data-screen-label="媒体之夜 Case Study">
-      <div class="cs-head">
-        <div>
-          <div class="cs-eyebrow">Case Study · 02 · Brand Hospitality</div>
-          <h3>媒体之夜<br/>Pathless Woods</h3>
-        </div>
-        <p class="lede">
-          龙湖山居体验馆《山前·星天外》的媒体之夜。
-          从场地调查、动线设计、供商统筹到现场纪录·传播设计的完整调度：
-          让"退郊野营"变成一场可被叙述的品牌事件。
-        </p>
-      </div>
-
-      <div class="meta-row" style="display:flex; gap:48px; flex-wrap:wrap; padding:16px 0; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); margin-bottom:32px;">
-        <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Client</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">Longfor · 天赋集团</div>
-        </div>
-        <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Role</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">活动统筹 · 现场总控</div>
-        </div>
-        <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Format</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">退郊阅读 + 天幕下酒会 + 夜间灯飨</div>
-        </div>
-        <div>
-          <div class="k" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Year</div>
-          <div class="v" style="font-size:15px;color:var(--ink);font-weight:400;">2025</div>
-        </div>
-      </div>
-
-      <!-- auto-scrolling marquee — 4 frames duplicated for seamless loop -->
-      <div class="mn-marquee" aria-label="现场图轮播">
-        <div class="mn-track">
-          <figure class="mn-frame"><span class="num">01</span><img src="media/medianight/01-sunset-camp.jpg" alt="日落·营地全景"/><div class="cap">17:42 · 日落·位付营地与《悠然见山前》主题旗</div></figure>
-          <figure class="mn-frame"><span class="num">02</span><img src="media/medianight/02-dinner-tent.jpg" alt="天幕下用餐"/><div class="cap">18:30 · 天幕下酒会·温光与山色</div></figure>
-          <figure class="mn-frame"><span class="num">03</span><img src="media/medianight/03-night-bokeh.jpg" alt="夜间串灯光点"/><div class="cap">21:08 · 夜会·彩灯与独坐的文字</div></figure>
-          <figure class="mn-frame"><span class="num">04</span><img src="media/medianight/04-portrait-signs.jpg" alt="媒体合照"/><div class="cap">19:14 · 《拒绝上班·去撒欢》·媒体合照</div></figure>
-          <figure class="mn-frame" aria-hidden="true"><span class="num">01</span><img src="media/medianight/01-sunset-camp.jpg" alt=""/><div class="cap">17:42 · 日落·位付营地与《悠然见山前》主题旗</div></figure>
-          <figure class="mn-frame" aria-hidden="true"><span class="num">02</span><img src="media/medianight/02-dinner-tent.jpg" alt=""/><div class="cap">18:30 · 天幕下酒会·温光与山色</div></figure>
-          <figure class="mn-frame" aria-hidden="true"><span class="num">03</span><img src="media/medianight/03-night-bokeh.jpg" alt=""/><div class="cap">21:08 · 夜会·彩灯与独坐的文字</div></figure>
-          <figure class="mn-frame" aria-hidden="true"><span class="num">04</span><img src="media/medianight/04-portrait-signs.jpg" alt=""/><div class="cap">19:14 · 《拒绝上班·去撒欢》·媒体合照</div></figure>
-        </div>
-      </div>
-
-      <div class="cs-body">
-        <div>
-          <h4>Brief</h4>
-          <p class="role">在"山居体验馆"这个床位有限、交通不便、以"退郊"为主调的项目上，
-          让媒体老师主动为品牌"写东西"。</p>
-          <div style="margin-top:24px; border-top:1px solid var(--hairline); padding-top:24px;">
-            <div class="caption">Results</div>
-            <div style="display:flex; gap:24px; margin-top:16px; flex-wrap:wrap;">
-              <div><div class="display-sm">28</div><div class="caption">媒体到场</div></div>
-              <div><div class="display-sm">42</div><div class="caption">发稿量</div></div>
-              <div><div class="display-sm">5.2M</div><div class="caption">传播曝光</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-text">
-          <p>
-            我们把一场"媒体参访"重新书写成一场<strong>山里的夜晚</strong>。
-            下午以《悠然·见山前》主题旗帜入场，天幕与老树划出重点区；
-            黄昏是天幕下酒会与二十分钟的思考题；入夜后是山谷里的串灯、独坐、与那些不干补的对谈。
-          </p>
-          <p>
-            现场被拆成<strong>四个可拍摄场景</strong>，每个场景都有一份"写什么都可以"的提示词，
-            也有一份"不要写"的黑名单。这是我们从论文里带出来的"观看距离"思路——
-            不安排"被看"，反而让品牌被"看见"。
-          </p>
-          <p>
-            输出不仅是 5.2M+ 的传播与 42 篇发稿，更是一本
-            《<em>山前 · 星天外</em>》现场眼本——
-            它后来变成了该项目后续萤门拉客的官方语言。
-          </p>
-          <p style="margin-top:24px;">
-            <a class="tlink" href="#">Read full case study</a>
-          </p>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </section>
 
-<!-- ============================== RESEARCH ============================== -->
-<section id="research" class="band-soft" data-screen-label="04 Research">
+<!-- ============================== CONTACT (navy block — only dark above footer) ============================== -->
+<section id="contact" data-screen-label="06 Contact">
   <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="sec-num">§ 03 — RESEARCH</div>
-        <h2 class="display-lg">学术研究</h2>
+    
+      <div class="contact-inner">
+        <div>
+          <div class="eyebrow"><span class="l-en">§ 05 — Contact</span><span class="l-zh">§ 05 — 联系我</span></div>
+          <h2 class="display-lg"><span class="l-en">Let's<br/>talk.</span><span class="l-zh">欢迎<br/>交流。</span></h2>
+        </div>
+        <p class="body-lg"><span class="l-zh">欢迎与我交流学术研究、品牌策略、策展合作，或任何关于视觉文化的问题。中文 / English</span><span class="l-en">Open to conversations about academic research, brand strategy, curatorial collaboration, or anything related to visual culture. Mandarin / English</span></p>
       </div>
-      <p>
-        通过理论框架与案例分析，研究视觉文化与品牌传播的深层机制。
-        当前主线：高级时尚中的视觉权力（scopic regimes）
-        与文化权威（cultural authority）的构建路径。
-      </p>
-    </div>
 
-    <!-- thesis card -->
-    <article class="thesis-card">
-      <div class="cover">
-        <div class="stamp">M.A. Thesis · 2026</div>
-        <div class="t">
-          To See<br/>
-          and to Be Seen
-          <div style="margin-top:12px; height:1px; background:rgba(255,255,255,.3); width:48px;"></div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="caption k"><span class="l-en">Email</span><span class="l-zh">邮箱</span></div>
+          <div class="v" style="font-size:16px">jinruiqi114@gmail.com</div>
         </div>
-        <div class="meta">Paris-Kedge · CIM</div>
+        <div class="contact-card">
+          <div class="caption k"><span class="l-en">WeChat</span><span class="l-zh">微信</span></div>
+          <div class="v">Riki_Jin</div>
+        </div>
+        <div class="contact-card">
+          <div class="caption k"><span class="l-en">RED</span><span class="l-zh">小红书</span></div>
+          <div class="v">靳观</div>
+        </div>
+        <div class="contact-card">
+          <div class="caption k">LinkedIn</div>
+          <div class="v">Ruiqi Jin</div>
+        </div>
       </div>
-      <div class="body">
-        <div class="caption" style="margin-bottom:8px;">硕士论文</div>
-        <h3 class="display-md">To See and to Be Seen: Visual Mechanisms and the Construction of Cultural Authority in Haute Couture</h3>
-        <p class="zh">看与被看 — 高级时装中的视觉机制与文化权威构建</p>
-        <p class="body-md" style="font-size:16px; color:var(--body); margin:0 0 8px;">
-          本研究考察当代高级时装品牌如何通过时装秀的视觉与空间组织构建文化权威。
-          通过对 Valentino、Avavav、Miu Miu 三个案例的比较分析，
-          揭示品牌构建文化权威的不同视觉策略。
-        </p>
 
-        <div class="meta-row">
-          <div>
-            <div class="k">Method</div>
-            <div class="v">Qualitative · Visual Analysis</div>
-          </div>
-          <div>
-            <div class="k">Cases</div>
-            <div class="v">3 Maison Studies</div>
-          </div>
-          <div>
-            <div class="k">Length</div>
-            <div class="v">~ 22,000 words</div>
-          </div>
-        </div>
-
-        <div class="tag-row">
-          <span class="tag">Scopic Regimes</span>
-          <span class="tag">Cultural Authority</span>
-          <span class="tag">Brand Semiotics</span>
-          <span class="tag">Fashion Studies</span>
-        </div>
-
-        <div style="display:flex; gap:16px; flex-wrap:wrap;">
-          <a class="btn btn-primary" href="#">阅读摘要</a>
-          <a class="btn btn-secondary" href="#">下载 PDF</a>
-        </div>
+      <div class="contact-cta">
+<a class="btn btn-on-inverse-secondary" href="mailto:jinruiqi114@gmail.com"><span class="l-en">Send email</span><span class="l-zh">发送邮件</span></a>
       </div>
-    </article>
-
-    <!-- core findings -->
-    <div class="findings">
-      <div class="sec-num" style="margin-bottom:12px;">§ 03.2 — CORE FINDINGS</div>
-      <h3 class="display-md" style="margin:0 0 32px;">核心观点</h3>
-      <div class="findings-grid">
-        <div class="finding">
-          <div class="n">01</div>
-          <p><strong>时装秀是视觉权力的装置</strong>，而非单纯的服装展示。</p>
-        </div>
-        <div class="finding">
-          <div class="n">02</div>
-          <p>品牌通过<strong>空间设计、身体编排、灯光控制</strong>来组织"观看"，从而定义"合法的品味"。</p>
-        </div>
-        <div class="finding">
-          <div class="n">03</div>
-          <p>模特的身体经历<strong>"去主体化"过程</strong>，成为品牌的视觉媒介。</p>
-        </div>
-        <div class="finding">
-          <div class="n">04</div>
-          <p>不同品牌使用不同的视觉策略来构建文化权威，这些策略反映了对<strong>"距离"</strong>的不同管理方式。</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- case studies -->
-    <div style="margin-top:96px;">
-      <div class="sec-num" style="margin-bottom:12px;">§ 03.3 — CASES</div>
-      <h3 class="display-md" style="margin:0 0 32px;">案例研究</h3>
-      <div class="case-grid">
-        <div class="case-card">
-          <div class="ph ph-striped" data-label="Valentino · case 01"></div>
-          <div class="brand">Case 01</div>
-          <h4>Valentino — 距离作为奢华</h4>
-          <p>以仪式化的对称、远距凝视与冷光，构建"不可亲近"的文化权威。</p>
-        </div>
-        <div class="case-card">
-          <div class="ph ph-striped" data-label="Avavav · case 02"></div>
-          <div class="brand">Case 02</div>
-          <h4>Avavav — 距离的崩塌</h4>
-          <p>通过"摔倒"等失序事件解构观看的庄严性，把权力关系翻面给观众。</p>
-        </div>
-        <div class="case-card">
-          <div class="ph ph-striped" data-label="Miu Miu · case 03"></div>
-          <div class="brand">Case 03</div>
-          <h4>Miu Miu — 亲密的距离</h4>
-          <p>用青年文化与身体语言的"日常感"，重塑高级时装的可接近性。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== RUNWAY ============================== -->
-<section id="runway" data-screen-label="05 Runway">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="sec-num">§ 04 — RUNWAY</div>
-        <h2 class="display-lg">Runway<br/>模特作品</h2>
-      </div>
-      <p>
-        模特经历是我理解"视觉权力"的起点。站在被看的位置，
-        我直接体验了身体如何被规训、凝视如何被组织、
-        品牌如何通过展示构建意义。这一节是田野笔记，也是作品集。
-      </p>
-    </div>
-
-    <!-- featured runway -->
-    <article class="runway-feature">
-      <div class="ph-big"><img src="media/runway/01-ralph-lauren-ig.jpg" alt="Polo Ralph Lauren · Paris static exhibition"/></div>
-      <div class="body">
-        <div class="stamp">Polo Ralph Lauren · Paris · Static Show</div>
-        <h3>静态展示<br/>作为视觉规训</h3>
-        <p class="body-md" style="font-size:16px;">
-          这是一场静态展示，而非传统走秀。模特需要在固定位置站立 3–4 小时，
-          VIP 客人可以近距离观看服装细节、触摸面料、拍照。
-        </p>
-        <div class="quote">
-          "你不是快速走过然后离开，而是持续暴露在凝视之下。
-          在那个空间里，我不是一个人，而是品牌的一个视觉元素。"
-        </div>
-        <div style="display:flex; gap:24px; flex-wrap:wrap; margin-top:8px;">
-          <div><div class="caption">Duration</div><div class="title-sm" style="margin-top:4px;">3.5 hrs</div></div>
-          <div><div class="caption">Position</div><div class="title-sm" style="margin-top:4px;">Salon · Static</div></div>
-          <div><div class="caption">Audience</div><div class="title-sm" style="margin-top:4px;">VIP · Press</div></div>
-        </div>
-      </div>
-    </article>
-
-    <!-- ============ RUNWAY CAROUSEL (click arrows) ============ -->
-    <div class="rw-carousel" aria-label="模特作品画廊">
-      <button class="rw-nav prev" type="button" aria-label="Previous">‹</button>
-      <button class="rw-nav next" type="button" aria-label="Next">›</button>
-      <div class="rw-viewport">
-        <div class="rw-track">
-          <figure class="rw-frame">
-            <span class="badge">01</span>
-            <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Polo Ralph Lauren · Paris"/>
-            <div class="info">
-              <div class="brand">Polo Ralph Lauren</div>
-              <div class="desc">Paris · Static Show · 2026</div>
-            </div>
-          </figure>
-          <figure class="rw-frame">
-            <span class="badge">02</span>
-            <img src="media/runway/02-editorial-waterfall.jpg" alt="Editorial · waterfall portrait"/>
-            <div class="info">
-              <div class="brand">Editorial</div>
-              <div class="desc">Waterfall · pearls + denim</div>
-            </div>
-          </figure>
-          <figure class="rw-frame">
-            <span class="badge">03</span>
-            <img src="media/runway/03-runway-black-dress.jpg" alt="Runway · black sleeveless dress"/>
-            <div class="info">
-              <div class="brand">PFW · Minimalist</div>
-              <div class="desc">Black sleeveless dress · SS</div>
-            </div>
-          </figure>
-          <figure class="rw-frame">
-            <span class="badge">04</span>
-            <img src="media/runway/04-backstage-bun.jpg" alt="Backstage · sleek bun + ruffle dress"/>
-            <div class="info">
-              <div class="brand">Backstage</div>
-              <div class="desc">Sleek bun · organza ruffle</div>
-            </div>
-          </figure>
-          <figure class="rw-frame">
-            <span class="badge">05</span>
-            <img src="media/runway/05-runway-tiered.jpg" alt="Runway · tiered black gown"/>
-            <div class="info">
-              <div class="brand">PFW · Couture</div>
-              <div class="desc">Tiered tulle gown · staircase</div>
-            </div>
-          </figure>
-          <figure class="rw-frame">
-            <span class="badge">06</span>
-            <img src="media/runway/06-runway-red-feathers.jpg" alt="Runway · red feathered look"/>
-            <div class="info">
-              <div class="brand">PFW · Evening</div>
-              <div class="desc">Crimson chiffon · feather bouquet</div>
-            </div>
-          </figure>
-        </div>
-      </div>
-      <div class="rw-progress" aria-hidden="true"><span class="rw-cur">01</span> / 06</div>
-    </div>
-
-    <script>
-    (function(){
-      const root = document.currentScript.previousElementSibling;
-      if(!root || !root.classList.contains('rw-carousel')) return;
-      const vp = root.querySelector('.rw-viewport');
-      const frames = root.querySelectorAll('.rw-frame');
-      const prev = root.querySelector('.rw-nav.prev');
-      const next = root.querySelector('.rw-nav.next');
-      const cur = root.querySelector('.rw-cur');
-      const total = frames.length;
-      function step(){
-        const a = frames[0].getBoundingClientRect();
-        const b = frames[1] ? frames[1].getBoundingClientRect() : a;
-        return Math.abs(b.left - a.left) || a.width + 16;
-      }
-      function currentIndex(){
-        const s = vp.scrollLeft, w = step();
-        return Math.min(total-1, Math.max(0, Math.round(s / w)));
-      }
-      function syncUI(){
-        const i = currentIndex();
-        if(cur) cur.textContent = String(i+1).padStart(2,'0');
-        prev.disabled = (vp.scrollLeft <= 4);
-        next.disabled = (vp.scrollLeft + vp.clientWidth >= vp.scrollWidth - 4);
-      }
-      prev.addEventListener('click', ()=>{ vp.scrollBy({left: -step(), behavior:'smooth'}); });
-      next.addEventListener('click', ()=>{ vp.scrollBy({left:  step(), behavior:'smooth'}); });
-      vp.addEventListener('scroll', ()=>{ window.requestAnimationFrame(syncUI); });
-      window.addEventListener('load', syncUI);
-      syncUI();
-    })();
-    </script>
-
-    <!-- other works -->
-    <div class="work-grid" style="display:none;">
-      <article class="work-card">
-        <div class="ph ph-striped" data-label="Paris Fashion Week"></div>
-        <div class="brand">PFW · SS</div>
-        <h4>巴黎时装周</h4>
-        <p class="y">2024 — 2025</p>
-      </article>
-      <article class="work-card">
-        <div class="ph ph-striped" data-label="Adidas brand"></div>
-        <div class="brand">Sportswear</div>
-        <h4>品牌模特拍摄</h4>
-        <p class="y">2024</p>
-      </article>
-      <article class="work-card">
-        <div class="ph ph-striped" data-label="Editorial"></div>
-        <div class="brand">Editorial</div>
-        <h4>杂志大片与广告</h4>
-        <p class="y">2023 — 2025</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== CONTACT (dark CTA band) ============================== -->
-<section 
-<!-- ============================== LE POM ============================== -->
-<section id="le-pom" class="band-inverse">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="sec-num" style="color:rgba(255,255,255,0.6);">§ 04 — PRODUCT DESIGN</div>
-        <h2 class="display-lg" style="color:#fff;">Le Pom</h2>
-      </div>
-      <p style="color:rgba(255,255,255,0.7);">An AI-powered scent diffuser combining smart technology with elegant design.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;">
-      <div class="card-soft">
-        <img src="苹果型香味扩散器.png" alt="Le Pom" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;">
-        <div style="padding:20px;">
-          <h4 style="margin:0 0 8px;">Smart Scent</h4>
-          <p style="color:var(--body);font-size:14px;">AI learns your preferences and adapts fragrance automatically.</p>
-        </div>
-      </div>
-      <div class="card-soft">
-        <img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;">
-        <div style="padding:20px;">
-          <h4 style="margin:0 0 8px;">Modular Design</h4>
-          <p style="color:var(--body);font-size:14px;">Swappable scent capsules with 20+ curated fragrances.</p>
-        </div>
-      </div>
-      <div class="card-soft">
-        <img src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;">
-        <div style="padding:20px;">
-          <h4 style="margin:0 0 8px;">Visual Identity</h4>
-          <p style="color:var(--body);font-size:14px;">Complete brand system from packaging to e-commerce.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== AIGC FILM ============================== -->
-<section id="aigc-film" class="band-inverse">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="sec-num" style="color:rgba(255,255,255,0.6);">§ 05 — AIGC FILM</div>
-        <h2 class="display-lg" style="color:#fff;">Tapnow × Midjourney</h2>
-      </div>
-      <p style="color:rgba(255,255,255,0.7);">An AI-generated short film exploring human creativity and AI-powered visual storytelling.</p>
-    </div>
-    <div style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
-      <div style="background:#000;border-radius:12px;overflow:hidden;aspect-ratio:16/9;">
-        <video controls style="width:100%;height:100%;object-fit:cover;">
-          <source src="Video-1786632177157.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <span style="background:rgba(255,255,255,0.1);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;">Tapnow</span>
-          <span style="background:rgba(255,255,255,0.1);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;">Midjourney</span>
-          <span style="background:rgba(255,255,255,0.1);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;">AIGC</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<id="contact" class="band-dark" data-screen-label="06 Contact">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="sec-num" style="color:var(--on-dark-soft);">§ 05 — CONTACT</div>
-        <h2 class="display-lg">让我们<br/>聊聊</h2>
-      </div>
-      <p>欢迎与我交流学术研究、品牌策略、策展合作，或任何关于 视觉文化的问题。中文 / English  皆可。</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-cell">
-        <div class="k">Email</div>
-        <div class="v">jrq13504591125<br/>@163.com</div>
-      </div>
-      <div class="contact-cell">
-        <div class="k">WeChat</div>
-        <div class="v">17747274437</div>
-      </div>
-      <div class="contact-cell">
-        <div class="k">小红书</div>
-        <div class="v">JINNIJ</div>
-      </div>
-      <div class="contact-cell">
-        <div class="k">LinkedIn</div>
-        <div class="v">Ruiqi Jin</div>
-      </div>
-    </div>
-
-    <div style="margin-top:48px; display:flex; gap:16px; flex-wrap:wrap;">
-      <a class="btn btn-primary" href="#">下载完整简历 CV</a>
-      <a class="btn btn-on-dark" href="mailto:jrq13504591125@163.com">发送邮件</a>
-    </div>
+    
   </div>
 </section>
 
 <!-- ============================== FOOTER ============================== -->
 <footer class="foot">
   <div class="container">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true">RJ</div>
-          <div>
-            <div class="brand-name">靳睿琦 · Ruiqi Jin</div>
-            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Visual Culture · Brand Strategy</div>
-          </div>
-        </div>
-        <p class="body-sm" style="max-width:36ch; margin-top:24px;">
-          以研究的方式做实践，以实践反哺研究。
-          Currently based between Paris &amp; Beijing.
-        </p>
-      </div>
-      <div class="foot-col">
-        <h5>Index</h5>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#runway">Runway</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h5>Writing</h5>
-        <ul>
-          <li>Thesis · 2026</li>
-          <li>Brand Notes</li>
-          <li>Fashion Studies</li>
-          <li>Field Notes</li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h5>Elsewhere</h5>
-        <ul>
-          <li>LinkedIn</li>
-          <li>小红书</li>
-          <li>Instagram</li>
-          <li>Email</li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h5>Colophon</h5>
-        <ul>
-          <li>Typeset in Inter</li>
-          <li>Set in 12-col grid</li>
-          <li>0px corners</li>
-          <li>No drop shadows</li>
-        </ul>
-      </div>
+    <div>
+      <div class="wordmark">JIN.</div>
+      <p class="tagline">
+        <span class="l-zh">视觉文化研究 · 品牌策略 · 策展实践。<br/>Currently between Paris and Shanghai.</span>
+        <span class="l-en">Visual culture research · Brand strategy · Curatorial practice.<br/>Currently between Paris and Shanghai.</span>
+      </p>
     </div>
+    <div>
+      <h5 class="caption"><span class="l-en">Index</span><span class="l-zh">导航</span></h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#runway">Runway</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="caption"><span class="l-en">Writing</span><span class="l-zh">写作</span></h5>
+      <ul>
+        <li><span class="l-en">Thesis · 2026</span><span class="l-zh">论文 · 2026</span></li>
+        <li><span class="l-en">Brand notes</span><span class="l-zh">品牌笔记</span></li>
+        <li><span class="l-en">Fashion studies</span><span class="l-zh">时装研究</span></li>
+        <li><span class="l-en">Field notes</span><span class="l-zh">田野笔记</span></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="caption"><span class="l-en">Elsewhere</span><span class="l-zh">其他平台</span></h5>
+      <ul>
+        <li>LinkedIn</li>
+        <li><span class="l-en">RED</span><span class="l-zh">小红书</span></li>
+        <li>Instagram</li>
+        <li>Email</li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="caption"><span class="l-en">Colophon</span><span class="l-zh">版权信息</span></h5>
+      <ul>
+        <li><span class="l-en">Set in Playfair Display</span><span class="l-zh">字体：Playfair Display</span></li>
+        <li><span class="l-en">Mono in JetBrains</span><span class="l-zh">等宽：JetBrains</span></li>
+        <li><span class="l-en">Editorial hairlines</span><span class="l-zh">细线排版</span></li>
+        <li><span class="l-en">Rectangular buttons</span><span class="l-zh">矩形按钮</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
     <div class="foot-bottom">
-      <div>© 2026 Ruiqi Jin · All rights reserved.</div>
-      <div>Designed in Paris · Built in HTML</div>
+      <div><span class="l-en">© 2026 Ruiqi Jin · All rights reserved.</span><span class="l-zh">© 2026 靳睿琦 · 版权所有</span></div>
+      <div><span class="l-en">Designed in Paris · Built in HTML</span><span class="l-zh">设计于巴黎 · 以 HTML 构建</span></div>
     </div>
   </div>
 </footer>
 
+<!-- ============================== LANGUAGE TOGGLE ============================== -->
 <script>
-/* fading slideshow driver — works for every [data-ss] block */
+(function(){
+  const btn = document.getElementById('lang-btn');
+  const saved = localStorage.getItem('portfolio-lang') || 'en';
+  document.body.dataset.lang = saved;
+  btn.textContent = saved === 'en' ? 'EN / 中' : '中 / EN';
+  btn.addEventListener('click', () => {
+    const next = document.body.dataset.lang === 'en' ? 'zh' : 'en';
+    document.body.dataset.lang = next;
+    localStorage.setItem('portfolio-lang', next);
+    btn.textContent = next === 'en' ? 'EN / 中' : '中 / EN';
+  });
+})();
+</script>
+
+
+<!-- ============================== NAV STATUS TIME ============================== -->
+<script>
+(function(){
+  var el = document.getElementById('nav-time');
+  if (!el) return;
+  function tick(){
+    var now = new Date();
+    var h = String(now.getHours()).padStart(2,'0');
+    var m = String(now.getMinutes()).padStart(2,'0');
+    el.textContent = 'Paris · ' + h + ':' + m;
+  }
+  tick();
+  setInterval(tick, 30000);
+})();
+</script>
+<!-- ============================== SLIDESHOW DRIVER ============================== -->
+<script>
 document.querySelectorAll('[data-ss]').forEach(root => {
   const slides = root.querySelectorAll('.ss-slide');
   const dots   = root.querySelectorAll('.ss-dot');
@@ -1583,6 +1998,81 @@ document.querySelectorAll('[data-ss]').forEach(root => {
   dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
 });
 </script>
+
+<!-- ============================== RUNWAY CAROUSEL DRIVER ============================== -->
+<script>
+document.querySelectorAll('.rw-carousel').forEach(root => {
+  const vp     = root.querySelector('.rw-viewport');
+  const frames = root.querySelectorAll('.rw-frame');
+  const prev   = root.querySelector('.rw-nav.prev');
+  const next   = root.querySelector('.rw-nav.next');
+  const cur    = root.querySelector('.rw-cur');
+  const total  = frames.length;
+  function step(){
+    if(frames.length < 2) return frames[0] ? frames[0].getBoundingClientRect().width + 16 : 240;
+    const a = frames[0].getBoundingClientRect();
+    const b = frames[1].getBoundingClientRect();
+    return Math.abs(b.left - a.left) || a.width + 16;
+  }
+  function currentIndex(){
+    const s = vp.scrollLeft, w = step();
+    return Math.min(total - 1, Math.max(0, Math.round(s / w)));
+  }
+  function syncUI(){
+    const idx = currentIndex();
+    if (cur) cur.textContent = String(idx + 1).padStart(2,'0');
+    if (prev) prev.disabled = (vp.scrollLeft <= 4);
+    if (next) next.disabled = (vp.scrollLeft + vp.clientWidth >= vp.scrollWidth - 4);
+  }
+  prev && prev.addEventListener('click', () => vp.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next && next.addEventListener('click', () => vp.scrollBy({ left:  step(), behavior: 'smooth' }));
+  vp.addEventListener('scroll', () => window.requestAnimationFrame(syncUI));
+  window.addEventListener('load', syncUI);
+  syncUI();
+});
+</script>
+
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#ffffff"/>
+    <rect x="0" y="0" width="1200" height="60" fill="#0c0c0c"/>
+    <text x="80" y="320" font-family="Inter, sans-serif" font-size="150" font-weight="800" fill="#0a0a0a">JIN.</text>
+    <rect x="80" y="380" width="420" height="14" rx="7" fill="#0a0a0a"/>
+    <rect x="80" y="416" width="300" height="14" rx="7" fill="#cccccc"/>
+    <circle cx="980" cy="300" r="120" fill="#e23e8a"/>
+  </svg>
+</template>
+
+
+<!-- ══ MOBILE MENU ══ -->
+<script>
+(function(){
+  const btn  = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+  function openMobileMenu(){
+    btn.classList.add('open');
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden','false');
+    btn.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+  window.closeMobileMenu = function(){
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden','true');
+    btn.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  };
+  btn.addEventListener('click', function(){
+    if(menu.classList.contains('open')) closeMobileMenu();
+    else openMobileMenu();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMobileMenu();
+  });
+})();
+</script>
+
 </body>
 </html>
-
