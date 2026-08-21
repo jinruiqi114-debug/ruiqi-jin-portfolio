@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ruiqi Jin — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
+
 :root {
   --bg: #D5DAE0;
   --bg-alt: #CDD2D8;
@@ -234,6 +236,25 @@ footer p { font-size: 13px; color: var(--text-muted); }
   .project-meta { grid-template-columns: 1fr 1fr; }
   .gallery-img { width: 150px !important; height: auto !important; }
 }
+
+
+@keyframes badgeFloat {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(-1deg) translateY(-8px); }
+}
+@keyframes badgeFloat2 {
+  0%, 100% { transform: rotate(2deg) translateY(0); }
+  50% { transform: rotate(4deg) translateY(-6px); }
+}
+.badge-animate {
+  animation: badgeFloat 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+.badge-animate2 {
+  animation: badgeFloat2 5s ease-in-out infinite;
+  transform-origin: top center;
+}
+
 </style>
 </head>
 <body>
@@ -281,24 +302,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
 </section>
 
 <!-- PAGE 1.5: About Me - Badge + Info -->
-<style>
-@keyframes badgeFloat {
-  0%, 100% { transform: rotate(-3deg) translateY(0); }
-  50% { transform: rotate(-1deg) translateY(-8px); }
-}
-@keyframes badgeFloat2 {
-  0%, 100% { transform: rotate(2deg) translateY(0); }
-  50% { transform: rotate(4deg) translateY(-6px); }
-}
-.badge-animate {
-  animation: badgeFloat 4s ease-in-out infinite;
-  transform-origin: top center;
-}
-.badge-animate2 {
-  animation: badgeFloat2 5s ease-in-out infinite;
-  transform-origin: top center;
-}
-</style>
+
 
 <section id="about" style="min-height:100vh;display:flex;align-items:center;padding:100px 48px;position:relative;">
   <div class="container" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
