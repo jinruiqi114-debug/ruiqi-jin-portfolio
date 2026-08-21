@@ -255,6 +255,280 @@ footer p { font-size: 13px; color: var(--text-muted); }
   transform-origin: top center;
 }
 
+
+/* ========== 图片动效增强 ========== */
+
+/* 1. 手绘边框效果 */
+.hand-drawn-border {
+  border: 3px solid #333;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+/* 2. 手绘箭头效果 */
+.hand-drawn-arrow {
+  position: relative;
+}
+
+.hand-drawn-arrow::after {
+  content: '→';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #333;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* 3. 手绘圆圈效果 */
+.hand-drawn-circle {
+  position: relative;
+}
+
+.hand-drawn-circle::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid #FF6B6B;
+  border-radius: 50%;
+  transform: rotate(-5deg);
+  opacity: 0.6;
+}
+
+/* 4. 手绘下划线效果 */
+.hand-drawn-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.hand-drawn-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #4ECDC4;
+  transform: rotate(-1deg);
+  border-radius: 2px;
+}
+
+/* 5. 手绘星星装饰 */
+.hand-drawn-stars {
+  position: relative;
+}
+
+.hand-drawn-stars::before {
+  content: '★';
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 20px;
+  color: #FFD700;
+  transform: rotate(15deg);
+}
+
+.hand-drawn-stars::after {
+  content: '★';
+  position: absolute;
+  bottom: -15px;
+  left: -15px;
+  font-size: 16px;
+  color: #FF6B6B;
+  transform: rotate(-10deg);
+}
+
+/* 6. 手绘波浪线效果 */
+.hand-drawn-wavy {
+  position: relative;
+}
+
+.hand-drawn-wavy::after {
+  content: '〰〰〰';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #45B7D1;
+  letter-spacing: 2px;
+}
+
+/* 7. 纸张撕裂效果 */
+.paper-torn {
+  position: relative;
+  background: #F5F3EE;
+}
+
+.paper-torn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(135deg, #E8E6E1 33.33%, transparent 33.33%) -10px 0,
+              linear-gradient(225deg, #E8E6E1 33.33%, transparent 33.33%) -10px 0;
+  background-size: 20px 10px;
+}
+
+/* 8. 手绘涂鸦效果 */
+.hand-drawn-doodle {
+  position: relative;
+}
+
+.hand-drawn-doodle::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px dashed #333;
+  border-radius: 10px;
+  opacity: 0.4;
+}
+
+/* 9. 手绘便签效果 */
+.hand-drawn-note {
+  background: #FFFACD;
+  padding: 20px;
+  border: 1px solid #E8E6E1;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+  transform: rotate(-2deg);
+  position: relative;
+}
+
+.hand-drawn-note::before {
+  content: '📌';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+}
+
+/* 10. 手绘胶带效果 */
+.hand-drawn-tape {
+  position: relative;
+}
+
+.hand-drawn-tape::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-5deg);
+  width: 80px;
+  height: 25px;
+  background: rgba(255,200,200,0.7);
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 11. 图片悬停手绘效果 */
+.img-hand-drawn-hover {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.img-hand-drawn-hover:hover {
+  transform: rotate(2deg) scale(1.02);
+  box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+}
+
+.img-hand-drawn-hover:hover::after {
+  content: '✨';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 20px;
+  animation: sparkle 0.5s ease-in-out;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* 12. 手绘标签效果 */
+.hand-drawn-tag {
+  display: inline-block;
+  background: #FF9EB5;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  transform: rotate(-3deg);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+/* 13. 手绘连接线效果 */
+.hand-drawn-line {
+  position: relative;
+}
+
+.hand-drawn-line::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #333;
+  transform: translateX(-50%) rotate(5deg);
+}
+
+/* 14. 手绘框架效果 */
+.hand-drawn-frame {
+  border: 3px solid #333;
+  border-radius: 10px 10px 10px 10px/10px 10px 10px 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.hand-drawn-frame::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 1px dashed #666;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+/* 15. 手绘装饰元素 */
+.decoration-elements {
+  position: relative;
+}
+
+.decoration-elements::before {
+  content: '✿';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  font-size: 16px;
+  color: #FF6B6B;
+  opacity: 0.6;
+}
+
+.decoration-elements::after {
+  content: '❀';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-size: 14px;
+  color: #4ECDC4;
+  opacity: 0.6;
+}
+
 </style>
 </head>
 <body>
@@ -437,7 +711,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
     <div class="gallery-img img-2" data-speed="1.2" onclick="scrollToProject('little-little')"><img src="media/littlelittle/01-tree-popup.jpg" alt="Little little"></div>
     <div class="gallery-img img-3" data-speed="0.6" onclick="scrollToProject('kesi')"><img src="media/kesi/01-title-wall.jpg" alt="Kesi"></div>
     <div class="gallery-img img-4" data-speed="1.0" onclick="scrollToProject('media-night')"><img src="media/medianight/01-sunset-camp.jpg" alt="Media Night"></div>
-    <div class="gallery-img img-5" data-speed="0.9" onclick="scrollToProject('le-pom')"><img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene"></div>
+    <div class="gallery-img img-5" data-speed="0.9" onclick="scrollToProject('le-pom')"><img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover"></div>
     <div class="gallery-img img-6" data-speed="1.1" onclick="scrollToProject('little-little')"><img src="media/littlelittle/03-model-portrait.jpg" alt="Little little"></div>
     <div class="gallery-img img-7" data-speed="0.7" onclick="scrollToProject('kesi')"><img src="media/kesi/02-gallery-view.jpg" alt="Kesi Gallery"></div>
     <div class="gallery-img img-8" data-speed="1.3" onclick="scrollToProject('media-night')"><img src="商品天猫淘宝小红书商品网页.png" alt="E-commerce"></div>
@@ -447,13 +721,13 @@ footer p { font-size: 13px; color: var(--text-muted); }
 <!-- PROJECT 1: Le Pom -->
 <section class="project-detail" id="le-pom">
   <div class="eyebrow">Project 01</div>
-  <h2>Le Pom</h2>
+  <h2 class="hand-drawn-underline">Le Pom</h2>
   <p class="desc">AI-powered scent diffuser combining smart technology with elegant design. Complete brand identity system from concept to e-commerce, featuring product design, visual identity, and digital marketing materials.</p>
   <div class="project-gallery">
-    <img src="苹果.png" alt="Le Pom Apple Design" class="full">
-    <img src="苹果型香味扩散器.png" alt="Le Pom Product">
-    <img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene">
-    <img src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce">
+    <img src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
+    <img src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
+    <img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
+    <img src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="hand-drawn-border img-hand-drawn-hover">
   </div>
   <div class="project-meta">
     <div class="item"><div class="label">Role</div><div class="value">Product Designer</div></div>
@@ -492,7 +766,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
 <!-- AIGC Short Film -->
 <section class="project-detail" id="aigc-film" style="border-top:none;">
   <div class="eyebrow">AIGC Short Film</div>
-  <h2>AIGC短片制作</h2>
+  <h2 class="hand-drawn-underline">AIGC短片制作</h2>
   <p class="desc">使用Lovart、Midjourney、Tapnow等AI工具链，独立完成AIGC短视频创作。从编剧、视觉设计到视频生成的全流程制作。</p>
   
   <!-- 人物形象设计 -->
@@ -500,7 +774,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
     <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:24px;">人物形象设计</h3>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
       <div class="paper-card" style="padding:24px;">
-        <img src="media/aigc/character-design.webp" alt="Character Design" style="width:100%;border-radius:8px;">
+        <img src="media/aigc/character-design.webp" alt="Character Design" style="width:100%;border-radius:8px;" class="hand-drawn-border img-hand-drawn-hover">
         <p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">电影人物画像 - AI生成的角色设计</p>
       </div>
     </div>
@@ -538,10 +812,10 @@ footer p { font-size: 13px; color: var(--text-muted); }
 <!-- PROJECT 2: Little little -->
 <section class="project-detail" id="little-little">
   <div class="eyebrow">Project 02</div>
-  <h2>Little little</h2>
+  <h2 class="hand-drawn-underline">Little little</h2>
   <p class="desc">Paris Fashion Week pop-up event and brand identity system. Led brand strategy for overseas market expansion, creating immersive experiences that connect Chinese heritage with international fashion.</p>
   <div class="project-gallery">
-    <img src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full">
+    <img src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
     <img src="media/littlelittle/02-dessert-table.jpg" alt="Display">
     <img src="media/littlelittle/03-model-portrait.jpg" alt="Model">
   </div>
@@ -559,7 +833,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
   <h2>Kesi Heritage</h2>
   <p class="desc">Traditional silk tapestry heritage preservation through exhibition curation and cultural-creative transformation. A two-track project bridging historical research with contemporary exhibition design.</p>
   <div class="project-gallery">
-    <img src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full">
+    <img src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
     <img src="media/kesi/02-gallery-view.jpg" alt="Gallery">
     <img src="media/kesi/03-loom-demo.jpg" alt="Loom Demo">
   </div>
@@ -577,7 +851,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
   <h2>Media Night</h2>
   <p class="desc">Pathless Woods — An immersive media experience combining brand storytelling with spatial design. Created atmospheric environments that transport audiences into narrative worlds.</p>
   <div class="project-gallery">
-    <img src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full">
+    <img src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
     <img src="media/medianight/02-dinner-tent.jpg" alt="Dinner">
     <img src="media/medianight/03-night-bokeh.jpg" alt="Night">
   </div>
@@ -620,7 +894,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;">
+        <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Polo Ralph Lauren · Paris · 2026</div>
@@ -743,7 +1017,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;">
+        <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Polo Ralph Lauren · Paris · 2026</div>
