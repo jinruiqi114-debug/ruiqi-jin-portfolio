@@ -1085,6 +1085,268 @@ video {
   100% { background-position: -200% 0; }
 }
 
+
+/* ========== 交互式图片揭示效果 ========== */
+.image-reveal-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  cursor: none;
+}
+
+.image-reveal-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-reveal-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  mask-image: radial-gradient(circle 0px at 0px 0px, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 0px at 0px 0px, black 0%, transparent 100%);
+  transition: mask-image 0.1s ease, -webkit-mask-image 0.1s ease;
+}
+
+.reveal-spotlight {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  mix-blend-mode: difference;
+}
+
+.reveal-instruction {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  z-index: 20;
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* 视差网格 */
+.parallax-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.1;
+}
+
+/* 交互式图片卡片 */
+.interactive-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.interactive-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, transparent 50%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.interactive-card:hover::before {
+  opacity: 1;
+}
+
+.interactive-card img {
+  transition: transform 0.5s ease;
+}
+
+.interactive-card:hover img {
+  transform: scale(1.05);
+}
+
+.interactive-card .card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.interactive-card:hover .card-overlay {
+  transform: translateY(0);
+}
+
+/* 磁性按钮效果 */
+.magnetic-btn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--text-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.magnetic-btn:hover::before {
+  width: 300%;
+  height: 300%;
+}
+
+.magnetic-btn span {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.magnetic-btn:hover span {
+  color: white;
+}
+
+/* 滚动视差效果 */
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-bg {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+/* 文字动画 */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.text-reveal.revealed span {
+  transform: translateY(0);
+}
+
+/* 图片序列动画 */
+.image-sequence {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.image-sequence img {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.image-sequence img:hover {
+  transform: scale(1.05);
+}
+
+/* 3D卡片效果 */
+.card-3d {
+  perspective: 1000px;
+}
+
+.card-3d-inner {
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover .card-3d-inner {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+
+/* 光标跟随效果 */
+.cursor-follow {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--text-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-follow.hover {
+  width: 40px;
+  height: 40px;
+  border-color: var(--accent);
+}
+
 </style>
 </head>
 <body>
@@ -1155,7 +1417,7 @@ video {
     <p style="font-size:15px;margin-top:16px;max-width:300px;line-height:1.6;">Content Marketing · AIGC Creative · Global Social Media.</p>
     <div class="hero-buttons" style="margin-top:24px;">
       <a href="#scroll" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn-minimal">Get in Touch</a>
+      <a href="#contact" class="btn-minimal magnetic-btn">Get in Touch</a>
     </div>
   </div>
 </section>
@@ -1282,7 +1544,7 @@ video {
     <span class="mono">§ 02 — Work</span>
     <h2>From research<br/>to runway.</h2>
     <p style="font-size:16px;color:var(--text-secondary);max-width:500px;margin-bottom:32px;">A diverse portfolio spanning brand strategy, product design, exhibition curation, and creative direction across international markets.</p>
-    <a href="#gallery" class="btn-minimal">Explore Gallery</a>
+    <a href="#gallery" class="btn-minimal magnetic-btn">Explore Gallery</a>
   </div>
 </section>
 
@@ -1304,7 +1566,7 @@ video {
 </section>
 
 <!-- PROJECT 1: Le Pom -->
-<section class="project-minimal" id="le-pom">
+<section class="project-minimal card-3d" id="le-pom">
   <div class="eyebrow">Project 01</div>
   <h2 class="hand-drawn-underline">Le Pom</h2>
   
@@ -1316,7 +1578,16 @@ video {
         
           </div>
         
-  <div class="gallery-minimal">
+  
+    <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
+    
+<div class="gallery-minimal">
     <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
@@ -1332,7 +1603,7 @@ video {
 
 
 <!-- Le Pom AIGC Campaign -->
-<section class="project-minimal" id="le-pom-aigc" style="border-top:none;">
+<section class="project-minimal card-3d" id="le-pom-aigc" style="border-top:none;">
   <div class="eyebrow">AIGC Campaign</div>
   <h2>Le Pom · AIGC广告创意</h2>
   
@@ -1353,7 +1624,16 @@ video {
     </video>
   </div>
   
-  <div class="gallery-minimal">
+  
+    <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
+    
+<div class="gallery-minimal">
     <img loading="lazy" src="苹果香氛扩散器-手持展示.png" alt="Le Pom Handheld" style="border-radius:8px;">
     <img loading="lazy" src="苹果香氛扩散器-沙发桌场景.png" alt="Le Pom Scene" style="border-radius:8px;">
   </div>
@@ -1365,7 +1645,7 @@ video {
   </div>
 </section>
 <!-- AIGC Short Film -->
-<section class="project-minimal" id="aigc-film" style="border-top:none;">
+<section class="project-minimal card-3d" id="aigc-film" style="border-top:none;">
   <div class="eyebrow">AIGC Short Film</div>
   <h2 class="hand-drawn-underline">AIGC短片制作</h2>
   
@@ -1413,7 +1693,7 @@ video {
 </section>
 
 <!-- PROJECT 2: Little little -->
-<section class="project-minimal" id="little-little">
+<section class="project-minimal card-3d" id="little-little">
   <div class="eyebrow">Project 02</div>
   <h2 class="hand-drawn-underline">Little little</h2>
   
@@ -1425,7 +1705,16 @@ video {
         
           </div>
         
-  <div class="gallery-minimal">
+  
+    <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
+    
+<div class="gallery-minimal">
     <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/littlelittle/02-dessert-table.jpg" alt="Display">
     <img loading="lazy" src="media/littlelittle/03-model-portrait.jpg" alt="Model">
@@ -1439,7 +1728,7 @@ video {
 </section>
 
 <!-- PROJECT 3: Kesi Heritage -->
-<section class="project-minimal" id="kesi">
+<section class="project-minimal card-3d" id="kesi">
   <div class="eyebrow">Project 03</div>
   <h2>Kesi Heritage</h2>
   
@@ -1451,7 +1740,16 @@ video {
         
           </div>
         
-  <div class="gallery-minimal">
+  
+    <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
+    
+<div class="gallery-minimal">
     <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/kesi/02-gallery-view.jpg" alt="Gallery">
     <img loading="lazy" src="media/kesi/03-loom-demo.jpg" alt="Loom Demo">
@@ -1465,7 +1763,7 @@ video {
 </section>
 
 <!-- PROJECT 4: Media Night -->
-<section class="project-minimal" id="media-night">
+<section class="project-minimal card-3d" id="media-night">
   <div class="eyebrow">Project 04</div>
   <h2>Media Night</h2>
   
@@ -1477,7 +1775,16 @@ video {
         
           </div>
         
-  <div class="gallery-minimal">
+  
+    <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
+    
+<div class="gallery-minimal">
     <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/medianight/02-dinner-tent.jpg" alt="Dinner">
     <img loading="lazy" src="media/medianight/03-night-bokeh.jpg" alt="Night">
@@ -1805,6 +2112,246 @@ document.addEventListener('DOMContentLoaded', function() {
       switchLanguage(savedLang);
     });
     
+
+// ========== 交互式图片揭示效果 ==========
+
+// 1. 交互式图片揭示
+class ImageReveal {
+  constructor(container) {
+    this.container = container;
+    this.baseLayer = container.querySelector('.image-reveal-base');
+    this.topLayer = container.querySelector('.image-reveal-top');
+    this.spotlight = container.querySelector('.reveal-spotlight');
+    this.canvas = document.createElement('canvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.mouse = { x: 0, y: 0 };
+    this.smooth = { x: 0, y: 0 };
+    this.radius = Math.min(420, Math.max(160, window.innerWidth * 0.16));
+    
+    this.init();
+  }
+  
+  init() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.canvas.style.display = 'none';
+    
+    this.container.addEventListener('mousemove', (e) => {
+      const rect = this.container.getBoundingClientRect();
+      this.mouse.x = e.clientX - rect.left;
+      this.mouse.y = e.clientY - rect.top;
+      
+      if (this.spotlight) {
+        this.spotlight.style.left = e.clientX + 'px';
+        this.spotlight.style.top = e.clientY + 'px';
+      }
+    });
+    
+    this.animate();
+  }
+  
+  animate() {
+    // 平滑跟随
+    this.smooth.x += (this.mouse.x - this.smooth.x) * 0.1;
+    this.smooth.y += (this.mouse.y - this.smooth.y) * 0.1;
+    
+    // 绘制遮罩
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    const gradient = this.ctx.createRadialGradient(
+      this.smooth.x, this.smooth.y, 0,
+      this.smooth.x, this.smooth.y, this.radius
+    );
+    
+    gradient.addColorStop(0, 'rgba(255,255,255,1)');
+    gradient.addColorStop(0.4, 'rgba(255,255,255,1)');
+    gradient.addColorStop(0.6, 'rgba(255,255,255,0.75)');
+    gradient.addColorStop(0.75, 'rgba(255,255,255,0.4)');
+    gradient.addColorStop(0.88, 'rgba(255,255,255,0.12)');
+    gradient.addColorStop(1, 'rgba(255,255,255,0)');
+    
+    this.ctx.fillStyle = gradient;
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // 应用遮罩
+    const dataUrl = this.canvas.toDataURL();
+    if (this.topLayer) {
+      this.topLayer.style.maskImage = `url(${dataUrl})`;
+      this.topLayer.style.webkitMaskImage = `url(${dataUrl})`;
+    }
+    
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+// 2. 磁性按钮效果
+class MagneticButton {
+  constructor(button) {
+    this.button = button;
+    this.text = button.querySelector('span');
+    
+    button.addEventListener('mousemove', (e) => {
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+    
+    button.addEventListener('mouseleave', () => {
+      button.style.transform = 'translate(0, 0)';
+    });
+  }
+}
+
+// 3. 滚动视差效果
+class ParallaxScroll {
+  constructor() {
+    this.elements = document.querySelectorAll('.parallax-bg');
+    this.init();
+  }
+  
+  init() {
+    window.addEventListener('scroll', () => {
+      this.update();
+    });
+  }
+  
+  update() {
+    const scrollY = window.pageYOffset;
+    
+    this.elements.forEach(el => {
+      const speed = el.dataset.speed || 0.5;
+      el.style.transform = `translateY(${scrollY * speed}px)`;
+    });
+  }
+}
+
+// 4. 光标跟随效果
+class CursorFollow {
+  constructor() {
+    this.cursor = document.createElement('div');
+    this.cursor.className = 'cursor-follow';
+    document.body.appendChild(this.cursor);
+    
+    this.mouse = { x: 0, y: 0 };
+    this.smooth = { x: 0, y: 0 };
+    
+    this.init();
+  }
+  
+  init() {
+    document.addEventListener('mousemove', (e) => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+    });
+    
+    // 检测悬停状态
+    const hoverElements = document.querySelectorAll('a, button, .interactive-card, .magnetic-btn');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        this.cursor.classList.add('hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        this.cursor.classList.remove('hover');
+      });
+    });
+    
+    this.animate();
+  }
+  
+  animate() {
+    this.smooth.x += (this.mouse.x - this.smooth.x) * 0.15;
+    this.smooth.y += (this.mouse.y - this.smooth.y) * 0.15;
+    
+    this.cursor.style.left = this.smooth.x + 'px';
+    this.cursor.style.top = this.smooth.y + 'px';
+    
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+// 5. 文字揭示动画
+class TextReveal {
+  constructor() {
+    this.elements = document.querySelectorAll('.text-reveal');
+    this.init();
+  }
+  
+  init() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    this.elements.forEach(el => observer.observe(el));
+  }
+}
+
+// 6. 3D卡片效果
+class Card3D {
+  constructor(cards) {
+    this.cards = cards;
+    this.init();
+  }
+  
+  init() {
+    this.cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.querySelector('.card-3d-inner').style.transform = 
+          `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.querySelector('.card-3d-inner').style.transform = 
+          'rotateX(0) rotateY(0)';
+      });
+    });
+  }
+}
+
+// 初始化所有交互效果
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化图片揭示
+  const revealContainers = document.querySelectorAll('.image-reveal-container');
+  revealContainers.forEach(container => new ImageReveal(container));
+  
+  // 初始化磁性按钮
+  const magneticBtns = document.querySelectorAll('.magnetic-btn');
+  magneticBtns.forEach(btn => new MagneticButton(btn));
+  
+  // 初始化视差滚动
+  new ParallaxScroll();
+  
+  // 初始化光标跟随（仅桌面端）
+  if (window.innerWidth > 768) {
+    new CursorFollow();
+  }
+  
+  // 初始化文字揭示
+  new TextReveal();
+  
+  // 初始化3D卡片
+  const cards3D = document.querySelectorAll('.card-3d');
+  if (cards3D.length > 0) {
+    new Card3D(cards3D);
+  }
+  
+  console.log('交互效果已初始化');
+});
+
 </script>
 
 </body>
