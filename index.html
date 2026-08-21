@@ -1089,6 +1089,35 @@ video {
 </head>
 <body>
 
+    <!-- 语言切换按钮 -->
+    <div style="position:fixed;top:20px;right:20px;z-index:1000;display:flex;gap:8px;">
+      <button onclick="switchLanguage('zh')" id="btn-zh" style="
+        padding:8px 16px;
+        background:var(--text-primary);
+        color:white;
+        border:none;
+        border-radius:6px;
+        font-family:'Plus Jakarta Sans',sans-serif;
+        font-size:14px;
+        font-weight:500;
+        cursor:pointer;
+        transition:all 0.2s;
+      ">中文</button>
+      <button onclick="switchLanguage('en')" id="btn-en" style="
+        padding:8px 16px;
+        background:transparent;
+        color:var(--text-primary);
+        border:1px solid var(--border);
+        border-radius:6px;
+        font-family:'Plus Jakarta Sans',sans-serif;
+        font-size:14px;
+        font-weight:500;
+        cursor:pointer;
+        transition:all 0.2s;
+      ">EN</button>
+    </div>
+    
+
 <div class="halftone-bg"></div>
 
 
@@ -1278,7 +1307,15 @@ video {
 <section class="project-minimal" id="le-pom">
   <div class="eyebrow">Project 01</div>
   <h2 class="hand-drawn-underline">Le Pom</h2>
-  <p class="desc">AI-powered scent diffuser combining smart technology with elegant design. Complete brand identity system from concept to e-commerce, featuring product design, visual identity, and digital marketing materials.</p>
+  
+          <div class="lang-zh">
+            <p class="desc">AI驱动的智能香氛扩散器，融合智能科技与优雅设计。从概念到电商的完整品牌体系，涵盖产品设计、视觉识别和数字营销材料。</p>
+          <div class="lang-en" style="display:none;">
+            <p class="desc">AI-powered smart scent diffuser combining intelligent technology with elegant design. Complete brand identity system from concept to e-commerce, featuring product design, visual identity, and digital marketing materials.</p>
+          </div>
+        
+          </div>
+        
   <div class="gallery-minimal">
     <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
@@ -1298,7 +1335,15 @@ video {
 <section class="project-minimal" id="le-pom-aigc" style="border-top:none;">
   <div class="eyebrow">AIGC Campaign</div>
   <h2>Le Pom · AIGC广告创意</h2>
-  <p class="desc">运用AIGC工具链（Midjourney、Lovart）打造产品概念广告，从创意构思到视觉落地，展示AI驱动的品牌营销能力。</p>
+  
+          <div class="lang-zh">
+            <p class="desc">运用AIGC工具链（Midjourney、Lovart）打造产品概念广告，从创意构思到视觉落地，展示AI驱动的品牌营销能力。</p>
+          <div class="lang-en" style="display:none;">
+            <p class="desc">Creating product concept ads using AIGC toolchain (Midjourney, Lovart), from creative conception to visual execution, demonstrating AI-driven brand marketing capabilities.</p>
+          </div>
+        
+          </div>
+        
   
   <!-- 创意视频展示 -->
   <div style="margin:48px 0;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
@@ -1323,7 +1368,15 @@ video {
 <section class="project-minimal" id="aigc-film" style="border-top:none;">
   <div class="eyebrow">AIGC Short Film</div>
   <h2 class="hand-drawn-underline">AIGC短片制作</h2>
-  <p class="desc">使用Lovart、Midjourney、Tapnow等AI工具链，独立完成AIGC短视频创作。从编剧、视觉设计到视频生成的全流程制作。</p>
+  
+          <div class="lang-zh">
+            <p class="desc">使用Lovart、Midjourney、Tapnow等AI工具链，独立完成AIGC短视频创作。从编剧、视觉设计到视频生成的全流程制作。</p>
+          <div class="lang-en" style="display:none;">
+            <p class="desc">Independently completed AIGC short video creation using AI tools like Lovart, Midjourney, and Tapnow. Full-process production from screenwriting, visual design to video generation.</p>
+          </div>
+        
+          </div>
+        
   
   <!-- 人物形象设计 -->
   <div style="margin:48px 0;">
@@ -1363,7 +1416,15 @@ video {
 <section class="project-minimal" id="little-little">
   <div class="eyebrow">Project 02</div>
   <h2 class="hand-drawn-underline">Little little</h2>
-  <p class="desc">Paris Fashion Week pop-up event and brand identity system. Led brand strategy for overseas market expansion, creating immersive experiences that connect Chinese heritage with international fashion.</p>
+  
+          <div class="lang-zh">
+            <p class="desc">巴黎时装周快闪活动与品牌识别系统。主导品牌海外扩张策略，打造沉浸式体验，连接中国遗产与国际时尚。</p>
+          <div class="lang-en" style="display:none;">
+            <p class="desc">Paris Fashion Week pop-up event and brand identity system. Led brand strategy for overseas market expansion, creating immersive experiences that connect Chinese heritage with international fashion.</p>
+          </div>
+        
+          </div>
+        
   <div class="gallery-minimal">
     <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/littlelittle/02-dessert-table.jpg" alt="Display">
@@ -1381,7 +1442,15 @@ video {
 <section class="project-minimal" id="kesi">
   <div class="eyebrow">Project 03</div>
   <h2>Kesi Heritage</h2>
-  <p class="desc">Traditional silk tapestry heritage preservation through exhibition curation and cultural-creative transformation. A two-track project bridging historical research with contemporary exhibition design.</p>
+  
+          <div class="lang-zh">
+            <p class="desc">缂丝工艺的双重探索——传统技艺与当代设计的对话。通过展览策划与视觉设计，展现非遗文化的现代价值。</p>
+          <div class="lang-en" style="display:none;">
+            <p class="desc">A dual exploration of Kesi silk tapestry craft — a dialogue between traditional techniques and contemporary design. Through exhibition curation and visual design, showcasing the modern value of intangible cultural heritage.</p>
+          </div>
+        
+          </div>
+        
   <div class="gallery-minimal">
     <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/kesi/02-gallery-view.jpg" alt="Gallery">
@@ -1399,7 +1468,15 @@ video {
 <section class="project-minimal" id="media-night">
   <div class="eyebrow">Project 04</div>
   <h2>Media Night</h2>
-  <p class="desc">Pathless Woods — An immersive media experience combining brand storytelling with spatial design. Created atmospheric environments that transport audiences into narrative worlds.</p>
+  
+          <div class="lang-zh">
+            <p class="desc">研究当代高级时装屋如何通过秀场的视觉与空间组织建构文化权威。三个品牌案例研究：Valentino、Avavav、Miu Miu。</p>
+          <div class="lang-en" style="display:none;">
+            <p class="desc">Research on how contemporary haute couture houses construct cultural authority through the visual and spatial organization of fashion shows. Three brand case studies: Valentino, Avavav, Miu Miu.</p>
+          </div>
+        
+          </div>
+        
   <div class="gallery-minimal">
     <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/medianight/02-dinner-tent.jpg" alt="Dinner">
@@ -1699,6 +1776,35 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('图片加载优化已启用');
 });
 
+
+    // 语言切换功能
+    function switchLanguage(lang) {
+      // 隐藏所有语言内容
+      document.querySelectorAll('.lang-zh, .lang-en').forEach(el => {
+        el.style.display = 'none';
+      });
+      
+      // 显示选中的语言内容
+      document.querySelectorAll('.lang-' + lang).forEach(el => {
+        el.style.display = 'block';
+      });
+      
+      // 更新按钮样式
+      document.getElementById('btn-zh').style.background = lang === 'zh' ? 'var(--text-primary)' : 'transparent';
+      document.getElementById('btn-zh').style.color = lang === 'zh' ? 'white' : 'var(--text-primary)';
+      document.getElementById('btn-en').style.background = lang === 'en' ? 'var(--text-primary)' : 'transparent';
+      document.getElementById('btn-en').style.color = lang === 'en' ? 'white' : 'var(--text-primary)';
+      
+      // 保存语言偏好
+      localStorage.setItem('language', lang);
+    }
+    
+    // 页面加载时检查语言偏好
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedLang = localStorage.getItem('language') || 'zh';
+      switchLanguage(savedLang);
+    });
+    
 </script>
 
 </body>
