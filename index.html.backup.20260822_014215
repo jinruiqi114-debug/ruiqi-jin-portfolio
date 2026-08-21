@@ -1036,55 +1036,6 @@ footer p { font-size: 13px; color: var(--text-muted); }
   }
 }
 
-
-/* 响应式图片优化 */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* 图片懒加载动画 */
-img[loading="lazy"] {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-img[loading="lazy"].loaded {
-  opacity: 1;
-}
-
-/* 响应式视频 */
-video {
-  max-width: 100%;
-  height: auto;
-}
-
-/* 图片容器优化 */
-.image-container {
-  position: relative;
-  overflow: hidden;
-  background: var(--surface);
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* 渐进式加载 */
-.progressive-load {
-  background: linear-gradient(90deg, var(--surface) 0%, var(--bg) 100%);
-  background-size: 200% 100%;
-  animation: progressive-load 1.5s ease-in-out infinite;
-}
-
-@keyframes progressive-load {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
 </style>
 </head>
 <body>
@@ -1126,7 +1077,7 @@ video {
     <p style="font-size:15px;margin-top:16px;max-width:300px;line-height:1.6;">Content Marketing · AIGC Creative · Global Social Media.</p>
     <div class="hero-buttons" style="margin-top:24px;">
       <a href="#scroll" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn-minimal">Get in Touch</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
     </div>
   </div>
 </section>
@@ -1157,7 +1108,7 @@ video {
             </div>
             
             <div style="width:200px;height:260px;margin:0 auto 20px;overflow:hidden;border:2px solid var(--border);position:relative;">
-              <img loading="lazy" src="微信图片_20260527144543_487_6.jpg" 
+              <img src="微信图片_20260527144543_487_6.jpg" 
                    alt="Ruiqi Jin" 
                    style="width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:saturate(0.85) contrast(1.05);">
             </div>
@@ -1253,7 +1204,7 @@ video {
     <span class="mono">§ 02 — Work</span>
     <h2>From research<br/>to runway.</h2>
     <p style="font-size:16px;color:var(--text-secondary);max-width:500px;margin-bottom:32px;">A diverse portfolio spanning brand strategy, product design, exhibition curation, and creative direction across international markets.</p>
-    <a href="#gallery" class="btn-minimal">Explore Gallery</a>
+    <a href="#gallery" class="btn btn-primary">Explore Gallery</a>
   </div>
 </section>
 
@@ -1263,64 +1214,64 @@ video {
     <h2>With real market<br/>experience</h2>
   </div>
   <div class="gallery-images">
-    <div class="gallery-img img-1" data-speed="0.8" onclick="scrollToProject('le-pom')"><img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom"></div>
-    <div class="gallery-img img-2" data-speed="1.2" onclick="scrollToProject('little-little')"><img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Little little"></div>
-    <div class="gallery-img img-3" data-speed="0.6" onclick="scrollToProject('kesi')"><img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Kesi"></div>
-    <div class="gallery-img img-4" data-speed="1.0" onclick="scrollToProject('media-night')"><img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Media Night"></div>
-    <div class="gallery-img img-5" data-speed="0.9" onclick="scrollToProject('le-pom')"><img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover"></div>
-    <div class="gallery-img img-6" data-speed="1.1" onclick="scrollToProject('little-little')"><img loading="lazy" src="media/littlelittle/03-model-portrait.jpg" alt="Little little"></div>
-    <div class="gallery-img img-7" data-speed="0.7" onclick="scrollToProject('kesi')"><img loading="lazy" src="media/kesi/02-gallery-view.jpg" alt="Kesi Gallery"></div>
-    <div class="gallery-img img-8" data-speed="1.3" onclick="scrollToProject('media-night')"><img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="E-commerce"></div>
+    <div class="gallery-img img-1" data-speed="0.8" onclick="scrollToProject('le-pom')"><img src="苹果型香味扩散器.png" alt="Le Pom"></div>
+    <div class="gallery-img img-2" data-speed="1.2" onclick="scrollToProject('little-little')"><img src="media/littlelittle/01-tree-popup.jpg" alt="Little little"></div>
+    <div class="gallery-img img-3" data-speed="0.6" onclick="scrollToProject('kesi')"><img src="media/kesi/01-title-wall.jpg" alt="Kesi"></div>
+    <div class="gallery-img img-4" data-speed="1.0" onclick="scrollToProject('media-night')"><img src="media/medianight/01-sunset-camp.jpg" alt="Media Night"></div>
+    <div class="gallery-img img-5" data-speed="0.9" onclick="scrollToProject('le-pom')"><img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover"></div>
+    <div class="gallery-img img-6" data-speed="1.1" onclick="scrollToProject('little-little')"><img src="media/littlelittle/03-model-portrait.jpg" alt="Little little"></div>
+    <div class="gallery-img img-7" data-speed="0.7" onclick="scrollToProject('kesi')"><img src="media/kesi/02-gallery-view.jpg" alt="Kesi Gallery"></div>
+    <div class="gallery-img img-8" data-speed="1.3" onclick="scrollToProject('media-night')"><img src="商品天猫淘宝小红书商品网页.png" alt="E-commerce"></div>
   </div>
 </section>
 
 <!-- PROJECT 1: Le Pom -->
-<section class="project-minimal" id="le-pom">
+<section class="project-detail" id="le-pom">
   <div class="eyebrow">Project 01</div>
   <h2 class="hand-drawn-underline">Le Pom</h2>
   <p class="desc">AI-powered scent diffuser combining smart technology with elegant design. Complete brand identity system from concept to e-commerce, featuring product design, visual identity, and digital marketing materials.</p>
-  <div class="gallery-minimal">
-    <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="hand-drawn-border img-hand-drawn-hover">
+  <div class="project-gallery">
+    <img src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
+    <img src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
+    <img src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
+    <img src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="hand-drawn-border img-hand-drawn-hover">
   </div>
-  <div class="meta">
-    <div class="item"><div class="meta-label">Role</div><div class="meta-value">Product Designer</div></div>
-    <div class="item"><div class="meta-label">Type</div><div class="meta-value">Product Design</div></div>
-    <div class="item"><div class="meta-label">Tools</div><div class="meta-value">Midjourney, AI</div></div>
-    <div class="item"><div class="meta-label">Year</div><div class="meta-value">2026</div></div>
+  <div class="project-meta">
+    <div class="item"><div class="label">Role</div><div class="value">Product Designer</div></div>
+    <div class="item"><div class="label">Type</div><div class="value">Product Design</div></div>
+    <div class="item"><div class="label">Tools</div><div class="value">Midjourney, AI</div></div>
+    <div class="item"><div class="label">Year</div><div class="value">2026</div></div>
   </div>
 </section>
 
 
 <!-- Le Pom AIGC Campaign -->
-<section class="project-minimal" id="le-pom-aigc" style="border-top:none;">
+<section class="project-detail" id="le-pom-aigc" style="border-top:none;">
   <div class="eyebrow">AIGC Campaign</div>
   <h2>Le Pom · AIGC广告创意</h2>
   <p class="desc">运用AIGC工具链（Midjourney、Lovart）打造产品概念广告，从创意构思到视觉落地，展示AI驱动的品牌营销能力。</p>
   
   <!-- 创意视频展示 -->
   <div style="margin:48px 0;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
-    <video controls preload="metadata" class="video-minimal" style="width:100%;height:auto;display:block;">
+    <video controls style="width:100%;height:auto;display:block;">
       <source src="media/lepom/创意视频.MOV" type="video/mp4">
       您的浏览器不支持视频播放。
     </video>
   </div>
   
-  <div class="gallery-minimal">
-    <img loading="lazy" src="苹果香氛扩散器-手持展示.png" alt="Le Pom Handheld" style="border-radius:8px;">
-    <img loading="lazy" src="苹果香氛扩散器-沙发桌场景.png" alt="Le Pom Scene" style="border-radius:8px;">
+  <div class="project-gallery">
+    <img src="苹果香氛扩散器-手持展示.png" alt="Le Pom Handheld" style="border-radius:8px;">
+    <img src="苹果香氛扩散器-沙发桌场景.png" alt="Le Pom Scene" style="border-radius:8px;">
   </div>
-  <div class="meta">
-    <div class="item"><div class="meta-label">Tools</div><div class="meta-value">Midjourney · Lovart · AI</div></div>
-    <div class="item"><div class="meta-label">Type</div><div class="meta-value">AIGC Ad Creative</div></div>
-    <div class="item"><div class="meta-label">Deliverables</div><div class="meta-value">Product Ads · Scene Mockups</div></div>
-    <div class="item"><div class="meta-label">Year</div><div class="meta-value">2025-2026</div></div>
+  <div class="project-meta">
+    <div class="item"><div class="label">Tools</div><div class="value">Midjourney · Lovart · AI</div></div>
+    <div class="item"><div class="label">Type</div><div class="value">AIGC Ad Creative</div></div>
+    <div class="item"><div class="label">Deliverables</div><div class="value">Product Ads · Scene Mockups</div></div>
+    <div class="item"><div class="label">Year</div><div class="value">2025-2026</div></div>
   </div>
 </section>
 <!-- AIGC Short Film -->
-<section class="project-minimal" id="aigc-film" style="border-top:none;">
+<section class="project-detail" id="aigc-film" style="border-top:none;">
   <div class="eyebrow">AIGC Short Film</div>
   <h2 class="hand-drawn-underline">AIGC短片制作</h2>
   <p class="desc">使用Lovart、Midjourney、Tapnow等AI工具链，独立完成AIGC短视频创作。从编剧、视觉设计到视频生成的全流程制作。</p>
@@ -1330,7 +1281,7 @@ video {
     <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:24px;">人物形象设计</h3>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
       <div class="paper-card" style="padding:24px;">
-        <img loading="lazy" src="media/aigc/character-design.webp" alt="Character Design" style="width:100%;border-radius:8px;" class="hand-drawn-border img-hand-drawn-hover">
+        <img src="media/aigc/character-design.webp" alt="Character Design" style="width:100%;border-radius:8px;" class="hand-drawn-border img-hand-drawn-hover">
         <p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">电影人物画像 - AI生成的角色设计</p>
       </div>
     </div>
@@ -1342,7 +1293,7 @@ video {
     
     <!-- 第一个视频 -->
     <div style="margin-bottom:32px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
-      <video controls preload="metadata" class="video-minimal" style="width:100%;height:auto;display:block;">
+      <video controls style="width:100%;height:auto;display:block;">
         <source src="media/aigc/aigc短片制作.mov" type="video/mp4">
         您的浏览器不支持视频播放。
       </video>
@@ -1351,65 +1302,65 @@ video {
 
   </div>
   
-  <div class="meta">
-    <div class="item"><div class="meta-label">Role</div><div class="meta-value">Director · Writer</div></div>
-    <div class="item"><div class="meta-label">Tools</div><div class="meta-value">Lovart · Midjourney · Tapnow</div></div>
-    <div class="item"><div class="meta-label">Type</div><div class="meta-value">AIGC Video</div></div>
-    <div class="item"><div class="meta-label">Year</div><div class="meta-value">2026</div></div>
+  <div class="project-meta">
+    <div class="item"><div class="label">Role</div><div class="value">Director · Writer</div></div>
+    <div class="item"><div class="label">Tools</div><div class="value">Lovart · Midjourney · Tapnow</div></div>
+    <div class="item"><div class="label">Type</div><div class="value">AIGC Video</div></div>
+    <div class="item"><div class="label">Year</div><div class="value">2026</div></div>
   </div>
 </section>
 
 <!-- PROJECT 2: Little little -->
-<section class="project-minimal" id="little-little">
+<section class="project-detail" id="little-little">
   <div class="eyebrow">Project 02</div>
   <h2 class="hand-drawn-underline">Little little</h2>
   <p class="desc">Paris Fashion Week pop-up event and brand identity system. Led brand strategy for overseas market expansion, creating immersive experiences that connect Chinese heritage with international fashion.</p>
-  <div class="gallery-minimal">
-    <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="media/littlelittle/02-dessert-table.jpg" alt="Display">
-    <img loading="lazy" src="media/littlelittle/03-model-portrait.jpg" alt="Model">
+  <div class="project-gallery">
+    <img src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
+    <img src="media/littlelittle/02-dessert-table.jpg" alt="Display">
+    <img src="media/littlelittle/03-model-portrait.jpg" alt="Model">
   </div>
-  <div class="meta">
-    <div class="item"><div class="meta-label">Role</div><div class="meta-value">Brand Strategist</div></div>
-    <div class="item"><div class="meta-label">Type</div><div class="meta-value">Brand Strategy</div></div>
-    <div class="item"><div class="meta-label">Location</div><div class="meta-value">Paris, France</div></div>
-    <div class="item"><div class="meta-label">Year</div><div class="meta-value">2024-2025</div></div>
+  <div class="project-meta">
+    <div class="item"><div class="label">Role</div><div class="value">Brand Strategist</div></div>
+    <div class="item"><div class="label">Type</div><div class="value">Brand Strategy</div></div>
+    <div class="item"><div class="label">Location</div><div class="value">Paris, France</div></div>
+    <div class="item"><div class="label">Year</div><div class="value">2024-2025</div></div>
   </div>
 </section>
 
 <!-- PROJECT 3: Kesi Heritage -->
-<section class="project-minimal" id="kesi">
+<section class="project-detail" id="kesi">
   <div class="eyebrow">Project 03</div>
   <h2>Kesi Heritage</h2>
   <p class="desc">Traditional silk tapestry heritage preservation through exhibition curation and cultural-creative transformation. A two-track project bridging historical research with contemporary exhibition design.</p>
-  <div class="gallery-minimal">
-    <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="media/kesi/02-gallery-view.jpg" alt="Gallery">
-    <img loading="lazy" src="media/kesi/03-loom-demo.jpg" alt="Loom Demo">
+  <div class="project-gallery">
+    <img src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
+    <img src="media/kesi/02-gallery-view.jpg" alt="Gallery">
+    <img src="media/kesi/03-loom-demo.jpg" alt="Loom Demo">
   </div>
-  <div class="meta">
-    <div class="item"><div class="meta-label">Role</div><div class="meta-value">Curator</div></div>
-    <div class="item"><div class="meta-label">Type</div><div class="meta-value">Exhibition</div></div>
-    <div class="item"><div class="meta-label">Location</div><div class="meta-value">Suzhou, China</div></div>
-    <div class="item"><div class="meta-label">Year</div><div class="meta-value">2020-2024</div></div>
+  <div class="project-meta">
+    <div class="item"><div class="label">Role</div><div class="value">Curator</div></div>
+    <div class="item"><div class="label">Type</div><div class="value">Exhibition</div></div>
+    <div class="item"><div class="label">Location</div><div class="value">Suzhou, China</div></div>
+    <div class="item"><div class="label">Year</div><div class="value">2020-2024</div></div>
   </div>
 </section>
 
 <!-- PROJECT 4: Media Night -->
-<section class="project-minimal" id="media-night">
+<section class="project-detail" id="media-night">
   <div class="eyebrow">Project 04</div>
   <h2>Media Night</h2>
   <p class="desc">Pathless Woods — An immersive media experience combining brand storytelling with spatial design. Created atmospheric environments that transport audiences into narrative worlds.</p>
-  <div class="gallery-minimal">
-    <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="media/medianight/02-dinner-tent.jpg" alt="Dinner">
-    <img loading="lazy" src="media/medianight/03-night-bokeh.jpg" alt="Night">
+  <div class="project-gallery">
+    <img src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
+    <img src="media/medianight/02-dinner-tent.jpg" alt="Dinner">
+    <img src="media/medianight/03-night-bokeh.jpg" alt="Night">
   </div>
-  <div class="meta">
-    <div class="item"><div class="meta-label">Role</div><div class="meta-value">Event Director</div></div>
-    <div class="item"><div class="meta-label">Type</div><div class="meta-value">Event Planning</div></div>
-    <div class="item"><div class="meta-label">Location</div><div class="meta-value">China</div></div>
-    <div class="item"><div class="meta-label">Year</div><div class="meta-value">2024</div></div>
+  <div class="project-meta">
+    <div class="item"><div class="label">Role</div><div class="value">Event Director</div></div>
+    <div class="item"><div class="label">Type</div><div class="value">Event Planning</div></div>
+    <div class="item"><div class="label">Location</div><div class="value">China</div></div>
+    <div class="item"><div class="label">Year</div><div class="value">2024</div></div>
   </div>
 </section>
 
@@ -1444,7 +1395,7 @@ video {
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
+        <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Polo Ralph Lauren · Paris · 2026</div>
@@ -1469,7 +1420,7 @@ video {
     <!-- Little little -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Little little" style="width:100%;height:auto;">
+        <img src="media/littlelittle/01-tree-popup.jpg" alt="Little little" style="width:100%;height:auto;">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Paris Fashion Week · 2024-2025</div>
@@ -1486,14 +1437,14 @@ video {
         <p style="font-size:15px;color:var(--text-secondary);line-height:1.6;">嘉定新联会参访蔚来交付中心、浙江大学上海校友会·校友十人行</p>
       </div>
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/comms/01-nio-visit.jpg" alt="NIO" style="width:100%;height:auto;">
+        <img src="media/comms/01-nio-visit.jpg" alt="NIO" style="width:100%;height:auto;">
       </div>
     </div>
 
     <!-- Kesi -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Kesi" style="width:100%;height:auto;">
+        <img src="media/kesi/01-title-wall.jpg" alt="Kesi" style="width:100%;height:auto;">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Heritage · 2020-2024</div>
@@ -1510,14 +1461,14 @@ video {
         <p style="font-size:15px;color:var(--text-secondary);line-height:1.6;">沉浸式媒体体验，打造品牌与用户的深度连接。</p>
       </div>
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Media Night" style="width:100%;height:auto;">
+        <img src="media/medianight/01-sunset-camp.jpg" alt="Media Night" style="width:100%;height:auto;">
       </div>
     </div>
 
     <!-- AI Era -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/ai/02-gallery-wall.jpg" alt="AI Era" style="width:100%;height:auto;">
+        <img src="media/ai/02-gallery-wall.jpg" alt="AI Era" style="width:100%;height:auto;">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">AIGC · 2025</div>
@@ -1567,7 +1518,7 @@ video {
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
+        <img src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Polo Ralph Lauren · Paris · 2026</div>
@@ -1588,29 +1539,29 @@ video {
     <p class="mono">§ 05 — Services</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">What I Do</h2>
     <div class="services-grid">
-      <div class="service-card-minimal"><div class="number">01</div><h3 class="title">AIGC Content</h3><p class="desc">Prompt Engineering, template-based batch production, Midjourney, Stable Diffusion, Claude Code.</p></div>
-      <div class="service-card-minimal"><div class="number">02</div><h3 class="title">Social Media</h3><p class="desc">Instagram, TikTok, Xiaohongshu, content planning, user growth, data analytics.</p></div>
-      <div class="service-card-minimal"><div class="number">03</div><h3 class="title">Visual Design</h3><p class="desc">Brand identity, product design, Adobe Creative Suite, Canva, Procreate.</p></div>
+      <div class="service-card"><div class="service-number">01</div><h3 class="service-title">AIGC Content</h3><p class="service-desc">Prompt Engineering, template-based batch production, Midjourney, Stable Diffusion, Claude Code.</p></div>
+      <div class="service-card"><div class="service-number">02</div><h3 class="service-title">Social Media</h3><p class="service-desc">Instagram, TikTok, Xiaohongshu, content planning, user growth, data analytics.</p></div>
+      <div class="service-card"><div class="service-number">03</div><h3 class="service-title">Visual Design</h3><p class="service-desc">Brand identity, product design, Adobe Creative Suite, Canva, Procreate.</p></div>
     </div>
   </div>
 </section>
 
 <!-- Contact -->
-<section class="contact-minimal">
+<section class="contact-section">
   <div style="max-width:1200px;margin:0 auto;">
     <p class="mono" style="color:rgba(255,255,255,0.5);">§ 06 — Contact</p>
     <h2>Let's talk.</h2>
     <p style="color:rgba(255,255,255,0.7);max-width:500px;">Open to conversations about brand strategy, visual design, and creative collaboration.</p>
-    <div class="grid">
-      <div class="item"><div class="label">Email</div><div class="contact-value"><a href="mailto:jrq13504591125@163.com">jrq13504591125@163.com</a></div></div>
-      <div class="item"><div class="label">Phone</div><div class="contact-value"><a href="tel:16628502768">16628502768</a></div></div>
-      <div class="item"><div class="label">Xiaohongshu</div><div class="contact-value"><a href="https://xhslink.cn/o/AuXXybN00ad" target="_blank">靳观观观 ↗</a></div></div>
-      <div class="item"><div class="label">LinkedIn</div><div class="contact-value"><a href="https://www.linkedin.com/in/ruiqijin/" target="_blank">Ruiqi Jin ↗</a></div></div>
+    <div class="contact-grid">
+      <div class="contact-item"><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:jrq13504591125@163.com">jrq13504591125@163.com</a></div></div>
+      <div class="contact-item"><div class="contact-label">Phone</div><div class="contact-value"><a href="tel:16628502768">16628502768</a></div></div>
+      <div class="contact-item"><div class="contact-label">Xiaohongshu</div><div class="contact-value"><a href="https://xhslink.cn/o/AuXXybN00ad" target="_blank">靳观观观 ↗</a></div></div>
+      <div class="contact-item"><div class="contact-label">LinkedIn</div><div class="contact-value"><a href="https://www.linkedin.com/in/ruiqijin/" target="_blank">Ruiqi Jin ↗</a></div></div>
     </div>
   </div>
 </section>
 
-<footer class="footer-minimal"><p>© 2026 Ruiqi Jin · Visual Culture · Brand Strategy · AIGC</p></footer>
+<footer><p>© 2026 Ruiqi Jin · Visual Culture · Brand Strategy · AIGC</p></footer>
 
 </div>
 
@@ -1650,55 +1601,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
-
-// 图片懒加载优化
-document.addEventListener('DOMContentLoaded', function() {
-  // 为懒加载图片添加加载完成事件
-  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-  
-  lazyImages.forEach(img => {
-    img.addEventListener('load', function() {
-      this.classList.add('loaded');
-    });
-    
-    // 如果图片已经加载完成
-    if (img.complete) {
-      img.classList.add('loaded');
-    }
-  });
-  
-  // 预加载关键图片
-  const criticalImages = [
-    '苹果.png',
-    '苹果型香味扩散器.png'
-  ];
-  
-  criticalImages.forEach(src => {
-    const img = new Image();
-    img.src = src;
-  });
-  
-  // 视频预加载优化
-  const videos = document.querySelectorAll('video');
-  videos.forEach(video => {
-    video.preload = 'metadata';
-    
-    // 当视频进入视口时开始加载
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          video.preload = 'auto';
-          observer.unobserve(video);
-        }
-      });
-    });
-    
-    observer.observe(video);
-  });
-  
-  console.log('图片加载优化已启用');
-});
-
 </script>
 
 </body>
