@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ruiqi Jin — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Michroma&family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,8 +19,35 @@
   --accent-light: #C8D4DC;
   --border: #BEC4CA;
   --font-display: 'Source Serif 4', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-heading: 'Orbitron', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  
+  /* 流体尺寸系统 */
+  --pad-x: clamp(1.25rem, 4.5vw, 5rem);
+  --pad-y: clamp(1rem, 3vh, 4rem);
+  --header-pt: clamp(1.25rem, 2.5vh, 2.5rem);
+  --gap-nav: clamp(1rem, 2.2vw, 2.25rem);
+  --logo: clamp(1.35rem, 1.2vw + 0.9rem, 2.1rem);
+  --logo-deg: clamp(0.65rem, 0.4vw + 0.45rem, 0.9rem);
+  --nav: clamp(0.65rem, 0.35vw + 0.5rem, 0.875rem);
+  --headline: clamp(2.15rem, 4.5vw + 0.75rem, 5.25rem);
+  --body: clamp(0.7rem, 0.35vw + 0.55rem, 0.9rem);
+  --micro: clamp(0.55rem, 0.25vw + 0.45rem, 0.7rem);
+  --btn-px: clamp(1.15rem, 1.4vw, 1.75rem);
+  --btn-py: clamp(0.6rem, 0.9vh, 0.85rem);
+  --btn-gap: clamp(0.75rem, 1vw, 1.1rem);
+  --feature-pad: clamp(1rem, 1.5vw, 1.75rem);
+  --feature-min: clamp(13rem, 18vw, 20rem);
+  --globe: clamp(2.25rem, 2.5vw + 1rem, 3.25rem);
+  --checker-w: clamp(2.75rem, 4.5vw, 6.5rem);
+  --checker-h: clamp(1.35rem, 2.2vw, 3rem);
+  --corner: clamp(0.65rem, 0.4vw + 0.4rem, 0.95rem);
+  --icon: clamp(1rem, 0.6vw + 0.7rem, 1.35rem);
+  --drawer-pad: clamp(1.25rem, 2.5vw, 2.25rem);
+  --drawer-max: clamp(18rem, 28vw, 28rem);
+  --section-gap: clamp(0.75rem, 1.5vh, 1.5rem);
+  --main-py: clamp(1.25rem, 4vh, 4rem);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -527,6 +554,486 @@ footer p { font-size: 13px; color: var(--text-muted); }
   font-size: 14px;
   color: #4ECDC4;
   opacity: 0.6;
+}
+
+
+/* ========== LGPSM风格样式 ========== */
+
+/* 字体类 */
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+.font-chakra { font-family: 'Chakra Petch', sans-serif; }
+
+/* 手绘角括号 */
+.corner-bracket {
+  position: relative;
+}
+
+.corner-bracket::before,
+.corner-bracket::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #1A1A1A;
+}
+
+.corner-bracket::before {
+  top: -6px;
+  left: -6px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner-bracket::after {
+  bottom: -6px;
+  right: -6px;
+  border-left: none;
+  border-top: none;
+}
+
+/* 线框球体 */
+.wireframe-globe {
+  width: var(--globe);
+  height: var(--globe);
+  position: relative;
+}
+
+.wireframe-globe::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border: 1.2px solid #1A1A1A;
+  border-radius: 50%;
+}
+
+.wireframe-globe::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  border: 1.2px solid #1A1A1A;
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+/* 棋盘格装饰 */
+.checkerboard {
+  display: inline-block;
+  width: var(--checker-w);
+  height: var(--checker-h);
+  background-image: 
+    linear-gradient(45deg, #1A1A1A 25%, transparent 25%),
+    linear-gradient(-45deg, #1A1A1A 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #1A1A1A 75%),
+    linear-gradient(-45deg, transparent 75%, #1A1A1A 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  transform: translateY(2px);
+}
+
+/* 侧边抽屉 */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--drawer-max);
+  background: white;
+  border-left: 1px solid var(--border);
+  padding: var(--drawer-pad);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.drawer.active {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawer-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.drawer-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.drawer-close:hover {
+  opacity: 1;
+}
+
+/* 交互式图片揭示 */
+.image-reveal {
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+}
+
+.image-reveal img {
+  transition: transform 0.3s ease;
+}
+
+.image-reveal:hover img {
+  transform: scale(1.05);
+}
+
+/* 极简按钮 */
+.btn-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--btn-gap);
+  padding: var(--btn-py) var(--btn-px);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-minimal:hover {
+  background: var(--text-primary);
+  color: white;
+  border-color: var(--text-primary);
+}
+
+.btn-minimal svg {
+  width: var(--icon);
+  height: var(--icon);
+  transition: transform 0.2s ease;
+}
+
+.btn-minimal:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* 极简导航 */
+.nav-minimal {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--nav);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.nav-minimal:hover {
+  opacity: 1;
+}
+
+/* 极简标题 */
+.heading-minimal {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: var(--headline);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  color: var(--text-primary);
+}
+
+/* 极简正文 */
+.body-minimal {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* 标签样式 */
+.tag-minimal {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--surface);
+  border-radius: 4px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* 卡片样式 */
+.card-minimal {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--feature-pad);
+  transition: all 0.2s ease;
+}
+
+.card-minimal:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 项目详情样式 */
+.project-minimal {
+  padding: var(--main-py) var(--pad-x);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-minimal h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 3vw + 0.5rem, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.project-minimal .desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.project-minimal .meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-minimal .meta-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.project-minimal .meta-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* 图片画廊样式 */
+.gallery-minimal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-minimal img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-minimal img:hover {
+  transform: scale(1.02);
+}
+
+.gallery-minimal .full {
+  grid-column: 1 / -1;
+}
+
+/* 视频样式 */
+.video-minimal {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  margin: 2rem 0;
+}
+
+.video-minimal video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 服务卡片 */
+.service-card-minimal {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.2s ease;
+}
+
+.service-card-minimal:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.service-card-minimal .number {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.service-card-minimal .title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card-minimal .desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 联系方式 */
+.contact-minimal {
+  background: var(--text-primary);
+  color: white;
+  padding: 4rem var(--pad-x);
+}
+
+.contact-minimal h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 2rem;
+}
+
+.contact-minimal .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-minimal .item {
+  padding: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+}
+
+.contact-minimal .label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.5rem;
+}
+
+.contact-minimal .value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  font-weight: 500;
+}
+
+/* 页脚 */
+.footer-minimal {
+  padding: 2rem var(--pad-x);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-minimal p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* 滚动显示动画 */
+.scroll-reveal-minimal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal-minimal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .gallery-minimal {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-minimal .meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .contact-minimal .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .drawer {
+    width: 100%;
+  }
 }
 
 </style>
