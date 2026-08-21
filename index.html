@@ -830,3 +830,369 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 </body>
 </html>
+/* ========== 拼贴风格动效系统 ========== */
+
+/* 1. 纸张纹理背景 */
+.paper-texture {
+  position: relative;
+  background: #E8E6E1;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.4'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='paper2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper2)' opacity='0.25'/%3E%3C/svg%3E");
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.08),
+    0 4px 16px rgba(0,0,0,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/* 2. 纸张卡片样式 */
+.paper-card {
+  background: #E8E6E1;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='card'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23card)' opacity='0.35'/%3E%3C/svg%3E");
+  border: 1px solid rgba(200,200,200,0.6);
+  border-radius: 12px;
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.08),
+    0 8px 24px rgba(0,0,0,0.04),
+    inset 0 2px 0 rgba(255,255,255,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.paper-card:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.12),
+    0 16px 40px rgba(0,0,0,0.08),
+    inset 0 2px 0 rgba(255,255,255,0.5);
+}
+
+/* 3. 纸张便签样式 */
+.paper-note {
+  background: #F5F3EE;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='note'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23note)' opacity='0.3'/%3E%3C/svg%3E");
+  border: 1px solid rgba(200,200,200,0.5);
+  border-radius: 8px;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.06),
+    0 4px 16px rgba(0,0,0,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  padding: 24px;
+  position: relative;
+}
+
+.paper-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1);
+  border-radius: 8px 8px 0 0;
+}
+
+/* 4. 动画关键帧 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rotateIn {
+  from { transform: rotate(-10deg) scale(0.9); opacity: 0; }
+  to { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* 5. 动画类 */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-rotate {
+  animation: rotateIn 0.6s ease-out forwards;
+}
+
+.animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+/* 6. 交错动画延迟 */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* 7. 图片悬停效果 */
+.img-hover-zoom {
+  transition: transform 0.5s ease;
+}
+
+.img-hover-zoom:hover {
+  transform: scale(1.05);
+}
+
+.img-hover-rotate {
+  transition: transform 0.5s ease;
+}
+
+.img-hover-rotate:hover {
+  transform: rotate(2deg) scale(1.02);
+}
+
+.img-hover-float {
+  transition: transform 0.3s ease;
+}
+
+.img-hover-float:hover {
+  transform: translateY(-8px);
+}
+
+/* 8. 纸张边框效果 */
+.paper-frame {
+  border: 8px solid #E8E6E1;
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.1),
+    inset 0 2px 0 rgba(255,255,255,0.5);
+  background: #E8E6E1;
+}
+
+/* 9. 胶带效果 */
+.washi-tape {
+  position: relative;
+}
+
+.washi-tape::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background: rgba(255,200,200,0.6);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 10. 纸张折叠效果 */
+.paper-fold {
+  position: relative;
+}
+
+.paper-fold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.05) 50%);
+  border-radius: 0 8px 0 0;
+}
+
+/* 11. 纸张阴影效果 */
+.paper-shadow {
+  box-shadow: 
+    0 4px 8px rgba(0,0,0,0.1),
+    0 8px 16px rgba(0,0,0,0.05),
+    0 16px 32px rgba(0,0,0,0.025);
+}
+
+.paper-shadow-strong {
+  box-shadow: 
+    0 8px 16px rgba(0,0,0,0.15),
+    0 16px 32px rgba(0,0,0,0.1),
+    0 32px 64px rgba(0,0,0,0.05);
+}
+
+/* 12. 手绘装饰元素 */
+.hand-drawn-border {
+  border: 2px solid #333;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.hand-drawn-circle {
+  border: 2px solid #333;
+  border-radius: 50%;
+}
+
+/* 13. 漂浮纸张效果 */
+.floating-paper {
+  position: absolute;
+  background: #F5F3EE;
+  border: 1px solid rgba(200,200,200,0.5);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: rotate(var(--rotation, 5deg));
+  animation: float 8s ease-in-out infinite;
+}
+
+/* 14. 颗粒纹理效果 */
+.grain-texture {
+  position: relative;
+}
+
+.grain-texture::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 15. 滚动显示动画 */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+// ========== 拼贴风格动效JavaScript ==========
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // 1. 滚动显示动效
+  const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  scrollRevealElements.forEach(el => {
+    observer.observe(el);
+  });
+  
+  // 2. 为项目详情添加滚动显示类
+  const projectDetails = document.querySelectorAll('.project-detail');
+  projectDetails.forEach((project, index) => {
+    project.classList.add('scroll-reveal');
+    project.style.animationDelay = `${index * 0.1}s`;
+    observer.observe(project);
+  });
+  
+  // 3. 为图片添加悬停效果
+  const images = document.querySelectorAll('.project-gallery img, .gallery-img img');
+  images.forEach(img => {
+    img.classList.add('img-hover-zoom');
+  });
+  
+  // 4. 为卡片添加纸张效果
+  const cards = document.querySelectorAll('.paper-card');
+  cards.forEach(card => {
+    card.classList.add('paper-shadow');
+  });
+  
+  // 5. 添加漂浮纸张装饰
+  function createFloatingPaper() {
+    const paper = document.createElement('div');
+    paper.className = 'floating-paper';
+    paper.style.cssText = `
+      width: ${Math.random() * 100 + 50}px;
+      height: ${Math.random() * 80 + 40}px;
+      top: ${Math.random() * 100}%;
+      left: ${Math.random() * 100}%;
+      --rotation: ${Math.random() * 20 - 10}deg;
+      opacity: ${Math.random() * 0.3 + 0.1};
+      z-index: -1;
+    `;
+    document.body.appendChild(paper);
+  }
+  
+  // 创建5个漂浮纸张
+  for (let i = 0; i < 5; i++) {
+    createFloatingPaper();
+  }
+  
+  // 6. 为标题添加手绘边框效果
+  const headings = document.querySelectorAll('h2, h3');
+  headings.forEach(heading => {
+    heading.style.fontFamily = 'var(--font-display)';
+  });
+  
+  // 7. 添加视差滚动效果
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.parallax');
+    
+    parallaxElements.forEach(el => {
+      const speed = el.dataset.speed || 0.5;
+      el.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+  });
+  
+  // 8. 为导航添加滚动效果
+  const nav = document.querySelector('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+  }
+  
+  console.log('拼贴风格动效已加载');
+});
