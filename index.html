@@ -1364,6 +1364,56 @@ video {
   transform: scale(1);
 }
 
+
+/* ========== 动效系统 ========== */
+
+/* 滚动渐入 */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 图片视差容器 */
+.parallax-img {
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+/* 标题打字机光标 */
+.typewriter::after {
+  content: '|';
+  animation: blink 0.7s infinite;
+  color: var(--text-primary);
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 鼠标跟随放大 */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+/* section过渡 */
+.section-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section-transition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 <body>
@@ -1610,8 +1660,8 @@ video {
     </div>
     
 <div class="gallery-minimal">
-    <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full img-hand-drawn-hover">
-    <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="img-hand-drawn-hover">
+    <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="parallax-img" data-speed="0.3" class="full img-hand-drawn-hover">
+    <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="parallax-img" data-speed="0.2" class="img-hand-drawn-hover">
     <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="img-hand-drawn-hover">
     <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="img-hand-drawn-hover">
   </div>
@@ -2422,6 +2472,86 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => { preloader.remove(); }, 600);
   }, 1200);
 })();
+</script>
+
+
+<script>
+// ========== 动效系统 ==========
+
+// 1. 滚动渐入 + section过渡
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// 为所有section添加过渡效果
+document.querySelectorAll('section').forEach(section => {
+  section.classList.add('section-transition');
+  fadeObserver.observe(section);
+});
+
+// 2. 图片视差
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      const scrollY = window.pageYOffset;
+      document.querySelectorAll('.parallax-img').forEach(img => {
+        const speed = parseFloat(img.dataset.speed) || 0.3;
+        const rect = img.getBoundingClientRect();
+        const offset = (rect.top + scrollY) * speed;
+        img.style.transform = `translateY(${offset * 0.1}px)`;
+      });
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// 3. 标题打字机效果
+function typewriterEffect(element) {
+  const text = element.textContent;
+  element.textContent = '';
+  element.classList.add('typewriter');
+  let i = 0;
+  const timer = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+    if (i >= text.length) {
+      clearInterval(timer);
+      setTimeout(() => element.classList.remove('typewriter'), 2000);
+    }
+  }, 80);
+}
+
+// 为h1标题添加打字机效果（仅首页）
+const heroTitle = document.querySelector('.hero h1, .display-xl');
+if (heroTitle) {
+  const titleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        typewriterEffect(entry.target);
+        titleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  titleObserver.observe(heroTitle);
+}
+
+// 4. 鼠标跟随放大
+document.querySelectorAll('img, .gallery-img, .project-gallery img').forEach(el => {
+  el.classList.add('hover-scale');
+});
+
+console.log('动效系统已加载');
 </script>
 
 </body>
