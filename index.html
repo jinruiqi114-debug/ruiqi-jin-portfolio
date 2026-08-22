@@ -383,7 +383,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
 /* ========== 图片动效增强 ========== */
 
 /* 1. 手绘边框效果 */
-.{
+.hand-drawn-border {
   border: 3px solid #333;
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
@@ -1627,15 +1627,9 @@ video {
   #about .container { grid-template-columns: 1fr; gap: 32px; }
   
   /* Gallery区域 */
-  .gallery-stack { width: 250px; height: 330px; }
-  .gallery-card.spread[data-index="0"] { transform: translate(-60px, -40px) rotate(-5deg) scale(0.9); }
-  .gallery-card.spread[data-index="1"] { transform: translate(50px, -30px) rotate(3deg) scale(0.92); }
-  .gallery-card.spread[data-index="2"] { transform: translate(-40px, 30px) rotate(-3deg) scale(0.88); }
-  .gallery-card.spread[data-index="3"] { transform: translate(60px, 40px) rotate(4deg) scale(0.9); }
-  .gallery-card.spread[data-index="4"] { transform: translate(-70px, 10px) rotate(-4deg) scale(0.85); }
-  .gallery-card.spread[data-index="5"] { transform: translate(40px, -50px) rotate(2deg) scale(0.87); }
-  .gallery-card.spread[data-index="6"] { transform: translate(-30px, 50px) rotate(-3deg) scale(0.86); }
-  .gallery-card.spread[data-index="7"] { transform: translate(70px, 20px) rotate(5deg) scale(0.88); }
+  .gallery-stack { width: 280px; height: 200px; }
+  .gallery-card { width: 160px; height: 220px; left: 50%; top: 50%; margin-left: -80px; margin-top: -110px; }
+  /* 手机端卡片散开已移除 - 改为完全重叠轮播 */
   
   /* 项目详情 */
   .project-detail { padding: 60px 16px; }
@@ -1670,7 +1664,8 @@ video {
 
 @media (max-width: 480px) {
   .hero h1 { font-size: 28px !important; }
-  .gallery-stack { width: 200px; height: 270px; }
+  .gallery-stack { width: 240px; height: 180px; }
+  .gallery-card { width: 140px; height: 190px; left: 50%; top: 50%; margin-left: -70px; margin-top: -95px; }
   .project-detail h2 { font-size: 24px; }
 }
 
@@ -1864,8 +1859,11 @@ video {
 }
 
 
-/* ========== 粒子效果 ========== */
-#particles-canvas {
+
+
+
+/* ========== 噪点水波纹理 ========== */
+.noise-wave-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -1873,14 +1871,873 @@ video {
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.6;
+  opacity: 0.3;
+}
+
+.noise-wave-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  animation: noiseShift 8s linear infinite;
+}
+
+.noise-wave-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(107, 123, 141, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(200, 212, 220, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(107, 123, 141, 0.08) 0%, transparent 60%);
+  animation: waveFloat 12s ease-in-out infinite;
+}
+
+@keyframes noiseShift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, 5px); }
+  50% { transform: translate(5px, -5px); }
+  75% { transform: translate(-3px, -3px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes waveFloat {
+  0%, 100% { 
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(107, 123, 141, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(200, 212, 220, 0.1) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 80%, rgba(107, 123, 141, 0.08) 0%, transparent 60%);
+  }
+  33% { 
+    background: 
+      radial-gradient(ellipse at 30% 30%, rgba(107, 123, 141, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 60%, rgba(200, 212, 220, 0.12) 0%, transparent 40%),
+      radial-gradient(ellipse at 40% 70%, rgba(107, 123, 141, 0.1) 0%, transparent 60%);
+  }
+  66% { 
+    background: 
+      radial-gradient(ellipse at 60% 40%, rgba(107, 123, 141, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 25% 75%, rgba(200, 212, 220, 0.08) 0%, transparent 40%),
+      radial-gradient(ellipse at 75% 30%, rgba(107, 123, 141, 0.12) 0%, transparent 60%);
+  }
+}
+
+/* ========== 拼贴风格动效系统 ========== */
+
+/* 1. 纸张纹理背景 */
+.paper-texture {
+  position: relative;
+  background: #E8E6E1;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.4'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='paper2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper2)' opacity='0.25'/%3E%3C/svg%3E");
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.08),
+    0 4px 16px rgba(0,0,0,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+/* 2. 纸张卡片样式 */
+.paper-card {
+  background: #E8E6E1;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='card'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23card)' opacity='0.35'/%3E%3C/svg%3E");
+  border: 1px solid rgba(200,200,200,0.6);
+  border-radius: 8px;
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.08),
+    0 8px 24px rgba(0,0,0,0.04),
+    inset 0 2px 0 rgba(255,255,255,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.paper-card:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: 
+    0 8px 24px rgba(0,0,0,0.12),
+    0 16px 40px rgba(0,0,0,0.08),
+    inset 0 2px 0 rgba(255,255,255,0.5);
+}
+
+/* 3. 纸张便签样式 */
+.paper-note {
+  background: #F5F3EE;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='note'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23note)' opacity='0.3'/%3E%3C/svg%3E");
+  border: 1px solid rgba(200,200,200,0.5);
+  border-radius: 8px;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.06),
+    0 4px 16px rgba(0,0,0,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  padding: 24px;
+  position: relative;
+}
+
+.paper-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1);
+  border-radius: 8px 8px 0 0;
+}
+
+/* 4. 动画关键帧 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rotateIn {
+  from { transform: rotate(-10deg) scale(0.9); opacity: 0; }
+  to { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* 5. 动画类 */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-rotate {
+  animation: rotateIn 0.6s ease-out forwards;
+}
+
+.animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+/* 6. 交错动画延迟 */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* 7. 图片悬停效果 */
+.img-hover-zoom {
+  transition: transform 0.5s ease;
+}
+
+.img-hover-zoom:hover {
+  transform: scale(1.05);
+}
+
+.img-hover-rotate {
+  transition: transform 0.5s ease;
+}
+
+.img-hover-rotate:hover {
+  transform: rotate(2deg) scale(1.02);
+}
+
+.img-hover-float {
+  transition: transform 0.3s ease;
+}
+
+.img-hover-float:hover {
+  transform: translateY(-8px);
+}
+
+/* 8. 纸张边框效果 */
+.paper-frame {
+  border: 8px solid #E8E6E1;
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 12px rgba(0,0,0,0.1),
+    inset 0 2px 0 rgba(255,255,255,0.5);
+  background: #E8E6E1;
+}
+
+/* 9. 胶带效果 */
+.washi-tape {
+  position: relative;
+}
+
+.washi-tape::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 20px;
+  background: rgba(255,200,200,0.6);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(139,115,85,0.08);
+}
+
+/* 10. 纸张折叠效果 */
+.paper-fold {
+  position: relative;
+}
+
+.paper-fold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.05) 50%);
+  border-radius: 0 8px 0 0;
+}
+
+/* 11. 纸张阴影效果 */
+.paper-shadow {
+  box-shadow: 
+    0 4px 8px rgba(0,0,0,0.1),
+    0 8px 16px rgba(0,0,0,0.05),
+    0 16px 32px rgba(0,0,0,0.025);
+}
+
+.paper-shadow-strong {
+  box-shadow: 
+    0 8px 16px rgba(0,0,0,0.15),
+    0 16px 32px rgba(0,0,0,0.1),
+    0 32px 64px rgba(0,0,0,0.05);
+}
+
+/* 12. 手绘装饰元素 */
+.hand-drawn-frame {
+  border: 2px solid #333;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.hand-drawn-circle {
+  border: 2px solid #333;
+  border-radius: 50%;
+}
+
+/* 13. 漂浮纸张效果 */
+.floating-paper {
+  position: absolute;
+  background: #F5F3EE;
+  border: 1px solid rgba(200,200,200,0.5);
+  box-shadow: 0 4px 12px rgba(139,115,85,0.10);
+  transform: rotate(var(--rotation, 5deg));
+  animation: float 8s ease-in-out infinite;
+}
+
+/* 14. 颗粒纹理效果 */
+.grain-texture {
+  position: relative;
+}
+
+.grain-texture::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 15. 滚动显示动画 */
+.scroll-reveal-disabled {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal-disabled.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+// ========== 拼贴风格动效JavaScript ==========
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // 1. 滚动显示动效
+  const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  scrollRevealElements.forEach(el => {
+    observer.observe(el);
+  });
+  
+  // 2. 为项目详情添加滚动显示类
+  const projectDetails = document.querySelectorAll('.project-detail');
+  projectDetails.forEach((project, index) => {
+    // project.classList.add('scroll-reveal'); // 禁用滚动显示，确保默认可见
+    project.style.animationDelay = `${index * 0.1}s`;
+    observer.observe(project);
+  });
+  
+  // 3. 为图片添加悬停效果
+  const images = document.querySelectorAll('.project-gallery img, .gallery-img img');
+  images.forEach(img => {
+    img.classList.add('img-hover-zoom');
+  });
+  
+  // 4. 为卡片添加纸张效果
+  const cards = document.querySelectorAll('.paper-card');
+  cards.forEach(card => {
+    card.classList.add('paper-shadow');
+  });
+  
+  // 5. 添加漂浮纸张装饰
+  function createFloatingPaper() {
+    const paper = document.createElement('div');
+    paper.className = 'floating-paper';
+    paper.style.cssText = `
+      width: ${Math.random() * 100 + 50}px;
+      height: ${Math.random() * 80 + 40}px;
+      top: ${Math.random() * 100}%;
+      left: ${Math.random() * 100}%;
+      --rotation: ${Math.random() * 20 - 10}deg;
+      opacity: ${Math.random() * 0.3 + 0.1};
+      z-index: -1;
+    `;
+    document.body.appendChild(paper);
+  }
+  
+  // 创建5个漂浮纸张
+  for (let i = 0; i < 5; i++) {
+    createFloatingPaper();
+  }
+  
+  // 6. 为标题添加手绘边框效果
+  const headings = document.querySelectorAll('h2, h3');
+  headings.forEach(heading => {
+    heading.style.fontFamily = 'var(--font-display)';
+  });
+  
+  // 7. 添加视差滚动效果
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.parallax');
+    
+    parallaxElements.forEach(el => {
+      const speed = el.dataset.speed || 0.5;
+      el.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+  });
+  
+  // 8. 为导航添加滚动效果
+  const nav = document.querySelector('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+  }
+  
+  console.log('拼贴风格动效已加载');
+});
+
+/* ========== 移动端优化 ========== */
+@media (max-width: 768px) {
+  /* 确保所有内容单列显示 */
+  .scroll-section { grid-template-columns: 1fr !important; }
+  .services-grid { grid-template-columns: 1fr !important; }
+  .contact-grid { grid-template-columns: 1fr !important; }
+  .project-gallery { grid-template-columns: 1fr !important; }
+  .project-meta { grid-template-columns: 1fr !important; }
+  
+  /* 优化间距 */
+  .hero { padding: 60px 20px 40px !important; }
+  .scroll-section { padding: 60px 20px !important; }
+  .project-detail { padding: 60px 20px !important; }
+  .services-grid { padding: 0 20px !important; }
+  .contact-section { padding: 60px 20px !important; }
+  
+  /* 优化图片显示 */
+  .gallery-img { 
+    width: 100% !important; 
+    height: auto !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin-bottom: 16px;
+  }
+  
+  /* 优化卡片显示 */
+  .service-card { 
+    width: 100% !important;
+    margin-bottom: 16px;
+  }
+  
+  /* 优化按钮 */
+  .btn { 
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  /* 优化导航 */
+  .nav-links { display: none !important; }
+  nav .container { padding: 0 16px !important; }
+  
+  /* 优化Hero区域 */
+  .hero h1 { font-size: 32px !important; }
+  .hero p { font-size: 14px !important; }
+  .hero-buttons { flex-direction: column !important; gap: 12px !important; }
+  
+  /* 优化项目详情 */
+  .project-detail h2 { font-size: 24px !important; }
+  .project-detail .desc { font-size: 14px !important; }
+  
+  /* 优化服务卡片 */
+  .service-card { padding: 20px !important; }
+  .service-number { font-size: 32px !important; }
+  .service-title { font-size: 16px !important; }
+  .service-desc { font-size: 13px !important; }
+  
+  /* 优化联系区域 */
+  .contact-section h2 { font-size: 28px !important; }
+  .contact-item { padding: 16px !important; }
+  
+  /* 优化页脚 */
+  footer { padding: 24px 20px !important; }
+  
+  /* 优化语言切换按钮 */
+  #btn-zh, #btn-en { 
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+  
+  /* 优化Preloader */
+  .preloader-brand { font-size: 48px !important; }
+  
+  /* 优化滚动指示器 */
+  .scroll-indicator { bottom: 20px !important; }
+  
+  /* 优化Gallery区域 */
+  .gallery-stack { width: 250px !important; height: 330px !important; }
+  /* 手机端卡片散开已移除 - 改为完全重叠轮播 */
+  
+  /* 优化视频显示 */
+  .video-minimal { max-width: 100% !important; }
+  
+  /* 优化图片显示 */
+  img { max-width: 100% !important; height: auto !important; }
+  
+  /* 优化表格显示 */
+  table { display: block !important; overflow-x: auto !important; }
+  
+  /* 优化表单显示 */
+  input, textarea, select { width: 100% !important; }
+  
+  /* 优化按钮点击区域 */
+  button, a.btn { min-height: 44px !important; min-width: 44px !important; }
+}
+
+/* 平板优化 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero { padding: 80px 32px 60px !important; }
+  .hero h1 { font-size: 48px !important; }
+  .gallery-stack { width: 350px !important; height: 450px !important; }
+  .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .contact-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .gallery-card { cursor: default !important; }
+  .hover-scale:hover { transform: none !important; }
+  .btn:hover { transform: none !important; }
+  
+  /* 增大点击区域 */
+  .btn, a, button { min-height: 44px !important; min-width: 44px !important; }
+}
+
+/* 减少动画（用户偏好） */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-indicator { display: none !important; }
+}
+
+
+
+/* ========== 手机端叠放修复 ========== */
+
+/* Hero - 移动端改为相对定位，防止溢出 */
+@media (max-width: 768px) {
+  .hero {
+    position: relative !important;
+    min-height: 100vh !important;
+  }
+  .hero-content {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    padding: 80px 16px 40px;
+  }
+  /* Fallback: ensure hero title is visible even if JS animation fails */
+  .hero-title-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* 手机端：禁用渐变文字，使用纯色 */
+  .hero-content h1.gradient-text {
+    background: none !important;
+    -webkit-text-fill-color: var(--text-primary) !important;
+    color: var(--text-primary) !important;
+  }
+  
+  /* About 区域手机端优化 */
+  #about {
+    padding: 60px 16px !important;
+    min-height: auto !important;
+  }
+  #about .container {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  
+  /* Scroll section 手机端 */
+  .scroll-section {
+    grid-template-columns: 1fr !important;
+    padding: 60px 16px !important;
+    min-height: auto !important;
+  }
+  .marquee-container {
+    height: 30vh !important;
+  }
+  
+  /* Gallery 手机端：全屏沉浸式 */
+  .gallery-section {
+    min-height: 100vh !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+  .gallery-sticky {
+    position: relative !important;
+    height: 100vh !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+  .gallery-stack {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: relative !important;
+  }
+  .gallery-title {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 20 !important;
+    font-size: 24px !important;
+    text-align: center !important;
+    color: white !important;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5) !important;
+    pointer-events: none !important;
+    margin-bottom: 0 !important;
+  }
+  .gallery-counter {
+    position: absolute !important;
+    bottom: 40px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 20 !important;
+    text-align: center !important;
+    color: white !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+    font-size: 16px !important;
+    letter-spacing: 0.2em !important;
+  }
+  .gallery-card,
+  .gallery-card.spread,
+  .gallery-card.active,
+  .gallery-card.prev,
+  .gallery-card.next,
+  .gallery-card.hidden {
+    width: 100vw !important;
+    height: 100vh !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease !important;
+  }
+  .gallery-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  .gallery-card.active {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
+  }
+  .gallery-card.prev {
+    transform: translateX(-100%) !important;
+    opacity: 1 !important;
+    z-index: 5 !important;
+  }
+  .gallery-card.next {
+    transform: translateX(100%) !important;
+    opacity: 1 !important;
+    z-index: 5 !important;
+  }
+  .gallery-card.hidden {
+    transform: translateX(0) !important;
+    opacity: 0 !important;
+    z-index: 1 !important;
+  }
+  .gallery-card.spread {
+    transform: translateX(0) !important;
+    opacity: 0 !important;
+    z-index: 1 !important;
+  }
+  .gallery-swipe-hint {
+    display: flex !important;
+    position: absolute !important;
+    bottom: 80px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 25 !important;
+    align-items: center !important;
+    gap: 8px !important;
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 13px !important;
+    animation: swipeHint 2s ease-in-out infinite !important;
+  }
+  @keyframes swipeHint {
+    0%, 100% { transform: translateX(-50%); opacity: 0.7; }
+    50% { transform: translateX(-40%); opacity: 1; }
+  }
+  
+  /* 项目区域手机端 */
+  .project-minimal {
+    padding: 40px 16px !important;
+  }
+  .project-minimal h2 {
+    font-size: 24px !important;
+  }
+  .project-minimal .meta {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+  .gallery-minimal {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  
+  /* 内联 grid 手机端单列 */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: repeat(2,1fr)"],
+  div[style*="grid-template-columns:repeat(2,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Section padding 手机端 */
+  .section-padded {
+    padding: 60px 16px !important;
+  }
+  
+  /* Contact 手机端 */
+  .contact-minimal .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Services 手机端 */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Footer 手机端 */
+  footer {
+    padding: 32px 16px !important;
+  }
+
+  .gallery-card {
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+  }
+  /* 手机端：去掉散开状态，卡片默认完全重叠 */
+  .gallery-card.spread {
+    transform: scale(1) rotate(0deg) !important;
+    opacity: 1 !important;
+  }
+  .gallery-card.active {
+    transform: scale(1) rotate(0deg) !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
+  }
+  .gallery-card.prev {
+    transform: scale(0.95) !important;
+    opacity: 0 !important;
+    z-index: 5 !important;
+  }
+  .gallery-card.next {
+    transform: scale(1.05) !important;
+    opacity: 0 !important;
+    z-index: 5 !important;
+  }
+  .gallery-card.hidden {
+    opacity: 0 !important;
+    z-index: 1 !important;
+  }
+  .gallery-counter {
+    font-size: 14px !important;
+  }
+  .gallery-title {
+    font-size: 28px !important;
+    margin-bottom: 24px !important;
+  }
+  .hero > div[style*="position:absolute"] > div:first-child {
+    display: none;
+  }
+  
+  /* 所有内联 grid 在手机端单列 */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: repeat(2,1fr)"],
+  div[style*="grid-template-columns:repeat(2,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Project meta 4列改2列 */
+  .project-minimal .meta {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  /* Contact minimal 4列改单列 */
+  .contact-minimal .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* 减小 section padding */
+  .section-padded {
+    padding: 60px 16px !important;
+  }
+  /* Also target the research/runway/projects sections by reducing their container padding */
+  section > div[style*="max-width:1200px"] {
+    padding: 0 !important;
+  }
+  
+  /* Hero video - 手机端隐藏视频，保留渐变背景 */
+  .hero video {
+    display: none;
+  }
+  
+  /* 图片网格子元素 */
+  div[style*="grid-template-columns:1fr 1fr"] img,
+  div[style*="grid-template-columns: repeat(2,1fr)"] img,
+  div[style*="grid-template-columns:repeat(2,1fr)"] img {
+    width: 100%;
+  }
+}
+
+/* 超小屏幕进一步优化 */
+@media (max-width: 480px) {
+  .project-minimal .meta {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: repeat(2,1fr)"],
+  div[style*="grid-template-columns:repeat(2,1fr)"] {
+    gap: 12px !important;
+  }
+  .gallery-minimal {
+    gap: 0.75rem !important;
+  }
 }
 
 </style>
 </head>
 <body>
-<!-- 粒子效果 -->
-<canvas id="particles-canvas"></canvas>
+<!-- 噪点水波纹理 -->
+<div class="noise-wave-bg"></div>
+
 
 <!-- 滚动进度条 -->
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -1953,7 +2810,7 @@ video {
   </div>
   
   <!-- Content on bottom left -->
-  <div style="position:absolute;left:40px;bottom:60px;width:400px;z-index:2;">
+  <div class="hero-content" style="position:absolute;left:40px;bottom:60px;width:400px;z-index:2;">
     <span class="mono">Portfolio · 2026</span>
     <h1 class="display-xl" style="font-size:56px;margin-top:12px;">
           <span class="hero-title-line">靳睿琦</span>
@@ -2379,54 +3236,10 @@ video {
   </div>
 </section>
 
-<!-- Research -->
-<section style="padding: 140px 24px; background: rgba(200,200,210,0.3);">
-  <div style="max-width:1200px;margin:0 auto;">
-    <p class="mono">§ 03 — Research</p>
-    <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">To See and to Be Seen</h2>
-    <p style="font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:48px;">研究当代高级时装屋如何通过秀场的视觉与空间组织建构文化权威。三个品牌案例研究：Valentino、Avavav、Miu Miu。</p>
-    
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
-      <div style="background:var(--surface);padding:32px;border-radius:8px;">
-        <div class="caption" style="margin-bottom:12px;">M.A. Thesis · 2026</div>
-        <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:12px;">To See and to Be Seen</h3>
-        <p style="font-size:15px;color:var(--text-secondary);line-height:1.6;">高级时装中的视觉机制与文化权威构建</p>
-      </div>
-      <div style="background:var(--surface);padding:32px;border-radius:8px;">
-        <div class="caption" style="margin-bottom:12px;">Method</div>
-        <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:12px;">Qualitative Research</h3>
-        <p style="font-size:15px;color:var(--text-secondary);line-height:1.6;">质性研究 · 视觉分析</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Runway -->
-<section style="padding: 140px 24px;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <p class="mono">§ 04 — Runway</p>
-    <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">Seen and to be seen</h2>
-    <p style="font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:48px;">模特经历是我理解所研究课题的起点。站在被看的位置，你切身感受到身体如何被规训、凝视如何被组织、品牌如何将在场转化为意义。</p>
-    
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
-      <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="img-hand-drawn-hover">
-      </div>
-      <div>
-        <div class="caption" style="margin-bottom:12px;">Polo Ralph Lauren · Paris · 2026</div>
-        <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:12px;">The static show as visual discipline</h3>
-        <p style="font-size:15px;color:var(--text-secondary);line-height:1.6;">"你不是快速走过然后离开，而是持续暴露在凝视之下。在那个空间里，我不是一个人，而是品牌的一个视觉元素。"</p>
-        <div style="margin-top:20px;display:flex;gap:24px;">
-          <div><div class="caption">Duration</div><div style="font-size:20px;font-weight:500;margin-top:4px;">3.5 hrs</div></div>
-          <div><div class="caption">Position</div><div style="font-size:20px;font-weight:500;margin-top:4px;">Salon · Static</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- Projects from GitHub -->
-<section style="padding: 140px 24px;">
+<section class="section-padded" style="padding: 140px 24px;">
   <div style="max-width:1200px;margin:0 auto;">
     <p class="mono">§ 02 — Selected Projects</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">From research to runway</h2>
@@ -2495,7 +3308,7 @@ video {
 </section>
 
 <!-- Research -->
-<section style="padding: 140px 24px; background: rgba(200,200,210,0.3);">
+<section class="section-padded" style="padding: 140px 24px; background: rgba(200,200,210,0.3);">
   <div style="max-width:1200px;margin:0 auto;">
     <p class="mono">§ 03 — Research</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">To See and to Be Seen</h2>
@@ -2525,7 +3338,7 @@ video {
 </section>
 
 <!-- Runway -->
-<section style="padding: 140px 24px;">
+<section class="section-padded" style="padding: 140px 24px;">
   <div style="max-width:1200px;margin:0 auto;">
     <p class="mono">§ 04 — Runway</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">Seen and to be seen</h2>
@@ -2549,7 +3362,7 @@ video {
 </section>
 
 <!-- Services -->
-<section style="padding: 140px 24px;">
+<section class="section-padded" style="padding: 140px 24px;">
   <div style="max-width:1200px;margin:0 auto;">
     <p class="mono">§ 05 — Services</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">What I Do</h2>
@@ -3039,9 +3852,9 @@ function typewriterEffect(element) {
   }, 80);
 }
 
-// 为h1标题添加打字机效果（仅首页）
+// 为h1标题添加打字机效果（仅桌面端）
 const heroTitle = document.querySelector('.hero h1, .display-xl');
-if (heroTitle) {
+if (heroTitle && window.innerWidth > 768) {
   const titleObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -3051,6 +3864,11 @@ if (heroTitle) {
     });
   }, { threshold: 0.5 });
   titleObserver.observe(heroTitle);
+} else if (heroTitle) {
+  // 手机端：直接显示标题，不使用打字机效果
+  heroTitle.querySelectorAll('.hero-title-line').forEach(line => {
+    line.classList.add('visible');
+  });
 }
 
 // 4. 鼠标跟随放大
@@ -3076,10 +3894,17 @@ setTimeout(() => {
   let currentIndex = 0;
   let isGathered = false;
   
-  // 初始化 - 散开状态
-  cards.forEach(card => {
-    card.classList.add('spread');
-  });
+  // 初始化 - 手机端直接堆叠，桌面端散开
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    // 手机端：直接显示第一张，不需要散开状态
+    isGathered = true;
+    updateCards(0);
+  } else {
+    cards.forEach(card => {
+      card.classList.add('spread');
+    });
+  }
   
   function updateCards(activeIndex) {
     cards.forEach((card, i) => {
@@ -3105,8 +3930,9 @@ setTimeout(() => {
   // 滚动监听
   let lastScrollY = window.scrollY;
   let scrollAccumulator = 0;
-  const scrollThreshold = 150;
-  const gatherThreshold = 300; // 滚动多少像素开始聚拢
+  const isMobileScroll = window.innerWidth <= 768;
+  const scrollThreshold = isMobileScroll ? 80 : 150;  // 手机端更灵敏
+  const gatherThreshold = isMobileScroll ? 0 : 300;   // 手机端不需要聚拢阶段
   
   window.addEventListener('scroll', () => {
     if (!gallerySection) return;
@@ -3199,129 +4025,7 @@ document.querySelectorAll('h1, h2').forEach(heading => {
 });
 
 
-// ========== 粒子效果 ==========
-(function() {
-  const canvas = document.getElementById('particles-canvas');
-  if (!canvas) return;
-  
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let mouseX = 0;
-  let mouseY = 0;
-  let animationId;
-  
-  // 设置canvas尺寸
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  
-  // 粒子类
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-    
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 2 + 0.5;
-      this.speedX = (Math.random() - 0.5) * 0.5;
-      this.speedY = (Math.random() - 0.5) * 0.5;
-      this.opacity = Math.random() * 0.5 + 0.1;
-      this.color = `rgba(26, 26, 26, ${this.opacity})`;
-    }
-    
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      
-      // 边界检测
-      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      
-      // 鼠标交互 - 粒子散开
-      const dx = this.x - mouseX;
-      const dy = this.y - mouseY;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      if (distance < 100) {
-        const force = (100 - distance) / 100;
-        this.x += dx * force * 0.02;
-        this.y += dy * force * 0.02;
-      }
-    }
-    
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-    }
-  }
-  
-  // 初始化粒子
-  function initParticles() {
-    particles = [];
-    const particleCount = Math.min(80, Math.floor(canvas.width * canvas.height / 15000));
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-  }
-  
-  // 绘制连线
-  function drawLines() {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 120) {
-          const opacity = (1 - distance / 120) * 0.15;
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(26, 26, 26, ${opacity})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
-      }
-    }
-  }
-  
-  // 动画循环
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    particles.forEach(particle => {
-      particle.update();
-      particle.draw();
-    });
-    
-    drawLines();
-    animationId = requestAnimationFrame(animate);
-  }
-  
-  // 鼠标跟踪
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-  
-  // 初始化
-  resizeCanvas();
-  initParticles();
-  animate();
-  
-  // 响应式
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-    initParticles();
-  });
-  
-  console.log('粒子效果已加载');
-})();
+
 
 console.log('惊艳效果已加载');
 
@@ -3330,369 +4034,3 @@ console.log('动效系统已加载');
 
 </body>
 </html>
-/* ========== 拼贴风格动效系统 ========== */
-
-/* 1. 纸张纹理背景 */
-.paper-texture {
-  position: relative;
-  background: #E8E6E1;
-  background-image: 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.4'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='paper2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper2)' opacity='0.25'/%3E%3C/svg%3E");
-  box-shadow: 
-    0 2px 8px rgba(0,0,0,0.08),
-    0 4px 16px rgba(0,0,0,0.04),
-    inset 0 1px 0 rgba(255,255,255,0.5);
-}
-
-/* 2. 纸张卡片样式 */
-.paper-card {
-  background: #E8E6E1;
-  background-image: 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='card'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23card)' opacity='0.35'/%3E%3C/svg%3E");
-  border: 1px solid rgba(200,200,200,0.6);
-  border-radius: 8px;
-  box-shadow: 
-    0 4px 12px rgba(0,0,0,0.08),
-    0 8px 24px rgba(0,0,0,0.04),
-    inset 0 2px 0 rgba(255,255,255,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.paper-card:hover {
-  transform: translateY(-4px) rotate(1deg);
-  box-shadow: 
-    0 8px 24px rgba(0,0,0,0.12),
-    0 16px 40px rgba(0,0,0,0.08),
-    inset 0 2px 0 rgba(255,255,255,0.5);
-}
-
-/* 3. 纸张便签样式 */
-.paper-note {
-  background: #F5F3EE;
-  background-image: 
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='note'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23note)' opacity='0.3'/%3E%3C/svg%3E");
-  border: 1px solid rgba(200,200,200,0.5);
-  border-radius: 8px;
-  box-shadow: 
-    0 2px 8px rgba(0,0,0,0.06),
-    0 4px 16px rgba(0,0,0,0.03),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-  padding: 24px;
-  position: relative;
-}
-
-.paper-note::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1);
-  border-radius: 8px 8px 0 0;
-}
-
-/* 4. 动画关键帧 */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-@keyframes slideInLeft {
-  from { transform: translateX(-100px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideInRight {
-  from { transform: translateX(100px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes rotateIn {
-  from { transform: rotate(-10deg) scale(0.9); opacity: 0; }
-  to { transform: rotate(0deg) scale(1); opacity: 1; }
-}
-
-@keyframes wiggle {
-  0%, 100% { transform: rotate(-3deg); }
-  50% { transform: rotate(3deg); }
-}
-
-/* 5. 动画类 */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.animate-slide-left {
-  animation: slideInLeft 0.8s ease-out forwards;
-}
-
-.animate-slide-right {
-  animation: slideInRight 0.8s ease-out forwards;
-}
-
-.animate-fade-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-rotate {
-  animation: rotateIn 0.6s ease-out forwards;
-}
-
-.animate-wiggle {
-  animation: wiggle 2s ease-in-out infinite;
-}
-
-/* 6. 交错动画延迟 */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-.stagger-5 { animation-delay: 0.5s; }
-
-/* 7. 图片悬停效果 */
-.img-hover-zoom {
-  transition: transform 0.5s ease;
-}
-
-.img-hover-zoom:hover {
-  transform: scale(1.05);
-}
-
-.img-hover-rotate {
-  transition: transform 0.5s ease;
-}
-
-.img-hover-rotate:hover {
-  transform: rotate(2deg) scale(1.02);
-}
-
-.img-hover-float {
-  transition: transform 0.3s ease;
-}
-
-.img-hover-float:hover {
-  transform: translateY(-8px);
-}
-
-/* 8. 纸张边框效果 */
-.paper-frame {
-  border: 8px solid #E8E6E1;
-  border-radius: 4px;
-  box-shadow: 
-    0 4px 12px rgba(0,0,0,0.1),
-    inset 0 2px 0 rgba(255,255,255,0.5);
-  background: #E8E6E1;
-}
-
-/* 9. 胶带效果 */
-.washi-tape {
-  position: relative;
-}
-
-.washi-tape::before {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 20px;
-  background: rgba(255,200,200,0.6);
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(139,115,85,0.08);
-}
-
-/* 10. 纸张折叠效果 */
-.paper-fold {
-  position: relative;
-}
-
-.paper-fold::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.05) 50%);
-  border-radius: 0 8px 0 0;
-}
-
-/* 11. 纸张阴影效果 */
-.paper-shadow {
-  box-shadow: 
-    0 4px 8px rgba(0,0,0,0.1),
-    0 8px 16px rgba(0,0,0,0.05),
-    0 16px 32px rgba(0,0,0,0.025);
-}
-
-.paper-shadow-strong {
-  box-shadow: 
-    0 8px 16px rgba(0,0,0,0.15),
-    0 16px 32px rgba(0,0,0,0.1),
-    0 32px 64px rgba(0,0,0,0.05);
-}
-
-/* 12. 手绘装饰元素 */
-.{
-  border: 2px solid #333;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-}
-
-.hand-drawn-circle {
-  border: 2px solid #333;
-  border-radius: 50%;
-}
-
-/* 13. 漂浮纸张效果 */
-.floating-paper {
-  position: absolute;
-  background: #F5F3EE;
-  border: 1px solid rgba(200,200,200,0.5);
-  box-shadow: 0 4px 12px rgba(139,115,85,0.10);
-  transform: rotate(var(--rotation, 5deg));
-  animation: float 8s ease-in-out infinite;
-}
-
-/* 14. 颗粒纹理效果 */
-.grain-texture {
-  position: relative;
-}
-
-.grain-texture::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* 15. 滚动显示动画 */
-.scroll-reveal-disabled {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-reveal-disabled.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-// ========== 拼贴风格动效JavaScript ==========
-
-document.addEventListener('DOMContentLoaded', function() {
-  
-  // 1. 滚动显示动效
-  const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-  
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-  
-  scrollRevealElements.forEach(el => {
-    observer.observe(el);
-  });
-  
-  // 2. 为项目详情添加滚动显示类
-  const projectDetails = document.querySelectorAll('.project-detail');
-  projectDetails.forEach((project, index) => {
-    // project.classList.add('scroll-reveal'); // 禁用滚动显示，确保默认可见
-    project.style.animationDelay = `${index * 0.1}s`;
-    observer.observe(project);
-  });
-  
-  // 3. 为图片添加悬停效果
-  const images = document.querySelectorAll('.project-gallery img, .gallery-img img');
-  images.forEach(img => {
-    img.classList.add('img-hover-zoom');
-  });
-  
-  // 4. 为卡片添加纸张效果
-  const cards = document.querySelectorAll('.paper-card');
-  cards.forEach(card => {
-    card.classList.add('paper-shadow');
-  });
-  
-  // 5. 添加漂浮纸张装饰
-  function createFloatingPaper() {
-    const paper = document.createElement('div');
-    paper.className = 'floating-paper';
-    paper.style.cssText = `
-      width: ${Math.random() * 100 + 50}px;
-      height: ${Math.random() * 80 + 40}px;
-      top: ${Math.random() * 100}%;
-      left: ${Math.random() * 100}%;
-      --rotation: ${Math.random() * 20 - 10}deg;
-      opacity: ${Math.random() * 0.3 + 0.1};
-      z-index: -1;
-    `;
-    document.body.appendChild(paper);
-  }
-  
-  // 创建5个漂浮纸张
-  for (let i = 0; i < 5; i++) {
-    createFloatingPaper();
-  }
-  
-  // 6. 为标题添加手绘边框效果
-  const headings = document.querySelectorAll('h2, h3');
-  headings.forEach(heading => {
-    heading.style.fontFamily = 'var(--font-display)';
-  });
-  
-  // 7. 添加视差滚动效果
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.parallax');
-    
-    parallaxElements.forEach(el => {
-      const speed = el.dataset.speed || 0.5;
-      el.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-  });
-  
-  // 8. 为导航添加滚动效果
-  const nav = document.querySelector('nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-      } else {
-        nav.style.boxShadow = 'none';
-      }
-    });
-  }
-  
-  console.log('拼贴风格动效已加载');
-});
