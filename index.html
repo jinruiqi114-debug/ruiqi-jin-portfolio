@@ -256,7 +256,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
 /* ========== 图片动效增强 ========== */
 
 /* 1. 手绘边框效果 */
-.hand-drawn-border {
+.{
   border: 3px solid #333;
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
@@ -297,22 +297,12 @@ footer p { font-size: 13px; color: var(--text-muted); }
 }
 
 /* 4. 手绘下划线效果 */
-.hand-drawn-underline {
+.{
   position: relative;
   display: inline-block;
 }
 
-.hand-drawn-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: #4ECDC4;
-  transform: rotate(-1deg);
-  border-radius: 2px;
-}
+
 
 /* 5. 手绘星星装饰 */
 .hand-drawn-stars {
@@ -1572,7 +1562,7 @@ video {
     <div class="gallery-img img-2" data-speed="1.2" onclick="scrollToProject('little-little')"><img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Little little"></div>
     <div class="gallery-img img-3" data-speed="0.6" onclick="scrollToProject('kesi')"><img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Kesi"></div>
     <div class="gallery-img img-4" data-speed="1.0" onclick="scrollToProject('media-night')"><img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Media Night"></div>
-    <div class="gallery-img img-5" data-speed="0.9" onclick="scrollToProject('le-pom')"><img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover"></div>
+    <div class="gallery-img img-5" data-speed="0.9" onclick="scrollToProject('le-pom')"><img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="img-hand-drawn-hover"></div>
     <div class="gallery-img img-6" data-speed="1.1" onclick="scrollToProject('little-little')"><img loading="lazy" src="media/littlelittle/03-model-portrait.jpg" alt="Little little"></div>
     <div class="gallery-img img-7" data-speed="0.7" onclick="scrollToProject('kesi')"><img loading="lazy" src="media/kesi/02-gallery-view.jpg" alt="Kesi Gallery"></div>
     <div class="gallery-img img-8" data-speed="1.3" onclick="scrollToProject('media-night')"><img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="E-commerce"></div>
@@ -1582,7 +1572,7 @@ video {
 <!-- PROJECT 1: Le Pom -->
 <section class="project-minimal card-3d" id="le-pom">
   <div class="eyebrow">Project 01</div>
-  <h2 class="hand-drawn-underline">Le Pom</h2>
+  <h2>Le Pom</h2>
   
           <div class="lang-zh">
             <p class="desc">AI驱动的智能香氛扩散器，融合智能科技与优雅设计。从概念到电商的完整品牌体系，涵盖产品设计、视觉识别和数字营销材料。</p>
@@ -1602,10 +1592,10 @@ video {
     </div>
     
 <div class="gallery-minimal">
-    <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="hand-drawn-border img-hand-drawn-hover">
+    <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full img-hand-drawn-hover">
+    <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="img-hand-drawn-hover">
+    <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="img-hand-drawn-hover">
+    <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="img-hand-drawn-hover">
   </div>
   
   <!-- 品牌视觉识别系统 -->
@@ -1692,7 +1682,7 @@ video {
 <!-- AIGC Short Film -->
 <section class="project-minimal card-3d" id="aigc-film" style="border-top:none;">
   <div class="eyebrow">AIGC Short Film</div>
-  <h2 class="hand-drawn-underline">AIGC短片制作</h2>
+  <h2>AIGC短片制作</h2>
   
           <div class="lang-zh">
             <p class="desc">使用Lovart、Midjourney、Tapnow等AI工具链，独立完成AIGC短视频创作。从编剧、视觉设计到视频生成的全流程制作。</p>
@@ -1708,7 +1698,7 @@ video {
     <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:24px;">人物形象设计</h3>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
       <div class="paper-card" style="padding:24px;">
-        <img loading="lazy" src="media/aigc/character-design.webp" alt="Character Design" style="width:100%;border-radius:8px;" class="hand-drawn-border img-hand-drawn-hover">
+        <img loading="lazy" src="media/aigc/character-design.webp" alt="Character Design" style="width:100%;border-radius:8px;" class="img-hand-drawn-hover">
         <p style="margin-top:16px;font-size:14px;color:var(--text-secondary);">电影人物画像 - AI生成的角色设计</p>
       </div>
     </div>
@@ -1740,7 +1730,7 @@ video {
 <!-- PROJECT 2: Little little -->
 <section class="project-minimal card-3d" id="little-little">
   <div class="eyebrow">Project 02</div>
-  <h2 class="hand-drawn-underline">Little little</h2>
+  <h2>Little little</h2>
   
           <div class="lang-zh">
             <p class="desc">巴黎时装周快闪活动与品牌识别系统。主导品牌海外扩张策略，打造沉浸式体验，连接中国遗产与国际时尚。</p>
@@ -1754,7 +1744,7 @@ video {
     <!-- 交互式图片揭示 -->
     
 <div class="gallery-minimal">
-    <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
+    <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full img-hand-drawn-hover">
     <img loading="lazy" src="media/littlelittle/02-dessert-table.jpg" alt="Display">
     <img loading="lazy" src="media/littlelittle/03-model-portrait.jpg" alt="Model">
   </div>
@@ -1783,7 +1773,7 @@ video {
     <!-- 交互式图片揭示 -->
     
 <div class="gallery-minimal">
-    <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
+    <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full img-hand-drawn-hover">
     <img loading="lazy" src="media/kesi/02-gallery-view.jpg" alt="Gallery">
     <img loading="lazy" src="media/kesi/03-loom-demo.jpg" alt="Loom Demo">
   </div>
@@ -1812,7 +1802,7 @@ video {
     <!-- 交互式图片揭示 -->
     
 <div class="gallery-minimal">
-    <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
+    <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full img-hand-drawn-hover">
     <img loading="lazy" src="media/medianight/02-dinner-tent.jpg" alt="Dinner">
     <img loading="lazy" src="media/medianight/03-night-bokeh.jpg" alt="Night">
   </div>
@@ -1855,7 +1845,7 @@ video {
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
+        <img loading="lazy" src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="img-hand-drawn-hover">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Polo Ralph Lauren · Paris · 2026</div>
@@ -1978,7 +1968,7 @@ video {
     
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
       <div style="border-radius:8px;overflow:hidden;">
-        <img loading="lazy" src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="hand-drawn-border img-hand-drawn-hover">
+        <img loading="lazy" src="media/runway/01-ralph-lauren-ig.jpg" alt="Ralph Lauren" style="width:100%;height:auto;" class="img-hand-drawn-hover">
       </div>
       <div>
         <div class="caption" style="margin-bottom:12px;">Polo Ralph Lauren · Paris · 2026</div>
@@ -2638,7 +2628,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* 12. 手绘装饰元素 */
-.hand-drawn-border {
+.{
   border: 2px solid #333;
   border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
 }
