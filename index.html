@@ -1687,6 +1687,71 @@ video {
   .project-detail h2 { font-size: 24px; }
 }
 
+
+/* ========== 横屏和手机兼容 ========== */
+
+/* 横屏手机 */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: auto; padding: 60px 24px 40px; }
+  .hero h1 { font-size: 32px !important; }
+  .hero p { font-size: 13px; margin-bottom: 16px; }
+  .hero-buttons { flex-direction: row; gap: 12px; }
+  .btn { padding: 10px 20px; font-size: 13px; }
+  
+  .gallery-stack { width: 200px; height: 260px; }
+  .gallery-title { font-size: 24px; margin-bottom: 20px; }
+  
+  .project-detail { padding: 40px 24px; }
+  .project-detail h2 { font-size: 24px; }
+  .project-gallery { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  
+  .scroll-indicator { display: none; }
+}
+
+/* 平板竖屏 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero h1 { font-size: 48px !important; }
+  .gallery-stack { width: 350px; height: 450px; }
+  .project-detail { padding: 80px 32px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* 平板横屏 */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .gallery-stack { width: 350px; height: 450px; }
+}
+
+/* 大屏幕 */
+@media (min-width: 1440px) {
+  .gallery-stack { width: 400px; height: 520px; }
+  .project-detail { padding: 160px 48px; }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .gallery-card { cursor: default; }
+  .hover-scale:hover { transform: none; }
+  .btn:hover { transform: none; }
+  
+  /* 增大点击区域 */
+  .btn, a, button { min-height: 44px; min-width: 44px; }
+}
+
+/* 暗色模式支持（可选） */
+@media (prefers-color-scheme: dark) {
+  /* 如果需要暗色模式，可以在这里添加 */
+}
+
+/* 减少动画（用户偏好） */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-indicator { display: none; }
+}
+
 </style>
 </head>
 <body>
