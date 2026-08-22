@@ -1331,12 +1331,14 @@ video {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #F5F4F0;
+  background: linear-gradient(135deg, #F5F4F0 0%, #EDE8E0 100%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.6s;
+  gap: 24px;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.8s;
 }
 
 .preloader.done {
@@ -1364,6 +1366,91 @@ video {
   transform: scale(1);
 }
 
+
+
+.preloader-line {
+  width: 60px;
+  height: 2px;
+  background: var(--text-primary);
+  transform: scaleX(0);
+  transition: transform 0.8s ease 0.3s;
+}
+.preloader-line.visible {
+  transform: scaleX(1);
+}
+
+.preloader-subtitle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.6s, transform 0.5s ease 0.6s;
+}
+.preloader-subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero文字动画 */
+.hero-title-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.hero-title-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 滚动指示器 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 2s forwards;
+}
+
+.scroll-indicator-line {
+  width: 1px;
+  height: 40px;
+  background: var(--text-muted);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-indicator-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--text-primary);
+  animation: scrollDown 2s ease infinite;
+}
+
+@keyframes scrollDown {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+.scroll-indicator-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 
 /* ========== 动效系统 ========== */
 
@@ -1421,6 +1508,8 @@ video {
 <!-- Preloader -->
 <div class="preloader" id="preloader">
   <div class="preloader-brand" id="preloader-brand">JIN.</div>
+  <div class="preloader-line" id="preloader-line"></div>
+  <div class="preloader-subtitle" id="preloader-subtitle">Portfolio</div>
 </div>
 
 
@@ -1485,11 +1574,19 @@ video {
   <!-- Content on bottom left -->
   <div style="position:absolute;left:40px;bottom:60px;width:400px;z-index:2;">
     <span class="mono">Portfolio · 2026</span>
-    <h1 class="display-xl" style="font-size:56px;margin-top:12px;">靳睿琦<br>Ruiqi Jin</h1>
+    <h1 class="display-xl" style="font-size:56px;margin-top:12px;">
+          <span class="hero-title-line">靳睿琦</span>
+          <span class="hero-title-line" style="transition-delay:0.2s">Ruiqi Jin</span>
+        </h1>
     <p style="font-size:15px;margin-top:16px;max-width:300px;line-height:1.6;">Content Marketing · AIGC Creative · Global Social Media.</p>
     <div class="hero-buttons" style="margin-top:24px;">
       <a href="#scroll" class="btn btn-primary">View Projects</a>
       <a href="#contact" class="btn-minimal magnetic-btn">Get in Touch</a>
+    </div>
+    <!-- 滚动指示器 -->
+    <div class="scroll-indicator">
+      <div class="scroll-indicator-line"></div>
+      <span class="scroll-indicator-text">Scroll</span>
     </div>
   </div>
 </section>
@@ -2460,17 +2557,27 @@ document.addEventListener('DOMContentLoaded', function() {
 (function() {
   const preloader = document.getElementById('preloader');
   const brand = document.getElementById('preloader-brand');
+  const line = document.getElementById('preloader-line');
+  const subtitle = document.getElementById('preloader-subtitle');
   
-  // 立即显示并开始放大
+  // 依次显示元素
   requestAnimationFrame(() => {
     brand.classList.add('visible');
   });
   
-  // 1.2秒后关闭
+  setTimeout(() => {
+    line.classList.add('visible');
+  }, 400);
+  
+  setTimeout(() => {
+    subtitle.classList.add('visible');
+  }, 800);
+  
+  // 2秒后关闭
   setTimeout(() => {
     preloader.classList.add('done');
-    setTimeout(() => { preloader.remove(); }, 600);
-  }, 1200);
+    setTimeout(() => { preloader.remove(); }, 800);
+  }, 2000);
 })();
 </script>
 
@@ -2551,6 +2658,14 @@ document.querySelectorAll('img, .gallery-img, .project-gallery img').forEach(el 
   el.classList.add('hover-scale');
 });
 
+
+// Hero标题动画
+const heroLines = document.querySelectorAll('.hero-title-line');
+setTimeout(() => {
+  heroLines.forEach((line, i) => {
+    setTimeout(() => line.classList.add('visible'), i * 200);
+  });
+}, 2200);
 console.log('动效系统已加载');
 </script>
 
