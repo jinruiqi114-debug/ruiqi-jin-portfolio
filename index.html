@@ -2723,13 +2723,13 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 /* 15. 滚动显示动画 */
-.scroll-reveal-disabled {
+.scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.scroll-reveal-disabled.revealed {
+.scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0);
 }
@@ -2759,9 +2759,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // 2. 为项目详情添加滚动显示类
-  const projectDetails = document.querySelectorAll('.project-detail');
+  const projectDetails = document.querySelectorAll('.project-detail, .scroll-reveal-minimal');
   projectDetails.forEach((project, index) => {
-    // project.classList.add('scroll-reveal'); // 禁用滚动显示，确保默认可见
+    project.classList.add('scroll-reveal');
     project.style.animationDelay = `${index * 0.1}s`;
     observer.observe(project);
   });
