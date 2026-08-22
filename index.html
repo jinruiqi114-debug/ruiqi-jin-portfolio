@@ -1347,6 +1347,101 @@ video {
   border-color: var(--accent);
 }
 
+
+/* ========== 纸张堆叠画廊 ========== */
+.paper-stack-gallery {
+  position: relative;
+  padding: 60px 0;
+  perspective: 1200px;
+}
+
+.paper-stack-item {
+  position: relative;
+  margin-bottom: -180px;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: rotate(calc(var(--stack-index) * 1.5deg - 2deg)) 
+             translateY(calc(var(--stack-index) * 12px));
+  z-index: calc(10 - var(--stack-index));
+  cursor: pointer;
+}
+
+.paper-stack-item img {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+  position: relative;
+  z-index: 2;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.06),
+    0 1px 3px rgba(0,0,0,0.04);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.paper-stack-shadow {
+  position: absolute;
+  bottom: -6px;
+  left: 3%;
+  right: 3%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, transparent 70%);
+  filter: blur(6px);
+  z-index: 1;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 纸张翘起效果 - 滚动时触发 */
+.paper-stack-item.is-lifted {
+  transform: rotate(calc(var(--stack-index) * 0.5deg)) 
+             translateY(calc(var(--stack-index) * -20px))
+             translateX(calc(var(--stack-index) * 8px));
+  z-index: 20;
+}
+
+.paper-stack-item.is-lifted img {
+  box-shadow: 
+    0 12px 32px rgba(0,0,0,0.12),
+    0 4px 12px rgba(0,0,0,0.08),
+    2px 2px 0 rgba(0,0,0,0.02);
+}
+
+.paper-stack-item.is-lifted .paper-stack-shadow {
+  bottom: -12px;
+  left: 5%;
+  right: 5%;
+  height: 30px;
+  opacity: 0.8;
+}
+
+/* 悬停时纸张翘起 */
+.paper-stack-item:hover {
+  transform: rotate(calc(var(--stack-index) * 0.5deg)) 
+             translateY(calc(var(--stack-index) * -25px))
+             translateX(calc(var(--stack-index) * 10px));
+  z-index: 20;
+}
+
+.paper-stack-item:hover img {
+  box-shadow: 
+    0 16px 40px rgba(0,0,0,0.15),
+    0 6px 16px rgba(0,0,0,0.1),
+    3px 3px 0 rgba(0,0,0,0.03);
+}
+
+.paper-stack-item:hover .paper-stack-shadow {
+  bottom: -14px;
+  left: 6%;
+  right: 6%;
+  height: 35px;
+  opacity: 0.6;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .paper-stack-item {
+    margin-bottom: -120px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1587,11 +1682,24 @@ video {
       <div class="reveal-instruction">移动鼠标探索</div>
     </div>
     
-<div class="gallery-minimal">
-    <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
-    <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="hand-drawn-border img-hand-drawn-hover">
+  <!-- 纸张堆叠画廊 -->
+  <div class="paper-stack-gallery">
+    <div class="paper-stack-item" style="--stack-index:0;">
+      <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design">
+      <div class="paper-stack-shadow"></div>
+    </div>
+    <div class="paper-stack-item" style="--stack-index:1;">
+      <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product">
+      <div class="paper-stack-shadow"></div>
+    </div>
+    <div class="paper-stack-item" style="--stack-index:2;">
+      <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene">
+      <div class="paper-stack-shadow"></div>
+    </div>
+    <div class="paper-stack-item" style="--stack-index:3;">
+      <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce">
+      <div class="paper-stack-shadow"></div>
+    </div>
   </div>
   <div class="meta">
     <div class="item"><div class="meta-label">Role</div><div class="meta-value">Product Designer</div></div>
@@ -2720,5 +2828,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  
+  // 9. 纸张堆叠滚动动效
+  const paperStackItems = document.querySelectorAll('.paper-stack-item');
+  
+  if (paperStackItems.length > 0) {
+    const stackObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 逐个延迟触发翘起效果
+          paperStackItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('is-lifted');
+            }, index * 200);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    // 观察第一个纸张堆叠项目
+    stackObserver.observe(paperStackItems[0]);
+  }
+  
+
   console.log('拼贴风格动效已加载');
 });
