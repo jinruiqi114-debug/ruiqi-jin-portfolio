@@ -53,7 +53,11 @@
 html { scroll-behavior: smooth; }
 body { 
   font-family: var(--font-body); 
-  background: #F5EDE4;
+  background: #CED3D8;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.2'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, rgba(180,190,205,0.6) 0%, rgba(170,180,195,0.4) 50%, rgba(185,195,210,0.5) 100%);
   color: var(--text-primary); 
   overflow-x: hidden; 
 }
@@ -62,7 +66,12 @@ body {
 .halftone-bg {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 0;
-  background: #F5EDE4;
+  background: #CED3D8;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.0' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.25'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.0' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n3)' opacity='0.15'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, rgba(175,185,200,0.7) 0%, rgba(165,175,190,0.5) 50%, rgba(180,190,205,0.6) 100%);
 }
 
 /* Floating sticky notes */
@@ -110,18 +119,18 @@ nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: fl
 .gallery-center { position: sticky; top: 50%; transform: translateY(-50%); text-align: center; z-index: 10; pointer-events: none; }
 .gallery-center h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 400; font-style: italic; }
 .gallery-images { position: absolute; inset: 0; pointer-events: none; }
-.gallery-img { position: absolute; border-radius: 8px; overflow: hidden; opacity: 0; transform: scale(0.7); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 8px 32px rgba(0,0,0,0.15); cursor: pointer; pointer-events: auto; }
+.gallery-img { position: absolute; border-radius: 8px; overflow: hidden; opacity: 0; transform: scale(0.3); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 8px 32px rgba(0,0,0,0.15); cursor: pointer; pointer-events: auto; }
 .gallery-img.visible { opacity: 1; transform: scale(1); }
 .gallery-img:hover { transform: scale(1.05) !important; z-index: 20; }
 .gallery-img img { width: 100%; height: 100%; object-fit: cover; }
-.img-1 { top: 2%; left: 2%; width: 340px; height: 240px; }
-.img-2 { top: 8%; right: 2%; width: 280px; height: 400px; }
-.img-3 { top: 30%; left: 8%; width: 240px; height: 340px; }
-.img-4 { top: 22%; right: 12%; width: 260px; height: 360px; }
-.img-5 { top: 52%; left: 2%; width: 300px; height: 220px; }
-.img-6 { top: 48%; right: 2%; width: 360px; height: 480px; }
-.img-7 { top: 72%; left: 12%; width: 320px; height: 240px; }
-.img-8 { top: 68%; right: 10%; width: 280px; height: 380px; }
+.img-1 { top: 5%; left: 5%; width: 280px; height: 200px; }
+.img-2 { top: 15%; right: 10%; width: 220px; height: 320px; }
+.img-3 { top: 35%; left: 15%; width: 180px; height: 260px; }
+.img-4 { top: 25%; right: 25%; width: 200px; height: 280px; }
+.img-5 { top: 55%; left: 8%; width: 240px; height: 180px; }
+.img-6 { top: 50%; right: 5%; width: 300px; height: 400px; }
+.img-7 { top: 75%; left: 20%; width: 260px; height: 190px; }
+.img-8 { top: 70%; right: 20%; width: 220px; height: 300px; }
 
 /* Project Detail */
 .project-detail {
@@ -193,7 +202,7 @@ nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: fl
   border-radius: 4px;
   overflow: hidden;
   opacity: 0;
-  transform: scale(0.7);
+  transform: scale(0.3);
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 
     3px 5px 12px rgba(0,0,0,0.1),
@@ -1338,54 +1347,9 @@ video {
   border-color: var(--accent);
 }
 
-
-/* ========== Preloader ========== */
-.preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: #F5F4F0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.6s;
-}
-
-.preloader.done {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.preloader-brand {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 32px;
-  font-weight: 400;
-  color: #1A1A1A;
-  letter-spacing: 0.12em;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: font-size 1s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease,
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.preloader-brand.visible {
-  opacity: 1;
-  font-size: clamp(80px, 18vw, 200px);
-  transform: scale(1);
-}
-
 </style>
 </head>
 <body>
-
-<!-- Preloader -->
-<div class="preloader" id="preloader">
-  <div class="preloader-brand" id="preloader-brand">JIN.</div>
-</div>
-
 
     <!-- 语言切换按钮 -->
     <div style="position:fixed;top:20px;right:20px;z-index:1000;display:flex;gap:8px;">
@@ -1416,6 +1380,7 @@ video {
     </div>
     
 
+<div class="halftone-bg"></div>
 
 
 
@@ -1628,43 +1593,6 @@ video {
     <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="hand-drawn-border img-hand-drawn-hover">
   </div>
-  
-  <!-- 品牌视觉识别系统 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">品牌视觉识别系统</h3>
-    <img loading="lazy" src="media/le-pom-visual-identity.png" alt="Le Pom Visual Identity System" style="width:100%;display:block;">
-  </div>
-  
-  <!-- 产品场景图 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">产品场景展示</h3>
-    <img loading="lazy" src="media/le-pom-2.png" alt="Le Pom Product Scene" style="width:100%;display:block;">
-  </div>
-  
-  <!-- 海外社交媒体运营 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">海外社交媒体运营</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-      <img loading="lazy" src="media/le-pom-ins.png" alt="Instagram Marketing" style="width:100%;display:block;">
-      <img loading="lazy" src="media/le-pom-overseas-social.png" alt="Overseas Social Media" style="width:100%;display:block;">
-    </div>
-  </div>
-  
-  <!-- 创意视频构思 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">创意视频构思</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-      <img loading="lazy" src="media/le-pom-video-concept1.png" alt="Video Concept 1" style="width:100%;display:block;">
-      <img loading="lazy" src="media/le-pom-video-concept2.png" alt="Video Concept 2" style="width:100%;display:block;">
-    </div>
-  </div>
-  
-  <!-- 快闪店概念 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">快闪店概念设计</h3>
-    <img loading="lazy" src="media/le-pom-popup.png" alt="Pop-up Store Concept" style="width:100%;display:block;">
-  </div>
-  
   <div class="meta">
     <div class="item"><div class="meta-label">Role</div><div class="meta-value">Product Designer</div></div>
     <div class="item"><div class="meta-label">Type</div><div class="meta-value">Product Design</div></div>
@@ -1698,6 +1626,12 @@ video {
   
   
     <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
     
 <div class="gallery-minimal">
     <img loading="lazy" src="苹果香氛扩散器-手持展示.png" alt="Le Pom Handheld" style="border-radius:8px;">
@@ -1773,6 +1707,12 @@ video {
         
   
     <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
     
 <div class="gallery-minimal">
     <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
@@ -1802,6 +1742,12 @@ video {
         
   
     <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
     
 <div class="gallery-minimal">
     <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
@@ -1831,6 +1777,12 @@ video {
         
   
     <!-- 交互式图片揭示 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+      <div class="reveal-instruction">移动鼠标探索</div>
+    </div>
     
 <div class="gallery-minimal">
     <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
@@ -2054,29 +2006,14 @@ function updateGallery() {
   if (!gallerySection) return;
   const rect = gallerySection.getBoundingClientRect();
   const scrollProgress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)));
-  
   galleryImages.forEach((img, index) => {
     const speed = parseFloat(img.dataset.speed) || 1;
-    const delay = index * 0.06;
-    const progress = Math.max(0, Math.min(1, (scrollProgress - delay) * 1.8));
-    
+    const delay = index * 0.08;
+    const progress = Math.max(0, Math.min(1, (scrollProgress - delay) * 1.5));
     if (progress > 0) {
       img.classList.add('visible');
-      
-      // 开始大且分散，滚动后缩小聚集
-      const scale = 0.7 + progress * 0.3; // 0.7 -> 1.0
-      const yOffset = (1 - progress) * 80 * speed;
-      
-      // 聚集效果：向中心偏移
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const rect = img.getBoundingClientRect();
-      const currentX = rect.left + rect.width / 2;
-      const currentY = rect.top + rect.height / 2;
-      const pullX = (centerX - currentX) * progress * 0.15;
-      const pullY = (centerY - currentY) * progress * 0.1;
-      
-      img.style.transform = `scale(${scale}) translateY(${yOffset}px) translate(${pullX}px, ${pullY}px)`;
+      const yOffset = (1 - progress) * 50 * speed;
+      img.style.transform = `scale(${0.3 + progress * 0.7}) translateY(${yOffset}px)`;
     }
   });
 }
@@ -2417,26 +2354,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-
-<script>
-// Preloader Animation
-(function() {
-  const preloader = document.getElementById('preloader');
-  const brand = document.getElementById('preloader-brand');
-  
-  // 立即显示并开始放大
-  requestAnimationFrame(() => {
-    brand.classList.add('visible');
-  });
-  
-  // 1.2秒后关闭
-  setTimeout(() => {
-    preloader.classList.add('done');
-    setTimeout(() => { preloader.remove(); }, 600);
-  }, 1200);
-})();
-</script>
-
 </body>
 </html>
 /* ========== 拼贴风格动效系统 ========== */
@@ -2691,7 +2608,7 @@ document.addEventListener('DOMContentLoaded', function() {
   left: 0;
   right: 0;
   bottom: 0;
-
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.05;
   pointer-events: none;
   z-index: 1;

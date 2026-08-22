@@ -53,7 +53,11 @@
 html { scroll-behavior: smooth; }
 body { 
   font-family: var(--font-body); 
-  background: #F5EDE4;
+  background: #CED3D8;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.2'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, rgba(180,190,205,0.6) 0%, rgba(170,180,195,0.4) 50%, rgba(185,195,210,0.5) 100%);
   color: var(--text-primary); 
   overflow-x: hidden; 
 }
@@ -62,7 +66,12 @@ body {
 .halftone-bg {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 0;
-  background: #F5EDE4;
+  background: #CED3D8;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.0' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.25'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.0' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n3)' opacity='0.15'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, rgba(175,185,200,0.7) 0%, rgba(165,175,190,0.5) 50%, rgba(180,190,205,0.6) 100%);
 }
 
 /* Floating sticky notes */
@@ -110,18 +119,18 @@ nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: fl
 .gallery-center { position: sticky; top: 50%; transform: translateY(-50%); text-align: center; z-index: 10; pointer-events: none; }
 .gallery-center h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 48px); font-weight: 400; font-style: italic; }
 .gallery-images { position: absolute; inset: 0; pointer-events: none; }
-.gallery-img { position: absolute; border-radius: 8px; overflow: hidden; opacity: 0; transform: scale(0.7); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 8px 32px rgba(0,0,0,0.15); cursor: pointer; pointer-events: auto; }
+.gallery-img { position: absolute; border-radius: 8px; overflow: hidden; opacity: 0; transform: scale(0.3); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; pointer-events: auto; }
 .gallery-img.visible { opacity: 1; transform: scale(1); }
-.gallery-img:hover { transform: scale(1.05) !important; z-index: 20; }
+.gallery-img:hover { z-index: 20; }
 .gallery-img img { width: 100%; height: 100%; object-fit: cover; }
-.img-1 { top: 2%; left: 2%; width: 340px; height: 240px; }
-.img-2 { top: 8%; right: 2%; width: 280px; height: 400px; }
-.img-3 { top: 30%; left: 8%; width: 240px; height: 340px; }
-.img-4 { top: 22%; right: 12%; width: 260px; height: 360px; }
-.img-5 { top: 52%; left: 2%; width: 300px; height: 220px; }
-.img-6 { top: 48%; right: 2%; width: 360px; height: 480px; }
-.img-7 { top: 72%; left: 12%; width: 320px; height: 240px; }
-.img-8 { top: 68%; right: 10%; width: 280px; height: 380px; }
+.img-1 { top: 5%; left: 5%; width: 280px; height: 200px; }
+.img-2 { top: 15%; right: 10%; width: 220px; height: 320px; }
+.img-3 { top: 35%; left: 15%; width: 180px; height: 260px; }
+.img-4 { top: 25%; right: 25%; width: 200px; height: 280px; }
+.img-5 { top: 55%; left: 8%; width: 240px; height: 180px; }
+.img-6 { top: 50%; right: 5%; width: 300px; height: 400px; }
+.img-7 { top: 75%; left: 20%; width: 260px; height: 190px; }
+.img-8 { top: 70%; right: 20%; width: 220px; height: 300px; }
 
 /* Project Detail */
 .project-detail {
@@ -160,9 +169,9 @@ nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: fl
   transform: rotate(-0.8deg);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.service-card:nth-child(2) { transform: rotate(0.5deg); }
-.service-card:nth-child(3) { transform: rotate(-0.3deg); }
-.service-card:hover {
+.service-card:nth-child(2) { transform: none; }
+.service-card:nth-child(3) { transform: none; }
+.service-card:hover-disabled {
   transform: rotate(0deg) translateY(-4px);
   box-shadow: 6px 10px 24px rgba(0,0,0,0.12);
 }
@@ -193,7 +202,7 @@ nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: fl
   border-radius: 4px;
   overflow: hidden;
   opacity: 0;
-  transform: scale(0.7);
+  transform: scale(0.3);
   transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 
     3px 5px 12px rgba(0,0,0,0.1),
@@ -264,11 +273,11 @@ footer p { font-size: 13px; color: var(--text-muted); }
   0%, 100% { transform: rotate(2deg) translateY(0); }
   50% { transform: rotate(4deg) translateY(-6px); }
 }
-.badge-animate {
+.badge-animate-disabled {
   animation: badgeFloat 4s ease-in-out infinite;
   transform-origin: top center;
 }
-.badge-animate2 {
+.badge-animate2-disabled {
   animation: badgeFloat2 5s ease-in-out infinite;
   transform-origin: top center;
 }
@@ -449,17 +458,17 @@ footer p { font-size: 13px; color: var(--text-muted); }
 }
 
 /* 11. 图片悬停手绘效果 */
-.img-hand-drawn-hover {
+.img-hand-drawn-hover-disabled {
   transition: all 0.3s ease;
   position: relative;
 }
 
-.img-hand-drawn-hover:hover {
+.img-hand-drawn-hover-disabled:hover {
   transform: rotate(2deg) scale(1.02);
   box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
 }
 
-.img-hand-drawn-hover:hover::after {
+.img-hand-drawn-hover-disabled:hover::after {
   content: '✨';
   position: absolute;
   top: -10px;
@@ -1078,7 +1087,7 @@ video {
 
 
 /* ========== 交互式图片揭示效果 ========== */
-.image-reveal-container {
+.image-reveal-container-disabled {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -1086,7 +1095,7 @@ video {
   cursor: none;
 }
 
-.image-reveal-base {
+.image-reveal-base-disabled {
   position: absolute;
   top: 0;
   left: 0;
@@ -1097,7 +1106,7 @@ video {
   background-repeat: no-repeat;
 }
 
-.image-reveal-top {
+.image-reveal-top-disabled {
   position: absolute;
   top: 0;
   left: 0;
@@ -1111,7 +1120,7 @@ video {
   transition: mask-image 0.1s ease, -webkit-mask-image 0.1s ease;
 }
 
-.reveal-spotlight {
+.reveal-spotlight-disabled {
   position: absolute;
   width: 20px;
   height: 20px;
@@ -1123,19 +1132,6 @@ video {
   mix-blend-mode: difference;
 }
 
-.reveal-instruction {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.8);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  z-index: 20;
-  animation: fadeInOut 3s ease-in-out infinite;
-}
 
 @keyframes fadeInOut {
   0%, 100% { opacity: 0.5; }
@@ -1204,51 +1200,10 @@ video {
 }
 
 /* 磁性按钮效果 */
-.magnetic-btn {
-  position: relative;
-  display: inline-block;
-  padding: 12px 24px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-primary);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
 
-.magnetic-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: var(--text-primary);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
-}
 
-.magnetic-btn:hover::before {
-  width: 300%;
-  height: 300%;
-}
 
-.magnetic-btn span {
-  position: relative;
-  z-index: 1;
-  transition: color 0.3s ease;
-}
 
-.magnetic-btn:hover span {
-  color: white;
-}
 
 /* 滚动视差效果 */
 .parallax-section {
@@ -1306,86 +1261,377 @@ video {
 }
 
 /* 3D卡片效果 */
-.card-3d {
-  perspective: 1000px;
-}
 
-.card-3d-inner {
-  transition: transform 0.3s ease;
-  transform-style: preserve-3d;
-}
 
-.card-3d:hover .card-3d-inner {
-  transform: rotateY(10deg) rotateX(5deg);
-}
 
 /* 光标跟随效果 */
-.cursor-follow {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--text-primary);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
-  mix-blend-mode: difference;
-}
-
-.cursor-follow.hover {
-  width: 40px;
-  height: 40px;
-  border-color: var(--accent);
-}
 
 
-/* ========== Preloader ========== */
-.preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: #F5F4F0;
-  display: flex;
+
+/* ========== 科技感简洁风格 ========== */
+
+/* 简洁按钮 */
+.btn-tech {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.6s;
+  gap: var(--btn-gap);
+  padding: var(--btn-py) var(--btn-px);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.preloader.done {
+.btn-tech::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.btn-tech:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-tech:hover {
+  background: var(--text-primary);
+  color: white;
+}
+
+/* 简洁卡片 */
+.card-tech {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: var(--feature-pad);
+  transition: all 0.2s ease;
+}
+
+.card-tech:hover {
+  border-color: var(--text-primary);
+}
+
+/* 科技感标题 */
+.heading-tech {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: var(--headline);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.heading-tech::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--text-primary);
+}
+
+/* 科技感标签 */
+.tag-tech {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* 科技感导航 */
+.nav-tech {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--nav);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-tech::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--text-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-tech:hover::after {
+  width: 100%;
+}
+
+/* 科技感项目详情 */
+.project-tech {
+  padding: var(--main-py) var(--pad-x);
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border);
+}
+
+.project-tech h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 3vw + 0.5rem, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.project-tech h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--text-primary);
+}
+
+.project-tech .desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.project-tech .meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-tech .meta-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.project-tech .meta-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* 科技感图片画廊 */
+.gallery-tech {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gallery-tech img {
+  width: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-tech img:hover-disabled {
+  opacity: 0.9;
+}
+
+.gallery-tech .full {
+  grid-column: 1 / -1;
+}
+
+/* 科技感视频 */
+.video-tech {
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.video-tech video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 科技感服务卡片 */
+.service-card-tech {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  transition: all 0.2s ease;
+}
+
+.service-card-tech:hover {
+  border-color: var(--text-primary);
+}
+
+.service-card-tech .number {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.service-card-tech .title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.service-card-tech .desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 科技感联系区域 */
+.contact-tech {
+  background: var(--text-primary);
+  color: white;
+  padding: 4rem var(--pad-x);
+}
+
+.contact-tech h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.contact-tech h2::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: white;
+}
+
+.contact-tech .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-tech .item {
+  padding: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+}
+
+.contact-tech .item:hover {
+  border-color: rgba(255,255,255,0.3);
+}
+
+.contact-tech .label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 0.5rem;
+}
+
+.contact-tech .value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--body);
+  font-weight: 500;
+}
+
+/* 科技感页脚 */
+.footer-tech {
+  padding: 2rem var(--pad-x);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-tech p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: var(--micro);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* 科技感滚动显示 */
+.scroll-reveal-tech {
   opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.preloader-brand {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 32px;
-  font-weight: 400;
-  color: #1A1A1A;
-  letter-spacing: 0.12em;
-  opacity: 0;
-  transform: scale(0.6);
-  transition: font-size 1s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease,
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.preloader-brand.visible {
+.scroll-reveal-tech.revealed {
   opacity: 1;
-  font-size: clamp(80px, 18vw, 200px);
-  transform: scale(1);
+  transform: translateY(0);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .gallery-tech {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-tech .meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .contact-tech .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 </style>
 </head>
 <body>
-
-<!-- Preloader -->
-<div class="preloader" id="preloader">
-  <div class="preloader-brand" id="preloader-brand">JIN.</div>
-</div>
-
 
     <!-- 语言切换按钮 -->
     <div style="position:fixed;top:20px;right:20px;z-index:1000;display:flex;gap:8px;">
@@ -1416,6 +1662,7 @@ video {
     </div>
     
 
+<div class="halftone-bg"></div>
 
 
 
@@ -1452,7 +1699,7 @@ video {
     <p style="font-size:15px;margin-top:16px;max-width:300px;line-height:1.6;">Content Marketing · AIGC Creative · Global Social Media.</p>
     <div class="hero-buttons" style="margin-top:24px;">
       <a href="#scroll" class="btn btn-primary">View Projects</a>
-      <a href="#contact" class="btn-minimal magnetic-btn">Get in Touch</a>
+      <a href="#contact" class="btn-tech">Get in Touch</a>
     </div>
   </div>
 </section>
@@ -1579,7 +1826,7 @@ video {
     <span class="mono">§ 02 — Work</span>
     <h2>From research<br/>to runway.</h2>
     <p style="font-size:16px;color:var(--text-secondary);max-width:500px;margin-bottom:32px;">A diverse portfolio spanning brand strategy, product design, exhibition curation, and creative direction across international markets.</p>
-    <a href="#gallery" class="btn-minimal magnetic-btn">Explore Gallery</a>
+    <a href="#gallery" class="btn-tech">Explore Gallery</a>
   </div>
 </section>
 
@@ -1601,7 +1848,7 @@ video {
 </section>
 
 <!-- PROJECT 1: Le Pom -->
-<section class="project-minimal card-3d" id="le-pom">
+<section class="project-tech" id="le-pom">
   <div class="eyebrow">Project 01</div>
   <h2 class="hand-drawn-underline">Le Pom</h2>
   
@@ -1614,57 +1861,19 @@ video {
           </div>
         
   
-    <!-- 交互式图片揭示 -->
+    <!-- 交互式图片揭示已禁用 -->
     <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
       <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
       <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
       <div class="reveal-spotlight"></div>
-      <div class="reveal-instruction">移动鼠标探索</div>
     </div>
     
-<div class="gallery-minimal">
+<div class="gallery-tech">
     <img loading="lazy" src="苹果.png" alt="Le Pom Apple Design" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="苹果型香味扩散器.png" alt="Le Pom Product" class="hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="苹果香氛扩散器-办公桌场景.png" alt="Le Pom Scene" class="hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="商品天猫淘宝小红书商品网页.png" alt="Le Pom E-commerce" class="hand-drawn-border img-hand-drawn-hover">
   </div>
-  
-  <!-- 品牌视觉识别系统 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">品牌视觉识别系统</h3>
-    <img loading="lazy" src="media/le-pom-visual-identity.png" alt="Le Pom Visual Identity System" style="width:100%;display:block;">
-  </div>
-  
-  <!-- 产品场景图 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">产品场景展示</h3>
-    <img loading="lazy" src="media/le-pom-2.png" alt="Le Pom Product Scene" style="width:100%;display:block;">
-  </div>
-  
-  <!-- 海外社交媒体运营 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">海外社交媒体运营</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-      <img loading="lazy" src="media/le-pom-ins.png" alt="Instagram Marketing" style="width:100%;display:block;">
-      <img loading="lazy" src="media/le-pom-overseas-social.png" alt="Overseas Social Media" style="width:100%;display:block;">
-    </div>
-  </div>
-  
-  <!-- 创意视频构思 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">创意视频构思</h3>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-      <img loading="lazy" src="media/le-pom-video-concept1.png" alt="Video Concept 1" style="width:100%;display:block;">
-      <img loading="lazy" src="media/le-pom-video-concept2.png" alt="Video Concept 2" style="width:100%;display:block;">
-    </div>
-  </div>
-  
-  <!-- 快闪店概念 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">快闪店概念设计</h3>
-    <img loading="lazy" src="media/le-pom-popup.png" alt="Pop-up Store Concept" style="width:100%;display:block;">
-  </div>
-  
   <div class="meta">
     <div class="item"><div class="meta-label">Role</div><div class="meta-value">Product Designer</div></div>
     <div class="item"><div class="meta-label">Type</div><div class="meta-value">Product Design</div></div>
@@ -1675,7 +1884,7 @@ video {
 
 
 <!-- Le Pom AIGC Campaign -->
-<section class="project-minimal card-3d" id="le-pom-aigc" style="border-top:none;">
+<section class="project-tech" id="le-pom-aigc" style="border-top:none;">
   <div class="eyebrow">AIGC Campaign</div>
   <h2>Le Pom · AIGC广告创意</h2>
   
@@ -1689,17 +1898,22 @@ video {
         
   
   <!-- 创意视频展示 -->
-  <div style="margin:48px 0;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
-    <video controls preload="metadata" class="video-minimal" style="width:100%;height:auto;display:block;">
+  <div style="margin:48px 0;border-radius:12px;overflow:hidden;box-shadow:none;">
+    <video controls preload="metadata" class="video-tech" style="width:100%;height:auto;display:block;">
       <source src="media/lepom/创意视频.MOV" type="video/mp4">
       您的浏览器不支持视频播放。
     </video>
   </div>
   
   
-    <!-- 交互式图片揭示 -->
+    <!-- 交互式图片揭示已禁用 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+    </div>
     
-<div class="gallery-minimal">
+<div class="gallery-tech">
     <img loading="lazy" src="苹果香氛扩散器-手持展示.png" alt="Le Pom Handheld" style="border-radius:8px;">
     <img loading="lazy" src="苹果香氛扩散器-沙发桌场景.png" alt="Le Pom Scene" style="border-radius:8px;">
   </div>
@@ -1711,7 +1925,7 @@ video {
   </div>
 </section>
 <!-- AIGC Short Film -->
-<section class="project-minimal card-3d" id="aigc-film" style="border-top:none;">
+<section class="project-tech" id="aigc-film" style="border-top:none;">
   <div class="eyebrow">AIGC Short Film</div>
   <h2 class="hand-drawn-underline">AIGC短片制作</h2>
   
@@ -1740,8 +1954,8 @@ video {
     <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:24px;">最终视频</h3>
     
     <!-- 第一个视频 -->
-    <div style="margin-bottom:32px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
-      <video controls preload="metadata" class="video-minimal" style="width:100%;height:auto;display:block;">
+    <div style="margin-bottom:32px;border-radius:12px;overflow:hidden;box-shadow:none;">
+      <video controls preload="metadata" class="video-tech" style="width:100%;height:auto;display:block;">
         <source src="media/aigc/aigc短片制作.mov" type="video/mp4">
         您的浏览器不支持视频播放。
       </video>
@@ -1759,7 +1973,7 @@ video {
 </section>
 
 <!-- PROJECT 2: Little little -->
-<section class="project-minimal card-3d" id="little-little">
+<section class="project-tech" id="little-little">
   <div class="eyebrow">Project 02</div>
   <h2 class="hand-drawn-underline">Little little</h2>
   
@@ -1772,9 +1986,14 @@ video {
           </div>
         
   
-    <!-- 交互式图片揭示 -->
+    <!-- 交互式图片揭示已禁用 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+    </div>
     
-<div class="gallery-minimal">
+<div class="gallery-tech">
     <img loading="lazy" src="media/littlelittle/01-tree-popup.jpg" alt="Pop-up" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/littlelittle/02-dessert-table.jpg" alt="Display">
     <img loading="lazy" src="media/littlelittle/03-model-portrait.jpg" alt="Model">
@@ -1788,7 +2007,7 @@ video {
 </section>
 
 <!-- PROJECT 3: Kesi Heritage -->
-<section class="project-minimal card-3d" id="kesi">
+<section class="project-tech" id="kesi">
   <div class="eyebrow">Project 03</div>
   <h2>Kesi Heritage</h2>
   
@@ -1801,9 +2020,14 @@ video {
           </div>
         
   
-    <!-- 交互式图片揭示 -->
+    <!-- 交互式图片揭示已禁用 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+    </div>
     
-<div class="gallery-minimal">
+<div class="gallery-tech">
     <img loading="lazy" src="media/kesi/01-title-wall.jpg" alt="Title Wall" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/kesi/02-gallery-view.jpg" alt="Gallery">
     <img loading="lazy" src="media/kesi/03-loom-demo.jpg" alt="Loom Demo">
@@ -1817,7 +2041,7 @@ video {
 </section>
 
 <!-- PROJECT 4: Media Night -->
-<section class="project-minimal card-3d" id="media-night">
+<section class="project-tech" id="media-night">
   <div class="eyebrow">Project 04</div>
   <h2>Media Night</h2>
   
@@ -1830,9 +2054,14 @@ video {
           </div>
         
   
-    <!-- 交互式图片揭示 -->
+    <!-- 交互式图片揭示已禁用 -->
+    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
+      <div class="image-reveal-base" style="background-image:url('苹果.png');"></div>
+      <div class="image-reveal-top" style="background-image:url('苹果型香味扩散器.png');"></div>
+      <div class="reveal-spotlight"></div>
+    </div>
     
-<div class="gallery-minimal">
+<div class="gallery-tech">
     <img loading="lazy" src="media/medianight/01-sunset-camp.jpg" alt="Sunset Camp" class="full hand-drawn-border img-hand-drawn-hover">
     <img loading="lazy" src="media/medianight/02-dinner-tent.jpg" alt="Dinner">
     <img loading="lazy" src="media/medianight/03-night-bokeh.jpg" alt="Night">
@@ -2020,15 +2249,15 @@ video {
     <p class="mono">§ 05 — Services</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">What I Do</h2>
     <div class="services-grid">
-      <div class="service-card-minimal"><div class="number">01</div><h3 class="title">AIGC Content</h3><p class="desc">Prompt Engineering, template-based batch production, Midjourney, Stable Diffusion, Claude Code.</p></div>
-      <div class="service-card-minimal"><div class="number">02</div><h3 class="title">Social Media</h3><p class="desc">Instagram, TikTok, Xiaohongshu, content planning, user growth, data analytics.</p></div>
-      <div class="service-card-minimal"><div class="number">03</div><h3 class="title">Visual Design</h3><p class="desc">Brand identity, product design, Adobe Creative Suite, Canva, Procreate.</p></div>
+      <div class="service-card-tech"><div class="number">01</div><h3 class="title">AIGC Content</h3><p class="desc">Prompt Engineering, template-based batch production, Midjourney, Stable Diffusion, Claude Code.</p></div>
+      <div class="service-card-tech"><div class="number">02</div><h3 class="title">Social Media</h3><p class="desc">Instagram, TikTok, Xiaohongshu, content planning, user growth, data analytics.</p></div>
+      <div class="service-card-tech"><div class="number">03</div><h3 class="title">Visual Design</h3><p class="desc">Brand identity, product design, Adobe Creative Suite, Canva, Procreate.</p></div>
     </div>
   </div>
 </section>
 
 <!-- Contact -->
-<section class="contact-minimal">
+<section class="contact-tech">
   <div style="max-width:1200px;margin:0 auto;">
     <p class="mono" style="color:rgba(255,255,255,0.5);">§ 06 — Contact</p>
     <h2>Let's talk.</h2>
@@ -2042,7 +2271,7 @@ video {
   </div>
 </section>
 
-<footer class="footer-minimal"><p>© 2026 Ruiqi Jin · Visual Culture · Brand Strategy · AIGC</p></footer>
+<footer class="footer-tech"><p>© 2026 Ruiqi Jin · Visual Culture · Brand Strategy · AIGC</p></footer>
 
 </div>
 
@@ -2054,29 +2283,14 @@ function updateGallery() {
   if (!gallerySection) return;
   const rect = gallerySection.getBoundingClientRect();
   const scrollProgress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)));
-  
   galleryImages.forEach((img, index) => {
     const speed = parseFloat(img.dataset.speed) || 1;
-    const delay = index * 0.06;
-    const progress = Math.max(0, Math.min(1, (scrollProgress - delay) * 1.8));
-    
+    const delay = index * 0.08;
+    const progress = Math.max(0, Math.min(1, (scrollProgress - delay) * 1.5));
     if (progress > 0) {
       img.classList.add('visible');
-      
-      // 开始大且分散，滚动后缩小聚集
-      const scale = 0.7 + progress * 0.3; // 0.7 -> 1.0
-      const yOffset = (1 - progress) * 80 * speed;
-      
-      // 聚集效果：向中心偏移
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const rect = img.getBoundingClientRect();
-      const currentX = rect.left + rect.width / 2;
-      const currentY = rect.top + rect.height / 2;
-      const pullX = (centerX - currentX) * progress * 0.15;
-      const pullY = (centerY - currentY) * progress * 0.1;
-      
-      img.style.transform = `scale(${scale}) translateY(${yOffset}px) translate(${pullX}px, ${pullY}px)`;
+      const yOffset = (1 - progress) * 50 * speed;
+      img.style.transform = `scale(${0.3 + progress * 0.7}) translateY(${yOffset}px)`;
     }
   });
 }
@@ -2179,93 +2393,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========== 交互式图片揭示效果 ==========
 
 // 1. 交互式图片揭示
-class ImageReveal {
-  constructor(container) {
-    this.container = container;
-    this.baseLayer = container.querySelector('.image-reveal-base');
-    this.topLayer = container.querySelector('.image-reveal-top');
-    this.spotlight = container.querySelector('.reveal-spotlight');
-    this.canvas = document.createElement('canvas');
-    this.ctx = this.canvas.getContext('2d');
-    this.mouse = { x: 0, y: 0 };
-    this.smooth = { x: 0, y: 0 };
-    this.radius = Math.min(420, Math.max(160, window.innerWidth * 0.16));
-    
-    this.init();
-  }
-  
-  init() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-    this.canvas.style.display = 'none';
-    
-    this.container.addEventListener('mousemove', (e) => {
-      const rect = this.container.getBoundingClientRect();
-      this.mouse.x = e.clientX - rect.left;
-      this.mouse.y = e.clientY - rect.top;
-      
-      if (this.spotlight) {
-        this.spotlight.style.left = e.clientX + 'px';
-        this.spotlight.style.top = e.clientY + 'px';
-      }
-    });
-    
-    this.animate();
-  }
-  
-  animate() {
-    // 平滑跟随
-    this.smooth.x += (this.mouse.x - this.smooth.x) * 0.1;
-    this.smooth.y += (this.mouse.y - this.smooth.y) * 0.1;
-    
-    // 绘制遮罩
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    const gradient = this.ctx.createRadialGradient(
-      this.smooth.x, this.smooth.y, 0,
-      this.smooth.x, this.smooth.y, this.radius
-    );
-    
-    gradient.addColorStop(0, 'rgba(255,255,255,1)');
-    gradient.addColorStop(0.4, 'rgba(255,255,255,1)');
-    gradient.addColorStop(0.6, 'rgba(255,255,255,0.75)');
-    gradient.addColorStop(0.75, 'rgba(255,255,255,0.4)');
-    gradient.addColorStop(0.88, 'rgba(255,255,255,0.12)');
-    gradient.addColorStop(1, 'rgba(255,255,255,0)');
-    
-    this.ctx.fillStyle = gradient;
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    // 应用遮罩
-    const dataUrl = this.canvas.toDataURL();
-    if (this.topLayer) {
-      this.topLayer.style.maskImage = `url(${dataUrl})`;
-      this.topLayer.style.webkitMaskImage = `url(${dataUrl})`;
-    }
-    
-    requestAnimationFrame(() => this.animate());
-  }
-}
 
 // 2. 磁性按钮效果
-class MagneticButton {
-  constructor(button) {
-    this.button = button;
-    this.text = button.querySelector('span');
-    
-    button.addEventListener('mousemove', (e) => {
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-    });
-    
-    button.addEventListener('mouseleave', () => {
-      button.style.transform = 'translate(0, 0)';
-    });
-  }
-}
 
 // 3. 滚动视差效果
 class ParallaxScroll {
@@ -2291,48 +2420,6 @@ class ParallaxScroll {
 }
 
 // 4. 光标跟随效果
-class CursorFollow {
-  constructor() {
-    this.cursor = document.createElement('div');
-    this.cursor.className = 'cursor-follow';
-    document.body.appendChild(this.cursor);
-    
-    this.mouse = { x: 0, y: 0 };
-    this.smooth = { x: 0, y: 0 };
-    
-    this.init();
-  }
-  
-  init() {
-    document.addEventListener('mousemove', (e) => {
-      this.mouse.x = e.clientX;
-      this.mouse.y = e.clientY;
-    });
-    
-    // 检测悬停状态
-    const hoverElements = document.querySelectorAll('a, button, .interactive-card, .magnetic-btn');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        this.cursor.classList.add('hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        this.cursor.classList.remove('hover');
-      });
-    });
-    
-    this.animate();
-  }
-  
-  animate() {
-    this.smooth.x += (this.mouse.x - this.smooth.x) * 0.15;
-    this.smooth.y += (this.mouse.y - this.smooth.y) * 0.15;
-    
-    this.cursor.style.left = this.smooth.x + 'px';
-    this.cursor.style.top = this.smooth.y + 'px';
-    
-    requestAnimationFrame(() => this.animate());
-  }
-}
 
 // 5. 文字揭示动画
 class TextReveal {
@@ -2356,85 +2443,30 @@ class TextReveal {
 }
 
 // 6. 3D卡片效果
-class Card3D {
-  constructor(cards) {
-    this.cards = cards;
-    this.init();
-  }
-  
-  init() {
-    this.cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        card.querySelector('.card-3d-inner').style.transform = 
-          `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        card.querySelector('.card-3d-inner').style.transform = 
-          'rotateX(0) rotateY(0)';
-      });
-    });
-  }
-}
 
 // 初始化所有交互效果
 document.addEventListener('DOMContentLoaded', function() {
   // 初始化图片揭示
-  const revealContainers = document.querySelectorAll('.image-reveal-container');
-  revealContainers.forEach(container => new ImageReveal(container));
   
   // 初始化磁性按钮
-  const magneticBtns = document.querySelectorAll('.magnetic-btn');
-  magneticBtns.forEach(btn => new MagneticButton(btn));
   
   // 初始化视差滚动
   new ParallaxScroll();
   
   // 初始化光标跟随（仅桌面端）
   if (window.innerWidth > 768) {
-    new CursorFollow();
   }
   
   // 初始化文字揭示
   new TextReveal();
   
   // 初始化3D卡片
-  const cards3D = document.querySelectorAll('.card-3d');
   if (cards3D.length > 0) {
-    new Card3D(cards3D);
   }
   
   console.log('交互效果已初始化');
 });
 
-</script>
-
-
-<script>
-// Preloader Animation
-(function() {
-  const preloader = document.getElementById('preloader');
-  const brand = document.getElementById('preloader-brand');
-  
-  // 立即显示并开始放大
-  requestAnimationFrame(() => {
-    brand.classList.add('visible');
-  });
-  
-  // 1.2秒后关闭
-  setTimeout(() => {
-    preloader.classList.add('done');
-    setTimeout(() => { preloader.remove(); }, 600);
-  }, 1200);
-})();
 </script>
 
 </body>
@@ -2691,7 +2723,7 @@ document.addEventListener('DOMContentLoaded', function() {
   left: 0;
   right: 0;
   bottom: 0;
-
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.05;
   pointer-events: none;
   z-index: 1;
