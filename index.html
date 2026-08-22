@@ -159,8 +159,51 @@ nav .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: fl
   object-fit: cover;
 }
 
+.gallery-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  backface-visibility: hidden;
+}
+
+/* 散开状态 - 初始位置 */
+.gallery-card.spread {
+  opacity: 1;
+}
+
+.gallery-card.spread[data-index="0"] {
+  transform: translate(-120px, -80px) rotate(-8deg) scale(0.85);
+}
+.gallery-card.spread[data-index="1"] {
+  transform: translate(100px, -60px) rotate(5deg) scale(0.9);
+}
+.gallery-card.spread[data-index="2"] {
+  transform: translate(-80px, 60px) rotate(-4deg) scale(0.88);
+}
+.gallery-card.spread[data-index="3"] {
+  transform: translate(120px, 80px) rotate(7deg) scale(0.85);
+}
+.gallery-card.spread[data-index="4"] {
+  transform: translate(-140px, 20px) rotate(-6deg) scale(0.82);
+}
+.gallery-card.spread[data-index="5"] {
+  transform: translate(80px, -100px) rotate(3deg) scale(0.87);
+}
+.gallery-card.spread[data-index="6"] {
+  transform: translate(-60px, 100px) rotate(-5deg) scale(0.84);
+}
+.gallery-card.spread[data-index="7"] {
+  transform: translate(140px, 40px) rotate(8deg) scale(0.86);
+}
+
+/* 聚拢状态 - 堆叠 */
 .gallery-card.active {
-  transform: translateY(0) scale(1) rotateY(0deg);
+  transform: translateY(0) scale(1) rotateY(0deg) rotate(0deg);
   opacity: 1;
   z-index: 10;
 }
@@ -2769,10 +2812,16 @@ setTimeout(() => {
   const counter = document.getElementById('gallery-counter');
   const totalCards = cards.length;
   let currentIndex = 0;
+  let isGathered = false;
+  
+  // 初始化 - 散开状态
+  cards.forEach(card => {
+    card.classList.add('spread');
+  });
   
   function updateCards(activeIndex) {
     cards.forEach((card, i) => {
-      card.classList.remove('active', 'prev', 'next', 'hidden');
+      card.classList.remove('active', 'prev', 'next', 'hidden', 'spread');
       
       if (i === activeIndex) {
         card.classList.add('active');
@@ -2791,13 +2840,11 @@ setTimeout(() => {
     }
   }
   
-  // 初始化
-  updateCards(0);
-  
   // 滚动监听
-  let lastScrollY = 0;
+  let lastScrollY = window.scrollY;
   let scrollAccumulator = 0;
-  const scrollThreshold = 150; // 滚动多少像素切换一张图
+  const scrollThreshold = 150;
+  const gatherThreshold = 300; // 滚动多少像素开始聚拢
   
   window.addEventListener('scroll', () => {
     if (!gallerySection) return;
@@ -2807,19 +2854,33 @@ setTimeout(() => {
     const sectionHeight = rect.height;
     
     // 只在gallery区域内生效
-    if (sectionTop < 0 && sectionTop > -sectionHeight + window.innerHeight) {
+    if (sectionTop < window.innerHeight && sectionTop > -sectionHeight) {
       const scrollDelta = window.scrollY - lastScrollY;
       scrollAccumulator += scrollDelta;
       
-      if (Math.abs(scrollAccumulator) > scrollThreshold) {
+      // 第一阶段：散开 -> 聚拢
+      if (!isGathered && scrollAccumulator > gatherThreshold) {
+        isGathered = true;
+        updateCards(0);
+        scrollAccumulator = 0;
+      }
+      // 第二阶段：聚拢后切换图片
+      else if (isGathered && Math.abs(scrollAccumulator) > scrollThreshold) {
         if (scrollAccumulator > 0) {
-          // 向下滚动 - 下一张
           currentIndex = (currentIndex + 1) % totalCards;
         } else {
-          // 向上滚动 - 上一张
           currentIndex = (currentIndex - 1 + totalCards) % totalCards;
         }
         updateCards(currentIndex);
+        scrollAccumulator = 0;
+      }
+      // 向上滚回散开状态
+      else if (isGathered && scrollAccumulator < -gatherThreshold) {
+        isGathered = false;
+        cards.forEach(card => {
+          card.classList.remove('active', 'prev', 'next', 'hidden');
+          card.classList.add('spread');
+        });
         scrollAccumulator = 0;
       }
     }
