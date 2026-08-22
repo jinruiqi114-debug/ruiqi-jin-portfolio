@@ -1353,13 +1353,12 @@ video {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #1A1A1A;
+  background: #F5F4F0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 0.8s;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.6s;
 }
 
 .preloader.done {
@@ -1368,49 +1367,23 @@ video {
   pointer-events: none;
 }
 
-.preloader-counter {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(48px, 10vw, 120px);
-  font-weight: 400;
-  color: #F5F4F0;
-  letter-spacing: 0.05em;
-  line-height: 1;
-}
-
 .preloader-brand {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: clamp(64px, 14vw, 160px);
+  font-size: 32px;
   font-weight: 400;
-  color: #F5F4F0;
+  color: #1A1A1A;
   letter-spacing: 0.12em;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: scale(0.6);
+  transition: font-size 1s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease,
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .preloader-brand.visible {
   opacity: 1;
-  transform: translateY(0);
-}
-
-.preloader-line {
-  width: 120px;
-  height: 1px;
-  background: rgba(245,244,240,0.2);
-  margin-top: 32px;
-  position: relative;
-  overflow: hidden;
-}
-
-.preloader-line::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  background: #F5F4F0;
-  transition: width 0.05s linear;
+  font-size: clamp(80px, 18vw, 200px);
+  transform: scale(1);
 }
 
 </style>
@@ -1419,9 +1392,7 @@ video {
 
 <!-- Preloader -->
 <div class="preloader" id="preloader">
-  <div class="preloader-counter" id="preloader-counter">0</div>
   <div class="preloader-brand" id="preloader-brand">JIN.</div>
-  <div class="preloader-line" id="preloader-line"></div>
 </div>
 
 
@@ -2433,48 +2404,18 @@ document.addEventListener('DOMContentLoaded', function() {
 // Preloader Animation
 (function() {
   const preloader = document.getElementById('preloader');
-  const counter = document.getElementById('preloader-counter');
   const brand = document.getElementById('preloader-brand');
-  const line = document.getElementById('preloader-line');
   
-  let count = 0;
-  const duration = 500; // 0.5秒
-  const fps = 60;
-  const interval = 1000 / fps;
-  const steps = duration / interval;
-  const increment = 100 / steps;
+  // 立即显示并开始放大
+  requestAnimationFrame(() => {
+    brand.classList.add('visible');
+  });
   
-  // 进度条样式
-  const progressStyle = document.createElement('style');
-  document.head.appendChild(progressStyle);
-  
-  const countUp = setInterval(() => {
-    count += increment;
-    if (count >= 100) {
-      count = 100;
-      clearInterval(countUp);
-      
-      // 显示 JIN.
-      setTimeout(() => {
-        counter.style.opacity = '0';
-        counter.style.transform = 'translateY(-20px)';
-        counter.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-      }, 150);
-      
-      setTimeout(() => {
-        brand.classList.add('visible');
-      }, 400);
-      
-      // 关闭 preloader
-      setTimeout(() => {
-        preloader.classList.add('done');
-        setTimeout(() => { preloader.remove(); }, 800);
-      }, 1200);
-    }
-    
-    counter.textContent = Math.floor(count);
-    progressStyle.textContent = '.preloader-line::after { width: ' + count + '%; }';
-  }, interval);
+  // 1.2秒后关闭
+  setTimeout(() => {
+    preloader.classList.add('done');
+    setTimeout(() => { preloader.remove(); }, 600);
+  }, 1200);
 })();
 </script>
 
