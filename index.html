@@ -2438,12 +2438,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const line = document.getElementById('preloader-line');
   
   let count = 0;
-  const duration = 1800; // 1.8秒计数
-  const interval = 18;
+  const duration = 500; // 0.5秒
+  const fps = 60;
+  const interval = 1000 / fps;
   const steps = duration / interval;
   const increment = 100 / steps;
   
-  // 计数动画
+  // 进度条样式
+  const progressStyle = document.createElement('style');
+  document.head.appendChild(progressStyle);
+  
   const countUp = setInterval(() => {
     count += increment;
     if (count >= 100) {
@@ -2451,38 +2455,25 @@ document.addEventListener('DOMContentLoaded', function() {
       clearInterval(countUp);
       
       // 显示 JIN.
-      counter.style.opacity = '0';
-      counter.style.transform = 'translateY(-20px)';
-      counter.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      setTimeout(() => {
+        counter.style.opacity = '0';
+        counter.style.transform = 'translateY(-20px)';
+        counter.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      }, 150);
       
       setTimeout(() => {
         brand.classList.add('visible');
-      }, 300);
+      }, 400);
       
       // 关闭 preloader
       setTimeout(() => {
         preloader.classList.add('done');
-        // 移除 preloader DOM
-        setTimeout(() => {
-          preloader.remove();
-        }, 800);
+        setTimeout(() => { preloader.remove(); }, 800);
       }, 1200);
     }
     
     counter.textContent = Math.floor(count);
-    line.style.setProperty('--progress', count + '%');
-    line.querySelector('::after') // just update CSS
-  }, interval);
-  
-  // 更新进度条
-  const style = document.createElement('style');
-  document.head.appendChild(style);
-  
-  const updateProgress = setInterval(() => {
-    if (count >= 100) {
-      clearInterval(updateProgress);
-    }
-    style.textContent = `.preloader-line::after { width: ${count}%; }`;
+    progressStyle.textContent = '.preloader-line::after { width: ' + count + '%; }';
   }, interval);
 })();
 </script>
