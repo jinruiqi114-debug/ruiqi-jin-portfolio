@@ -2732,6 +2732,97 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
+
+/* === FIX 1: 防止移动端内容不可见 === */
+@media (max-width: 768px) {
+  .section-transition,
+  .scroll-reveal,
+  .fade-in-up,
+  .project-detail,
+  .project-minimal,
+  .gallery-minimal,
+  .gallery-img,
+  .gallery-card,
+  .service-card,
+  .contact-section,
+  .contact-item,
+  .preloader,
+  .preloader-brand,
+  .preloader-line,
+  .preloader-subtitle,
+  .scroll-indicator {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* 确保所有图片可见 */
+  img {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* 确保视频可见 */
+  video {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* 确保导航栏可见 */
+  nav {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+  }
+  
+  /* 确保语言切换按钮可见 */
+  #btn-zh, #btn-en {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+  }
+  
+  /* 禁用移动端动画 */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* 确保滚动进度条可见 */
+  .scroll-progress {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* 确保噪点水波纹理背景可见 */
+  .noise-wave-bg {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* 确保所有section可见 */
+  section {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* 确保所有div可见 */
+  div {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* 确保所有文本可见 */
+  h1, h2, h3, h4, h5, h6, p, span, a, li {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3082,7 +3173,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- 创意视频展示 -->
   <div style="margin:48px auto;max-width:60%;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
     <video controls preload="metadata" class="video-minimal" style="width:100%;height:auto;display:block;">
-      <source src="media/lepom/创意视频.MOV" type="video/mp4">
+      <source src="media/lepom/创意视频.MOV" type="video/quicktime">
       您的浏览器不支持视频播放。
     </video>
   </div>
@@ -3133,7 +3224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- 第一个视频 -->
     <div style="margin-bottom:32px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);">
       <video controls preload="metadata" class="video-minimal" style="width:100%;height:auto;display:block;">
-        <source src="media/aigc/aigc短片制作.mov" type="video/mp4">
+        <source src="media/aigc/aigc短片制作.mov" type="video/quicktime">
         您的浏览器不支持视频播放。
       </video>
     </div>
