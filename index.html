@@ -2823,6 +2823,43 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
+
+/* ============================================
+   MOBILE FIX - Gallery不再遮挡Hero
+   ============================================ */
+@media (max-width: 768px) {
+  .section-transition { opacity: 1 !important; transform: none !important; }
+  .hero { z-index: 10 !important; background: #F5EDE4 !important; }
+  .hero-content[style*="width:400px"],
+  .hero-content[style*="width: 400px"] {
+    width: 100% !important; max-width: 100% !important;
+    left: 0 !important; padding: 80px 20px 40px !important; box-sizing: border-box !important;
+  }
+  .hero-title-line { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .gallery-section { min-height: auto !important; height: auto !important; position: relative !important; overflow: visible !important; z-index: 1 !important; }
+  .gallery-sticky { position: relative !important; top: auto !important; height: auto !important; min-height: 100vh !important; padding: 80px 16px 60px !important; overflow: visible !important; }
+  .gallery-stack { width: 80vw !important; height: 50vh !important; position: relative !important; margin: 0 auto !important; perspective: none !important; }
+  .gallery-card { position: absolute !important; width: 100% !important; height: 100% !important; left: 0 !important; top: 0 !important; margin: 0 !important; border-radius: 12px !important; transform: none !important; box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important; }
+  .gallery-card img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+  .gallery-card.spread { transform: none !important; opacity: 0 !important; z-index: 1 !important; }
+  .gallery-card.active { transform: none !important; opacity: 1 !important; z-index: 10 !important; }
+  .gallery-card.prev, .gallery-card.next, .gallery-card.hidden { transform: none !important; opacity: 0 !important; z-index: 1 !important; }
+  .gallery-title { position: relative !important; font-size: 28px !important; text-align: center !important; color: var(--text-primary) !important; text-shadow: none !important; margin-bottom: 24px !important; padding: 0 !important; }
+  .gallery-counter { position: relative !important; text-align: center !important; color: var(--text-primary) !important; text-shadow: none !important; font-size: 14px !important; padding: 20px 0 !important; }
+  .gallery-swipe-hint { display: none !important; }
+  .scroll-section { grid-template-columns: 1fr !important; padding: 60px 16px !important; min-height: auto !important; overflow: hidden !important; z-index: 3 !important; }
+  .marquee-container { height: 200px !important; overflow: hidden !important; }
+  .marquee-track { animation: none !important; }
+  .marquee-item .name { min-width: auto !important; font-size: 11px !important; }
+  .marquee-item .role { font-size: 11px !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
+  .project-minimal { overflow: hidden !important; }
+  .project-minimal h3 { font-size: 18px !important; margin-bottom: 16px !important; }
+  .project-minimal .desc { font-size: 14px !important; line-height: 1.6 !important; }
+  .btn, a.btn, button { min-height: 48px !important; -webkit-tap-highlight-color: transparent; }
+  .content-wrapper { -webkit-overflow-scrolling: touch; }
+  .project-minimal img, .gallery-minimal img { max-width: 100% !important; height: auto !important; }
+}
+
 </style>
 </head>
 <body>
