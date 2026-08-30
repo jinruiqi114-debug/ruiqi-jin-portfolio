@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruiqi Jin · Resume (Editable)</title>
+<style>
+  :root{
+    --page-bg:#f4f5f6;
+    --card-bg:#ffffff;
+    --header-bg:#eef0f2;
+    --ink:#16181c;
+    --ink-soft:#6c7079;
+    --body-text:#42454b;
+    --line:#e7e9ec;
+    --chip-bg:#eef0f2;
+    --chip-border:#dde1e5;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--page-bg);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei","Noto Sans SC","Hiragino Sans GB",sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Toolbar (not printed) ---------- */
+  .toolbar{
+    max-width:210mm;
+    margin:14px auto 0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+    padding:10px 14px;
+    background:#fff;
+    border:1px solid var(--chip-border);
+    border-radius:6px;
+    font-size:12px;
+    color:var(--ink-soft);
+    box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    position:sticky;
+    top:10px;
+    z-index:10;
+  }
+  .toolbar button{
+    font-family:inherit;
+    font-size:12px;
+    font-weight:600;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    padding:6px 12px;
+    border-radius:4px;
+    cursor:pointer;
+  }
+  .toolbar button.secondary{
+    background:#fff;
+    color:var(--ink);
+  }
+  .toolbar button:hover{ opacity:.8; }
+  .toolbar .hint{ font-size:11px; }
+  .toolbar .lang-switch{ margin-left:auto; white-space:nowrap; }
+  .toolbar .lang-switch a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px dotted #b7bbc0;
+    font-weight:600;
+  }
+  .toolbar .save-state{ font-size:11px; color:var(--ink-soft); min-width:64px; }
+
+  /* ---------- Editable affordance ---------- */
+  [contenteditable="true"]{ border-radius:2px; transition:background .12s ease, outline .12s ease; }
+  [contenteditable="true"]:hover{
+    background:rgba(22,24,28,0.05);
+    outline:1px dashed #a7abb2;
+    outline-offset:2px;
+    cursor:text;
+  }
+  [contenteditable="true"]:focus{
+    background:rgba(22,24,28,0.07);
+    outline:1.5px solid var(--ink);
+    outline-offset:2px;
+  }
+
+  .page{
+    width:210mm;
+    min-height:297mm;
+    margin:20px auto;
+    background:var(--card-bg);
+    position:relative;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--chip-border);
+    box-shadow:0 4px 20px rgba(15,30,40,0.08);
+  }
+
+  /* ---------- Header ---------- */
+  .resume-header{
+    background:var(--header-bg);
+    padding:24px 40px 20px;
+    display:flex;
+    align-items:flex-start;
+    gap:22px;
+    border-bottom:1px solid var(--line);
+  }
+  .photo-wrap{
+    width:110px;
+    height:135px;
+    flex-shrink:0;
+    overflow:hidden;
+    border-radius:12px;
+    position:relative;
+    cursor:pointer;
+    background:#e2e5e8;
+  }
+  .photo-wrap img{
+    width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block;
+    user-select:none;
+  }
+  .photo-placeholder{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-size:11px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    background:#e2e5e8;
+    padding:6px;
+  }
+  .photo-wrap .photo-hint{
+    position:absolute;
+    inset:auto 0 0 0;
+    background:rgba(20,20,20,0.72);
+    color:#fafafa;
+    font-size:9px;
+    text-align:center;
+    line-height:1.4;
+    padding:3px 0;
+    opacity:0;
+    transition:opacity .15s ease;
+    pointer-events:none;
+  }
+  .photo-wrap:hover .photo-hint{ opacity:1; }
+  .photo-wrap input[type=file]{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    cursor:pointer;
+  }
+  .photo-controls{
+    display:flex;
+    gap:4px;
+    margin-top:6px;
+  }
+  .photo-controls button{
+    font-size:9px;
+    border:1px solid var(--chip-border);
+    background:#fff;
+    color:var(--ink-soft);
+    padding:2px 6px;
+    border-radius:4px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .photo-controls button:hover{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  .header-text{ flex:1; padding-top:2px; }
+  .role-title{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:0.5px;
+    line-height:1.16;
+    color:var(--ink);
+    text-transform:uppercase;
+    margin:0 0 6px 0;
+  }
+  .name-sub{
+    font-size:14px;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .name-sub .sep{ margin:0 8px; color:#c3c7cc; }
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px 18px;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .contact-row span{ white-space:nowrap; }
+  .contact-row a{ color:var(--ink-soft); text-decoration:none; border-bottom:1px dotted #b7bbc0; }
+  .stat-pills{ display:flex; flex-wrap:wrap; gap:6px; }
+  .stat-pills span{
+    display:inline-block;
+    background:#fff;
+    border:1px solid var(--chip-border);
+    color:var(--ink-soft);
+    font-size:10.5px;
+    padding:3px 9px;
+    border-radius:20px;
+    font-weight:600;
+  }
+
+  /* ---------- Body ---------- */
+  .resume-body{ padding:6px 40px 24px; }
+  .row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:22px;
+    padding:15px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .row:last-child{ border-bottom:none; }
+  .row-label{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    color:var(--ink);
+    text-transform:uppercase;
+    padding-top:1px;
+  }
+  .row-content{ display:flex; flex-direction:column; gap:13px; }
+
+  /* Education */
+  .edu-item .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .edu-item .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .edu-item .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+  .edu-item .row-sub{ font-size:12.5px; color:var(--body-text); margin-top:2px; }
+  .edu-item .row-detail{ font-size:11.5px; color:var(--ink-soft); margin-top:3px; line-height:1.5; }
+  .edu-item + .edu-item{ margin-top:2px; }
+
+  /* Experience / Projects */
+  .job-head{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .job-head .org{ font-weight:700; font-size:13.5px; color:var(--ink); }
+  .job-head .loc{ font-size:11.5px; color:var(--ink-soft); font-weight:500; margin-left:6px; }
+  .job-head .date{ font-size:11.5px; color:var(--ink-soft); white-space:nowrap; }
+  .job-bullets{ margin:5px 0 0 0; padding-left:16px; display:flex; flex-direction:column; gap:5px; }
+  .job-bullets li{ font-size:12.5px; line-height:1.55; color:var(--body-text); }
+  .job-bullets li::marker{ color:#b7bbc0; }
+  .job-bullets b{ color:var(--ink); font-weight:700; }
+
+  /* Skills */
+  .skill-line{ font-size:12.5px; line-height:1.55; color:var(--body-text); }
+  .skill-line b{ color:var(--ink); font-weight:700; }
+  .skill-line + .skill-line{ margin-top:4px; }
+
+  @media print{
+    body{ background:var(--card-bg); }
+    .toolbar{ display:none !important; }
+    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; border-radius:0; border:none; }
+    .page + .page{ page-break-before:always; }
+    .photo-wrap .photo-hint, .photo-controls, .photo-wrap input[type=file]{ display:none !important; }
+    [contenteditable="true"]:hover, [contenteditable="true"]:focus{ background:none; outline:none; }
+    @page{ size:A4; margin:0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button type="button" id="btnPrint">🖨 Print / Export PDF</button>
+  <button type="button" id="btnReset" class="secondary">↺ Reset to default</button>
+  <span class="hint">Click any text on the page to edit it directly — changes are auto-saved in this browser</span>
+  <span class="save-state" id="saveState"></span>
+  <span class="lang-switch">中文版本: <a href="resume-zh.html">resume-zh.html</a></span>
+</div>
+
+<div class="page" id="resumePage">
+
+  <div class="resume-header">
+    <div>
+      <div class="photo-wrap" id="photoWrap">
+        <div class="photo-placeholder" id="photoPlaceholder">Click to upload<br>photo</div>
+        <img alt="Ruiqi Jin" id="photoImg" style="display:none;">
+        <input type="file" accept="image/*" id="photoInput" title="Click to change photo">
+        <div class="photo-hint">Click to change photo</div>
+      </div>
+      <div class="photo-controls">
+        <button type="button" id="posUp">↑</button>
+        <button type="button" id="posDown">↓</button>
+        <button type="button" id="zoomIn">＋</button>
+        <button type="button" id="zoomOut">－</button>
+      </div>
+    </div>
+    <div class="header-text">
+      <div class="role-title" contenteditable="true">New Media Operations · AIGC Creative Strategy</div>
+      <div class="name-sub" contenteditable="true">Ruiqi Jin<span class="sep">|</span>Available Immediately</div>
+      <div class="contact-row" contenteditable="true">
+        <span>📞 16628502768</span>
+        <span>✉️ jrq13504591125@163.com</span>
+        <span>🔗 <a href="https://jinruiqi114-debug.github.io/ruiqi-jin-portfolio/" target="_blank">Portfolio</a></span>
+      </div>
+      <div class="stat-pills">
+        <span contenteditable="true">2.5K Followers</span>
+        <span contenteditable="true">24K Likes &amp; Saves</span>
+        <span contenteditable="true">Top 4% Growth Rate</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="resume-body">
+
+    <!-- Education -->
+    <div class="row">
+      <div class="row-label">Education</div>
+      <div class="row-content">
+        <div class="edu-item">
+          <div class="job-head">
+            <span class="org" contenteditable="true">Kedge Business School</span>
+            <span class="date" contenteditable="true">Sep 2024 – Apr 2026</span>
+          </div>
+          <div class="row-sub" contenteditable="true">MSc, Creative Industries Management &amp; Marketing</div>
+        </div>
+        <div class="edu-item">
+          <div class="job-head">
+            <span class="org" contenteditable="true">Central Academy of Fine Arts (CAFA)</span>
+            <span class="date" contenteditable="true">Sep 2020 – Jun 2024</span>
+          </div>
+          <div class="row-sub" contenteditable="true">BA, Art Design &amp; Management / Marketing (Dual Degree)</div>
+          <div class="row-detail" contenteditable="true">GPA 3.8/4.0 · Top 10% Graduate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="row">
+      <div class="row-label">Experience</div>
+      <div class="row-content">
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">NIO Inc., Shanghai<span class="loc">Brand Communications Intern</span></span>
+            <span class="date" contenteditable="true">Dec 2025 – Apr 2026</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true">Led end-to-end delegation events for government and institutional visitors, ensuring polished, on-brand execution.</li>
+            <li contenteditable="true">Built a multi-channel content strategy using AI tools (Claude Code, Jianying); tracked performance to improve reach and conversion.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">Adidas Global<span class="loc">Brand Marketing Intern</span></span>
+            <span class="date" contenteditable="true">Jul – Oct 2025 &nbsp;· &nbsp;Nuremberg</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true">Built a global-standard visual asset system aligned with brand strategy and audience segmentation.</li>
+            <li contenteditable="true">Used AI tools (Gemini, Midjourney) to standardize creative production, delivering 30+ campaign assets.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">Little little<span class="loc">Overseas Social Media Intern</span></span>
+            <span class="date" contenteditable="true">Sep 2024 – Jul 2025 &nbsp;· &nbsp;Paris</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true">Planned and executed a Paris Fashion Week pop-up campaign using AI content tools, drawing 500+ attendees.</li>
+            <li contenteditable="true">Coordinated KOLs, sponsors, and photography for two flagship brand/campus events.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Experience -->
+    <div class="row">
+      <div class="row-label">Projects</div>
+      <div class="row-content">
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">Adidas Global<span class="loc">Regional Pop-up, Project Assistant</span></span>
+            <span class="date" contenteditable="true">May – Oct 2025</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true">Directed cross-functional execution (photography, styling, social, ops); drove 22% YoY foot-traffic growth and 35% merchandise redemption.</li>
+            <li contenteditable="true">Built a social content matrix generating 800K+ impressions; delivered KPI reports as a reusable playbook.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-head">
+            <span class="org" contenteditable="true">Self-Media Account @靳观观观<span class="loc">Owner</span></span>
+            <span class="date" contenteditable="true">Jun 2026 – Present</span>
+          </div>
+          <ul class="job-bullets">
+            <li contenteditable="true">Grew a personal IP account on Xiaohongshu (RED) to 2.3K followers and 24K+ likes/saves in 3 months, outpacing 95% of peer creators.</li>
+            <li contenteditable="true">Secured brand partnerships (Shanghai Library, artist collaborations) through independent content strategy and pitching.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills, Certifications & More -->
+    <div class="row">
+      <div class="row-label">Skills</div>
+      <div class="row-content">
+        <div class="skill-line" contenteditable="true"><b>Languages:</b> English (Fluent) · Mandarin (Native) · French (Basic)</div>
+        <div class="skill-line" contenteditable="true"><b>Tools:</b> Claude Code · ChatGPT · Gemini · Midjourney · Adobe Creative Suite · Stable Diffusion</div>
+        <div class="skill-line" contenteditable="true"><b>Other:</b> Runway model (Ralph Lauren, Adidas) · Event planning &amp; execution</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'resume_en_v3';
+  var page = document.getElementById('resumePage');
+  var saveState = document.getElementById('saveState');
+  var saveTimer;
+
+  function markSaved(){
+    saveState.textContent = 'Saved ' + new Date().toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
+  }
+
+  function loadContent(){
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if(saved){
+      page.innerHTML = saved;
+      markSaved();
+    }
+  }
+
+  function saveContent(){
+    localStorage.setItem(STORAGE_KEY, page.innerHTML);
+    markSaved();
+  }
+
+  function setupPhoto(){
+    var img = document.getElementById('photoImg');
+    var placeholder = document.getElementById('photoPlaceholder');
+    var input = document.getElementById('photoInput');
+    var posY = 20;
+    var zoom = 100;
+
+    if(img.getAttribute('src')){
+      placeholder.style.display = 'none';
+      img.style.display = 'block';
+    }
+
+    function applyTransform(){
+      img.style.objectPosition = 'center ' + posY + '%';
+      img.style.transform = 'scale(' + (zoom/100) + ')';
+    }
+
+    input.addEventListener('change', function(e){
+      var file = e.target.files && e.target.files[0];
+      if(!file) return;
+      var reader = new FileReader();
+      reader.onload = function(evt){
+        img.src = evt.target.result;
+        img.style.display = 'block';
+        placeholder.style.display = 'none';
+        posY = 20; zoom = 100;
+        applyTransform();
+        saveContent();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    document.getElementById('posUp').addEventListener('click', function(){
+      posY = Math.max(0, posY - 10); applyTransform(); saveContent();
+    });
+    document.getElementById('posDown').addEventListener('click', function(){
+      posY = Math.min(100, posY + 10); applyTransform(); saveContent();
+    });
+    document.getElementById('zoomIn').addEventListener('click', function(){
+      zoom = Math.min(200, zoom + 10); applyTransform(); saveContent();
+    });
+    document.getElementById('zoomOut').addEventListener('click', function(){
+      zoom = Math.max(100, zoom - 10); applyTransform(); saveContent();
+    });
+  }
+
+  loadContent();
+  setupPhoto();
+
+  page.addEventListener('input', function(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveContent, 500);
+  });
+
+  document.getElementById('btnPrint').addEventListener('click', function(){
+    window.print();
+  });
+
+  document.getElementById('btnReset').addEventListener('click', function(){
+    if(confirm('Reset to the default content? This will discard all your edits.')){
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+  });
+})();
+</script>
+</body>
+</html>
