@@ -1102,23 +1102,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
 }
 
 /* 响应式调整 */
-@media (max-width: 768px) {
-  .gallery-minimal {
-    grid-template-columns: 1fr;
-  }
-  
-  .project-minimal .meta {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .contact-minimal .grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .drawer {
-    width: 100%;
-  }
-}
+
 
 
 /* 响应式图片优化 */
@@ -2858,6 +2842,108 @@ document.addEventListener('DOMContentLoaded', function() {
   .btn, a.btn, button { min-height: 48px !important; -webkit-tap-highlight-color: transparent; }
   .content-wrapper { -webkit-overflow-scrolling: touch; }
   .project-minimal img, .gallery-minimal img { max-width: 100% !important; height: auto !important; }
+}
+
+
+/* ========== 完整的移动端适配 ========== */
+@media (max-width: 768px) {
+  /* 导航栏 */
+  .nav-links { display: none !important; }
+  nav .container { padding: 0 16px; }
+  .logo { font-size: 18px; }
+  
+  /* Hero区域 */
+  .hero { 
+    padding: 100px 16px 60px; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+  }
+  .hero h1 { 
+    font-size: 32px !important; 
+    margin-bottom: 16px; 
+    line-height: 1.2;
+  }
+  .hero p { 
+    font-size: 16px; 
+    margin-bottom: 24px; 
+    line-height: 1.6;
+  }
+  .hero-buttons { 
+    flex-direction: column; 
+    gap: 12px; 
+    width: 100%;
+  }
+  .btn { 
+    width: 100%; 
+    justify-content: center; 
+    padding: 14px 24px;
+  }
+  
+  /* About区域 */
+  #about { padding: 60px 16px; }
+  #about .container { 
+    grid-template-columns: 1fr; 
+    gap: 32px; 
+  }
+  
+  /* 项目区域 */
+  .project-detail, .project-minimal {
+    padding: 60px 16px;
+  }
+  .project-detail h2, .project-minimal h2 {
+    font-size: 28px !important;
+    margin-bottom: 16px;
+  }
+  .project-detail .desc, .project-minimal .desc {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  
+  /* Gallery区域 */
+  .gallery-minimal {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .gallery-minimal img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* 视频 */
+  .video-minimal {
+    width: 100%;
+    margin: 24px 0;
+  }
+  
+  /* 联系区域 */
+  .contact-minimal .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  /* 页脚 */
+  footer {
+    padding: 40px 16px;
+  }
+  
+  /* 滚动指示器 */
+  .scroll-indicator {
+    bottom: 30px;
+  }
+  
+  /* 图片优化 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* 视频优化 */
+  video {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 </style>
