@@ -13,8 +13,8 @@
   --bg-alt: #CDD2D8;
   --surface: #E0E4E8;
   --text-primary: #1A1A1A;
-  --text-secondary: #5A5A5A;
-  --text-muted: #8A8A8A;
+  --text-secondary: #4A4A4A;
+  --text-muted: #666666;
   --accent: #6B7B8D;
   --accent-light: #C8D4DC;
   --border: #BEC4CA;
@@ -354,7 +354,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
 @media (max-width: 900px) {
   .scroll-section { grid-template-columns: 1fr; }
   .marquee-container { height: 40vh; }
-  .nav-links { display: none; }
+  .nav-links:not(.open) { display: none; }
   .services-grid, .project-gallery { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr 1fr; }
   .project-meta { grid-template-columns: 1fr 1fr; }
@@ -1571,6 +1571,9 @@ video {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+@media (max-width: 768px) {
+  .typewriter::after { content: none; }
+}
 
 /* 鼠标跟随放大 */
 .hover-scale {
@@ -1595,7 +1598,7 @@ video {
 /* ========== 手机端适配 ========== */
 @media (max-width: 768px) {
   /* 导航栏 */
-  .nav-links { display: none !important; }
+  .nav-links:not(.open) { display: none !important; }
   nav .container { padding: 0 16px; }
   .logo { font-size: 18px; }
   
@@ -2323,7 +2326,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   /* 优化导航 */
-  .nav-links { display: none !important; }
+  .nav-links:not(.open) { display: none !important; }
   nav .container { padding: 0 16px !important; }
   
   /* 优化Hero区域 */
@@ -2847,7 +2850,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /* ========== 完整的移动端适配 ========== */
 @media (max-width: 768px) {
   /* 导航栏 */
-  .nav-links { display: none !important; }
+  .nav-links:not(.open) { display: none !important; }
   nav .container { padding: 0 16px; }
   .logo { font-size: 18px; }
   
@@ -2945,7 +2948,26 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
+/* 移动端汉堡菜单 */
+.nav-burger { display:none; background:none; border:none; font-size:22px; line-height:1; cursor:pointer; color:var(--text-primary); padding:6px 10px; }
+@media (max-width: 768px) {
+  .nav-burger { display:block; }
+  nav .container { padding-right: 118px; }
+  .nav-links { position:fixed; top:64px; left:0; right:0; flex-direction:column; gap:0; padding:6px 0 10px; background:rgba(245,237,228,0.98); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); z-index:99; }
+  .nav-links.open { display:flex; }
+  .nav-links a { padding:14px 24px; font-size:15px; }
+}
 </style>
+<meta name="description" content="Ruiqi Jin (靳睿琦) — brand strategist, AIGC creative and global social media. Portfolio: brand identity, product design, exhibition curation, runway and research.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ruiqi Jin — Portfolio">
+<meta property="og:description" content="Brand strategy · AIGC creative · global social media. From research to runway.">
+<meta property="og:url" content="https://jinruiqi.online/">
+<meta property="og:image" content="https://jinruiqi.online/webp/media/le-pom-visual-identity.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5EDE4">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://jinruiqi.online/">
 </head>
 <body>
 <!-- 噪点水波纹理 -->
@@ -2956,10 +2978,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="scroll-progress" id="scrollProgress"></div>
 
 
-<!-- Preloader -->
-  <div class="preloader-line" id="preloader-line"></div>
-  <div class="preloader-subtitle" id="preloader-subtitle">Portfolio</div>
-</div>
 
 
     <!-- 语言切换按钮 -->
@@ -2998,7 +3016,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <nav>
   <div class="container">
-    <a href="#" class="logo">JIN.</a>
+    <a href="#home" class="logo">JIN.</a>
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false" id="navBurger">☰</button>
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#scroll">Work</a>
@@ -3218,7 +3237,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   <div style="margin:2.5rem 0;">
-    <img loading="lazy" decoding="async" src="images/guan-vi.png" alt="观 GUAN 品牌VI设计" style="width:100%;display:block;border-radius:8px;">
+    <img loading="lazy" decoding="async" src="images/guan-vi.webp" alt="观 GUAN 品牌VI设计" style="width:100%;display:block;border-radius:8px;">
   </div>
 
   <div class="meta">
@@ -3236,10 +3255,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
           <div class="lang-zh">
             <p class="desc">AI驱动的智能香氛扩散器，融合智能科技与优雅设计。从概念到电商的完整品牌体系，涵盖产品设计、视觉识别和数字营销材料。</p>
+          </div>
           <div class="lang-en" style="display:none;">
             <p class="desc">AI-powered smart scent diffuser combining intelligent technology with elegant design. Complete brand identity system from concept to e-commerce, featuring product design, visual identity, and digital marketing materials.</p>
-          </div>
-        
           </div>
         
   
@@ -3304,21 +3322,16 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </section>
 
-
-</section>
-
-
 <!-- PROJECT 3: Kesi Heritage -->
 <section class="project-minimal card-3d" id="kesi">
-  <div class="eyebrow">Project 03</div>
+  <div class="eyebrow">Project 04</div>
   <h2>Kesi Heritage</h2>
   
           <div class="lang-zh">
             <p class="desc">缂丝工艺的双重探索——传统技艺与当代设计的对话。通过展览策划与视觉设计，展现非遗文化的现代价值。</p>
+          </div>
           <div class="lang-en" style="display:none;">
             <p class="desc">A dual exploration of Kesi silk tapestry craft — a dialogue between traditional techniques and contemporary design. Through exhibition curation and visual design, showcasing the modern value of intangible cultural heritage.</p>
-          </div>
-        
           </div>
         
   
@@ -3339,15 +3352,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- PROJECT 4: Media Night -->
 <section class="project-minimal card-3d" id="media-night">
-  <div class="eyebrow">Project 04</div>
+  <div class="eyebrow">Project 05</div>
   <h2>Media Night</h2>
   
           <div class="lang-zh">
-            <p class="desc">研究当代高级时装屋如何通过秀场的视觉与空间组织建构文化权威。三个品牌案例研究：Valentino、Avavav、Miu Miu。</p>
-          <div class="lang-en" style="display:none;">
-            <p class="desc">Research on how contemporary haute couture houses construct cultural authority through the visual and spatial organization of fashion shows. Three brand case studies: Valentino, Avavav, Miu Miu.</p>
+            <p class="desc">为「Pathless Woods」策划的沉浸式媒体之夜：从场地叙事、动线设计到现场内容产出，把品牌故事变成一个可被体验、也被主动传播的夜晚。</p>
           </div>
-        
+          <div class="lang-en" style="display:none;">
+            <p class="desc">An immersive media night curated for Pathless Woods — from venue narrative and guest flow to on-site content production, turning the brand story into an evening people experience and share.</p>
           </div>
         
   
@@ -3366,19 +3378,9 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </section>
 
-</section>
-
-<!-- Projects from GitHub -->
-
-    <div class="item"><div class="meta-label">Tags</div><div class="meta-value">AIGC</div></div>
-    <div class="item"><div class="meta-label">Year</div><div class="meta-value">2026</div></div>
-  </div>
-</section>
-
-</section>
-<section class="section-padded" style="padding: 140px 24px;">
+<section class="section-padded" id="gallery" style="padding: 140px 24px;">
   <div style="max-width:1200px;margin:0 auto;">
-    <p class="mono">§ 02 — Selected Projects</p>
+    <p class="mono">§ 03 — Selected Projects</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">From research to runway</h2>
     <p style="font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:48px;">深度理解媒体与品牌的传播逻辑，策划高端活动与文化项目。</p>
     
@@ -3435,7 +3437,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Research -->
 <section class="section-padded" style="padding: 140px 24px; background: rgba(200,200,210,0.3);">
   <div style="max-width:1200px;margin:0 auto;">
-    <p class="mono">§ 03 — Research</p>
+    <p class="mono">§ 04 — Research</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">To See and to Be Seen</h2>
     <p style="font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:48px;">研究当代高级时装屋如何通过秀场的视觉与空间组织建构文化权威。</p>
     
@@ -3465,7 +3467,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Runway -->
 <section class="section-padded" style="padding: 140px 24px;">
   <div style="max-width:1200px;margin:0 auto;">
-    <p class="mono">§ 04 — Runway</p>
+    <p class="mono">§ 05 — Runway</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">Seen and to be seen</h2>
     <p style="font-size:17px;color:var(--text-secondary);max-width:600px;margin-bottom:48px;">模特经历是我理解所研究课题的起点。站在被看的位置，你切身感受到身体如何被规训、凝视如何被组织。</p>
     
@@ -3487,9 +3489,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <!-- Services -->
-<section class="section-padded" style="padding: 140px 24px;">
+<section class="section-padded" id="services" style="padding: 140px 24px;">
   <div style="max-width:1200px;margin:0 auto;">
-    <p class="mono">§ 05 — Services</p>
+    <p class="mono">§ 06 — Services</p>
     <h2 style="font-family:var(--font-display);font-size:32px;font-weight:600;margin:16px 0 24px;">What I Do</h2>
     <div class="services-grid">
       <div class="service-card-minimal"><div class="number">01</div><h3 class="title">AIGC Content</h3><p class="desc">Prompt Engineering, template-based batch production, Midjourney, Stable Diffusion, Claude Code.</p></div>
@@ -3500,13 +3502,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <!-- Contact -->
-<section class="contact-minimal">
+<section class="contact-minimal" id="contact">
   <div style="max-width:1200px;margin:0 auto;">
-    <p class="mono" style="color:rgba(255,255,255,0.5);">§ 06 — Contact</p>
+    <p class="mono" style="color:rgba(255,255,255,0.5);">§ 07 — Contact</p>
     <h2>Let's talk.</h2>
     <p style="color:rgba(255,255,255,0.7);max-width:500px;">Open to conversations about brand strategy, visual design, and creative collaboration.</p>
     <div class="grid">
-      <div class="item"><div class="label">Email</div><div class="contact-value"><a href="mailto:jrq13504591125@163.com">jrq13504591125@163.com</a></div></div>
+      <div class="item"><div class="label">Email</div><div class="contact-value"><a href="mailto:jinruiqi114@gmail.com">jinruiqi114@gmail.com</a></div></div>
       <div class="item"><div class="label">Phone</div><div class="contact-value"><a href="tel:16628502768">16628502768</a></div></div>
       <div class="item"><div class="label">Xiaohongshu</div><div class="contact-value"><a href="https://xhslink.cn/o/AuXXybN00ad" target="_blank">靳观观观 ↗</a></div></div>
       <div class="item"><div class="label">LinkedIn</div><div class="contact-value"><a href="https://www.linkedin.com/in/ruiqijin/" target="_blank">Ruiqi Jin ↗</a></div></div>
@@ -3519,41 +3521,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <script>
-// Gallery scroll animation
-const gallerySection = document.querySelector('.gallery-section');
-const galleryImages = document.querySelectorAll('.gallery-img');
-function updateGallery() {
-  if (!gallerySection) return;
-  const rect = gallerySection.getBoundingClientRect();
-  const scrollProgress = Math.max(0, Math.min(1, -rect.top / (rect.height - window.innerHeight)));
-  
-  galleryImages.forEach((img, index) => {
-    const speed = parseFloat(img.dataset.speed) || 1;
-    const delay = index * 0.06;
-    const progress = Math.max(0, Math.min(1, (scrollProgress - delay) * 1.8));
-    
-    if (progress > 0) {
-      img.classList.add('visible');
-      
-      // 开始大且分散，滚动后缩小聚集
-      const scale = 0.7 + progress * 0.3; // 0.7 -> 1.0
-      const yOffset = (1 - progress) * 80 * speed;
-      
-      // 聚集效果：向中心偏移
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      const rect = img.getBoundingClientRect();
-      const currentX = rect.left + rect.width / 2;
-      const currentY = rect.top + rect.height / 2;
-      const pullX = (centerX - currentX) * progress * 0.15;
-      const pullY = (centerY - currentY) * progress * 0.1;
-      
-      img.style.transform = `scale(${scale}) translateY(${yOffset}px) translate(${pullX}px, ${pullY}px)`;
-    }
-  });
-}
-window.addEventListener('scroll', updateGallery);
-updateGallery();
 
 // Click to scroll to project
 function scrollToProject(id) {
@@ -3565,7 +3532,10 @@ function scrollToProject(id) {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
+    const href = this.getAttribute('href');
+    if (!href || href === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    let target = null;
+    try { target = document.querySelector(href); } catch (e) { target = null; }
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
@@ -3845,13 +3815,14 @@ class Card3D {
         const rotateX = (y - centerY) / 10;
         const rotateY = (centerX - x) / 10;
         
-        card.querySelector('.card-3d-inner').style.transform = 
+        const inner = card.querySelector('.card-3d-inner');
+        if (inner) inner.style.transform = 
           `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
       
       card.addEventListener('mouseleave', () => {
-        card.querySelector('.card-3d-inner').style.transform = 
-          'rotateX(0) rotateY(0)';
+        const inner2 = card.querySelector('.card-3d-inner');
+        if (inner2) inner2.style.transform = 'rotateX(0) rotateY(0)';
       });
     });
   }
@@ -3890,34 +3861,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-<script>
-// Preloader Animation
-(function() {
-  const preloader = document.getElementById('preloader');
-  const brand = document.getElementById('preloader-brand');
-  const line = document.getElementById('preloader-line');
-  const subtitle = document.getElementById('preloader-subtitle');
-  
-  // 依次显示元素
-  requestAnimationFrame(() => {
-    brand.classList.add('visible');
-  });
-  
-  setTimeout(() => {
-    line.classList.add('visible');
-  }, 400);
-  
-  setTimeout(() => {
-    subtitle.classList.add('visible');
-  }, 800);
-  
-  // 2秒后关闭
-  setTimeout(() => {
-    preloader.classList.add('done');
-    setTimeout(() => { preloader.remove(); }, 800);
-  }, 2000);
-})();
-</script>
 
 
 <script>
@@ -4010,97 +3953,6 @@ setTimeout(() => {
   });
 }, 2200);
 
-// ========== 滚动驱动图片轮播 ==========
-(function() {
-  const gallerySection = document.querySelector('.gallery-section');
-  const cards = document.querySelectorAll('.gallery-card');
-  const counter = document.getElementById('gallery-counter');
-  const totalCards = cards.length;
-  let currentIndex = 0;
-  let isGathered = false;
-  
-  // 初始化 - 手机端直接堆叠，桌面端散开
-  const isMobile = window.innerWidth <= 768;
-  if (isMobile) {
-    // 手机端：直接显示第一张，不需要散开状态
-    isGathered = true;
-    updateCards(0);
-  } else {
-    cards.forEach(card => {
-      card.classList.add('spread');
-    });
-  }
-  
-  function updateCards(activeIndex) {
-    cards.forEach((card, i) => {
-      card.classList.remove('active', 'prev', 'next', 'hidden', 'spread');
-      
-      if (i === activeIndex) {
-        card.classList.add('active');
-      } else if (i === (activeIndex - 1 + totalCards) % totalCards) {
-        card.classList.add('prev');
-      } else if (i === (activeIndex + 1) % totalCards) {
-        card.classList.add('next');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-    
-    // 更新计数器
-    if (counter) {
-      counter.textContent = String(activeIndex + 1).padStart(2, '0') + ' / ' + String(totalCards).padStart(2, '0');
-    }
-  }
-  
-  // 滚动监听
-  let lastScrollY = window.scrollY;
-  let scrollAccumulator = 0;
-  const isMobileScroll = window.innerWidth <= 768;
-  const scrollThreshold = isMobileScroll ? 80 : 150;  // 手机端更灵敏
-  const gatherThreshold = isMobileScroll ? 0 : 300;   // 手机端不需要聚拢阶段
-  
-  window.addEventListener('scroll', () => {
-    if (!gallerySection) return;
-    
-    const rect = gallerySection.getBoundingClientRect();
-    const sectionTop = rect.top;
-    const sectionHeight = rect.height;
-    
-    // 只在gallery区域内生效
-    if (sectionTop < window.innerHeight && sectionTop > -sectionHeight) {
-      const scrollDelta = window.scrollY - lastScrollY;
-      scrollAccumulator += scrollDelta;
-      
-      // 第一阶段：散开 -> 聚拢
-      if (!isGathered && scrollAccumulator > gatherThreshold) {
-        isGathered = true;
-        updateCards(0);
-        scrollAccumulator = 0;
-      }
-      // 第二阶段：聚拢后切换图片
-      else if (isGathered && Math.abs(scrollAccumulator) > scrollThreshold) {
-        if (scrollAccumulator > 0) {
-          currentIndex = (currentIndex + 1) % totalCards;
-        } else {
-          currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-        }
-        updateCards(currentIndex);
-        scrollAccumulator = 0;
-      }
-      // 向上滚回散开状态
-      else if (isGathered && scrollAccumulator < -gatherThreshold) {
-        isGathered = false;
-        cards.forEach(card => {
-          card.classList.remove('active', 'prev', 'next', 'hidden');
-          card.classList.add('spread');
-        });
-        scrollAccumulator = 0;
-      }
-    }
-    
-    lastScrollY = window.scrollY;
-  });
-})();
 
 
 // ========== 惊艳效果 ==========
@@ -4157,5 +4009,19 @@ console.log('惊艳效果已加载');
 console.log('动效系统已加载');
 </script>
 
+<script>
+(function(){
+  var b=document.getElementById('navBurger');
+  if(!b) return;
+  b.addEventListener('click', function(){
+    var n=document.querySelector('.nav-links');
+    n.classList.toggle('open');
+    b.setAttribute('aria-expanded', n.classList.contains('open') ? 'true' : 'false');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click', function(){ document.querySelector('.nav-links').classList.remove('open'); b.setAttribute('aria-expanded','false'); });
+  });
+})();
+</script>
 </body>
 </html>
