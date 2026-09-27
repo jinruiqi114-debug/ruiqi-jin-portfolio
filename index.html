@@ -2968,7 +2968,22 @@ document.addEventListener('DOMContentLoaded', function() {
 <meta name="theme-color" content="#F5EDE4">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://jinruiqi.online/">
-</head>
+<style>
+#about { flex-direction:column; gap:48px; }
+.speaker-feature { width:100%;max-width:1200px;margin:0 auto; }
+.speaker-posters { display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start; }
+.speaker-posters a { margin:0 !important;min-width:0; }
+.film-posters,.paired-assets { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start; }
+.film-posters > div { margin:0 !important; }
+.film-posters { margin:32px 0; }
+.film-posters img,.paired-assets img { width:100% !important;height:auto;object-fit:contain; }
+.long-image-preview { display:block;max-height:640px;overflow:hidden;border-radius:8px; }
+.long-image-preview img { width:100%; }
+@media(max-width:768px) {
+ .speaker-posters,.film-posters,.paired-assets { grid-template-columns:1fr;gap:20px; }
+ .long-image-preview { max-height:480px; }
+}
+</style></head>
 <body>
 <!-- 噪点水波纹理 -->
 <div class="noise-wave-bg"></div>
@@ -3127,18 +3142,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </ul>
       </div>
       
-      <div style="margin-bottom:32px;">
-        <span class="mono" style="margin-bottom:12px;display:block;">GUEST SPEAKER</span>
-        <h3 style="font-size:20px;line-height:1.4;margin-bottom:8px;">AI 产品探索 · 特邀分享</h3>
-        <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px;">2026.09.19 · 北京中关村大街 · 易佰众创空间</p>
-        <a href="webp/ai-product-exploration-event.webp" target="_blank" rel="noopener" aria-label="查看 AI 产品探索活动海报原图" style="display:block;margin-bottom:16px;">
-          <img loading="lazy" decoding="async" src="webp/ai-product-exploration-event.webp" alt="AI 产品探索活动海报，靳睿琦受邀担任分享嘉宾" width="1600" height="900" style="width:100%;height:auto;border-radius:8px;">
-        </a>
-        <a href="webp/ai-product-exploration-riki.webp" target="_blank" rel="noopener" aria-label="查看靳睿琦 Riki 分享嘉宾海报原图" style="display:block;">
-          <img loading="lazy" decoding="async" src="webp/ai-product-exploration-riki.webp" alt="靳睿琦 Riki 分享主题：AI时代的个人复利公式，多元兴趣 × AIGC × 内容杠杆" width="1242" height="1660" style="width:100%;height:auto;border-radius:8px;">
-        </a>
-      </div>
-
       <!-- Education -->
       <div style="margin-bottom:32px;">
         <span class="mono" style="margin-bottom:12px;display:block;">EDUCATION</span>
@@ -3178,6 +3181,19 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
   </div>
+      <div class="speaker-feature" style="margin-bottom:32px;">
+        <span class="mono" style="margin-bottom:12px;display:block;">GUEST SPEAKER</span>
+        <h3 style="font-size:20px;line-height:1.4;margin-bottom:8px;">AI 产品探索 · 特邀分享</h3>
+        <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px;">2026.09.19 · 北京中关村大街 · 易佰众创空间</p>
+        <div class="speaker-posters">
+        <a href="webp/ai-product-exploration-event.webp" target="_blank" rel="noopener" aria-label="查看 AI 产品探索活动海报原图" style="display:block;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="webp/ai-product-exploration-event.webp" alt="AI 产品探索活动海报，靳睿琦受邀担任分享嘉宾" width="1600" height="900" style="width:100%;height:auto;border-radius:8px;">
+        </a>
+        <a href="webp/ai-product-exploration-riki.webp" target="_blank" rel="noopener" aria-label="查看靳睿琦 Riki 分享嘉宾海报原图" style="display:block;">
+          <img loading="lazy" decoding="async" src="webp/ai-product-exploration-riki.webp" alt="靳睿琦 Riki 分享主题：AI时代的个人复利公式，多元兴趣 × AIGC × 内容杠杆" width="1242" height="1660" style="width:100%;height:auto;border-radius:8px;">
+        </a>
+        </div>
+      </div>
 </section>
 <!-- PAGE 2: Scroll Section -->
 <section class="scroll-section" id="scroll" style="background:rgba(255,255,255,0.15);border-top:1px solid rgba(255,255,255,0.2);">
@@ -3219,15 +3235,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <p class="desc">Award-winning work from the 2nd Hailang AI Film Hackathon and selected for Xiaohongshu's Genius Director Recruitment Program 2.0. An AI-generated short film exploring the relationship between humans and the digital world through a story about loneliness and connection.</p>
   </div>
   
+  <div class="film-posters">
   <div style="margin:2rem 0;">
     <img loading="lazy" decoding="async" src="webp/goldfish-room.webp" alt="房间里的金鱼 The Goldfish Room" style="width:100%;display:block;border-radius:8px;">
-  </div>
-
-  <!-- 影片视觉资产展示 -->
-  <div style="margin:3rem 0;">
-    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">影片视觉资产展示（独立完成）</h3>
-    <img loading="lazy" decoding="async" src="webp/goldfish-assets.webp" alt="Character Design Assets" style="width:100%;display:block;border-radius:8px;margin-bottom:1.5rem;">
-    <img loading="lazy" decoding="async" src="webp/goldfish-still.webp" alt="Film Still" style="width:100%;display:block;border-radius:8px;">
   </div>
 
   <div style="margin:3rem 0;">
@@ -3239,6 +3249,16 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   
+  </div>
+  <!-- 影片视觉资产展示 -->
+  <div style="margin:3rem 0;">
+    <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">影片视觉资产展示（独立完成）</h3>
+    <div class="paired-assets">
+    <img loading="lazy" decoding="async" src="webp/goldfish-assets.webp" alt="Character Design Assets" style="width:100%;display:block;border-radius:8px;margin-bottom:1.5rem;">
+    <img loading="lazy" decoding="async" src="webp/goldfish-still.webp" alt="Film Still" style="width:100%;display:block;border-radius:8px;">
+    </div>
+  </div>
+
   <div style="margin:2rem 0;display:flex;flex-wrap:wrap;gap:12px;">
     <a href="https://xhslink.cn/o/9VSZn8zijN3" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#ff2442;color:white;text-decoration:none;border-radius:8px;font-size:14px;font-weight:500;transition:opacity 0.2s;">
       📱 查看小红书作品
@@ -3311,7 +3331,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   <div style="margin:2.5rem 0;">
-    <img loading="lazy" decoding="async" src="images/guan-vi.webp" alt="观 GUAN 品牌VI设计" style="width:100%;display:block;border-radius:8px;">
+    <a class="long-image-preview" href="images/guan-vi.webp" target="_blank" rel="noopener" aria-label="查看观 GUAN 完整品牌设计"><img loading="lazy" decoding="async" src="images/guan-vi.webp" alt="观 GUAN 品牌VI设计" style="width:100%;display:block;border-radius:8px;"></a>
   </div>
 
   <div class="meta">
