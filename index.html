@@ -2972,6 +2972,7 @@ document.addEventListener('DOMContentLoaded', function() {
 #about { flex-direction:column; gap:48px; }
 .speaker-feature { width:100%;max-width:1200px;margin:0 auto; }
 .speaker-posters { display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start; }
+.speaker-posters img { width:100%;height:360px !important;object-fit:contain;object-position:top; }
 .speaker-posters a { margin:0 !important;min-width:0; }
 .film-posters,.paired-assets { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start; }
 .film-posters > div { margin:0 !important; }
@@ -2983,6 +2984,7 @@ document.addEventListener('DOMContentLoaded', function() {
 #le-pom img { object-fit:contain;transform:none; }
 #le-pom .le-pom-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
 @media(max-width:768px) {
+ .speaker-posters img { height:auto !important; }
  #le-pom .gallery-minimal,#le-pom div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr !important; }
 }
 @media(max-width:768px) {
@@ -3223,11 +3225,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <img alt="房间里的金鱼 The Goldfish Room" decoding="async" loading="lazy" src="webp/goldfish-room.webp" style="width:100%;display:block;border-radius:8px;"/>
 </div>
 <div style="margin:3rem 0;">
-<h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:0.75rem;"><span data-en="Selected for Xiaohongshu Genius Director Program 2.0" data-zh="入选小红书天才导演招募计划 2.0">入选小红书天才导演招募计划 2.0</span></h3>
-<p style="font-size:16px;color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;"><span data-en="The Goldfish Room was selected for Xiaohongshu Short Film’s Genius Director Program 2.0." data-zh="《房间里的金鱼》入选小红书短电影「天才导演招募计划 2.0」。">《房间里的金鱼》入选小红书短电影「天才导演招募计划 2.0」。</span></p>
 <a aria-label="查看房间里的金鱼入选小红书天才导演招募计划 2.0" href="https://xhslink.cn/o/3DM1L2kk3dZ" rel="noopener noreferrer" target="_blank">
 <img alt="房间里的金鱼入选小红书天才导演招募计划 2.0" decoding="async" height="1600" loading="lazy" src="webp/goldfish-xhs-director-selection.webp" style="width:min(100%,720px);display:block;margin:0 auto;border-radius:8px;" width="1200"/>
 </a>
+<h3 style="font-family:var(--font-display);font-size:20px;margin:16px 0 8px;"><span data-en="Selected for Xiaohongshu Genius Director Program 2.0" data-zh="入选小红书天才导演招募计划 2.0">入选小红书天才导演招募计划 2.0</span></h3>
 </div>
 </div>
 <!-- 影片视觉资产展示 -->
@@ -3277,7 +3278,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="meta">
 <div class="item"><div class="meta-label"><span data-en="Type" data-zh="类型">类型</span></div><div class="meta-value"><span data-en="AI Film" data-zh="AI 电影">AI 电影</span></div></div>
 <div class="item"><div class="meta-label"><span data-en="Assets" data-zh="资产">资产</span></div><div class="meta-value"><span data-en="Poster · Character Design" data-zh="海报 · 角色设计">海报 · 角色设计</span></div></div>
-<div class="item"><div class="meta-label"><span data-en="Format" data-zh="形式">形式</span></div><div class="meta-value"><span data-en="Short Film" data-zh="短片">短片</span></div></div>
+<div class="item"><div class="meta-label"><span data-en="Recognition" data-zh="荣誉">荣誉</span></div><div class="meta-value"><span data-en="Insta360 AI Film Competition · Shortlisted" data-zh="影石 AI 电影入围">影石 AI 电影入围</span></div></div>
 <div class="item"><div class="meta-label"><span data-en="Year" data-zh="年份">年份</span></div><div class="meta-value">2026</div></div>
 </div>
 </section>
@@ -3293,6 +3294,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 <div style="margin:2.5rem 0;">
 <a aria-label="查看观 GUAN 完整品牌设计" class="long-image-preview" href="images/guan-vi.webp" rel="noopener" target="_blank"><img alt="观 GUAN 品牌VI设计" decoding="async" loading="lazy" src="images/guan-vi.webp" style="width:100%;display:block;border-radius:8px;"/></a>
+<a href="images/guan-vi.webp" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px;font-size:16px;text-decoration:underline;"><span data-zh="查看完整品牌设计 ↗" data-en="View Full Brand Design ↗">查看完整品牌设计 ↗</span></a>
 </div>
 <div class="meta">
 <div class="item"><div class="meta-label"><span data-en="Role" data-zh="角色">角色</span></div><div class="meta-value"><span data-en="Brand Designer · VI Design" data-zh="品牌设计师 · 视觉识别设计">品牌设计师 · 视觉识别设计</span></div></div>
