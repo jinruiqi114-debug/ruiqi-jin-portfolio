@@ -2979,6 +2979,12 @@ document.addEventListener('DOMContentLoaded', function() {
 .film-posters img,.paired-assets img { width:100% !important;height:auto;object-fit:contain; }
 .long-image-preview { display:block;max-height:640px;overflow:hidden;border-radius:8px; }
 .long-image-preview img { width:100%; }
+#le-pom .gallery-minimal { align-items:start; }
+#le-pom img { object-fit:contain;transform:none; }
+#le-pom .le-pom-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media(max-width:768px) {
+ #le-pom .gallery-minimal,#le-pom div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr !important; }
+}
 @media(max-width:768px) {
  .speaker-posters,.film-posters,.paired-assets { grid-template-columns:1fr;gap:20px; }
  .long-image-preview { max-height:480px; }
@@ -3355,31 +3361,24 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         
   
-    <!-- 交互式图片揭示 -->
-    <div class="image-reveal-container" style="height:60vh;margin:2rem 0;border-radius:12px;overflow:hidden;">
-      <div class="image-reveal-base" style="background-image:url('webp/苹果.webp');"></div>
-      <div class="image-reveal-top" style="background-image:url('webp/苹果型香味扩散器.webp');"></div>
-      <div class="reveal-spotlight"></div>
-      <div class="reveal-instruction">移动鼠标探索</div>
-    </div>
-    
-<div class="gallery-minimal">
-    <img loading="lazy" decoding="async" src="webp/苹果.webp" alt="Le Pom Apple Design" class="parallax-img" data-speed="0.3" class="full img-hand-drawn-hover">
-    <img loading="lazy" decoding="async" src="webp/苹果型香味扩散器.webp" alt="Le Pom Product" class="parallax-img" data-speed="0.2" class="img-hand-drawn-hover">
+  <div class="gallery-minimal le-pom-gallery">
+    <img loading="lazy" decoding="async" src="webp/苹果.webp" alt="Le Pom 产品外观">
     <img loading="lazy" decoding="async" src="webp/苹果香氛扩散器-办公桌场景.webp" alt="Le Pom Scene" class="img-hand-drawn-hover">
-    <img loading="lazy" decoding="async" src="webp/商品天猫淘宝小红书商品网页.webp" alt="Le Pom E-commerce" class="img-hand-drawn-hover">
   </div>
   
   <!-- 品牌视觉识别系统 -->
   <div style="margin:3rem 0;">
     <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">品牌视觉识别系统</h3>
-    <img loading="lazy" decoding="async" src="webp/media/le-pom-visual-identity.webp" alt="Le Pom Visual Identity System" style="width:100%;display:block;">
+    <div class="gallery-minimal le-pom-gallery">
+      <img loading="lazy" decoding="async" src="webp/media/le-pom-visual-identity.webp" alt="Le Pom Visual Identity System">
+      <img loading="lazy" decoding="async" src="webp/商品天猫淘宝小红书商品网页.webp" alt="Le Pom 电商页面">
+    </div>
   </div>
   
   <!-- 产品场景图 -->
   <div style="margin:3rem 0;">
     <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;">产品场景展示</h3>
-    <img loading="lazy" decoding="async" src="webp/media/le-pom-2.webp" alt="Le Pom Product Scene" style="width:100%;display:block;">
+    <a href="webp/media/le-pom-2.webp" target="_blank" rel="noopener" aria-label="查看 Le Pom 产品场景大图"><img loading="lazy" decoding="async" src="webp/media/le-pom-2.webp" alt="Le Pom Product Scene" style="width:100%;max-height:480px;object-fit:contain;display:block;"></a>
   </div>
   
   <!-- 海外社交媒体运营 -->
