@@ -3000,6 +3000,26 @@ document.addEventListener('DOMContentLoaded', function() {
 #about .about-intro li { border-top:1px solid var(--border);padding:14px 0 14px 18px !important;font-size:15px; }
 #about .about-intro li > span[aria-hidden] { top:14px;color:#a82242 !important; }
 #about .badge-animate { transform:none !important;animation:none !important; }
+#moth-within .moth-gallery {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  max-width:920px;
+  margin:0 auto;
+}
+#moth-within .moth-gallery img {
+  width:100%;
+  aspect-ratio:4 / 3;
+  object-fit:cover;
+  border-radius:6px;
+  background:var(--bg-secondary);
+  transition:transform .3s ease;
+}
+#moth-within .moth-gallery img.moth-contain { object-fit:contain; }
+#moth-within .moth-gallery img:hover { transform:scale(1.015); }
+@media(max-width:560px){
+  #moth-within .moth-gallery { grid-template-columns:1fr !important;gap:12px; }
+}
 @media(max-width:768px){ #about .about-intro h2 {font-size:36px !important;} #about .about-intro > p:nth-of-type(2){font-size:22px !important;} }
 </style></head>
 <body>
@@ -3262,24 +3282,17 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="lang-en" style="display:none;">
 <p class="desc"><i>Moth Within</i> | ARENAPEAK Asia Competition — Finalist</p>
 </div>
-<div style="margin:2.5rem 0;">
-<img alt="虫我 Moth Within — ARENAPEAK Asia Competition Finalist" decoding="async" height="1086" loading="lazy" src="webp/moth-within/poster.webp" style="width:100%;height:auto;display:block;border-radius:8px;" width="1448"/>
-</div>
-<div style="margin:3rem 0;">
-<h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;"><span data-en="Character &amp; Visual Development" data-zh="角色与视觉开发">角色与视觉开发</span></h3>
-<div class="gallery-minimal">
-<img alt="《虫我》角色造型与多视角设定" class="full" decoding="async" height="941" loading="lazy" src="webp/moth-within/03-character-sheet.webp" width="1672"/>
-<img alt="《虫我》蛾翼服装造型" decoding="async" height="1344" loading="lazy" src="webp/moth-within/04-runway-look.webp" width="896"/>
-<img alt="《虫我》面部材质视觉设定" decoding="async" height="1024" loading="lazy" src="webp/moth-within/05-face-detail.webp" width="1024"/>
-<img alt="《虫我》角色肖像设定" decoding="async" height="456" loading="lazy" src="webp/moth-within/07-character-portrait.webp" width="344"/>
-</div>
-</div>
-<div style="margin:3rem 0;">
-<h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;"><span data-en="Key Frames" data-zh="关键画面">关键画面</span></h3>
-<div class="gallery-minimal">
+<div style="margin:2.5rem 0 3rem;">
+<h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;"><span data-en="Visual Archive" data-zh="视觉档案">视觉档案</span></h3>
+<div class="moth-gallery">
+<img alt="虫我 Moth Within — ARENAPEAK Asia Competition Finalist" decoding="async" height="1086" loading="lazy" src="webp/moth-within/poster.webp" width="1448"/>
 <img alt="《虫我》后台空间关键帧" decoding="async" height="1013" loading="lazy" src="webp/moth-within/01-backstage.webp" width="1800"/>
 <img alt="《虫我》逆光蛾翼剪影关键帧" decoding="async" height="1009" loading="lazy" src="webp/moth-within/02-light-silhouette.webp" width="1800"/>
-<img alt="《虫我》飞蛾与灯光关键帧" class="full" decoding="async" height="1348" loading="lazy" src="webp/moth-within/06-moth-and-lamp.webp" width="1800"/>
+<img alt="《虫我》角色造型与多视角设定" class="moth-contain" decoding="async" height="941" loading="lazy" src="webp/moth-within/03-character-sheet.webp" width="1672"/>
+<img alt="《虫我》蛾翼服装造型" class="moth-contain" decoding="async" height="1344" loading="lazy" src="webp/moth-within/04-runway-look.webp" width="896"/>
+<img alt="《虫我》面部材质视觉设定" decoding="async" height="1024" loading="lazy" src="webp/moth-within/05-face-detail.webp" width="1024"/>
+<img alt="《虫我》飞蛾与灯光关键帧" decoding="async" height="1348" loading="lazy" src="webp/moth-within/06-moth-and-lamp.webp" width="1800"/>
+<img alt="《虫我》角色肖像设定" class="moth-contain" decoding="async" height="456" loading="lazy" src="webp/moth-within/07-character-portrait.webp" width="344"/>
 <img alt="《虫我》卧室空间关键帧" decoding="async" height="1112" loading="lazy" src="webp/moth-within/08-bedroom-scene.webp" width="1800"/>
 <img alt="《虫我》人物特写关键帧" decoding="async" height="1013" loading="lazy" src="webp/moth-within/09-transformation-closeup.webp" width="1800"/>
 </div>
