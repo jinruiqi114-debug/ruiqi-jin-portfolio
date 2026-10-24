@@ -2982,10 +2982,12 @@ document.addEventListener('DOMContentLoaded', function() {
 .long-image-preview img { width:100%; }
 #le-pom .gallery-minimal { align-items:start; }
 #le-pom img { object-fit:contain;transform:none; }
-#le-pom .le-pom-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+#le-pom .le-pom-gallery { grid-template-columns:repeat(2,minmax(0,1fr));width:50%;margin-left:auto;margin-right:auto; }
+#le-pom .le-pom-single { display:block;width:50%;margin-left:auto;margin-right:auto; }
 @media(max-width:768px) {
  .speaker-posters img { height:auto !important; }
  #le-pom .gallery-minimal,#le-pom div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr !important; }
+ #le-pom .le-pom-gallery,#le-pom .le-pom-single { width:100%; }
 }
 @media(max-width:768px) {
  .speaker-posters,.film-posters,.paired-assets { grid-template-columns:1fr;gap:20px; }
@@ -3383,12 +3385,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- 产品场景图 -->
 <div style="margin:3rem 0;">
 <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;"><span data-en="Product in Context" data-zh="产品场景展示">产品场景展示</span></h3>
-<a aria-label="查看 Le Pom 产品场景大图" href="webp/media/le-pom-2.webp" rel="noopener" target="_blank"><img alt="Le Pom Product Scene" decoding="async" loading="lazy" src="webp/media/le-pom-2.webp" style="width:100%;max-height:480px;object-fit:contain;display:block;"/></a>
+<a aria-label="查看 Le Pom 产品场景大图" class="le-pom-single" href="webp/media/le-pom-2.webp" rel="noopener" target="_blank"><img alt="Le Pom Product Scene" decoding="async" loading="lazy" src="webp/media/le-pom-2.webp" style="width:100%;max-height:480px;object-fit:contain;display:block;"/></a>
 </div>
 <!-- 海外社交媒体运营 -->
 <div style="margin:3rem 0;">
 <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;"><span data-en="International Social Media" data-zh="海外社交媒体运营">海外社交媒体运营</span></h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+<div class="gallery-minimal le-pom-gallery">
 <img alt="Instagram Marketing" decoding="async" loading="lazy" src="webp/media/le-pom-ins.webp" style="width:100%;display:block;"/>
 <img alt="Overseas Social Media" decoding="async" loading="lazy" src="webp/media/le-pom-overseas-social.webp" style="width:100%;display:block;"/>
 </div>
@@ -3397,7 +3399,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div style="margin:3rem 0;">
 <h3 style="font-family:var(--font-display);font-size:24px;margin-bottom:1.5rem;"><span data-en="Creative Film" data-zh="创意视频">创意视频</span></h3>
 <h4 style="font-family:var(--font-display);font-size:18px;margin-bottom:1rem;"><span data-en="Film Concepts" data-zh="视频构思">视频构思</span></h4>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+<div class="gallery-minimal le-pom-gallery">
 <img alt="Video Concept 1" decoding="async" loading="lazy" src="webp/media/le-pom-video-concept1.webp" style="width:100%;display:block;"/>
 <img alt="Video Concept 2" decoding="async" loading="lazy" src="webp/media/le-pom-video-concept2.webp" style="width:100%;display:block;"/>
 </div>
