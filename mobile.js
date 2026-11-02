@@ -12,6 +12,7 @@
   }
   videos.forEach((v,i)=>{
     v.setAttribute('webkit-playsinline','');
+    v.addEventListener('canplay',()=>{if(mobile.matches && i===active)play();});
     v.addEventListener('ended',()=>{
       if(!mobile.matches)return;
       active=1-i;
