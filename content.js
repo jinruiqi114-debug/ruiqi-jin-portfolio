@@ -9,12 +9,7 @@
     ['product-design','产品设计','Product Design','我关注产品形态、使用场景与视觉传播之间的关系。从产品概念到场景表达，希望让一个具体的物件拥有自己的气质、故事和视觉世界。','I explore the relationship between product form, everyday use and visual communication. From concepts to contextual imagery, I give everyday objects a distinct character and visual story.','产品概念 · 场景设计 · 视觉表达','Product concepts · Scene design · Visual expression','苹果型香味扩散器 · 产品视觉探索','Apple-shaped scent diffuser · Product imagery',null]
   ];
   projects.push(['generation-rules','生成法则','Rules of Generation','《生成法则》是我个人独立完成的 AI 电影作品。以 AI 为创作媒介，将个人想法转化为影像，探索自己的视觉表达。','Rules of Generation is an independently created AI film. Using AI as a creative medium, I translate personal ideas into moving images and explore my own visual expression.','个人独立完成','Independently created','AI 电影 · 独立创作','AI film · Independent creation','https://xhslink.cn/o/9JfeCyTta5L']);
-  const generationCard = document.createElement('a');
-  generationCard.className = 'work-card';
-  generationCard.href = '#generation-rules';
-  generationCard.setAttribute('data-reveal','');
-  generationCard.innerHTML = '<div class="work-card__media"><img src="assets/generation-rules.png" alt="生成法则" loading="lazy"></div><div class="work-card__meta t-small"></div>';
-  document.querySelector('.work-grid').append(generationCard);
+  const featuredNumbers = {'goldfish-room':'01','moth-within':'02','dahua-jinling':'03','generation-rules':'04'};
   const generationCase = document.createElement('article');
   generationCase.className = 'case';
   generationCase.id = 'generation-rules';
@@ -56,15 +51,18 @@
     document.querySelector('.craft__statement').textContent = t('我相信，审美不仅是视觉风格，也是一种思考方式。','I believe aesthetic vision is a way of thinking, as well as a visual style.');
     document.querySelector('.specs').innerHTML = [[t('AI 电影','AI films'),t('编剧与视觉创作','Writing & visuals')],[t('人物设定','Character design'),t('概念与形象','Concept & identity')],[t('时尚视觉','Fashion imagery'),t('风格与表达','Style & expression')],[t('产品设计','Product design'),t('形态与场景','Form & context')]].map(p=>`<li class="specs__row"><span>${p[0]}</span><span class="is-demoted">${p[1]}</span></li>`).join('');
     document.querySelector('.work__head h2').textContent=t('代表作品','Selected work');
-    document.querySelector('.work__head p').textContent=t('从 AI 电影到公开分享，从人物设定到产品视觉，每个项目都记录着我对审美与表达的探索。','From AI films and public talks to character design and product imagery, each project explores a different way to see and express.');
+    document.querySelector('.work__head p').textContent=t('四部 AI 电影，记录我如何从故事、人物和视觉概念出发，把想法变成可以被看见的世界。','Four AI films tracing how stories, characters and visual concepts become worlds you can see.');
     document.querySelector('.case-studies__head h2').textContent=t('让想法拥有画面，让作品留下印记。','Giving ideas a visual form. Creating work that stays with you.');
     document.querySelector('.case-studies__head > p').textContent=t('这里收录我的代表项目、创作职责与作品链接。','Explore selected projects, my contributions and links to the work.');
     document.querySelector('.case-studies__head .t-small').textContent=t('项目档案 · 01—07','Project archive · 01—07');
     projects.forEach((p,i)=>{
       const section = document.getElementById(p[0]);
       const card = document.querySelector(`.work-card[href="#${p[0]}"]`);
-      card.querySelector('.work-card__meta').innerHTML=`<span>${t(p[1],p[2])}</span><span>0${i+1} ↗</span>`;
-      [card,section].forEach(e=>e.querySelector('img').alt=t(p[1],p[2]));
+      if (card) {
+        card.querySelector('.work-card__meta').innerHTML=`<span>${t(p[1],p[2])}</span><span>${featuredNumbers[p[0]] || `0${i+1}`} ↗</span>`;
+        card.querySelector('img').alt=t(p[1],p[2]);
+      }
+      section.querySelector('img').alt=t(p[1],p[2]);
       section.querySelector('.case__body').innerHTML=`<p class="t-small is-demoted">0${i+1} / ${t('项目','Project')}</p><h3 class="case__title">${t(p[1],p[2])}</h3><p class="t-body">${t(p[3],p[4])}</p><p class="case__role t-small">${t('我的职责：','My contribution: ')}${t(p[5],p[6])}</p><div class="case__actions t-small"><a href="${p[9] || '#contact'}" ${p[9]?'target="_blank" rel="noopener noreferrer"':''}>${p[9]?t('查看作品 / 推荐 ↗','View work / feature ↗'):t('联系合作 →','Get in touch →')}</a></div>`;
       section.querySelector('.case__facts').innerHTML=`<li><span>${t('项目亮点','Highlights')}</span><span class="is-demoted">${t(p[7],p[8])}</span></li>`;
     });
