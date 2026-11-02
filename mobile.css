@@ -51,6 +51,7 @@
   .hero__stage {position:relative;display:block;padding:88px 20px 40px;min-height:0;}
   .stage {position:relative;inset:auto;width:calc(100% + 40px);margin:0 -20px;height:clamp(230px,62vw,420px);pointer-events:auto;}
   .stage video {object-fit:contain;}
+  .mobile-motion-fallback {position:absolute;inset:0;z-index:4;width:100%;height:100%;object-fit:contain;background:#fff;pointer-events:none;}
   .hero__copy {padding-top:24px;}
   .craft__stage {position:relative;min-height:0;padding:32px 20px 48px;background:white;}
   .mobile-play {display:block;position:absolute;z-index:3;left:50%;bottom:16px;transform:translateX(-50%);padding:12px 20px;border:1px solid #cad0d2;border-radius:24px;background:white;white-space:nowrap;}
