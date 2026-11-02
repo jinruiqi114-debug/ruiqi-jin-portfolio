@@ -69,8 +69,8 @@
 @media (max-width:767px) {
   #goldfish-visual-assets,
   .moth-archive,
-  .case-list .case__visual,
   .case-list .case__facts { display:none; }
+  .case-list .case__visual { display:block; width:100%; margin:0 0 20px; }
   .case-studies__head { margin-bottom:20px; }
   .case-studies__head h2,
   .case-studies__head > p:not(.t-small) { display:none; }
