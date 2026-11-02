@@ -96,20 +96,13 @@
       .specs { grid-column:2; width:min(100%,480px); justify-self:end; list-style:none; padding:0; margin:0 0 var(--pad-y); z-index:2; }
       .specs__row { display:flex; justify-content:space-between; gap:24px; padding:12px 0; border-top:1px solid var(--ink-24); }
       .specs__row:last-child { border-bottom:1px solid var(--ink-24); }
-      .mats { position:absolute; inset:0; pointer-events:none; }
-      .mat { position:absolute; width:clamp(88px,12vw,180px); opacity:.88; transform:translate3d(0,0,0) rotate(0deg) scale(1); filter:blur(0); will-change:transform,opacity,filter; }
-      .mat img { width:100%; height:auto; object-fit:contain; }
-      .mat--a { left:4%; top:74%; }
-      .mat--b { left:27%; top:6%; width:clamp(80px,11vw,170px); }
-      .mat--c { right:7%; top:30%; transform:scaleX(-1); }
-      .mat--d { left:66%; top:40%; width:clamp(70px,9vw,135px); transform:scaleX(-1); }
       .work { padding:calc(var(--pad-y) * 4) var(--pad-x) 180px; background:var(--bg); }
       .work__head { display:grid; grid-template-columns:7fr 3fr; gap:24px; margin-bottom:64px; }
       .work__head h2 { margin:-.04em 0 0; }
       .work__head p { max-width:420px; margin:0; }
       .work-grid { display:grid; grid-template-columns:repeat(16,1fr); column-gap:24px; row-gap:clamp(64px,9vw,136px); }
-      .work-card { display:block; grid-column:span 3; transform:translateY(40px); opacity:0; filter:blur(12px); transition:transform 700ms var(--ease-expo),opacity 700ms var(--ease-expo),filter 700ms var(--ease-expo); }
-      .work-card.is-visible { transform:translateY(0); opacity:1; filter:blur(0); }
+      .work-card { display:block; grid-column:span 3; transform:translateY(40px); opacity:0; transition:transform 700ms var(--ease-expo),opacity 700ms var(--ease-expo); }
+      .work-card.is-visible { transform:translateY(0); opacity:1; }
       .work-card:nth-child(3) { grid-column:9 / span 8; }
       .work-card:nth-child(4) { grid-column:1 / span 3; }
       .work-card:nth-child(5) { grid-column:6 / span 3; }
@@ -172,11 +165,11 @@
       .contact a { color:var(--ink); border-bottom:1px solid var(--ink-48); }
     }
     @layer motion {
-      .reveal { opacity:0; transform:translateY(12px); filter:blur(8px); transition:opacity 700ms var(--ease-expo),transform 700ms var(--ease-expo),filter 700ms var(--ease-expo); }
-      .reveal.is-visible { opacity:1; transform:translateY(0); filter:blur(0); }
+      .reveal { opacity:0; transform:translateY(12px); transition:opacity 700ms var(--ease-expo),transform 700ms var(--ease-expo); }
+      .reveal.is-visible { opacity:1; transform:translateY(0); }
       @media (prefers-reduced-motion:reduce) {
         *,*::before,*::after { scroll-behavior:auto !important; transition-duration:0.01ms !important; animation-duration:0.01ms !important; }
-        .reveal,.work-card { opacity:1; transform:none; filter:none; }
+        .reveal,.work-card { opacity:1; transform:none; }
       }
     }
     @layer utilities {
@@ -190,12 +183,6 @@
         .craft__stage { grid-template-columns:1fr; grid-template-rows:auto 220px auto; padding-top:120px; }
         .craft__statement { grid-column:1; padding-top:0; }
         .specs { grid-column:1; width:100%; justify-self:stretch; }
-        .mats { position:absolute; height:220px; inset:36% 0 auto; }
-        .mat { width:90px !important; }
-        .mat--a { left:-4%; top:58%; }
-        .mat--b { left:64%; top:50%; }
-        .mat--c { right:8%; top:0; }
-        .mat--d { left:26%; top:42%; }
         .work { padding-top:100px; }
         .work__head { grid-template-columns:1fr; gap:24px; margin-bottom:40px; }
         .work-grid { grid-template-columns:repeat(2,1fr); column-gap:16px; row-gap:40px; }
@@ -222,8 +209,8 @@
 </head>
 <body>
   <div class="stage" id="stage" aria-hidden="true">
-    <div class="stage__layer is-active" id="layerA"><video id="v1" muted autoplay playsinline preload="auto" poster="assets/hero-node-1-poster.jpg"><source src="assets/hero-node-1.mp4" type="video/mp4"></video></div>
-    <div class="stage__layer" id="layerB"><video id="v2" muted autoplay playsinline preload="metadata" poster="assets/hero-node-5-poster.jpg"><source src="assets/hero-node-5.mp4" type="video/mp4"></video></div>
+    <div class="stage__layer is-active" id="layerA"><video id="v1" muted playsinline preload="auto" poster="assets/hero-node-1-poster.jpg" src="assets/hero-node-1-desktop.mp4"></video></div>
+    <div class="stage__layer" id="layerB"><video id="v2" muted playsinline preload="none" poster="assets/hero-node-5-poster.jpg" data-desktop-src="assets/hero-node-5-desktop.mp4"></video></div>
     <div class="stage__wash"></div>
   </div>
 
@@ -252,12 +239,6 @@
 
     <section class="craft" id="craft">
       <div class="craft__stage">
-        <div class="mats" aria-hidden="true">
-          <figure class="mat mat--a" data-mat="a"><img src="assets/webp/goldfish-assets.webp" alt=""></figure>
-          <figure class="mat mat--b" data-mat="b"><img src="assets/webp/dahua-jinling-riki.webp" alt=""></figure>
-          <figure class="mat mat--c" data-mat="c"><img src="assets/webp/ai-product-exploration-riki.webp" alt=""></figure>
-          <figure class="mat mat--d" data-mat="d"><img src="assets/images/guan-vi.webp" alt=""></figure>
-        </div>
         <h2 class="craft__statement t-h1 reveal">I create visual worlds where AI, fashion, culture and story meet.</h2>
         <ul class="specs t-small">
           <li class="specs__row reveal"><span>AI films</span><span class="is-demoted">visual direction</span></li>
@@ -461,14 +442,29 @@
     const work = document.querySelector('#work');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const clamp = (v,min=0,max=1) => Math.min(max,Math.max(min,v));
+    const desktopSources = ['assets/hero-node-1-desktop.mp4','assets/hero-node-5-desktop.mp4'];
+    const scrubSpeed = 2;
     let raf = 0;
-    let previousY = -1;
+    let desktopSecondReady = false;
+    const lastVideoSeek = new WeakMap();
 
     const setReveal = (el, visible) => el.classList.toggle('is-visible', visible);
     const videoProgress = (video, progress) => {
       if (!Number.isFinite(video.duration) || video.readyState < 1) return;
+      const now = performance.now();
+      if (now - (lastVideoSeek.get(video) || 0) < 42) return;
       const target = clamp(progress) * video.duration;
-      if (Math.abs(video.currentTime - target) > 0.025) video.currentTime = target;
+      if (Math.abs(video.currentTime - target) > 0.07) {
+        lastVideoSeek.set(video, now);
+        if (typeof video.fastSeek === 'function') video.fastSeek(target);
+        else video.currentTime = target;
+      }
+    };
+    const ensureDesktopVideo = (video, index) => {
+      if (video.src || !desktopSources[index]) return;
+      video.src = desktopSources[index];
+      video.preload = 'auto';
+      video.load();
     };
 
     const layoutProgress = () => {
@@ -495,50 +491,44 @@
       const p1 = clamp(y / s1);
       const p2 = clamp((y - s1) / (s2 - s1));
       const stageOut = clamp((y - s2) / (innerHeight * .5));
-      previousY = y;
 
       if (reduced) {
-        v1.pause(); v2.pause(); v1.currentTime = 0; v2.currentTime = 0;
+        if (!v1.paused) v1.pause();
+        if (!v2.paused) v2.pause();
+        v1.currentTime = 0;
+        v2.currentTime = 0;
         layerA.style.opacity = 1; layerB.style.opacity = 0;
       } else if (y <= s1) {
-        videoProgress(v1,p1);
-        v1.pause(); v2.pause();
+        videoProgress(v1,p1 * scrubSpeed);
+        if (!v1.paused) v1.pause();
+        if (!v2.paused) v2.pause();
         layerA.style.opacity = 1; layerB.style.opacity = 0;
       } else {
-        videoProgress(v2,p2);
-        v1.pause(); v2.pause();
+        if (!desktopSecondReady && y > s1 - innerHeight * .35) {
+          ensureDesktopVideo(v2,1);
+          desktopSecondReady = true;
+        }
+        videoProgress(v2,p2 * scrubSpeed);
+        if (!v1.paused) v1.pause();
+        if (!v2.paused) v2.pause();
         layerA.style.opacity = 0; layerB.style.opacity = 1;
       }
       stage.style.opacity = String(1 - stageOut);
 
-      const craftRect = craft.getBoundingClientRect();
-      const craftP = clamp((innerHeight - craftRect.top) / (craft.offsetHeight + innerHeight));
-      const matData = [
-        ['a',-90,48,-10],['b',-40,34,7],['c',90,28,8],['d',70,34,-8]
-      ];
-      matData.forEach(([key,dx,dy,rot],i) => {
-        const mat = document.querySelector(`[data-mat="${key}"]`);
-        if (!mat) return;
-        const q = clamp((craftP - (.10 + i*.05)) / .5);
-        const travel = 1 - Math.cos(q * Math.PI * .5);
-        mat.style.transform = `translate3d(${dx * (1-travel)}px, ${dy * (1-travel)}px, 0) rotate(${rot * (1-travel)}deg) scale(${.88 + travel*.12})`;
-        mat.style.opacity = String(.18 + travel*.7);
-      });
-
-      document.querySelectorAll('.reveal').forEach((el) => {
-        const r = el.getBoundingClientRect();
-        setReveal(el, r.top < innerHeight * .86 && r.bottom > innerHeight * .08);
-      });
-      document.querySelectorAll('[data-reveal]').forEach((el) => {
-        const r = el.getBoundingClientRect();
-        setReveal(el, r.top < innerHeight * .88 && r.bottom > 0);
-      });
     };
 
     const requestTick = () => { if (!raf) raf = requestAnimationFrame(tick); };
     window.addEventListener('scroll', requestTick, {passive:true});
     window.addEventListener('resize', requestTick, {passive:true});
     [v1,v2].forEach(v => v.addEventListener('loadedmetadata', requestTick, {once:true}));
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => setReveal(entry.target, entry.isIntersecting));
+      }, {rootMargin:'0px 0px -8% 0px', threshold:0.01});
+      document.querySelectorAll('.reveal,[data-reveal]').forEach((el) => revealObserver.observe(el));
+    } else {
+      document.querySelectorAll('.reveal,[data-reveal]').forEach((el) => setReveal(el,true));
+    }
     requestTick();
 
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
