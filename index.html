@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playball&display=swap">
   <script>document.documentElement.classList.add('js')</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mp4box@0.5.2/dist/mp4box.all.min.js"></script>
   <style>
     @layer reset, tokens, base, layout, components, motion, utilities;
     @layer reset {
@@ -447,6 +448,8 @@
   </main>
 
   <script src="content.js"></script>
+  <link rel="stylesheet" href="mobile.css">
+  <script src="mobile.js"></script>
   <script type="module">
     const stage = document.querySelector('#stage');
     const layerA = document.querySelector('#layerA');
@@ -469,6 +472,10 @@
     };
 
     const layoutProgress = () => {
+      if (matchMedia('(max-width:767px)').matches) {
+        const s1 = Math.max(1, craft.offsetTop);
+        return {craftSpan:craft.offsetHeight,s1,s2:Math.max(s1 + 1, work.offsetTop - innerHeight * .25)};
+      }
       const craftSpan = Math.max(1, craft.offsetHeight - innerHeight);
       const workStart = work.offsetTop - innerHeight * .82;
       const s1 = craft.offsetTop + craftSpan * .16;
@@ -478,6 +485,11 @@
 
     const tick = () => {
       raf = 0;
+      if (matchMedia('(max-width:767px)').matches) {
+        stage.style.opacity = '1';
+        document.querySelectorAll('.reveal,[data-reveal]').forEach(el => setReveal(el,true));
+        return;
+      }
       const {craftSpan,s1,s2} = layoutProgress();
       const y = scrollY;
       const p1 = clamp(y / s1);
