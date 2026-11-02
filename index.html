@@ -100,10 +100,12 @@
       .work__head { display:grid; grid-template-columns:7fr 3fr; gap:24px; margin-bottom:64px; }
       .work__head h2 { margin:-.04em 0 0; }
       .work__head p { max-width:420px; margin:0; }
-      .work-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:24px; row-gap:clamp(48px,6vw,88px); }
+      .work-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:24px; row-gap:clamp(48px,6vw,88px); }
       .work-card { display:block; grid-column:auto; transform:translateY(40px); opacity:0; transition:transform 700ms var(--ease-expo),opacity 700ms var(--ease-expo); }
       .work-card.is-visible { transform:translateY(0); opacity:1; }
       .work-card__media { aspect-ratio:4 / 3; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#fff; }
+      .work-card--wide .work-card__media { aspect-ratio:16 / 9; }
+      .work-card--standard .work-card__media { aspect-ratio:4 / 3; }
       .work-card img { width:100%; height:100%; object-fit:contain; }
       .work-card__meta { display:flex; justify-content:space-between; gap:12px; padding-top:12px; }
       .work-card__tag { margin-top:2px; }
@@ -249,19 +251,19 @@
         <p class="t-lead reveal">从 AI 影像、平台项目到产品设计，我把研究、叙事和视觉表达放进同一个创作过程。</p>
       </div>
       <div class="work-grid">
-        <a class="work-card" href="#goldfish-room" data-reveal>
+        <a class="work-card work-card--wide" href="#goldfish-room" data-reveal>
           <div class="work-card__media"><img src="assets/webp/goldfish-room.webp" alt="房间里的金鱼" loading="lazy"></div>
           <div class="work-card__meta t-small"><span>房间里的金鱼</span><span class="is-demoted">01 ↗</span></div>
         </a>
-        <a class="work-card" href="#moth-within" data-reveal>
+        <a class="work-card work-card--wide" href="#moth-within" data-reveal>
           <div class="work-card__media"><img src="assets/webp/moth-within/poster.webp" alt="虫我" loading="lazy"></div>
           <div class="work-card__meta t-small"><span>虫我</span><span class="is-demoted">02 ↗</span></div>
         </a>
-        <a class="work-card" href="#dahua-jinling" data-reveal>
+        <a class="work-card work-card--standard" href="#dahua-jinling" data-reveal>
           <div class="work-card__media"><img src="assets/webp/dahua-jinling-poster.webp" alt="大话金陵" loading="lazy"></div>
           <div class="work-card__meta t-small"><span>大话金陵</span><span class="is-demoted">03 ↗</span></div>
         </a>
-        <a class="work-card" href="#generation-rules" data-reveal>
+        <a class="work-card work-card--standard" href="#generation-rules" data-reveal>
           <div class="work-card__media"><img src="assets/webp/generation-rules.webp" alt="生成法则" loading="lazy"></div>
           <div class="work-card__meta t-small"><span>生成法则</span><span class="is-demoted">04 ↗</span></div>
         </a>
@@ -278,7 +280,7 @@
       </div>
       <div class="case-list">
         <article class="case" id="goldfish-room" data-reveal>
-          <figure class="case__visual"><img src="assets/webp/goldfish-still.webp" alt="房间里的金鱼视觉场景"></figure>
+          <figure class="case__visual"><img src="assets/webp/goldfish-still.webp" alt="房间里的金鱼视觉场景" loading="lazy"></figure>
           <div class="case__body">
             <p class="t-small is-demoted">01 · AI film / award-winning work</p>
             <h3 class="case__title">房间里的金鱼</h3>
@@ -289,7 +291,7 @@
           <ul class="case__facts t-small"><li><span>职责</span><span class="is-demoted">编剧 · 概念设计</span></li><li><span>制作</span><span class="is-demoted">视频生成</span></li><li><span>荣誉</span><span class="is-demoted">海浪 AI 电影黑客松获奖</span></li></ul>
         </article>
         <article class="case case--reverse" id="phoenix-share" data-reveal>
-          <figure class="case__visual"><img src="assets/webp/ai-product-exploration-riki.webp" alt="凤凰财经分享会视觉"></figure>
+          <figure class="case__visual"><img src="assets/webp/ai-product-exploration-riki.webp" alt="凤凰财经分享会视觉" loading="lazy"></figure>
           <div class="case__body">
             <p class="t-small is-demoted">02 · Talk / content strategy</p>
             <h3 class="case__title">凤凰财经分享会</h3>
@@ -299,7 +301,7 @@
           <ul class="case__facts t-small"><li><span>角色</span><span class="is-demoted">特邀分享嘉宾</span></li><li><span>主题</span><span class="is-demoted">AI · AIGC · 内容</span></li><li><span>形式</span><span class="is-demoted">Keynote · 视觉分享</span></li></ul>
         </article>
         <article class="case" id="moth-within" data-reveal>
-          <figure class="case__visual"><img src="assets/webp/moth-within/poster.webp" alt="虫我 Moth Within 视觉海报"></figure>
+          <figure class="case__visual"><img src="assets/webp/moth-within/poster.webp" alt="虫我 Moth Within 视觉海报" loading="lazy"></figure>
           <div class="case__body">
             <p class="t-small is-demoted">03 · AI film / ARENAPEAK finalist</p>
             <h3 class="case__title">虫我</h3>
@@ -310,7 +312,7 @@
           <ul class="case__facts t-small"><li><span>职责</span><span class="is-demoted">编剧 · 概念设计</span></li><li><span>制作</span><span class="is-demoted">视频生成 · 后期配乐</span></li><li><span>荣誉</span><span class="is-demoted">ARENAPEAK 决赛入围</span></li></ul>
         </article>
         <article class="case case--reverse" id="xiaohongshu-director" data-reveal>
-          <figure class="case__visual"><img src="assets/webp/goldfish-xhs-director-selection.webp" alt="小红书天才导演计划入选展示"></figure>
+          <figure class="case__visual"><img src="assets/webp/goldfish-xhs-director-selection.webp" alt="小红书天才导演计划入选展示" loading="lazy"></figure>
           <div class="case__body">
             <p class="t-small is-demoted">04 · Platform selection / creator identity</p>
             <h3 class="case__title">小红书天才导演计划</h3>
@@ -320,7 +322,7 @@
           <ul class="case__facts t-small"><li><span>项目</span><span class="is-demoted">Genius Director 2.0</span></li><li><span>关联作品</span><span class="is-demoted">房间里的金鱼</span></li><li><span>方向</span><span class="is-demoted">AI 影像 · 内容</span></li></ul>
         </article>
         <article class="case" id="dahua-jinling" data-reveal>
-          <figure class="case__visual"><img src="assets/webp/dahua-jinling-poster.webp" alt="大话金陵作品海报"></figure>
+          <figure class="case__visual"><img src="assets/webp/dahua-jinling-poster.webp" alt="大话金陵作品海报" loading="lazy"></figure>
           <div class="case__body">
             <p class="t-small is-demoted">05 · AI film / character world</p>
             <h3 class="case__title">大话金陵</h3>
@@ -331,7 +333,7 @@
           <ul class="case__facts t-small"><li><span>职责</span><span class="is-demoted">导演 · 演员</span></li><li><span>制作</span><span class="is-demoted">后期配乐</span></li><li><span>荣誉</span><span class="is-demoted">影石 AI 电影入围</span></li></ul>
         </article>
         <article class="case case--reverse" id="product-design" data-reveal>
-          <figure class="case__visual"><img src="assets/webp/苹果香氛扩散器-办公桌场景.webp" alt="苹果型香味扩散器产品设计场景"></figure>
+          <figure class="case__visual"><img src="assets/webp/苹果香氛扩散器-办公桌场景.webp" alt="苹果型香味扩散器产品设计场景" loading="lazy"></figure>
           <div class="case__body">
             <p class="t-small is-demoted">06 · Product design / visual concept</p>
             <h3 class="case__title">产品设计</h3>
@@ -346,10 +348,10 @@
             <p class="t-body">从你补充的素材中选取概念、角色、服装和视频帧，作为项目过程的一部分保留在页面里。</p>
           </div>
           <div class="moth-archive__grid">
-            <figure><img src="assets/moth-raw/moth-concept.png" alt="虫我概念设计素材"></figure>
-            <figure><img src="assets/moth-raw/moth-character-sheet.png" alt="虫我角色设计素材"></figure>
-            <figure><img src="assets/moth-raw/moth-runway.png" alt="虫我服装造型素材"></figure>
-            <figure><img src="assets/moth-raw/moth-frame.png" alt="虫我视频截帧素材"></figure>
+            <figure><img src="assets/moth-raw/moth-concept.png" alt="虫我概念设计素材" loading="lazy"></figure>
+            <figure><img src="assets/moth-raw/moth-character-sheet.png" alt="虫我角色设计素材" loading="lazy"></figure>
+            <figure><img src="assets/moth-raw/moth-runway.png" alt="虫我服装造型素材" loading="lazy"></figure>
+            <figure><img src="assets/moth-raw/moth-frame.png" alt="虫我视频截帧素材" loading="lazy"></figure>
           </div>
         </div>
       </div>

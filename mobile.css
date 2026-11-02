@@ -63,3 +63,19 @@
   .hero__stage,.craft__stage { position:relative; padding-top:calc(76px + 30svh); }
   .hero,.craft { height:auto; min-height:100svh; }
 }
+
+/* Mobile keeps the featured poster grid as the visual index and turns the
+   longer project archive into a compact text-only continuation. */
+@media (max-width:767px) {
+  #goldfish-visual-assets,
+  .moth-archive,
+  .case-list .case__visual,
+  .case-list .case__facts { display:none; }
+  .case-studies__head { margin-bottom:20px; }
+  .case-studies__head h2,
+  .case-studies__head > p:not(.t-small) { display:none; }
+  .case-list .case { display:block; padding:26px 0 32px; }
+  .case-list .case__body { width:100%; }
+  .case-list .case__body > p.t-body { margin-top:12px; }
+  .case-list .case__role { margin-top:12px; }
+}
